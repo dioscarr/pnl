@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  pnl:
+    image: ${DOCKER_REGISTRY-}pnl
+    build:
+      context: .
+      dockerfile: Dockerfile
