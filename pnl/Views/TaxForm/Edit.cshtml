@@ -1,0 +1,10 @@
+﻿@model pnl.Data.Models.TaxForm;
+
+<div>
+    <form asp-action="Edit" asp-controller="TaxForm" asp-route-id="@Model.ID">
+        
+        <div>Enter Year</div>
+        <input type="text" name="TaxYear" value="@Model.TaxYear" />
+        <input type="submit" value="Update" />
+    </form>
+</div>

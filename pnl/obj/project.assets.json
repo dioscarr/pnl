@@ -7914,7 +7914,11 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.0-preview.8.20407.4",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.0-preview.8.20407.4",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.10.9",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.0-preview.8.20419.1"
+      "Microsoft.VisualStudio.Web.CodeGeneration >= 5.0.0-preview.8.20419.1",
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.0-preview.8.20419.1",
+      "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore >= 5.0.0-preview.8.20419.1",
+      "Microsoft.VisualStudio.Web.CodeGeneration.Templating >= 5.0.0-preview.8.20419.1",
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 5.0.0-preview.8.20419.1"
     ]
   },
   "packageFolders": {
@@ -7992,7 +7996,23 @@
             "target": "Package",
             "version": "[1.10.9, )"
           },
+          "Microsoft.VisualStudio.Web.CodeGeneration": {
+            "target": "Package",
+            "version": "[5.0.0-preview.8.20419.1, )"
+          },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "target": "Package",
+            "version": "[5.0.0-preview.8.20419.1, )"
+          },
+          "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.0-preview.8.20419.1, )"
+          },
+          "Microsoft.VisualStudio.Web.CodeGeneration.Templating": {
+            "target": "Package",
+            "version": "[5.0.0-preview.8.20419.1, )"
+          },
+          "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
             "target": "Package",
             "version": "[5.0.0-preview.8.20419.1, )"
           }

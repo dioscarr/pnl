@@ -12,7 +12,20 @@ namespace pnl.Data.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
-        public int UserID { get; set; }
-        public int TaxtYear { get; set; }
+        [Required]
+        public string UserID { get; set; }
+        [Required]
+        public int TaxYear { get; set; }
+        public string FilingStatus { get; set; }
+
+
+        [Required]
+        [ForeignKey("Person")]
+        public int PersonID { get; set; }
+        public virtual Person Person { get; set; }
+
+        public virtual ICollection<TaxFormCriteria> TaxFormCriterias { get; set; }
+        public virtual ICollection<Dependent> DependentsClaimed { get; set; }
+        public virtual ICollection<DependentCareProviders> DependentCareProviders { get; set; }
     }
 }

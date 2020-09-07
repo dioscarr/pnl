@@ -14894,6 +14894,21 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\TaxForm\\Review.cshtml",
+      "TargetPath": "Views\\TaxForm\\Review.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\TaxForm\\Edit.cshtml",
+      "TargetPath": "Views\\TaxForm\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\TaxForm\\Index.cshtml",
+      "TargetPath": "Views\\TaxForm\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -14926,6 +14941,11 @@
     {
       "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Users\\diosc\\Repos\\pnl\\pnl\\Views\\TaxForm\\Create.cshtml",
+      "TargetPath": "Views\\TaxForm\\Create.cshtml",
       "FileKind": "mvc"
     },
     {

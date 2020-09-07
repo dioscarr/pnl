@@ -13,10 +13,11 @@ services:
     build:
       context: D:\Users\diosc\Repos\pnl\pnl
       dockerfile: Dockerfile
+    container_name: app
     depends_on:
     - db
     environment:
-      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:80
     image: pnl
     ports:

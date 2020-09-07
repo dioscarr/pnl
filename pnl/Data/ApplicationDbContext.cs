@@ -14,6 +14,12 @@ namespace pnl.Data
         {
         }
 
-        public DbSet<TaxForm> TaxtForms { get; set; }
+        public virtual DbSet<TaxForm> TaxtForms { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public DbSet<CriteriaOption> CriteriaOptions { get; set; }
+        public DbSet<Dependent> Dependents { get; set; }
+        public DbSet<DependentCareProviders> DependentCares { get; set; }
+        public DbSet<TaxFormCriteria> TaxFormCriterias { get; set; }
     }
 }
