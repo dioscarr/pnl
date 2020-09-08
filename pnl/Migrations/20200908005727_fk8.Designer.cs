@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pnl.Data;
 
-namespace pnl.Data.Migrations
+namespace pnl.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200906232051_taxtyear")]
-    partial class taxtyear
+    [Migration("20200908005727_fk8")]
+    partial class fk8
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -221,6 +221,174 @@ namespace pnl.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("pnl.Data.Models.Address", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Address1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.CriteriaOption", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Enabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("CriteriaOption");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MonthInHome")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RelationshipName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SSN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaxFormID")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TaxFormID");
+
+                    b.ToTable("Dependent");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Address1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("AmountPaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SSN_EIN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaxFormID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TaxFormID");
+
+                    b.ToTable("DependentCare");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Person", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SSN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Person");
+                });
+
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
                 {
                     b.Property<int>("ID")
@@ -228,15 +396,44 @@ namespace pnl.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("FilingStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PersonID")
+                        .HasColumnType("int");
+
                     b.Property<int>("TaxYear")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserID")
+                    b.Property<string>("UserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("PersonID");
+
+                    b.ToTable("TaxtForms");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.TaxFormCriteria", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaxFormID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.ToTable("TaxtForms");
+                    b.HasIndex("TaxFormID");
+
+                    b.ToTable("TaxFormCriteria");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -286,6 +483,51 @@ namespace pnl.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Address", b =>
+                {
+                    b.HasOne("pnl.Data.Models.Person", "Person")
+                        .WithMany("Address")
+                        .HasForeignKey("PersonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
+                {
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("DependentsClaimed")
+                        .HasForeignKey("TaxFormID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
+                {
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("DependentCareProviders")
+                        .HasForeignKey("TaxFormID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
+                {
+                    b.HasOne("pnl.Data.Models.Person", "Person")
+                        .WithMany("TaxForms")
+                        .HasForeignKey("PersonID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.TaxFormCriteria", b =>
+                {
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("TaxFormCriterias")
+                        .HasForeignKey("TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

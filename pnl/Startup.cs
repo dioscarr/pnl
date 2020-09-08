@@ -33,7 +33,7 @@ namespace pnl
             var password = Configuration["DBPassword"] ?? "Password@123";
             var database = Configuration["PNL"] ?? "PNL";
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
+                options.UseLazyLoadingProxies().UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
 
             // Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -64,35 +64,35 @@ namespace pnl
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
                 //seeding
                 context.Database.Migrate();
-                if (!context.CriteriaOptions.Any())
+                if (!context.CriteriaOption.Any())
                 {
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Part Year Resident", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Blind", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Standard Deduction", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Public Housing", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Home owner", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Married", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Itemized Deduction", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Noncustodial Parent", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Divorced", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Nursing Home", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Moved For Work", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Renter", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Rent Paid", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Paid Child Care", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Foreign Income", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "School / University", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Retirement Account", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Pay Child support", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Convicted Of A Felony", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Filing For Deceased", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Electric Car", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Charitable donation", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Capital Gain/ Loss", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Your Dependent(s) Have Income", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = " Dependent on someone else Taxes", Enabled = true });
-                    context.CriteriaOptions.Add(new Data.Models.CriteriaOption { Name = "Income From Other State(s)", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Part Year Resident", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Blind", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Standard Deduction", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Public Housing", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Home owner", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Married", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Itemized Deduction", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Noncustodial Parent", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Divorced", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Nursing Home", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Moved For Work", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Renter", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Rent Paid", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Paid Child Care", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Foreign Income", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "School / University", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Retirement Account", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Pay Child support", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Convicted Of A Felony", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Filing For Deceased", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Electric Car", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Charitable donation", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Capital Gain/ Loss", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Your Dependent(s) Have Income", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = " Dependent on someone else Taxes", Enabled = true });
+                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Income From Other State(s)", Enabled = true });
                     context.SaveChanges();
                 }
             }

@@ -457,3 +457,6 @@ D:\Users\diosc\Repos\pnl\pnl\obj\Debug\net5.0\pnl.dll
 D:\Users\diosc\Repos\pnl\pnl\obj\Debug\net5.0\pnl.pdb
 D:\Users\diosc\Repos\pnl\pnl\obj\Debug\net5.0\pnl.genruntimeconfig.cache
 D:\Users\diosc\Repos\pnl\pnl\obj\Debug\net5.0\pnl.csprojAssemblyReference.cache
+D:\Users\diosc\Repos\pnl\pnl\obj\Debug\net5.0\Razor\Views\UserAccount\Index.cshtml.g.cs
+D:\Users\diosc\Repos\pnl\pnl\bin\Debug\net5.0\Castle.Core.dll
+D:\Users\diosc\Repos\pnl\pnl\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Proxies.dll

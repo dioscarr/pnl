@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pnl.Data;
 
-namespace pnl.Data.Migrations
+namespace pnl.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200907204243_DependentRelationshipsDependentCare")]
-    partial class DependentRelationshipsDependentCare
+    [Migration("20200908003953_fk6")]
+    partial class fk6
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,7 +250,7 @@ namespace pnl.Data.Migrations
 
                     b.HasIndex("PersonID");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.CriteriaOption", b =>
@@ -268,7 +268,7 @@ namespace pnl.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CriteriaOptions");
+                    b.ToTable("CriteriaOption");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
@@ -293,20 +293,61 @@ namespace pnl.Data.Migrations
                     b.Property<int>("MonthInHome")
                         .HasColumnType("int");
 
-                    b.Property<int>("PrimaryPersonID")
-                        .HasColumnType("int");
-
                     b.Property<string>("RelationshipName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SSN")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TaxFormID")
+                        .HasColumnType("int");
+
                     b.HasKey("id");
 
-                    b.HasIndex("PrimaryPersonID");
+                    b.HasIndex("TaxFormID");
 
                     b.ToTable("Dependent");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Address1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("AmountPaid")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SSN_EIN")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaxFormID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Zip")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("TaxFormID");
+
+                    b.ToTable("DependentCare");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.Person", b =>
@@ -319,8 +360,8 @@ namespace pnl.Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -345,7 +386,7 @@ namespace pnl.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("People");
+                    b.ToTable("Person");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
@@ -449,7 +490,7 @@ namespace pnl.Data.Migrations
             modelBuilder.Entity("pnl.Data.Models.Address", b =>
                 {
                     b.HasOne("pnl.Data.Models.Person", "Person")
-                        .WithMany("Addresses")
+                        .WithMany("Address")
                         .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -457,9 +498,18 @@ namespace pnl.Data.Migrations
 
             modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
                 {
-                    b.HasOne("pnl.Data.Models.Person", "PrimaryPerson")
-                        .WithMany("DependentRelationships")
-                        .HasForeignKey("PrimaryPersonID")
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("DependentsClaimed")
+                        .HasForeignKey("TaxFormID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
+                {
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("DependentCareProviders")
+                        .HasForeignKey("TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -26,7 +26,8 @@ namespace pnl.Controllers
         public ActionResult Index()
         {
             var usrId = User.Claims.First().Value;
-            TaxFormViewModel tfvm = new TaxFormViewModel(_db);
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
             tfvm.LoadFiledTaxesByUserID(usrId);
             return View(tfvm);
         }
@@ -34,29 +35,48 @@ namespace pnl.Controllers
         // GET: TaxFormController1/Details/5
         public ActionResult Review(int id)
         {
-            TaxFormViewModel tfvm = new TaxFormViewModel(_db);
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
             return View(tfvm.GetTaxById(id));           
         }
 
         // GET: TaxFormController1/Create
         public ActionResult Create()
         {
-            return View();
+            var usrId = User.Claims.First().Value;
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
+            tfvm.FileNewTaxes(usrId);
+            return View(tfvm);
         }
 
         // POST: TaxFormController1/Create
         [HttpPost]
-        public ActionResult Create(TaxForm taxinfo)
+        public ActionResult Create(TaxFormViewModel model, IFormCollection criteria)
         {
             try
             {
-                var usrId = User.Claims.First().Value;
-                taxinfo.UserID = usrId;
-                _db.TaxtForms.Add(taxinfo);
+                List<TaxFormCriteria> tfc = new List<TaxFormCriteria>();
+                var criterias = _db.CriteriaOption.ToList();
+                foreach (var item in criterias)
+                {
+                    var rs = criteria[item.id.ToString()];
+                    if (rs.ToString() == "true")
+                    {
+
+                        tfc.Add(new TaxFormCriteria { Name = item.Name });
+                    }
+                }
+                model.CurrentTaxForms.TaxFormCriterias = tfc;
+                
+              var usrId = User.Claims.First().Value;
+                model.CurrentTaxForms.UserID = usrId;
+                model.CurrentTaxForms.Person = _db.Person.Find(model.CurrentUser.id);
+                _db.TaxtForms.Add(model.CurrentTaxForms);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }
@@ -65,7 +85,8 @@ namespace pnl.Controllers
         // GET: TaxFormController1/Edit/5
         public ActionResult Edit(int id)
         {
-            TaxFormViewModel tfvm = new TaxFormViewModel(_db);
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
             return View(tfvm.GetTaxById(id));
         }
 
@@ -74,7 +95,8 @@ namespace pnl.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, TaxForm model)
         {
-            TaxFormViewModel tfvm = new TaxFormViewModel(_db);
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
             var editTaxForm = tfvm.GetTaxById(id);
             editTaxForm.TaxYear = model.TaxYear;
             _db.Update<TaxForm>(editTaxForm);
@@ -83,7 +105,8 @@ namespace pnl.Controllers
         }
         public ActionResult Delete(int id)
         {
-            TaxFormViewModel tfvm = new TaxFormViewModel(_db);
+            TaxFormViewModel tfvm = new TaxFormViewModel();
+            tfvm.Init(_db);
             _db.TaxtForms.Remove(tfvm.GetTaxById(id));
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));

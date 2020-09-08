@@ -19,10 +19,10 @@ namespace pnl.Data.Models
         public string FilingStatus { get; set; }
 
 
-        [Required]
-        [ForeignKey("Person")]
+        [Required][ForeignKey("Person")]
         public int PersonID { get; set; }
         public virtual Person Person { get; set; }
+        
 
         public virtual ICollection<TaxFormCriteria> TaxFormCriterias { get; set; }
         public virtual ICollection<Dependent> DependentsClaimed { get; set; }

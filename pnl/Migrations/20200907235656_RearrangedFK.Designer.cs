@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pnl.Data;
 
-namespace pnl.Data.Migrations
+namespace pnl.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200907210414_TaxFormFKsUpdate1")]
-    partial class TaxFormFKsUpdate1
+    [Migration("20200907235656_RearrangedFK")]
+    partial class RearrangedFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -250,7 +250,7 @@ namespace pnl.Data.Migrations
 
                     b.HasIndex("PersonID");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresse");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.CriteriaOption", b =>
@@ -268,7 +268,7 @@ namespace pnl.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("CriteriaOptions");
+                    b.ToTable("CriteriaOption");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
@@ -306,7 +306,7 @@ namespace pnl.Data.Migrations
 
                     b.HasIndex("TaxFormID");
 
-                    b.ToTable("Dependents");
+                    b.ToTable("Dependent");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
@@ -347,7 +347,7 @@ namespace pnl.Data.Migrations
 
                     b.HasIndex("TaxFormID");
 
-                    b.ToTable("DependentCares");
+                    b.ToTable("DependentCare");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.Person", b =>
@@ -360,8 +360,8 @@ namespace pnl.Data.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -386,7 +386,7 @@ namespace pnl.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("People");
+                    b.ToTable("Person");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
@@ -433,7 +433,7 @@ namespace pnl.Data.Migrations
 
                     b.HasIndex("TaxFormID");
 
-                    b.ToTable("TaxFormCriterias");
+                    b.ToTable("TaxFormCriteria");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

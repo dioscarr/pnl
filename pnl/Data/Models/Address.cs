@@ -9,6 +9,7 @@ namespace pnl.Data.Models
 {
     public class Address
     {
+      
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
@@ -17,9 +18,9 @@ namespace pnl.Data.Models
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
-        [ForeignKey("Person")]
         [Required]
         public int PersonID { get; set; }
+        [ForeignKey("PersonID")]
         public virtual Person Person { get; set; }
     }
 }

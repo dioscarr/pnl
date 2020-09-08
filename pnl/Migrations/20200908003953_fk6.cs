@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace pnl.Data.Migrations
+namespace pnl.Migrations
 {
-    public partial class TaxFormFKsUpdate3 : Migration
+    public partial class fk6 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

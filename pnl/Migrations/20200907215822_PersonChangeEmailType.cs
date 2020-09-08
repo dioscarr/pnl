@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace pnl.Data.Migrations
+namespace pnl.Migrations
 {
-    public partial class UserIdTaxForm : Migration
+    public partial class PersonChangeEmailType : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "UserID",
-                table: "TaxtForms",
+                name: "Email",
+                table: "People",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(int),
@@ -18,8 +18,8 @@ namespace pnl.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
-                name: "UserID",
-                table: "TaxtForms",
+                name: "Email",
+                table: "People",
                 type: "int",
                 nullable: false,
                 defaultValue: 0,

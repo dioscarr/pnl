@@ -1,7 +1,38 @@
-﻿@model pnl.Data.Models.TaxForm
+﻿@model pnl.Models.TaxFormViewModel
 
 <form asp-action="create" asp-controller="TaxForm">
     <div>Enter Year</div>
-    <input type="text" name="TaxYear" />
+    <input type="text" name="CurrentTaxForms.TaxYear" placeholder="TaxYear" value="@Model.CurrentTaxForms.TaxYear" />
+    <input type="text" name="FilingStatus" placeholder="FilingStatus" value="@Model.CurrentTaxForms.FilingStatus" />
+    @Html.HiddenFor(c=>c.CurrentUser.id)
+    <h4>Basic Information</h4>
+    <div>@Model.CurrentUser.FirstName</div>
+    <div>@Model.CurrentUser.LastName</div>
+    <div>@Model.CurrentUser.MiddleName</div>
+    <div>@Model.CurrentUser.Phone</div>
+    <div>@Model.CurrentUser.Email</div>
+    <div>@Model.CurrentUser.Birthday.ToString("dd/MM/yyyy")</div>
+    <div>@Model.CurrentUser.SSN</div>
+    <div>@Model.CurrentUser.Occupation</div>
+    <br />
+    <br />
+    <h4>Mailing ddress</h4>
+
+    <div>@Model.Address.Address1</div>
+    <div>@Model.Address.Address2</div>
+    <div>@Model.Address.City</div>
+    <div>@Model.Address.State</div>
+    <div>@Model.Address.Zip</div>
+
+    <h4>Check All That Apply:</h4>
+    @foreach (var criteria in Model.CriteriaOptions)
+    {
+    <div>
+        <input asp-for="@criteria.Enabled" name="@criteria.id" >
+        <label for="@criteria.Name">@criteria.Name</label>
+    </div>
+        <div></div>
+    }
+
     <input type="submit" />
 </form>
