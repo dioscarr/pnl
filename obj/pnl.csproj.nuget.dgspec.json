@@ -98,6 +98,10 @@
             "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
               "target": "Package",
               "version": "[5.0.0-preview.8.20419.1, )"
+            },
+            "Skclusive.Material.Component": {
+              "target": "Package",
+              "version": "[3.0.2-preview1, )"
             }
           },
           "imports": [

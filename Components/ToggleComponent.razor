@@ -1,0 +1,14 @@
+﻿<h3>ToggleMe</h3>
+<button @onclick="ShowLabel">Increment</button>
+<p>@name</p>
+@code {
+    private string name { set; get; }
+
+    [Parameter]
+    public string MyName { set; get; } = "no name";
+
+    private void ShowLabel()
+    {
+        name = MyName;
+    }
+}

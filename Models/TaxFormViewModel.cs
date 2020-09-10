@@ -22,13 +22,16 @@ namespace pnl.Models
             CurrentUser = new Person();
             Address = new Address();
             CriteriaOptions = new List<CriteriaOption>();
+            Dependent = new Dependent();
         }
 
         public List<TaxForm> TaxForms{ get; set; }
         public TaxForm CurrentTaxForms { get; set; }
         public Person CurrentUser { get; set; }
         public Address Address { get; set; }
+        public List<ToggleMe> HOptions { get; set; }
         public List<CriteriaOption> CriteriaOptions { get; set; }
+        public Dependent Dependent { get; set; }
         public void LoadFiledTaxesByUserID(string UserID) {
             TaxForms = _db.TaxtForms.Where(c => c.UserID == UserID).ToList();            
         }
@@ -37,6 +40,8 @@ namespace pnl.Models
             CurrentUser = _db.Person.First(c => c.UserId == userid);
             Address = (CurrentUser.Address != null) ? CurrentUser.Address.First() : new Address();
             CriteriaOptions = _db.CriteriaOption.ToList();
+
+            HOptions = CriteriaOptions.Select(c => new ToggleMe { name = c.Name, isToggled = false }).ToList();
         }
         internal TaxForm GetTaxById(int id)
         {

@@ -76,10 +76,15 @@ namespace pnl.Controllers
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception e)
+            catch(Exception )
             {
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult CreateDependednt(Dependent model)
+        {            
+                return PartialView("~/view/shared/DependentForm.cshtml");            
         }
 
         // GET: TaxFormController1/Edit/5

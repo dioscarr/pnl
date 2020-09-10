@@ -4,7 +4,7 @@
     <div>Enter Year</div>
     <input type="text" name="CurrentTaxForms.TaxYear" placeholder="TaxYear" value="@Model.CurrentTaxForms.TaxYear" />
     <input type="text" name="FilingStatus" placeholder="FilingStatus" value="@Model.CurrentTaxForms.FilingStatus" />
-    @Html.HiddenFor(c=>c.CurrentUser.id)
+    @Html.HiddenFor(c => c.CurrentUser.id)
     <h4>Basic Information</h4>
     <div>@Model.CurrentUser.FirstName</div>
     <div>@Model.CurrentUser.LastName</div>
@@ -25,14 +25,31 @@
     <div>@Model.Address.Zip</div>
 
     <h4>Check All That Apply:</h4>
+
+
+
     @foreach (var criteria in Model.CriteriaOptions)
     {
-    <div>
-        <input asp-for="@criteria.Enabled" name="@criteria.id" >
-        <label for="@criteria.Name">@criteria.Name</label>
-    </div>
+        <div>
+            <input asp-for="@criteria.Enabled" name="@criteria.id">
+            <label for="@criteria.Name">@criteria.Name</label>
+        </div>
         <div></div>
     }
 
+
+
+
+
     <input type="submit" />
+
+
+
 </form>
+<h4>Dependent (if applicable)</h4>
+
+<component type="typeof(ToggleComponent)" render-mode="ServerPrerendered"/>
+<HToggled Title="Horizontal Switches" Source="@Model.HOptions" />
+
+@await Component.InvokeAsync("HToggled", @Model.HOptions)
+@Html.RenderPartialAsync("DependentForm", Model.Dependent);
