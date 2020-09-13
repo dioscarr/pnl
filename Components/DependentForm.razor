@@ -1,0 +1,115 @@
+﻿@inject TaxFormService service
+
+<h3>DependentForm</h3>
+<Paper>
+    <FormControl Style="margin: 8px;">
+        <InputLabel For="component-helper"> First Name</InputLabel>
+        <StandardInput Id="component-helper" Value="@FirstName" OnChange="(ChangeEventArgs args) => { HandleFirstNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
+        <FormHelperText Id="component-helper-text"> @FirstName</FormHelperText>
+    </FormControl>
+
+    <FormControl Style="margin: 8px;">
+        <InputLabel For="component-helper"> Last Name</InputLabel>
+        <StandardInput Id="component-helper" Value="@LastName" OnChange="(ChangeEventArgs args) => { HandleLastNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
+        <FormHelperText Id="component-helper-text"> @LastName</FormHelperText>
+    </FormControl>
+
+    <TextField Id="standard-number"
+               Label="Birthday"
+               Value="@Birthday.ToShortDateString()"
+               OnChange="(ChangeEventArgs args) => { HandleBirthdayChange(args); StateHasChanged(); }"
+               Type="date"
+               Class="demo-text-field"
+               Margin="@Margin.Normal" />
+    @* InputLabelProps={{ shrink: true }} *@
+
+    <FormControl Style="margin: 8px;">
+        <InputLabel For="component-helper"> SSN</InputLabel>
+        <StandardInput Id="component-helper" Value="@SSN" OnChange="(ChangeEventArgs args) => { HandleSSNChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
+        <FormHelperText Id="component-helper-text"> @SSN</FormHelperText>
+    </FormControl>
+
+    <TextField Id="standard-number"
+               Label=" Month In Home"
+               Value="@MonthInHome.ToString()"
+               OnChange="(ChangeEventArgs args) => { HandleMonthInHomeChange(args); StateHasChanged(); }"
+               Type="number"
+               Class="demo-text-field"
+               Margin="@Margin.Normal" />
+    @* InputLabelProps={{ shrink: true }} *@
+
+    <FormControl Style="margin: 8px;">
+        <InputLabel For="component-helper"> Relationship Name</InputLabel>
+        <StandardInput Id="component-helper" Value="@RelationshipName" OnChange="(ChangeEventArgs args) => { HandleRelationshipNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
+        <FormHelperText Id="component-helper-text"> @RelationshipName</FormHelperText>
+    </FormControl>
+
+    <FormControl Style="margin: 8px;">
+        <InputLabel For="component-helper"> Code</InputLabel>
+        <StandardInput Id="component-helper" Value="@Code" OnChange="(ChangeEventArgs args) => { HandleCodeChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
+        <FormHelperText Id="component-helper-text"> @Code</FormHelperText>
+    </FormControl>
+
+    <Fab Size="@Size.Medium"
+         Color="@Color.Secondary"
+         OnClick="@SendDependentData"
+         aria-label="add"
+         Style="margin: 8px;">
+        <AddIcon />
+    </Fab>
+</Paper>
+
+@code {
+    [Parameter]
+    public int TaxFormID { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnReloadDependetEvent { get; set; }
+
+    private string FirstName { get; set; }
+    private string LastName { get; set; }
+    private DateTime Birthday { get; set; }
+    private string SSN { get; set; }
+    private int MonthInHome { get; set; } = 0;
+    private string RelationshipName { get; set; }
+    private string Code { get; set; }
+    private void HandleFirstNameChange(ChangeEventArgs args) => FirstName = args.Value?.ToString();
+    private void HandleLastNameChange(ChangeEventArgs args) => LastName = args.Value?.ToString();
+    private void HandleBirthdayChange(ChangeEventArgs args)
+    {
+        if (DateTime.TryParse(args.Value?.ToString(), out DateTime birthday))
+        {
+            Birthday = birthday;
+        }
+    }
+    private void HandleSSNChange(ChangeEventArgs args) => SSN = args.Value?.ToString();
+    private void HandleMonthInHomeChange(ChangeEventArgs args)
+    {
+        if (int.TryParse(args.Value?.ToString(), out int monthInHome))
+        {
+            MonthInHome = monthInHome;
+        }
+    }
+    private void HandleRelationshipNameChange(ChangeEventArgs args) => RelationshipName = args.Value?.ToString();
+    private void HandleCodeChange(ChangeEventArgs args) => Code = args.Value?.ToString();
+
+    private async Task SendDependentData()
+    {
+        Dependent d = new Dependent();
+        d.TaxFormID = TaxFormID;
+        d.FirstName = FirstName;
+        d.LastName = LastName;
+        d.Birthday = Birthday;
+        d.SSN = SSN;
+        d.MonthInHome = MonthInHome;
+        d.RelationshipName = RelationshipName;
+        d.Code = Code;
+        d.Selected = false;
+        d = await service.AddDependentAsync(d);
+
+        if (d.id > 0)
+        {
+           await OnReloadDependetEvent.InvokeAsync(true);
+        }
+    }
+
+}

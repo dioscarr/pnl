@@ -14,8 +14,8 @@ namespace pnl.Data.Models
         public int id { get; set; }
 
         [Required]
-        [ForeignKey("TaxForm")]
         public int TaxFormID { get; set; }
+        [ForeignKey("TaxFormID")]
         public virtual TaxForm TaxForm { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,5 +24,6 @@ namespace pnl.Data.Models
         public int MonthInHome { get; set; }
         public string RelationshipName { get; set; }
         public string Code { get; set; }
+        public bool Selected { get; set; }
     }
 }

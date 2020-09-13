@@ -297,6 +297,9 @@ namespace pnl.Migrations
                     b.Property<string>("SSN")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Selected")
+                        .HasColumnType("bit");
+
                     b.Property<int>("TaxFormID")
                         .HasColumnType("int");
 

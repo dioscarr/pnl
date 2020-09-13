@@ -1,0 +1,58 @@
+﻿<h3>TaxFormPage</h3>
+
+    <div style="flex-grow: 1;">
+        <Grid Container Spacing="@Spacing.Three">
+            <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
+                <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+            </Grid>
+            @if (canDisplay)
+            {
+                <Grid Item ExtraSmall="@GridSize.Six">
+                    <CurrentUserInfo />
+                </Grid>
+                <Grid Item ExtraSmall="@GridSize.Six">
+                    <CurrentAddress />
+                </Grid>
+                <Grid Item ExtraSmall="@GridSize.Twelve">
+                    <DependentList TaxFormID="taxFormId" @ref="dependentList" />
+                </Grid>
+                <Grid Item ExtraSmall="@GridSize.Twelve">
+                    <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
+                </Grid>
+            }
+        </Grid>
+    </div>
+
+@code {
+
+    private int taxFormId { set; get; }
+    private bool ReloadDependentList { set; get; }
+    private bool canDisplay { get; set; } = false;
+    DependentList dependentList;
+
+    private void OnNewTaxYearEvent(int tFormId)
+    {
+        taxFormId = tFormId;
+        if (taxFormId > 0)
+        {
+            canDisplay = true;
+        }
+        StateHasChanged();
+    }
+    private void OnReloadDependetEvent(bool changed)
+    {
+        ReloadDependentList = changed;
+
+        dependentList.GetDependets();
+        StateHasChanged();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        if (taxFormId > 0)
+        {
+            canDisplay = true;
+        }
+        return base.OnInitializedAsync();
+    }
+}

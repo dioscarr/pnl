@@ -12,6 +12,11 @@ using pnl.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Skclusive.Material.Component;
+using Skclusive.Core.Component;
+using Microsoft.AspNetCore.Http;
+using pnl.Models;
+using Fluxor;
 
 namespace pnl
 {
@@ -36,10 +41,25 @@ namespace pnl
                 options.UseLazyLoadingProxies().UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
 
             // Configuration.GetConnectionString("DefaultConnection")));
-            services.AddServerSideBlazor();
-            services.AddControllersWithViews();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            //  services.AddSignalR();
+
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IRenderContext>((sp) =>
+            {
+                var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
+                bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
+                var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
+                return new RenderContext(isServer: true, isPreRendering);
+            });
+
+            
+            services.AddServerSideBlazor();
+            services.AddControllersWithViews();
+            services.TryAddMaterialServices(new MaterialConfigBuilder().WithIsServer(true).WithIsPreRendering(false).Build());
+            services.AddScoped<TaxFormService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,15 +121,17 @@ namespace pnl
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapBlazorHub();
+               
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                
-              //  endpoints.MapFallbackToPage("/_Host");
+
+                //  endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }

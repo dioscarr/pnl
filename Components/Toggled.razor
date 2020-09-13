@@ -1,0 +1,26 @@
+﻿
+
+<FormControl Component="fieldset">
+    <FormLabel Component="legend">
+        @Title
+    </FormLabel>
+    <FormGroup>
+        @foreach (var item in Source)
+        {
+            <FormControlLabel Label="@item.name">
+                <Switch Checked="@item.isToggled"
+                        OnChange="() => {
+                                      item.HandleToggleChanged();
+                                      StateHasChanged();
+                                  }"
+                        Value="@item.name" />
+            </FormControlLabel>
+        }
+    </FormGroup>
+</FormControl>
+@code {
+    [Parameter]
+    public string Title { set; get; }
+    [Parameter]
+    public List<ToggleMe> Source { set; get; }
+}

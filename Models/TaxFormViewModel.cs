@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace pnl.Models
 {
-    public class TaxFormViewModel
+    public class TaxFormViewModel : ITaxFormViewModel
     {
         private ApplicationDbContext _db;
 
         public TaxFormViewModel()
         {
-            
+
         }
         public void Init(ApplicationDbContext db)
         {
@@ -25,15 +25,16 @@ namespace pnl.Models
             Dependent = new Dependent();
         }
 
-        public List<TaxForm> TaxForms{ get; set; }
+        public List<TaxForm> TaxForms { get; set; }
         public TaxForm CurrentTaxForms { get; set; }
         public Person CurrentUser { get; set; }
         public Address Address { get; set; }
         public List<ToggleMe> HOptions { get; set; }
         public List<CriteriaOption> CriteriaOptions { get; set; }
         public Dependent Dependent { get; set; }
-        public void LoadFiledTaxesByUserID(string UserID) {
-            TaxForms = _db.TaxtForms.Where(c => c.UserID == UserID).ToList();            
+        public void LoadFiledTaxesByUserID(string UserID)
+        {
+            TaxForms = _db.TaxtForms.Where(c => c.UserID == UserID).ToList();
         }
         public void FileNewTaxes(string userid)
         {

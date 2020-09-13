@@ -1,0 +1,53 @@
+﻿@inject TaxFormService service
+<h3>DependentForm</h3>
+<TextField Id="standard-number"
+           Label=" Month In Home"
+           Value="@TaxYear.ToString()"
+           OnChange="(ChangeEventArgs args) => { HandleTaxYearChange(args); StateHasChanged(); }"
+           Type="number"
+           Class="demo-text-field"
+           Margin="@Margin.Normal" />
+@* InputLabelProps={{ shrink: true }} *@
+<TextField Id="standard-number"
+           Label="Filing Status"
+           Value="@FilingStatus.ToString()"
+           OnChange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }"
+           Type="text"
+           Class="demo-text-field"
+           Margin="@Margin.Normal" />
+@* InputLabelProps={{ shrink: true }} *@
+
+<Fab Size="@Size.Medium"
+     Color="@Color.Secondary"
+     OnClick="@CreateNewTaxFormAsync"
+     aria-label="add"
+     Style="margin: 8px;">
+    <AddIcon />
+</Fab>
+
+@code {
+
+    [Parameter]
+    public EventCallback<int> OnNewTaxYearEvent { get; set; }
+    private int TaxYear { get; set; } = 0;
+    private string FilingStatus { get; set; } = "";
+
+    private void HandleTaxYearChange(ChangeEventArgs args)
+    {
+        if (int.TryParse(args.Value?.ToString(), out int taxYear))
+        {
+            TaxYear = taxYear;
+        }
+    }
+    private void HandleFilingStatusChange(ChangeEventArgs args)
+    {
+           FilingStatus = args.Value?.ToString()??"";
+    }
+
+    private async Task CreateNewTaxFormAsync()
+    {
+        TaxForm t = await service.CreateNewTaxFormAsync(TaxYear, FilingStatus);
+        await OnNewTaxYearEvent.InvokeAsync(t.ID);
+        StateHasChanged();
+    }
+}

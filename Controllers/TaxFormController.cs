@@ -46,8 +46,9 @@ namespace pnl.Controllers
             var usrId = User.Claims.First().Value;
             TaxFormViewModel tfvm = new TaxFormViewModel();
             tfvm.Init(_db);
-            tfvm.FileNewTaxes(usrId);
-            return View(tfvm);
+             tfvm.FileNewTaxes(usrId);
+            ITaxFormViewModel sendback = tfvm;
+            return View(sendback);
         }
 
         // POST: TaxFormController1/Create

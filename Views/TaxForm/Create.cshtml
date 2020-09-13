@@ -1,55 +1,45 @@
 ﻿@model pnl.Models.TaxFormViewModel
 
-<form asp-action="create" asp-controller="TaxForm">
-    <div>Enter Year</div>
-    <input type="text" name="CurrentTaxForms.TaxYear" placeholder="TaxYear" value="@Model.CurrentTaxForms.TaxYear" />
-    <input type="text" name="FilingStatus" placeholder="FilingStatus" value="@Model.CurrentTaxForms.FilingStatus" />
-    @Html.HiddenFor(c => c.CurrentUser.id)
-    <h4>Basic Information</h4>
-    <div>@Model.CurrentUser.FirstName</div>
-    <div>@Model.CurrentUser.LastName</div>
-    <div>@Model.CurrentUser.MiddleName</div>
-    <div>@Model.CurrentUser.Phone</div>
-    <div>@Model.CurrentUser.Email</div>
-    <div>@Model.CurrentUser.Birthday.ToString("dd/MM/yyyy")</div>
-    <div>@Model.CurrentUser.SSN</div>
-    <div>@Model.CurrentUser.Occupation</div>
-    <br />
-    <br />
-    <h4>Mailing ddress</h4>
 
-    <div>@Model.Address.Address1</div>
-    <div>@Model.Address.Address2</div>
-    <div>@Model.Address.City</div>
-    <div>@Model.Address.State</div>
-    <div>@Model.Address.Zip</div>
+    <component type="typeof(TaxFormPage)" render-mode="ServerPrerendered"/>
 
-    <h4>Check All That Apply:</h4>
+    <!--<form asp-action="create" asp-controller="TaxForm">
+        <div>Enter Year</div>
+        <component type="typeof(NewTaxYear)" render-mode="ServerPrerendered"/>
+       
+        @Html.HiddenFor(c => c.CurrentUser.id)
+        <h4>Basic Information</h4>
+        <div>@Model.CurrentUser.FirstName</div>
+        <div>@Model.CurrentUser.LastName</div>
+        <div>@Model.CurrentUser.MiddleName</div>
+        <div>@Model.CurrentUser.Phone</div>
+        <div>@Model.CurrentUser.Email</div>
+        <div>@Model.CurrentUser.Birthday.ToString("dd/MM/yyyy")</div>
+        <div>@Model.CurrentUser.SSN</div>
+        <div>@Model.CurrentUser.Occupation</div>
+        <br />
+        <br />
+        <h4>Mailing ddress</h4>
 
+        <div>@Model.Address.Address1</div>
+        <div>@Model.Address.Address2</div>
+        <div>@Model.Address.City</div>
+        <div>@Model.Address.State</div>
+        <div>@Model.Address.Zip</div>
 
+        <h4>Check All That Apply:</h4>
+        
+        <component type="typeof(Toggled)" render-mode="ServerPrerendered" param-Source="@Model.HOptions" />
+        <component type="typeof(DependentForm)" render-mode="ServerPrerendered" param-TaxFormID="@Model.CurrentTaxForms.ID" />-->
 
-    @foreach (var criteria in Model.CriteriaOptions)
-    {
-        <div>
-            <input asp-for="@criteria.Enabled" name="@criteria.id">
-            <label for="@criteria.Name">@criteria.Name</label>
-        </div>
-        <div></div>
-    }
-
-
-
-
-
-    <input type="submit" />
+       
+        @*<input type="submit" />*@
+    <!--</form>
+    <h4>Dependent (if applicable)</h4>-->
+<br/>
+<br />
+<br />
 
 
 
-</form>
-<h4>Dependent (if applicable)</h4>
-
-<component type="typeof(ToggleComponent)" render-mode="ServerPrerendered"/>
-<HToggled Title="Horizontal Switches" Source="@Model.HOptions" />
-
-@await Component.InvokeAsync("HToggled", @Model.HOptions)
-@Html.RenderPartialAsync("DependentForm", Model.Dependent);
+    @*@Html.RenderPartialAsync("DependentForm", Model.Dependent);*@
