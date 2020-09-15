@@ -26,7 +26,7 @@ namespace pnl.Data.Models
         public string SSN { get; set; }
         public string Occupation { get; set; }
         
-        public virtual List<Address> Address { get; set; }
+        public virtual Address Address { get; set; }
         public virtual ICollection<TaxForm> TaxForms { get; set; }
     }
 }

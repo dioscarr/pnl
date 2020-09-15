@@ -1,26 +1,71 @@
-﻿
+﻿@inject TaxFormService service
 
-<FormControl Component="fieldset">
-    <FormLabel Component="legend">
-        @Title
-    </FormLabel>
-    <FormGroup>
+<Paper Style="padding:20px;">
+    <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
+                Display="@Display.Block"
+                GutterBottom>
+        Check All That Apply:
+    </Typography>
+    <Grid Container Spacing="@Spacing.Three">
+
         @foreach (var item in Source)
         {
-            <FormControlLabel Label="@item.name">
-                <Switch Checked="@item.isToggled"
-                        OnChange="() => {
+            <Grid Item ExtraSmall="@GridSize.Four" Style="padding-left:20px;">
+                <Paper Style="padding-left:20px;">
+                    <FormControlLabel Label="@item.name">
+                        <Switch Checked="@item.isToggled"
+                                OnChange="() => {
                                       item.HandleToggleChanged();
                                       StateHasChanged();
                                   }"
-                        Value="@item.name" />
-            </FormControlLabel>
+                                Value="@item.name" />
+                    </FormControlLabel>
+                </Paper>
+            </Grid>
         }
-    </FormGroup>
-</FormControl>
+    </Grid>
+    <Button Variant="@ButtonVariant.Contained"
+            Color="@Color.Primary"
+            Size="@Size.Small"
+            OnClick="@SaveSelectedCriterias"
+            Style="margin: 8px;">
+        <StartIcon>
+            <SaveIcon />
+        </StartIcon>
+        <ChildContent>
+            Save
+        </ChildContent>
+    </Button>
+</Paper>
+
 @code {
     [Parameter]
+    public int TaxformId { get; set; } = 0;
+
     public string Title { set; get; }
-    [Parameter]
+
     public List<ToggleMe> Source { set; get; }
+
+    protected override void OnInitialized()
+    {
+        Source = new List<ToggleMe>();
+        Source = service.GetCriteriaOptions();
+        if (TaxformId > 0)
+        {
+            var taxformcriteria = service.GetTaxFormCriteria(TaxformId);
+            foreach (var item in taxformcriteria)
+            {
+                Source.Where(c => c.name == item.Name).First().isToggled = true;
+            }
+
+        }
+        base.OnInitialized();
+    }
+
+
+    public async Task SaveSelectedCriterias()
+    {
+        Source = await service.SaveSelectedCriteriasAsync(Source, TaxformId);
+    }
+
 }

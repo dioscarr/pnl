@@ -21,5 +21,8 @@ namespace pnl.Data
         public DbSet<Dependent> Dependent { get; set; }
         public DbSet<DependentCareProviders> DependentCare { get; set; }
         public DbSet<TaxFormCriteria> TaxFormCriteria { get; set; }
+        public DbSet<FilingStatus> FilingStatus { get; set; }
+        public DbSet<TaxFormAddress> TaxFormAddress { set; get; }
+        public DbSet<TaxFormPerson> TaxFormPeople { set; get; }
     }
 }

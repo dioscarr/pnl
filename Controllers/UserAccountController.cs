@@ -42,16 +42,14 @@ namespace pnl.Controllers
             if (_db.Person.Any(c => c.UserId == usrId))
             {
                 model.Address.PersonID = model.CurrentUser.id;
-                model.CurrentUser.Address = new List<Address>();
-                model.CurrentUser.Address.Add(model.Address);
+                model.CurrentUser.Address = model.Address;
                 _db.Update(model.CurrentUser);
                 _db.SaveChanges();                
             }
             else
             {
                 model.CurrentUser.UserId = usrId;
-                model.CurrentUser.Address = new List<Address>();
-                model.CurrentUser.Address.Add(model.Address);
+                model.CurrentUser.Address = model.Address;
                 _db.Person.Add(model.CurrentUser);
                 _db.SaveChanges();
             }

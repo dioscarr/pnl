@@ -115,6 +115,15 @@ namespace pnl
                     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Income From Other State(s)", Enabled = true });
                     context.SaveChanges();
                 }
+                if (!context.FilingStatus.Any())
+                {
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Single" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus {isEnabled = true,Name = "Married filing jointly"});
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
+                    context.SaveChanges();
+                }
             }
 
             app.UseRouting();

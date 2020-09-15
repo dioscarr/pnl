@@ -1,0 +1,34 @@
+﻿@inject TaxFormService service
+<Paper Style="padding:20px;">
+    <Grid Container Spacing="@Spacing.Three">
+        <Grid Item ExtraSmall="@GridSize.One">
+            <Typography Style="padding-left:20px;" Variant="@TypographyVariant.H6" Display="@Display.Block">
+                @TaxForm.TaxYear
+            </Typography>
+        </Grid>
+        <Grid Item  ExtraSmall="@GridSize.Four">
+            <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Subtitle1" Display="@Display.Block">
+                @TaxForm.FilingStatus
+            </Typography>
+        </Grid>
+    </Grid>
+</Paper>
+
+@code {
+
+    [Parameter]
+    public int TaxFormID { set; get; }
+
+    private TaxForm TaxForm { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TaxForm = new TaxForm();
+        GetTaxForm();
+        base.OnInitialized();
+    }
+    private void GetTaxForm()
+    {
+        TaxForm = service.GetTaxForm(TaxFormID);
+    }
+}

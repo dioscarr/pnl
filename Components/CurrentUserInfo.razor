@@ -1,9 +1,15 @@
 ﻿@inject TaxFormService service
 
-<h4>Basic Information</h4>
-<Card Style="max-width: 345px;">
+
+<Card Style="max-width: 100%; min-height: 100%; padding:20px;">
+
+    <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
+                Display="@Display.Block"
+                GutterBottom>
+        Basic Information
+    </Typography>
     <CardContent>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</Typography>                
+        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</Typography>
         <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Occupation</Typography>
         <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.SSN</Typography>
         <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Email</Typography>
@@ -13,12 +19,12 @@
 </Card>
 
 @code {
-    public  Person CurrentUser { get; set; }
+    public Person CurrentUser { get; set; }
 
     protected override Task OnInitializedAsync()
     {
-            GetUserInfo();
-            return base.OnInitializedAsync();
+        GetUserInfo();
+        return base.OnInitializedAsync();
     }
 
     private void GetUserInfo()

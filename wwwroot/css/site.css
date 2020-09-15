@@ -71,44 +71,16 @@ body {
 }
 
 
-
-<style >
-.demo-table-toolbar {
-    padding-left: calc(var(--theme-spacing, 8) * 2px);
-    padding-right: calc(var(--theme-spacing, 8) * 1px);
-}
-
-@media (prefers-color-scheme: light) {
-    .demo-table-toolbar-hilight {
-        color: var(--theme-palette-secondary-main);
-        background-color: rgb(250, 224, 233);
-        @* background-color: var(--theme-palette-secondary-light);
-        *@
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    .demo-table-toolbar-hilight {
-        color: var(--theme-palette-text-primary);
-        background-color: var(--theme-palette-secondary-dark);
-    }
-}
-
-.demo-table-toolbar-title {
-    flex: 1 1 100%;
-}
-
-.demo-sort-visually-hidden {
-    top: 20px;
-    clip: rect(0 0 0 0);
-    width: 1px;
+.FormControl-Root {
+    margin: 0;
     border: 0;
-    height: 1px;
-    margin: -1px;
+    display: inline-flex;
     padding: 0;
-    overflow: hidden;
-    position: absolute;
+    position: relative;
+    min-width: 0;
+    flex-direction: column;
+    vertical-align: top;
 }
-
-</style >
-
+body {
+    background-color: #f7f7f7!important;
+}

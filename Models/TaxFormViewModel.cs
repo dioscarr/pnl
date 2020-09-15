@@ -39,14 +39,14 @@ namespace pnl.Models
         public void FileNewTaxes(string userid)
         {
             CurrentUser = _db.Person.First(c => c.UserId == userid);
-            Address = (CurrentUser.Address != null) ? CurrentUser.Address.First() : new Address();
+            Address = (CurrentUser.Address != null) ? CurrentUser.Address : new Address();
             CriteriaOptions = _db.CriteriaOption.ToList();
 
             HOptions = CriteriaOptions.Select(c => new ToggleMe { name = c.Name, isToggled = false }).ToList();
         }
         internal TaxForm GetTaxById(int id)
         {
-            return _db.TaxtForms.Find(id);
+            return _db.TaxtForms.Find(id);  
         }
     }
 }

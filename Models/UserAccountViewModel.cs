@@ -24,7 +24,7 @@ namespace pnl.Models
         public void GetCurrentUserInfo(string userID)
         {
             CurrentUser = (_db.Person.Any(c => c.UserId == userID)) ? _db.Person.Where(c => c.UserId == userID).First() : new Person();
-            Address =  (CurrentUser.Address!=null) ? CurrentUser.Address.First() : new Address();
+            Address =  (CurrentUser.Address!=null) ? CurrentUser.Address: new Address();
         }        
 
     }

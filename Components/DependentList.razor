@@ -10,7 +10,7 @@
                             Variant="@TypographyVariant.Subtitle1">
                     @SelectedCount selected
                 </Typography>
-                <IconButton aria-label="delete">
+                <IconButton aria-label="delete" OnClick="DeleteDependents">
                     <DeleteIcon />
                 </IconButton>
             }
@@ -174,92 +174,98 @@
     {
         if (Direction == Sort.Ascending)
         {
-        if (OrderBy == "FirstName")
-        return Dependents.OrderBy(row => row.FirstName);
-        else if (OrderBy == "LastName")
-        return Dependents.OrderBy(row => row.LastName);
-        else if (OrderBy == "Birthday")
-        return Dependents.OrderBy(row => row.Birthday);
-        else if (OrderBy == "SSN")
-        return Dependents.OrderBy(row => row.SSN);
-        else if (OrderBy == "MonthInHome")
-        return Dependents.OrderBy(row => row.MonthInHome);
-        else if (OrderBy == "RelationshipName")
-        return Dependents.OrderBy(row => row.RelationshipName);
-        else if (OrderBy == "Code")
-        return Dependents.OrderBy(row => row.Code);
+            if (OrderBy == "FirstName")
+                return Dependents.OrderBy(row => row.FirstName);
+            else if (OrderBy == "LastName")
+                return Dependents.OrderBy(row => row.LastName);
+            else if (OrderBy == "Birthday")
+                return Dependents.OrderBy(row => row.Birthday);
+            else if (OrderBy == "SSN")
+                return Dependents.OrderBy(row => row.SSN);
+            else if (OrderBy == "MonthInHome")
+                return Dependents.OrderBy(row => row.MonthInHome);
+            else if (OrderBy == "RelationshipName")
+                return Dependents.OrderBy(row => row.RelationshipName);
+            else if (OrderBy == "Code")
+                return Dependents.OrderBy(row => row.Code);
         }
         else
         {
-        if (OrderBy == "FirstName")
-        return Dependents.OrderByDescending(row => row.FirstName);
-        else if (OrderBy == "LastName")
-        return Dependents.OrderByDescending(row => row.LastName);
-        else if (OrderBy == "Birthday")
-        return Dependents.OrderByDescending(row => row.Birthday);
-        else if (OrderBy == "SSN")
-        return Dependents.OrderByDescending(row => row.SSN);
-        else if (OrderBy == "MonthInHome")
-        return Dependents.OrderByDescending(row => row.MonthInHome);
-        else if (OrderBy == "RelationshipName")
-        return Dependents.OrderByDescending(row => row.RelationshipName);
-        else if (OrderBy == "Code")
-        return Dependents.OrderByDescending(row => row.Code);
+            if (OrderBy == "FirstName")
+                return Dependents.OrderByDescending(row => row.FirstName);
+            else if (OrderBy == "LastName")
+                return Dependents.OrderByDescending(row => row.LastName);
+            else if (OrderBy == "Birthday")
+                return Dependents.OrderByDescending(row => row.Birthday);
+            else if (OrderBy == "SSN")
+                return Dependents.OrderByDescending(row => row.SSN);
+            else if (OrderBy == "MonthInHome")
+                return Dependents.OrderByDescending(row => row.MonthInHome);
+            else if (OrderBy == "RelationshipName")
+                return Dependents.OrderByDescending(row => row.RelationshipName);
+            else if (OrderBy == "Code")
+                return Dependents.OrderByDescending(row => row.Code);
 
         }
         return Dependents;
-        }
+    }
 
-        private void HandleSortClick(string name)
-        {
+    private void HandleSortClick(string name)
+    {
         if (OrderBy == name)
         {
-        Direction = Direction == Sort.Ascending ? Sort.Descending : Sort.Ascending;
+            Direction = Direction == Sort.Ascending ? Sort.Descending : Sort.Ascending;
         }
         else
         {
-        Direction = Sort.Ascending;
+            Direction = Sort.Ascending;
         }
 
         OrderBy = name;
 
         StateHasChanged();
-        }
+    }
 
-        private string media = "@media";
+    private string media = "@media";
 
-        private string ToolbarClass => $"demo-table-toolbar{(HasSelection ? " demo-table-toolbar-hilight" : "")}";
+    private string ToolbarClass => $"demo-table-toolbar{(HasSelection ? " demo-table-toolbar-hilight" : "")}";
 
-        private bool Dense { set; get; } = false;
+    private bool Dense { set; get; } = false;
 
-        private Size Size => Dense ? Size.Small : Size.Medium;
+    private Size Size => Dense ? Size.Small : Size.Medium;
 
-        private bool AnySelected => HasSelection && SelectedCount < Dependents.Count;
+    private bool AnySelected => HasSelection && SelectedCount < Dependents.Count;
 
-        private bool AllSelected => Dependents.All(row => row.Selected);
+    private bool AllSelected => Dependents.All(row => row.Selected);
 
-        private int SelectedCount => Dependents.Count(row => row.Selected);
+    private int SelectedCount => Dependents.Count(row => row.Selected);
 
-        private bool HasSelection => SelectedCount > 0;
+    private bool HasSelection => SelectedCount > 0;
 
-        private int RowsPerPage => 6;
+    private int RowsPerPage => 6;
 
-        private int EmptyRows => RowsPerPage - Dependents.Count;
+    private int EmptyRows => RowsPerPage - Dependents.Count;
 
-        private int EmptyHeight => (Dense ? 33 : 53) * EmptyRows;
+    private int EmptyHeight => (Dense ? 33 : 53) * EmptyRows;
 
-        private void OnDenseChanged(EventArgs args)
-        {
+    private void OnDenseChanged(EventArgs args)
+    {
         Dense = !Dense;
 
         StateHasChanged();
-        }
+    }
 
-        private void OnSelectAllClick(EventArgs args)
-        {
+    private void OnSelectAllClick(EventArgs args)
+    {
         var allSelected = AllSelected;
 
         Dependents.ForEach(row => row.Selected = !allSelected);
+
+        StateHasChanged();
+    }
+    private void DeleteDependents()
+    {
+        Dependents = service.DeleteDependents(Dependents.Where(c => c.Selected == true).ToList(), TaxFormID);
 
         StateHasChanged();
     }

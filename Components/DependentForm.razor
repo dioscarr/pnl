@@ -1,115 +1,96 @@
 ﻿@inject TaxFormService service
 
-<h3>DependentForm</h3>
-<Paper>
-    <FormControl Style="margin: 8px;">
-        <InputLabel For="component-helper"> First Name</InputLabel>
-        <StandardInput Id="component-helper" Value="@FirstName" OnChange="(ChangeEventArgs args) => { HandleFirstNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
-        <FormHelperText Id="component-helper-text"> @FirstName</FormHelperText>
-    </FormControl>
+<Paper Style="padding:20px;">
+    <Typography Variant="@TypographyVariant.Button" Display="@Display.Block" GutterBottom> Dependents </Typography>
+    <EditForm Model="dependent" OnValidSubmit="AddDependent">
+        <DataAnnotationsValidator/>        
+        <Grid Container Style="padding:20px;">
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputText @bind-Value="dependent.FirstName" placeholder="first name" />
+                <ValidationMessage style="color:red;" For="()=>dependent.FirstName"/>
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputText @bind-Value="dependent.LastName" placeholder="first name" />
+                <ValidationMessage style="color:red;" For="()=>dependent.LastName" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputDate @bind-Value="dependent.Birthday" placeholder="birthday" />
+                <ValidationMessage style="color:red;" For="()=>dependent.Birthday" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputText @bind-Value="dependent.SSN" placeholder="SSN" />
+                <ValidationMessage style="color:red;" For="()=>dependent.SSN" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" />
+                <ValidationMessage style="color:red;" For="()=>dependent.MonthInHome" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" />
+                <ValidationMessage style="color:red;" For="()=>dependent.RelationshipName" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <InputText @bind-Value="dependent.Code" placeholder="Code" />
+                <ValidationMessage style="color:red;" For="()=>dependent.Code" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+                <Button Type="ButtonType.Submit" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small" Style="margin: 8px;"> 
+                    <StartIcon><SaveIcon /></StartIcon><ChildContent Context="SubmitButton">Add New Dependent</ChildContent>
+                </Button>
+                    </Grid>
+                </Grid>
+    </EditForm>        
+    </Paper>
 
-    <FormControl Style="margin: 8px;">
-        <InputLabel For="component-helper"> Last Name</InputLabel>
-        <StandardInput Id="component-helper" Value="@LastName" OnChange="(ChangeEventArgs args) => { HandleLastNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
-        <FormHelperText Id="component-helper-text"> @LastName</FormHelperText>
-    </FormControl>
+    @code {
+        [Parameter]
+        public int TaxFormID { get; set; }
+        [Parameter]
+        public EventCallback<bool> OnReloadDependetEvent { get; set; }
 
-    <TextField Id="standard-number"
-               Label="Birthday"
-               Value="@Birthday.ToShortDateString()"
-               OnChange="(ChangeEventArgs args) => { HandleBirthdayChange(args); StateHasChanged(); }"
-               Type="date"
-               Class="demo-text-field"
-               Margin="@Margin.Normal" />
-    @* InputLabelProps={{ shrink: true }} *@
+        public Dependent dependent { get; set; }
 
-    <FormControl Style="margin: 8px;">
-        <InputLabel For="component-helper"> SSN</InputLabel>
-        <StandardInput Id="component-helper" Value="@SSN" OnChange="(ChangeEventArgs args) => { HandleSSNChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
-        <FormHelperText Id="component-helper-text"> @SSN</FormHelperText>
-    </FormControl>
-
-    <TextField Id="standard-number"
-               Label=" Month In Home"
-               Value="@MonthInHome.ToString()"
-               OnChange="(ChangeEventArgs args) => { HandleMonthInHomeChange(args); StateHasChanged(); }"
-               Type="number"
-               Class="demo-text-field"
-               Margin="@Margin.Normal" />
-    @* InputLabelProps={{ shrink: true }} *@
-
-    <FormControl Style="margin: 8px;">
-        <InputLabel For="component-helper"> Relationship Name</InputLabel>
-        <StandardInput Id="component-helper" Value="@RelationshipName" OnChange="(ChangeEventArgs args) => { HandleRelationshipNameChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
-        <FormHelperText Id="component-helper-text"> @RelationshipName</FormHelperText>
-    </FormControl>
-
-    <FormControl Style="margin: 8px;">
-        <InputLabel For="component-helper"> Code</InputLabel>
-        <StandardInput Id="component-helper" Value="@Code" OnChange="(ChangeEventArgs args) => { HandleCodeChange(args); StateHasChanged(); }" aria-describedby="component-helper-text" />
-        <FormHelperText Id="component-helper-text"> @Code</FormHelperText>
-    </FormControl>
-
-    <Fab Size="@Size.Medium"
-         Color="@Color.Secondary"
-         OnClick="@SendDependentData"
-         aria-label="add"
-         Style="margin: 8px;">
-        <AddIcon />
-    </Fab>
-</Paper>
-
-@code {
-    [Parameter]
-    public int TaxFormID { get; set; }
-    [Parameter]
-    public EventCallback<bool> OnReloadDependetEvent { get; set; }
-
-    private string FirstName { get; set; }
-    private string LastName { get; set; }
-    private DateTime Birthday { get; set; }
-    private string SSN { get; set; }
-    private int MonthInHome { get; set; } = 0;
-    private string RelationshipName { get; set; }
-    private string Code { get; set; }
-    private void HandleFirstNameChange(ChangeEventArgs args) => FirstName = args.Value?.ToString();
-    private void HandleLastNameChange(ChangeEventArgs args) => LastName = args.Value?.ToString();
-    private void HandleBirthdayChange(ChangeEventArgs args)
-    {
-        if (DateTime.TryParse(args.Value?.ToString(), out DateTime birthday))
+        private string FirstName { get; set; }
+        private string LastName { get; set; }
+        private DateTime Birthday { get; set; }
+        private string SSN { get; set; }
+        private int MonthInHome { get; set; }
+        private string RelationshipName { get; set; }
+        private string Code { get; set; }
+        private void HandleFirstNameChange(ChangeEventArgs args) => FirstName = args.Value?.ToString();
+        private void HandleLastNameChange(ChangeEventArgs args) => LastName = args.Value?.ToString();
+        private void HandleBirthdayChange(ChangeEventArgs args)
         {
-            Birthday = birthday;
+            if (DateTime.TryParse(args.Value?.ToString(), out DateTime birthday))
+            {
+                Birthday = birthday;
+            }
+        }
+        private void HandleSSNChange(ChangeEventArgs args) => SSN = args.Value?.ToString();
+        private void HandleMonthInHomeChange(ChangeEventArgs args)
+        {
+            if (int.TryParse(args.Value?.ToString(), out int monthInHome))
+            {
+                MonthInHome = monthInHome;
+            }
+        }
+        private void HandleRelationshipNameChange(ChangeEventArgs args) => RelationshipName = args.Value?.ToString();
+        private void HandleCodeChange(ChangeEventArgs args) => Code = args.Value?.ToString();        
+
+        protected override void OnInitialized()
+        {
+            dependent = new Dependent();
+            base.OnInitialized();
+        }
+
+        private async Task AddDependent()
+        {
+            dependent.TaxFormID = TaxFormID;
+            var d = await service.AddDependentAsync(dependent);
+            if (dependent.id > 0)
+            {
+                await OnReloadDependetEvent.InvokeAsync(true);
+            }
+            dependent = new Dependent();
         }
     }
-    private void HandleSSNChange(ChangeEventArgs args) => SSN = args.Value?.ToString();
-    private void HandleMonthInHomeChange(ChangeEventArgs args)
-    {
-        if (int.TryParse(args.Value?.ToString(), out int monthInHome))
-        {
-            MonthInHome = monthInHome;
-        }
-    }
-    private void HandleRelationshipNameChange(ChangeEventArgs args) => RelationshipName = args.Value?.ToString();
-    private void HandleCodeChange(ChangeEventArgs args) => Code = args.Value?.ToString();
-
-    private async Task SendDependentData()
-    {
-        Dependent d = new Dependent();
-        d.TaxFormID = TaxFormID;
-        d.FirstName = FirstName;
-        d.LastName = LastName;
-        d.Birthday = Birthday;
-        d.SSN = SSN;
-        d.MonthInHome = MonthInHome;
-        d.RelationshipName = RelationshipName;
-        d.Code = Code;
-        d.Selected = false;
-        d = await service.AddDependentAsync(d);
-
-        if (d.id > 0)
-        {
-           await OnReloadDependetEvent.InvokeAsync(true);
-        }
-    }
-
-}

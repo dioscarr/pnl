@@ -18,14 +18,23 @@ namespace pnl.Data.Models
         public int TaxYear { get; set; }
         public string FilingStatus { get; set; }
 
-
         [Required][ForeignKey("Person")]
         public int PersonID { get; set; }
         public virtual Person Person { get; set; }
-        
 
-        public virtual ICollection<TaxFormCriteria> TaxFormCriterias { get; set; }
+        [Required]
+        public int FilingStatusID { get; set; }
+        [ForeignKey("FilingStatusID")]
+        public virtual FilingStatus Filingstatus { get; set; }
+
+        public virtual TaxFormPerson TaxFormPerson { set; get; }
+
         public virtual ICollection<Dependent> DependentsClaimed { get; set; }
         public virtual ICollection<DependentCareProviders> DependentCareProviders { get; set; }
+        public virtual ICollection<TaxFormCriteria> TaxFormCriterias { get; set; }
+        public virtual TaxFormAddress TaxFormAddress { set; get; }
+
+        
+
     }
 }

@@ -1,53 +1,133 @@
 ﻿@inject TaxFormService service
-<h3>DependentForm</h3>
-<TextField Id="standard-number"
-           Label=" Month In Home"
-           Value="@TaxYear.ToString()"
-           OnChange="(ChangeEventArgs args) => { HandleTaxYearChange(args); StateHasChanged(); }"
-           Type="number"
-           Class="demo-text-field"
-           Margin="@Margin.Normal" />
-@* InputLabelProps={{ shrink: true }} *@
-<TextField Id="standard-number"
-           Label="Filing Status"
-           Value="@FilingStatus.ToString()"
-           OnChange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }"
-           Type="text"
-           Class="demo-text-field"
-           Margin="@Margin.Normal" />
-@* InputLabelProps={{ shrink: true }} *@
 
-<Fab Size="@Size.Medium"
-     Color="@Color.Secondary"
-     OnClick="@CreateNewTaxFormAsync"
-     aria-label="add"
-     Style="margin: 8px;">
-    <AddIcon />
-</Fab>
+<Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; height:200px;" Spacing="@Spacing.Five">
+    <Grid Item ExtraSmall="GridSize.Six" Justify="Justify.Center">
+        <Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; height:200px;" Spacing="@Spacing.Five">
+            <Grid Item ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
+                <Typography Variant="@TypographyVariant.H5" Display="@Display.Block"> Start a new application</Typography>
+            </Grid>
+            @foreach (var item in TaxYears)
+            {
+                <Grid Item ExtraSmall="GridSize.Four" Justify="Justify.Center">
+                    <Button Style="background-color:white;"
+                            Type="ButtonType.Button" OnClick="()=>CheckIfTaxExist(item)" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
+                        <ChildContent>@item</ChildContent>
+                    </Button>
+                </Grid>
+            }
+        </Grid>
+        <Grid Container Style="padding: 20px;flex-grow: 1; min-height:200px;" Spacing="@Spacing.Five">
+            @if (isFilingStatusVisiable)
+            {
+                <Grid Item ExtraSmall="GridSize.Four">
+                    <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
+                        <option value="-1">Select Filing Status</option>
+                        @foreach (var value in filingStatuses)
+                        {
+                            <option value="@value.Id">@value.Name</option>
+                        }
+                    </select>
+                </Grid>
+            }
+            @if (isSubmitVisiable || FilingStatus > 0)
+            {
+                <Grid Item Style="padding: 20px;" ExtraSmall="GridSize.Five" Spacing="@Spacing.Ten">
+                    <Button Type="ButtonType.Button" OnClick="@CreateNewTaxFormAsync" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small">
+                        <ChildContent>Open Application</ChildContent>
+                    </Button>
+                </Grid>
+            }
+        </Grid>
+    </Grid>
+    <Grid Item ExtraSmall="GridSize.Six" Justify="Justify.FlexStart">
+        <Grid Container Style="padding: 20px 0;flex-grow: 1; min-height:200px; outline:1px solid red;" Spacing="@Spacing.Zero">
+            <Grid Item ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
+                <Typography Variant="@TypographyVariant.H5" Display="@Display.Block">Existing Applications in Progress</Typography>
+            </Grid>
+            @foreach (var item in TaxYearsInProcess)
+            {
+                <Grid Item ExtraSmall="GridSize.Three" Justify="Justify.Center">
+                    <Button Style="background-color:white;"
+                            Type="ButtonType.Button" OnClick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
+                        <ChildContent>@item.TaxYear </ChildContent>
+                    </Button>
+                </Grid>
+                <Grid Item ExtraSmall="GridSize.Seven" Justify="Justify.Center">
+                    <Typography Variant="@TypographyVariant.Body1" Display="@Display.Block">- @item.FilingStatus</Typography>
+                </Grid>
+            }
+        </Grid>
+    </Grid>
+</Grid>
 
-@code {
 
-    [Parameter]
-    public EventCallback<int> OnNewTaxYearEvent { get; set; }
-    private int TaxYear { get; set; } = 0;
-    private string FilingStatus { get; set; } = "";
+    @code {
 
-    private void HandleTaxYearChange(ChangeEventArgs args)
-    {
-        if (int.TryParse(args.Value?.ToString(), out int taxYear))
+        [Parameter]
+        public EventCallback<int> OnNewTaxYearEvent { get; set; }
+        private int TaxYear { get; set; } = 0;
+        private List<int> TaxYears { get; set; }
+        private List<TaxForm> TaxYearsInProcess { get; set; }
+        private int FilingStatus { get; set; } = -1;
+        private int TaxFormId { set; get; } = 0;
+        private bool isFilingStatusVisiable { get; set; } = false;
+        private bool isSubmitVisiable { get; set; } = false;
+        public List<FilingStatus> filingStatuses { get; set; }
+
+
+        protected override void OnInitialized()
         {
-            TaxYear = taxYear;
+            TaxYears = new List<int>();
+            (TaxYears, TaxYearsInProcess) = service.GetTaxYears();
+            filingStatuses = new List<FilingStatus>();
+            filingStatuses = service.GetfilingStatuses();
+            base.OnInitialized();
+        }
+
+        private void HandleTaxYearChange(ChangeEventArgs args)
+        {
+            if (int.TryParse(args.Value?.ToString(), out int taxYear))
+            {
+                TaxYear = taxYear;
+            }
+        }
+        private void HandleFilingStatusChange(ChangeEventArgs args)
+        {
+
+            if (int.TryParse(args.Value?.ToString(), out int filingstatus))
+            {
+                FilingStatus = filingstatus;
+            }
+            if (FilingStatus > 0)
+            {
+                isSubmitVisiable = true;
+            }
+            else
+            {
+                isSubmitVisiable = false;
+            }
+        }
+        private async Task CheckIfTaxExist(int taxyear)
+        {
+            TaxYear = taxyear;
+            isFilingStatusVisiable = true;
+            TaxForm t = await service.CheckIfTaxExist(TaxYear);
+            if (t != null)
+            {
+                TaxFormId = t.ID;
+            }
+            StateHasChanged();
+
+        }
+
+
+        private async Task CreateNewTaxFormAsync()
+        {
+            TaxForm t = await service.CreateNewTaxFormAsync(TaxYear, FilingStatus);
+            TaxFormId = t.ID;
+            TaxYears = new List<int>();
+            TaxYears.Add(TaxYear);
+            await OnNewTaxYearEvent.InvokeAsync(t.ID);
+            StateHasChanged();
         }
     }
-    private void HandleFilingStatusChange(ChangeEventArgs args)
-    {
-           FilingStatus = args.Value?.ToString()??"";
-    }
-
-    private async Task CreateNewTaxFormAsync()
-    {
-        TaxForm t = await service.CreateNewTaxFormAsync(TaxYear, FilingStatus);
-        await OnNewTaxYearEvent.InvokeAsync(t.ID);
-        StateHasChanged();
-    }
-}

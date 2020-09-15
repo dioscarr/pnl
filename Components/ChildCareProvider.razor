@@ -1,0 +1,51 @@
+﻿@inject TaxFormService service
+    <Paper>
+        <Grid Container Spacing="Spacing.Two">
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.ProviderName" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputNumber @bind-Value="CareProviderModel.AmountPaid" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.SSN_EIN" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Address1" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Address2" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.City" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.State" />
+            </Grid>
+            <Grid Item ExtraSmall="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Zip" />
+            </Grid>
+            
+        </Grid>
+    </Paper>
+
+    @code {
+
+
+        [Parameter]
+        public int TaxFormID { get; set; }
+
+        private DependentCareProviders CareProviderModel { get; set; }
+        protected override void OnInitialized()
+        {
+            CareProviderModel = new DependentCareProviders();
+            service.GetCareProviderIfExist(TaxFormID);
+            base.OnInitialized();
+        }
+
+        public void SaveCareProvider()
+        {
+            var CareProvider = service.SaveCareProvider(CareProviderModel);
+            StateHasChanged();
+        }
+    }
