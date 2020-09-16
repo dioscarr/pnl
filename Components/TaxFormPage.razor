@@ -17,10 +17,10 @@
                 <Grid Item ExtraSmall="@GridSize.Twelve">
 
                     <Grid Container Spacing="@Spacing.Three">
-                        <Grid Item ExtraSmall="@GridSize.Six">
+                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
                             <CurrentUserInfo />
                         </Grid>
-                        <Grid Item ExtraSmall="@GridSize.Six">
+                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
                             <CurrentAddress />
                         </Grid>
                     </Grid>
@@ -34,6 +34,9 @@
                 </Grid>
                 <Grid Item ExtraSmall="@GridSize.Twelve">
                     <DependentList TaxFormID="taxFormId" @ref="dependentList" />
+                </Grid>
+                <Grid Item ExtraSmall="@GridSize.Twelve">
+                    <ChildCareProvider TaxFormID ="taxFormId"/>
                 </Grid>
             }
         </Grid>

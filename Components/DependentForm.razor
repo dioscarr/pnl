@@ -5,35 +5,35 @@
     <EditForm Model="dependent" OnValidSubmit="AddDependent">
         <DataAnnotationsValidator/>        
         <Grid Container Style="padding:20px;">
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputText @bind-Value="dependent.FirstName" placeholder="first name" />
                 <ValidationMessage style="color:red;" For="()=>dependent.FirstName"/>
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputText @bind-Value="dependent.LastName" placeholder="first name" />
                 <ValidationMessage style="color:red;" For="()=>dependent.LastName" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputDate @bind-Value="dependent.Birthday" placeholder="birthday" />
                 <ValidationMessage style="color:red;" For="()=>dependent.Birthday" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputText @bind-Value="dependent.SSN" placeholder="SSN" />
                 <ValidationMessage style="color:red;" For="()=>dependent.SSN" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" />
                 <ValidationMessage style="color:red;" For="()=>dependent.MonthInHome" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" />
                 <ValidationMessage style="color:red;" For="()=>dependent.RelationshipName" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <InputText @bind-Value="dependent.Code" placeholder="Code" />
                 <ValidationMessage style="color:red;" For="()=>dependent.Code" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Three" Style="padding:20px 0;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
                 <Button Type="ButtonType.Submit" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small" Style="margin: 8px;"> 
                     <StartIcon><SaveIcon /></StartIcon><ChildContent Context="SubmitButton">Add New Dependent</ChildContent>
                 </Button>

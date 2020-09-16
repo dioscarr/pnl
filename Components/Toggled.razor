@@ -10,7 +10,7 @@
 
         @foreach (var item in Source)
         {
-            <Grid Item ExtraSmall="@GridSize.Four" Style="padding-left:20px;">
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four" Style="padding-left:20px;">
                 <Paper Style="padding-left:20px;">
                     <FormControlLabel Label="@item.name">
                         <Switch Checked="@item.isToggled"

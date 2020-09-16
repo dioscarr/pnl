@@ -1,33 +1,48 @@
 ﻿@inject TaxFormService service
-    <Paper>
+<Paper Style="padding:20px;">
+    @if(isSuccessfull)
+    {
+        <div class="alrt alert-success">
+            Saved
+        </div>
+    }
+    <Typography Variant="@TypographyVariant.Button" Display="@Display.Block" GutterBottom> Child Care Provider Information </Typography>
+    <EditForm Model="CareProviderModel" OnValidSubmit="SaveCareProvider">
+        <DataAnnotationsValidator />
+
         <Grid Container Spacing="Spacing.Two">
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.ProviderName" />
+            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputNumber @bind-Value="CareProviderModel.AmountPaid" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputNumber @bind-Value="CareProviderModel.AmountPaid" placeholder="AmountPaid" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.SSN_EIN" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.SSN_EIN" placeholder="SSN_EIN" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Address1" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Address1" placeholder="Address1" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Address2" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Address2" placeholder="Address2" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.City" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.City" placeholder="City" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.State" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.State" placeholder="State" />
             </Grid>
-            <Grid Item ExtraSmall="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Zip" />
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
+                <InputText @bind-Value="CareProviderModel.Zip" placeholder="Zip" />
             </Grid>
-            
+            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four" Style="padding:20px 0;">
+                <Button Type="ButtonType.Submit" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small" Style="margin: 8px;">
+                    <StartIcon><SaveIcon /></StartIcon><ChildContent Context="SubmitButton">Save Child Care Provider</ChildContent>
+                </Button>
+            </Grid>
         </Grid>
-    </Paper>
+    </EditForm>
+</Paper>
 
     @code {
 
@@ -35,17 +50,21 @@
         [Parameter]
         public int TaxFormID { get; set; }
 
-        private DependentCareProviders CareProviderModel { get; set; }
+        public bool isSuccessfull { get; set; } = false;
+
+        private DependentCareProviders CareProviderModel { get; set; } = new DependentCareProviders();
         protected override void OnInitialized()
         {
-            CareProviderModel = new DependentCareProviders();
-            service.GetCareProviderIfExist(TaxFormID);
+            CareProviderModel = service.GetCareProviderIfExist(TaxFormID);
             base.OnInitialized();
         }
 
         public void SaveCareProvider()
         {
-            var CareProvider = service.SaveCareProvider(CareProviderModel);
+            CareProviderModel.TaxFormID = TaxFormID;
+            CareProviderModel = service.SaveCareProvider(CareProviderModel);
+            if (CareProviderModel.id > 0)
+                isSuccessfull = true;
             StateHasChanged();
         }
     }

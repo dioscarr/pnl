@@ -22,7 +22,7 @@ namespace pnl.Models
         public DependentCareProviders GetCareProviderIfExist(int TaxFormID)
         {
             var dc = _db.DependentCare.FirstOrDefault(c => c.TaxFormID == TaxFormID);
-            if (dc!=null)
+            if (dc==null)
             {
                 return new DependentCareProviders();
             }
