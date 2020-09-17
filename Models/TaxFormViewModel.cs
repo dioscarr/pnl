@@ -34,7 +34,7 @@ namespace pnl.Models
         public Dependent Dependent { get; set; }
         public void LoadFiledTaxesByUserID(string UserID)
         {
-            TaxForms = _db.TaxtForms.Where(c => c.UserID == UserID).ToList();
+            TaxForms = _db.TaxForms.Where(c => c.UserID == UserID).ToList();
         }
         public void FileNewTaxes(string userid)
         {
@@ -46,7 +46,7 @@ namespace pnl.Models
         }
         internal TaxForm GetTaxById(int id)
         {
-            return _db.TaxtForms.Find(id);  
+            return _db.TaxForms.Find(id);  
         }
     }
 }

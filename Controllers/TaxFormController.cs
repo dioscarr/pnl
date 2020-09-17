@@ -73,7 +73,7 @@ namespace pnl.Controllers
               var usrId = User.Claims.First().Value;
                 model.CurrentTaxForms.UserID = usrId;
                 model.CurrentTaxForms.Person = _db.Person.Find(model.CurrentUser.id);
-                _db.TaxtForms.Add(model.CurrentTaxForms);
+                _db.TaxForms.Add(model.CurrentTaxForms);
                 _db.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -113,7 +113,7 @@ namespace pnl.Controllers
         {
             TaxFormViewModel tfvm = new TaxFormViewModel();
             tfvm.Init(_db);
-            _db.TaxtForms.Remove(tfvm.GetTaxById(id));
+            _db.TaxForms.Remove(tfvm.GetTaxById(id));
             _db.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

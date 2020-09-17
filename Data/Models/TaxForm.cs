@@ -16,6 +16,7 @@ namespace pnl.Data.Models
         public string UserID { get; set; }
         [Required]
         public int TaxYear { get; set; }
+        public bool isFiled { get; set; }
         public string FilingStatus { get; set; }
 
         [Required][ForeignKey("Person")]

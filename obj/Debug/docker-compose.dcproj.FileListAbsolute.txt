@@ -19,14 +19,13 @@ D:\Users\diosc\Repos\pnl\pnl\obj\Debug\docker-compose.dcproj.CoreCompileInputs.c
 D:\Users\diosc\Repos\pnl\pnl\obj\Debug\docker-compose.dcproj.CopyComplete
 D:\Users\diosc\Repos\pnl\pnl\bin\Debug\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\Users\diosc\Repos\pnl\pnl\bin\Debug\Castle.Core.dll
-D:\Users\diosc\Repos\pnl\bin\Debug\pnl.dll
-D:\Users\diosc\Repos\pnl\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 D:\Users\diosc\Repos\pnl\bin\Debug\pnl.Views.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\pnl.Views.pdb
 D:\Users\diosc\Repos\pnl\bin\Debug\appsettings.Development.json
 D:\Users\diosc\Repos\pnl\bin\Debug\appsettings.json
 D:\Users\diosc\Repos\pnl\bin\Debug\pnl.StaticWebAssets.xml
 D:\Users\diosc\Repos\pnl\bin\Debug\pnl.exe
+D:\Users\diosc\Repos\pnl\bin\Debug\pnl.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\Microsoft.AspNetCore.Identity.UI.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\Microsoft.EntityFrameworkCore.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\Skclusive.Core.Component.dll
@@ -73,4 +72,5 @@ D:\Users\diosc\Repos\pnl\bin\Debug\Microsoft.Data.SqlClient.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\Castle.Core.dll
 D:\Users\diosc\Repos\pnl\bin\Debug\pnl.pdb
 D:\Users\diosc\Repos\pnl\obj\Debug\docker-compose.dcprojAssemblyReference.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 D:\Users\diosc\Repos\pnl\obj\Debug\docker-compose.dcproj.CopyComplete

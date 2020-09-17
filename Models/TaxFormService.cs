@@ -48,7 +48,7 @@ namespace pnl.Models
 
         public TaxForm GetTaxForm(int TaxFormID)
         {
-            return _db.TaxtForms.Find(TaxFormID);
+            return _db.TaxForms.Find(TaxFormID);
         }
         public (List<int>, List<TaxForm>) GetTaxYears() {
 
@@ -60,12 +60,12 @@ namespace pnl.Models
             taxyears.Add(PreviousYear);
             taxyears.Add(CurrentYear);
             taxyears.Add(NextYear);
-            var TaxApplications = _db.TaxtForms.Where(c => c.UserID == userID).ToList();
+            var TaxApplications = _db.TaxForms.Where(c => c.UserID == userID).ToList();
             return (taxyears, TaxApplications);
         }
         public async Task<TaxForm> CheckIfTaxExist(int TaxYear)
         {
-            return await _db.TaxtForms.Where(c => c.TaxYear == TaxYear).FirstOrDefaultAsync();
+            return await _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefaultAsync();
         }
         public async Task<Dependent> AddDependentAsync(Dependent model)
         {
@@ -92,10 +92,10 @@ namespace pnl.Models
             try
             {
                 var filinfstatus = _db.FilingStatus.FirstOrDefault(c => c.Id == FilingStatusID);
-                var Anyexisting = _db.TaxtForms.Any(c => c.TaxYear == TaxYear);
+                var Anyexisting = _db.TaxForms.Any(c => c.TaxYear == TaxYear);
                 if (Anyexisting)
                 {
-                    var existing = _db.TaxtForms.Where(c => c.TaxYear == TaxYear).FirstOrDefault();
+                    var existing = _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefault();
                     if (filinfstatus != null && existing.FilingStatusID != FilingStatusID)
                     {
                         existing.FilingStatus = filinfstatus.Name;
@@ -114,7 +114,7 @@ namespace pnl.Models
                 t.UserID = userID;
                 t.Person = _db.Person.Where(c=>c.UserId == userID).First();
                 t.Filingstatus = filinfstatus;
-                _db.TaxtForms.Add(t);
+                _db.TaxForms.Add(t);
                 await _db.SaveChangesAsync();
                 return t;
             }

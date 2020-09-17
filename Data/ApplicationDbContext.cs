@@ -14,7 +14,7 @@ namespace pnl.Data
         {
         }
 
-        public virtual DbSet<TaxForm> TaxtForms { get; set; }
+        public virtual DbSet<TaxForm> TaxForms { get; set; }
         public virtual DbSet<Person> Person { get; set; }
         public virtual DbSet<Address> Address { get; set; }
         public DbSet<CriteriaOption> CriteriaOption { get; set; }
