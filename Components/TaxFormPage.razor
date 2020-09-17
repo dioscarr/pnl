@@ -1,52 +1,61 @@
 ﻿
-    <div style="flex-grow: 1;">
-        <Grid Container Spacing="@Spacing.Three">
-            @if (!canDisplay)
-            {
-                <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
-                    <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
-                </Grid>
-            }
-            @if (canDisplay)
-            {
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <Typography>
-                        <ApplicationHeader TaxFormID="taxFormId"/>
-                    </Typography>
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
+<div style="flex-grow: 1;">
+    <Grid Container Spacing="@Spacing.Three">
+        @if (!canDisplay)
+        {
+            <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
+                <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+            </Grid>
+        }
+        @if (canDisplay)
+        {
+            <Grid Item ExtraSmall="@GridSize.Twelve">
+                <Typography>
+                    <ApplicationHeader TaxFormID="taxFormId" />
+                </Typography>
+            </Grid>
+            <Grid Item ExtraSmall="@GridSize.Twelve">
 
-                    <Grid Container Spacing="@Spacing.Three">
-                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
+                <Grid Container Spacing="@Spacing.Three">
+                    <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
+                        @if (isUserInfo)
+                        {
+                            <CurrentUserInfoForm />
+                        }
+                        else
+                        {
                             <CurrentUserInfo />
-                        </Grid>
-                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                            <CurrentAddress />
-                        </Grid>
+                        }
+                        <Button OnClick="(()=>isUserInfo=!isUserInfo)">@displayCUbtnLabel()</Button>
                     </Grid>
+                    <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
+                        <CurrentAddress />
+                    </Grid>
+                </Grid>
 
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <Toggled TaxformId="taxFormId" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <ChildCareProvider TaxFormID ="taxFormId"/>
-                </Grid>
-            }
-        </Grid>
-    </div>
+            </Grid>
+            <Grid Item ExtraSmall="@GridSize.Twelve">
+                <Toggled TaxformId="taxFormId" />
+            </Grid>
+            <Grid Item ExtraSmall="@GridSize.Twelve">
+                <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
+            </Grid>
+            <Grid Item ExtraSmall="@GridSize.Twelve">
+                <DependentList TaxFormID="taxFormId" @ref="dependentList" />
+            </Grid>
+            <Grid Item ExtraSmall="@GridSize.Twelve">
+                <ChildCareProvider TaxFormID="taxFormId" />
+            </Grid>
+        }
+    </Grid>
+</div>
 
 @code {
 
     private int taxFormId { set; get; }
     private bool ReloadDependentList { set; get; }
     private bool canDisplay { get; set; } = false;
+    private bool isUserInfo { get; set; } = false;
 
     DependentList dependentList;
 
@@ -55,7 +64,7 @@
         taxFormId = tFormId;
         if (taxFormId > 0)
         {
-            canDisplay = true;            
+            canDisplay = true;
         }
 
         StateHasChanged();
@@ -76,4 +85,18 @@
         }
         return base.OnInitializedAsync();
     }
+    public string displayCUbtnLabel()
+    {
+        if (isUserInfo) 
+        { 
+
+            return "Edit"; 
+        }
+        else 
+        { 
+            return "Close"; 
+        }
+
+    }
+
 }
