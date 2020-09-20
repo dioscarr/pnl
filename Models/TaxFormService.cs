@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Castle.DynamicProxy.Contributors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using pnl.Data;
 using pnl.Data.Models;
@@ -18,37 +19,29 @@ namespace pnl.Models
             _db = db;
             _httpContextAccessor = httpContextAccessor;
         }
-
-        public DependentCareProviders GetCareProviderIfExist(int TaxFormID)
+        public bool UpdateCurrentUser(Person model)
         {
-            var dc = _db.DependentCare.FirstOrDefault(c => c.TaxFormID == TaxFormID);
-            if (dc==null)
+            try
             {
-                return new DependentCareProviders();
+                var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
+                var existingUser = _db.Person.FirstOrDefault(c => c.UserId == userID);
+                existingUser.FirstName = model.FirstName;
+                existingUser.LastName = model.LastName;
+                existingUser.SSN = model.SSN;
+                existingUser.MiddleName = model.MiddleName;
+                existingUser.Occupation = model.Occupation;
+                existingUser.Email = model.Email;
+                existingUser.Birthday = model.Birthday;
+                existingUser.Phone = model.Phone;
+                existingUser.UserId = userID;
+                _db.Update(existingUser);
+                _db.SaveChanges(); 
+                return true;
             }
-                return dc;
-        }
-
-        public DependentCareProviders SaveCareProvider(DependentCareProviders model)
-        {
-            if (_db.DependentCare.Any(c => c.TaxFormID == model.TaxFormID))
+            catch (Exception)
             {
-                model.id = _db.DependentCare.First(c => c.TaxFormID == model.TaxFormID).id;
-                _db.Update(model);
-                _db.SaveChanges();               
+                return true;
             }
-            else
-            {
-                _db.Add(model);
-                _db.SaveChanges();
-            }
-            return model;
-        }
-
-
-        public TaxForm GetTaxForm(int TaxFormID)
-        {
-            return _db.TaxForms.Find(TaxFormID);
         }
         public (List<int>, List<TaxForm>) GetTaxYears() {
 
@@ -63,29 +56,38 @@ namespace pnl.Models
             var TaxApplications = _db.TaxForms.Where(c => c.UserID == userID).ToList();
             return (taxyears, TaxApplications);
         }
-        public async Task<TaxForm> CheckIfTaxExist(int TaxYear)
+        public Person SaveTaxFormCurrentUserInfo(Person model, int TaxFormID)
         {
-            return await _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefaultAsync();
-        }
-        public async Task<Dependent> AddDependentAsync(Dependent model)
-        {
-            if (model != null && model.TaxFormID > 0)
+            var dataModel = new TaxFormPerson
             {
-                try
-                {
-                _db.Add(model);
-                await _db.SaveChangesAsync();
-
-                }
-                catch (Exception e){
-                    throw;
-                }
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                SSN = model.SSN,
+                MiddleName = model.MiddleName,
+                Occupation = model.Occupation,
+                Email = model.Email,
+                Birthday = model.Birthday,
+                Phone = model.Phone,
+                TaxFormID = TaxFormID
+            };
+            if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID)){
+                var existingModel = _db.TaxFormPeople.First(c => c.TaxFormID == TaxFormID);
+                existingModel.FirstName = model.FirstName;
+                existingModel.LastName = model.LastName;
+                existingModel.SSN = model.SSN;
+                existingModel.MiddleName = model.MiddleName;
+                existingModel.Occupation = model.Occupation;
+                existingModel.Email = model.Email;
+                existingModel.Birthday = model.Birthday;
+                existingModel.Phone = model.Phone;
+                existingModel.TaxFormID = TaxFormID;
+                _db.Update(dataModel);
             }
+            else { 
+                _db.TaxFormPeople.Add(dataModel);
+            }
+            _db.SaveChanges();
             return model;
-        }
-        public List<FilingStatus> GetfilingStatuses()
-        {
-            return _db.FilingStatus.ToList();
         }
         public async Task<TaxForm> CreateNewTaxFormAsync(int TaxYear, int FilingStatusID)
         {
@@ -123,9 +125,26 @@ namespace pnl.Models
                 throw;
             }
         }
-        public Person GetCurrentUser()
+        public TaxForm GetTaxForm(int TaxFormID)
+        {
+            return _db.TaxForms.Find(TaxFormID);
+        }
+        public Person GetCurrentUser(int TaxFormID)
         {
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
+            if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID))
+            {
+                return _db.TaxFormPeople.Where(c => c.TaxFormID == TaxFormID).Select(c=> new Person { 
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    SSN = c.SSN,
+                    MiddleName = c.MiddleName,
+                    Occupation = c.Occupation,
+                    Email = c.Email,
+                    Birthday = c.Birthday,
+                    Phone = c.Phone                     
+                }).First();
+            }
             return _db.Person.Where(c => c.UserId == userID).First();
         }
         public Address GetCurrentUserAddress()
@@ -152,22 +171,45 @@ namespace pnl.Models
             }
             return Dependents;
         }
-        public List<Dependent> DeleteDependents(List<Dependent> model, int TaxFormId)
+        public DependentCareProviders GetCareProviderIfExist(int TaxFormID)
         {
-            try
+            var dc = _db.DependentCare.FirstOrDefault(c => c.TaxFormID == TaxFormID);
+            if (dc==null)
             {
-            _db.RemoveRange(model);
-            _db.SaveChanges();
-                return _db.Dependent.Where(c => c.TaxFormID == TaxFormId).ToList();
+                return new DependentCareProviders();
             }
-            catch (Exception e)
+                return dc;
+        }
+        public async Task<TaxForm> CheckIfTaxExist(int TaxYear)
+        {
+            return await _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefaultAsync();
+        }
+        public async Task<Dependent> AddDependentAsync(Dependent model)
+        {
+            if (model != null && model.TaxFormID > 0)
             {
+                try
+                {
+                _db.Add(model);
+                await _db.SaveChangesAsync();
 
-                throw;
+                }
+                catch (Exception e){
+                    throw;
+                }
             }
+            return model;
+        }
+        public List<FilingStatus> GetfilingStatuses()
+        {
+            return _db.FilingStatus.ToList();
         }
         public List<ToggleMe> GetCriteriaOptions(){
             return _db.CriteriaOption.Select(c => new ToggleMe { name = c.Name, isToggled = false }).ToList();
+        }
+        public List<TaxFormCriteria> GetTaxFormCriteria(int TaxFormId)
+        {
+            return _db.TaxFormCriteria.Where(c => c.TaxFormID == TaxFormId).ToList();
         }
         public async Task<List<ToggleMe>> SaveSelectedCriteriasAsync(List<ToggleMe> model, int TaxFormId)
         {
@@ -183,9 +225,34 @@ namespace pnl.Models
             }
             return model;
         }
-        public List<TaxFormCriteria> GetTaxFormCriteria(int TaxFormId)
+        public DependentCareProviders SaveCareProvider(DependentCareProviders model)
         {
-            return _db.TaxFormCriteria.Where(c => c.TaxFormID == TaxFormId).ToList();
+            if (_db.DependentCare.Any(c => c.TaxFormID == model.TaxFormID))
+            {
+                model.id = _db.DependentCare.First(c => c.TaxFormID == model.TaxFormID).id;
+                _db.Update(model);
+                _db.SaveChanges();               
+            }
+            else
+            {
+                _db.Add(model);
+                _db.SaveChanges();
+            }
+            return model;
+        }
+        public List<Dependent> DeleteDependents(List<Dependent> model, int TaxFormId)
+        {
+            try
+            {
+            _db.RemoveRange(model);
+            _db.SaveChanges();
+                return _db.Dependent.Where(c => c.TaxFormID == TaxFormId).ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
         
     }

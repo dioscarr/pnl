@@ -15,6 +15,10 @@ RUN dotnet build "pnl.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
 
+FROM microsoft/mssql-tools:latest
+
+WORKDIR /temp//path
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .

@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[5.0.0-preview.8.20414.8, )"
             },
+            "Microsoft.Azure.SignalR": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[5.0.0-preview.8.20407.4, )"

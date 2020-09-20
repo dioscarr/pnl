@@ -1,37 +1,81 @@
 ﻿@inject TaxFormService service
+<Card Style="max-width: 100%; min-height:100%; padding:20px;">
+    <Grid Container>
+        @if (isEdit)
+        {
+            <Grid Item Large="GridSize.Twelve">
+                <InputText name="Address.Address1" placeholder="Address1" @bind-Value="@UserCurrentAddress.Address1" />
+                <InputText name="Address.Address2" placeholder="Address2" @bind-Value="@UserCurrentAddress.Address2" />
+                <InputText name="Address.City" placeholder="City" @bind-Value="@UserCurrentAddress.City" />
+                <InputText name="Address.State" placeholder="State" @bind-Value="@UserCurrentAddress.State" />
+                <InputText name="Address.Zip" placeholder="Zip" @bind-Value="@UserCurrentAddress.Zip" />
+            </Grid>
+        }
+        else
+        {
+            <Grid Item Large="GridSize.Twelve">
 
+                <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
+                            Display="@Display.Block"
+                            GutterBottom>
+                    Mailing address
+                </Typography>
+                <CardContent>
+                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address1</Typography>
+                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address2</Typography>
+                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.City</Typography>
+                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.State</Typography>
+                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Zip</Typography>
+                </CardContent>
 
-<Card Style="max-width: 100%; min-height:100%; padding:20px;" >
-    <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
-                Display="@Display.Block"
-                GutterBottom>
-        Mailing address
-    </Typography>
-    <CardContent>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address1</Typography>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address2</Typography>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.City</Typography>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.State</Typography>
-        <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Zip</Typography>
-    </CardContent>
+            </Grid>
+        }
+
+        <Grid Item Large="GridSize.Twelve" Justify="Justify.FlexEnd">
+            <Button FullWidth OnClick="SaveCurrentTaformAddres">@displayCUbtnLabel()</Button>
+        </Grid>
+
+    </Grid>
 </Card>
+        @code {
+            [Parameter]
+            public int TaxFormID { get; set; }
+            [Parameter]
+            public bool isEdit { get; set; } = false;
 
-@code {
+            public Address UserCurrentAddress { get; set; }
 
-    public Address UserCurrentAddress { get; set; }
+            protected override Task OnInitializedAsync()
+            {
+                GetCurrentUserAddress();
+                return base.OnInitializedAsync();
+            }
+            public void SaveCurrentTaformAddres()
+            {
+                isEdit = !isEdit;
+                
+            }
 
-    protected override Task OnInitializedAsync()
-    {
-        GetCurrentUserAddress();
-        return base.OnInitializedAsync();
-    }
+            private void GetCurrentUserAddress()
+            {
+                UserCurrentAddress = service.GetCurrentUserAddress();
+            }
 
-    private void GetCurrentUserAddress()
-    {
-        UserCurrentAddress = service.GetCurrentUserAddress();
-    }
+            public string displayCUbtnLabel()
+            {
+                if (isEdit)
+                {
+
+                    return "Save";
+                }
+                else
+                {
+                    return "Edit";
+                }
+
+            }
 
 
 
 
-}
+        }

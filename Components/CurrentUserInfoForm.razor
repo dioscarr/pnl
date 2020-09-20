@@ -1,5 +1,56 @@
-﻿<h3>CurrentUserInfoForm</h3>
+﻿@*@inject TaxFormService service*@
+<Typography Variant="@TypographyVariant.Button" Display="@Display.Block" GutterBottom> Current User Info </Typography>
+<EditForm Model="CurrentUser" OnValidSubmit="Save">
+    <DataAnnotationsValidator />
+    <Grid Container Style="padding:20px;">
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" name="CurrentUser.FirstName" placeholder="FirstName" @bind-Value="CurrentUser.FirstName" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" name="CurrentUser.LastName" placeholder="LastName" @bind-Value="CurrentUser.LastName" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" name="CurrentUser.MiddleName" placeholder="MiddleName" @bind-Value="CurrentUser.MiddleName" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" type="tel" name="CurrentUser.Phone" placeholder="Phone" @bind-Value="CurrentUser.Phone" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" type="email" name="CurrentUser.Email" placeholder="Email" pattern="^[a-zA-Z0-9._+-]+&#64;[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" @bind-Value="CurrentUser.Email" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputDateTime style="width:100%;" id="createdDate" @bind-Value="CurrentUser.Birthday"></InputDateTime>
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" name="CurrentUser.SSN" placeholder="555-55-5555" pattern="\d{3}-?\d{2}-?\d{4}" @bind-Value="CurrentUser.SSN" />
+        </Grid>
+        <Grid Item Large="GridSize.Twelve" Style="padding:2px 0;">
+            <InputText style="width:100%;" name="CurrentUser.Occupation" placeholder="Occupation" @bind-Value="CurrentUser.Occupation" />
+        </Grid>       
+    </Grid>
+</EditForm>
+    
 
-@code {
+    @code {
+        [Parameter]
+        public int TaxFormID { get; set; }
+        [Parameter]
+        public EventCallback<Person> OnSave { get; set; }
+        [Parameter]
+        public Person CurrentUser { get; set; }
 
-}
+        protected override void OnInitialized()
+        {
+           // CurrentUser = new Person();
+            //CurrentUser = service.GetCurrentUser(TaxFormID);
+            base.OnInitialized();
+        }
+
+        public void Save()
+        {
+            //  CurrentUser = service.SaveTaxFormCurrentUserInfo(CurrentUser, TaxFormID);            
+            OnSave.InvokeAsync(CurrentUser);
+            StateHasChanged();
+        }
+
+    }
