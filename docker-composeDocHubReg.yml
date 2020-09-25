@@ -12,23 +12,12 @@ services:
       - "1433:1433"
 
   pnl:
-    image: dioscarr/pnl:linux
+    image: dioscarr/pnl
     container_name: app
     ports:
-      - "80:80"
+      - "8000:80"
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       - db
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - '80:80'
-      - '443:443'
-    links:
-      - app
-    restart: always
-    environment:
-      DOMAINS: 'alpacatracker.com -> http://app:5000'
-      STAGE: 'production

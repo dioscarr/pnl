@@ -1,14 +1,14 @@
 ﻿@inject TaxFormService service
 
-<Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; height:200px;" Spacing="@Spacing.Five">
-    <Grid Item ExtraSmall="GridSize.Six" Justify="Justify.Center">
-        <Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; height:200px;" Spacing="@Spacing.Five">
-            <Grid Item ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
+<Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; " Spacing="@Spacing.Five">
+    <Grid Item Large="GridSize.Twelve" Justify="Justify.Center">
+        <Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px;" Spacing="@Spacing.Five">
+            <Grid Item Large="GridSize.Twelve" Justify="Justify.Center">
                 <Typography Variant="@TypographyVariant.H5" Display="@Display.Block"> Start a new application</Typography>
             </Grid>
             @foreach (var item in TaxYears)
             {
-                <Grid Item ExtraSmall="GridSize.Four" Justify="Justify.Center">
+                <Grid Item Large="GridSize.Four" ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
                     <Button Style="background-color:white;"
                             Type="ButtonType.Button" OnClick="()=>CheckIfTaxExist(item)" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
                         <ChildContent>@item</ChildContent>
@@ -16,10 +16,10 @@
                 </Grid>
             }
         </Grid>
-        <Grid Container Style="padding: 20px;flex-grow: 1; min-height:200px;" Spacing="@Spacing.Five">
+        <Grid Container Style="flex-grow: 1; min-height:200px;" Spacing="@Spacing.Five">
             @if (isFilingStatusVisiable)
             {
-                <Grid Item ExtraSmall="GridSize.Four">
+                <Grid Item Large="GridSize.Four" ExtraSmall="GridSize.Three">
                     <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
                         <option value="-1">Select Filing Status</option>
                         @foreach (var value in filingStatuses)
@@ -31,7 +31,7 @@
             }
             @if (isSubmitVisiable || FilingStatus > 0)
             {
-                <Grid Item Style="padding: 20px;" ExtraSmall="GridSize.Five" Spacing="@Spacing.Ten">
+                <Grid Item Style="padding: 20px;" ExtraSmall="GridSize.Twelve" Spacing="@Spacing.Ten">
                     <Button Type="ButtonType.Button" OnClick="@CreateNewTaxFormAsync" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small">
                         <ChildContent>Open Application</ChildContent>
                     </Button>
@@ -39,24 +39,25 @@
             }
         </Grid>
     </Grid>
-    <Grid Item ExtraSmall="GridSize.Six" Justify="Justify.FlexStart">
-        <Grid Container Style="padding: 20px 0;flex-grow: 1; min-height:200px; outline:1px solid red;" Spacing="@Spacing.Zero">
-            <Grid Item ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
-                <Typography Variant="@TypographyVariant.H5" Display="@Display.Block">Existing Applications in Progress</Typography>
+    <Grid Item Large="GridSize.Twelve" Justify="Justify.FlexStart">
+        <Paper Style="padding:20px 0;">
+            <Grid Container Style="flex-grow: 1; min-height:200px;" Spacing="@Spacing.Zero">
+                <Grid Item ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
+                    <Typography Variant="@TypographyVariant.H5" Display="@Display.Block">Existing Applications in Progress</Typography>
+                </Grid>
+                @foreach (var item in TaxYearsInProcess)
+                {
+                    <Grid Item Large="GridSize.Four" ExtraSmall="GridSize.Three" Justify="Justify.Center" Style="display:grid; justify-content:center;">
+
+                        <Typography Variant="@TypographyVariant.Body1" Display="@Display.Block">@item.FilingStatus</Typography>
+                        <Button Style="background-color:white;"
+                                Type="ButtonType.Button" OnClick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
+                            <ChildContent>@item.TaxYear </ChildContent>
+                        </Button>
+                    </Grid>
+                }
             </Grid>
-            @foreach (var item in TaxYearsInProcess)
-            {
-                <Grid Item ExtraSmall="GridSize.Three" Justify="Justify.Center">
-                    <Button Style="background-color:white;"
-                            Type="ButtonType.Button" OnClick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
-                        <ChildContent>@item.TaxYear </ChildContent>
-                    </Button>
-                </Grid>
-                <Grid Item ExtraSmall="GridSize.Seven" Justify="Justify.Center">
-                    <Typography Variant="@TypographyVariant.Body1" Display="@Display.Block">- @item.FilingStatus</Typography>
-                </Grid>
-            }
-        </Grid>
+        </Paper>
     </Grid>
 </Grid>
 
