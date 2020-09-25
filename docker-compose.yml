@@ -27,8 +27,8 @@ services:
       - '80:80'
       - '443:443'
     links:
-      - app
+      - pnl
     restart: always
     environment:
-      DOMAINS: 'alpacatracker.com -> http://app:5000'
+      DOMAINS: 'devpnl.com -> http://pnl:5000'
       STAGE: 'production
