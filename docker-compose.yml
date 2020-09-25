@@ -15,7 +15,7 @@ services:
     image: dioscarr/pnl:linux
     container_name: app
     ports:
-      - "80:80"
+      - "8000:80"
     build:
       context: .
       dockerfile: Dockerfile
