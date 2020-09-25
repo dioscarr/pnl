@@ -24,11 +24,11 @@ services:
   https-portal:
     image: steveltn/https-portal:1
     ports:
-      - '80:80'
-      - '443:443'
+      - "80:80"
+      - "443:443"
     links:
       - pnl
     restart: always
     environment:
-      DOMAINS: 'devpnl.com -> http://pnl:5000'
-      STAGE: 'production
+      DOMAINS: "devpnl.com -> http://pnl:5000"
+      STAGE: "production"
