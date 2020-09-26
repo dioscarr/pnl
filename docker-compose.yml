@@ -3,17 +3,16 @@ version: "3.4"
 services:
   db:
     image: dioscarr/mssql:2019
-    container_name: dbmssql
+    container_name: db
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Password@123"
       MSSQL_PID: Express
     ports:
       - "1433:1433"
-
   pnl:
     image: dioscarr/pnl:linux
-    container_name: app
+    container_name: pnl
     ports:
       - "8000:80"
     build:
@@ -24,11 +23,11 @@ services:
   https-portal:
     image: steveltn/https-portal:1
     ports:
-      - "80:80"
+      - "80:8000"
       - "443:443"
     links:
       - pnl
     restart: always
     environment:
-      DOMAINS: "devpnl.app -> http://app:5000"
+      DOMAINS: "devpnl.app -> http://pnl:5000"
       STAGE: "production"
