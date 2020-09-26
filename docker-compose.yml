@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - dbmssql
+      - db
   https-portal:
     image: steveltn/https-portal:1
     ports:
