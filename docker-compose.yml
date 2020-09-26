@@ -3,13 +3,15 @@ version: "3.4"
 services:
   db:
     image: dioscarr/mssql:2019
-    container_name: db
+    container_name: dbmssql
     environment:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Password@123"
       MSSQL_PID: Express
-    ports:
-      - "1433:1433"
+      ports:
+        - "1433:1433"
+      volumes:
+        - /var/lib/mssql
 
   pnl:
     image: dioscarr/pnl:linux
@@ -20,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - dbmssql
   https-portal:
     image: steveltn/https-portal:1
     ports:
@@ -30,5 +32,5 @@ services:
       - pnl
     restart: always
     environment:
-      DOMAINS: "devpnl.app -> http://pnl:5000"
+      DOMAINS: "devpnl.app -> http://app:5000"
       STAGE: "production"
