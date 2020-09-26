@@ -8,28 +8,26 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "Password@123"
       MSSQL_PID: Express
-      ports:
-        - "1433:1433"
-      volumes:
-        - /var/lib/mssql
+    ports:
+      - "1433:1433"
 
   pnl:
     image: dioscarr/pnl:linux
     container_name: app
-    # ports:
-    #   - "8000:80"
+    ports:
+      - "8000:80"
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - dbmssql
   https-portal:
     image: steveltn/https-portal:1
     ports:
       - "80:80"
       - "443:443"
     links:
-      - pnl
+      - app
     restart: always
     environment:
       DOMAINS: "devpnl.app -> http://app:5000"
