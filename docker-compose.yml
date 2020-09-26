@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   db:
-    image: dioscarr/mssql:2019
+    image: dioscarr/nssql:2019
     container_name: db
     environment:
       ACCEPT_EULA: "Y"
