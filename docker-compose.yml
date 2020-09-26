@@ -21,10 +21,6 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    environment:
-      # - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
   https-portal:
     image: steveltn/https-portal:1
     ports:
