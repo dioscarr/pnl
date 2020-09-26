@@ -24,10 +24,10 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000/tcp
+
 ENV ASPNETCORE_ENVIRONMENT=Docker
-ENV ASPNETCORE_URLS https://+:443;http://+:80 
+ENV ASPNETCORE_URLS https://*:5000
 
 ENTRYPOINT ["dotnet", "pnl.dll"]
 # CMD ASPNETCORE_URLS=http://*:$PORT 

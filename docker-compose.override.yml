@@ -1,13 +1,13 @@
-version: '3.4'
+version: "3.4"
 
 services:
   pnl:
- #   environment:
-      # - ASPNETCORE_ENVIRONMENT=Production
-     # - ASPNETCORE_ENVIRONMENT=Development
-     # - ASPNETCORE_URLS=http://+:5000
-    #ports:
-     # - "8000:5000"      
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      #- ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:5000
+    ports:
+      - "5000:80"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
