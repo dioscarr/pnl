@@ -5,7 +5,7 @@ services:
       ACCEPT_EULA: "Y"
       MSSQL_PID: Express
       SA_PASSWORD: Password@123
-    image: devpnl.azurecr.io/mssql:2019
+    image: dioscarr/mssql:2019
     ports:
     - published: 1433
       target: 1433
@@ -17,12 +17,12 @@ services:
     depends_on:
     - db
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:80
-    image: pnl
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:5000
+    image: dioscarr/pnl:linux
     ports:
-    - published: 8000
-      target: 80
+    - published: 5000
+      target: 5000
     volumes:
     - C:\Users\Diosc\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
     - C:\Users\Diosc\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
