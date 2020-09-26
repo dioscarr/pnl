@@ -2,7 +2,7 @@ version: "3.4"
 
 services:
   db:
-    image: dioscarr/nssql:2019
+    image: dioscarr/mssql:2019
     container_name: db
     environment:
       ACCEPT_EULA: "Y"
@@ -10,11 +10,12 @@ services:
       MSSQL_PID: Express
     ports:
       - "1433:1433"
+
   pnl:
     image: dioscarr/pnl:linux
-    container_name: pnl
+    container_name: app
     ports:
-      - "8000:80"
+      - "80:80"
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,11 +24,11 @@ services:
   https-portal:
     image: steveltn/https-portal:1
     ports:
-      - "80:8000"
+      - "80:80"
       - "443:443"
     links:
       - pnl
     restart: always
     environment:
-      DOMAINS: "devpnl.app -> http://pnl:5000"
+      DOMAINS: "devpnl.com -> http://pnl:5000"
       STAGE: "production"
