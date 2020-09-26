@@ -14,14 +14,14 @@ services:
   pnl:
     image: dioscarr/pnl:linux
     container_name: pnl
-    ports:
-      - "5000:5000"
+    # ports:
+    #   - "5000:5000"
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       - db
-  # https-portal:
+    # https-portal:
   #   image: steveltn/https-portal:1
   #   ports:
   #     - "80:80"
