@@ -3,11 +3,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS https://+:443;http://+:80
 
-EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
@@ -27,6 +23,11 @@ WORKDIR /temp//path
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+EXPOSE 80
+EXPOSE 443
+ENV ASPNETCORE_ENVIRONMENT=Docker
+ENV ASPNETCORE_URLS https://+:443;http://+:80 
 
 ENTRYPOINT ["dotnet", "pnl.dll"]
 # CMD ASPNETCORE_URLS=http://*:$PORT 
