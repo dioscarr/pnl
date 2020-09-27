@@ -30,5 +30,5 @@ services:
       - pnl
     restart: always
     environment:
-      DOMAINS: "devpnl.app -> http://pnl:5000"
+      DOMAINS: "devpnl.app -> http://157.245.244.37:5000"
       STAGE: "production"
