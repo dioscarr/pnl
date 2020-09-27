@@ -24,7 +24,7 @@ services:
     depends_on:
       - db
   backup:
-    image: bbtsoftwareag/mssql-backup
+    image: dioscarr/mssql:2019bk
     # for using the cleanup feature, use the backup volume from db.
     # volumes:
     #   - /storage/backup:/backup
