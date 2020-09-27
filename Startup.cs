@@ -48,7 +48,7 @@ namespace pnl
             //  services.AddSignalR();
 
             services.AddAntiforgery();
-            services.AddDataProtection();
+            services.AddDataProtection().SetApplicationName("pnl");
 
             //services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
