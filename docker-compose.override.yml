@@ -11,8 +11,6 @@ services:
       - ~/.aspnet/https:/https:ro
       # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       # - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
-    networks:
-      - bridged
 
   https-portal:
     image: steveltn/https-portal:1
@@ -25,7 +23,5 @@ services:
     environment:
       DOMAINS: "devpnl.app -> http://pnl:5000"
       STAGE: "Docker"
-    networks:
-      - bridged
     depends_on:
       - "pnl"
