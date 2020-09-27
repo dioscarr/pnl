@@ -12,7 +12,7 @@ services:
       - "1433:1433"
     volumes:
       - mssql-volume:/var/opt/mssql
-      - /storage/backup:/backup
+      # - /storage/backup:/backup
     networks:
       - default
   pnl:
@@ -23,18 +23,18 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-  backup:
-    image: dioscarr/mssql:2019bk
-    # for using the cleanup feature, use the backup volume from db.
-    # volumes:
-    #   - /storage/backup:/backup
-    environment:
-      - DB_SERVER=db
-      - DB_USER=SA
-      - DB_PASSWORD=Password@123
-      - "DB_NAMES= MyFirstDatabaseToRestore MySecondDatabaseToRestore"
-      - CRON_SCHEDULE=0 1 * * *
-    networks:
-      - default
+  # backup:
+  #   image: dioscarr/mssql:2019bk
+  #   # for using the cleanup feature, use the backup volume from db.
+  #   # volumes:
+  #   #   - /storage/backup:/backup
+  #   environment:
+  #     - DB_SERVER=db
+  #     - DB_USER=SA
+  #     - DB_PASSWORD=Password@123
+  #     - "DB_NAMES= MyFirstDatabaseToRestore MySecondDatabaseToRestore"
+  #     - CRON_SCHEDULE=0 1 * * *
+  #   networks:
+  #     - default
 volumes:
   mssql-volume:

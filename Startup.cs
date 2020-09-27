@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using pnl.Models;
 using Fluxor;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace pnl
 {
@@ -51,13 +52,13 @@ namespace pnl
 
             //services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
-            //services.AddScoped<IRenderContext>((sp) =>
-            //{
-            //    var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
-            //    bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
-            //    var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
-            //    return new RenderContext(isServer: true, isPreRendering);
-            //});
+            services.AddScoped<IRenderContext>((sp) =>
+            {
+                var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
+                bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
+                var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
+                return new RenderContext(isServer: true, isPreRendering);
+            });
 
             
             services.AddServerSideBlazor();
@@ -82,7 +83,10 @@ namespace pnl
             }
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             using (var srvc = app.ApplicationServices.CreateScope())
             {
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
