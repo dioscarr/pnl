@@ -63,8 +63,6 @@ EXPOSE 443
 
 #ENV ASPNETCORE_URLS http://*:5000
 
-COPY --from=build /root/.dotnet/corefx/cryptography /root/.dotnet/corefx/cryptography
-
 ENV ASPNETCORE_URLS = "https://+443;http://+80"
 ENV ASPNETCORE_HTTPS_PORT 443
 ENV ASPNETCORE_ENVIRONMENT Docker
