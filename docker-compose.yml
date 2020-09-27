@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    https-portal:
+  https-portal:
     image: steveltn/https-portal:1
     ports:
       - "80:80"
