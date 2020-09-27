@@ -48,7 +48,7 @@ namespace pnl
 
 
             services.AddHttpContextAccessor();
-            services.AddAntiforgery();
+            //services.AddAntiforgery();
             services.AddDataProtection()
             .SetApplicationName("pnl");
             services.AddScoped<IRenderContext>((sp) =>
