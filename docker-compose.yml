@@ -21,14 +21,3 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - "8080:8080"
-      - "443:443"
-    links:
-      - pnl
-    restart: always
-    environment:
-      DOMAINS: "devpnl.app -> http://157.245.244.37:5000"
-      STAGE: "production"
