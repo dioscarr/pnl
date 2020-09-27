@@ -49,9 +49,10 @@ namespace pnl
 
             services.AddAntiforgery();
             services.AddDataProtection().SetApplicationName("pnl");
-
+            
             //services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
+            services.AddScoped<TaxFormService>();
             services.AddScoped<IRenderContext>((sp) =>
             {
                 var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
@@ -64,7 +65,6 @@ namespace pnl
             services.AddServerSideBlazor();
             services.AddControllersWithViews();
             services.TryAddMaterialServices(new MaterialConfigBuilder().WithIsServer(true).WithIsPreRendering(false).Build());
-            services.AddScoped<TaxFormService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
