@@ -13,7 +13,7 @@ services:
       # - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
   https-portal:
-    image: steveltn/https-portal:1.7.3
+    image: steveltn/https-portal:latest
     ports:
       - "80:80"
       - "443:443"
