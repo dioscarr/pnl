@@ -14,8 +14,6 @@ services:
   pnl:
     image: dioscarr/pnl:linux
     container_name: pnl
-    # ports:
-    #   - "5000:5000"
     build:
       context: .
       dockerfile: Dockerfile

@@ -11,7 +11,7 @@ COPY . .
 WORKDIR "/src/"
 RUN dotnet build "pnl.csproj" -c Release -o /app/build
 
-FROM build AS publish
+FROM build AS publish	
 RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
 
 FROM microsoft/mssql-tools:latest
@@ -24,7 +24,7 @@ COPY --from=publish /app/publish .
 
 #EXPOSE 5000/tcp
 
-EXPOSE 5000 50001
+EXPOSE 5000 5001
 
 #ENV ASPNETCORE_URLS http://*:5000
 
