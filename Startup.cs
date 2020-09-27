@@ -52,13 +52,13 @@ namespace pnl
             //services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
             services.AddScoped<TaxFormService>();
-            services.AddScoped<IRenderContext>((sp) =>
-            {
-                var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
-                bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
-                var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
-                return new RenderContext(isServer: true, isPreRendering);
-            });
+            //services.AddScoped<IRenderContext>((sp) =>
+            //{
+            //    var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
+            //    bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
+            //    var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
+            //    return new RenderContext(isServer: true, isPreRendering);
+            //});
 
             
             services.AddServerSideBlazor();
