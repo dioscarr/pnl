@@ -16,7 +16,7 @@ COPY rootCA*.pem /root/.local/share/mkcert/
 
 RUN mkcert -install \
     && mkcert -key-file https-web.key -cert-file https-web.pem 157.245.244.37 localhost 127.0.0.1 web \
-    && openssl pkcs12 -export -out https-web.pfx -inkey https-web.key -in && \
+    && openssl pkcs12 -export -out https-web.pfx -inkey https-web.key -in \
     https-web.pem rootCA.pem -passout pass:https-web
 
 
