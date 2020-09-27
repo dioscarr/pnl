@@ -13,16 +13,18 @@ services:
     build:
       context: D:\Users\diosc\Repos\pnl
       dockerfile: Dockerfile
-    container_name: app
+    container_name: pnl
     depends_on:
     - db
     environment:
       ASPNETCORE_ENVIRONMENT: Production
-      ASPNETCORE_URLS: http://+:5000
+      ASPNETCORE_URLS: http://+:5000;https://+:5001
     image: dioscarr/pnl:linux
     ports:
     - published: 5000
       target: 5000
+    - published: 5001
+      target: 5001
     volumes:
     - C:\Users\Diosc\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
     - C:\Users\Diosc\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro

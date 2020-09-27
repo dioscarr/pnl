@@ -1,13 +1,13 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-FROM golang:alpine as cert
+FROM golang:alpine3.10 as cert
 
 RUN apk update \
     && apk add git openssl nss-tools \
     && rm -rf /var/cache/apk/*
 
 RUN cd /go && \
-    go get -u github.com/FiloScottle/mkcert && \
-    cd src/github.com/FileScottile/mkcert && \
+    go get -u github.com/FiloSottile/mkcert && \
+    cd src/github.com/FiloSottile/mkcert && \
     go build -o /bin/mkcert
 
 WORKDIR /root/.local/share/mkcert
@@ -30,6 +30,9 @@ COPY . .
 WORKDIR "/src/"
 RUN dotnet build "pnl.csproj" -c Release -o /app/build
 
+
+
+
 FROM build AS publish
 RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
 
@@ -37,24 +40,30 @@ FROM microsoft/mssql-tools:latest
 
 WORKDIR /temp//path
 
-COPY --from=cert /bin/mkcert /bin/mkcert
 
-COPY --from=cert /root/.local/share/mkcert/rootCA.pem /root/.local/share/mkcert/rootCA.pem
-COPY --from=cert /root/.local/share/mkcert/htps-web.pfx /app/
-
-ENV kestrel_Certificates__Default__Path=/app/https-web.pfx
-ENV Kestrel_Certificates__Default__Password=https-web
-
-RUN apk update \
-    && apk add nss-tools \ 
-    && rm -rf /var/cache/apk/* \
-    && mkcert -install \
-    && apk del nss-tools \
-    && rm -rf /bin/mkcert
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+
+COPY --from=cert /bin/mkcert /bin/mkcert
+
+COPY --from=cert /root/.local/share/mkcert/rootCA.pem /root/.local/share/mkcert/rootCA.pem
+COPY --from=cert /root/.local/share/mkcert/https-web.pfx /app/
+
+ENV kestrel_Certificates__Default__Path=/app/https-web.pfx
+ENV Kestrel_Certificates__Default__Password=https-web
+
+FROM golang:alpine3.10 
+
+#trust root cert
+RUN apk update \
+    && apk add nss-tools \ 
+    && rm -rf /var/cache/apk/* \
+    #&& mkcert -install \
+    && apk del nss-tools \
+    && rm -rf /bin/mkcert
 
 #EXPOSE 5000/tcp
 
