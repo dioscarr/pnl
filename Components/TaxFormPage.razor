@@ -4,12 +4,12 @@
             @if (!canDisplay)
             {
                 <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
-                    <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+                   @* <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />*@
                 </Grid>
             }
             @if (canDisplay)
             {
-                <Grid Item ExtraSmall="@GridSize.Twelve">
+                @*<Grid Item ExtraSmall="@GridSize.Twelve">
                     <Typography>
                         <ApplicationHeader TaxFormID="taxFormId"/>
                     </Typography>
@@ -37,7 +37,7 @@
                 </Grid>
                 <Grid Item ExtraSmall="@GridSize.Twelve">
                     <ChildCareProvider TaxFormID ="taxFormId"/>
-                </Grid>
+                </Grid>*@
             }
         </Grid>
     </div>
