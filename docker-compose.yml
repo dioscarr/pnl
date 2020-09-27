@@ -32,9 +32,7 @@ services:
       - DB_SERVER=db
       - DB_USER=SA
       - DB_PASSWORD=Password@123
-      - "DB_NAMES=
-        MyFirstDatabaseToRestore
-        MySecondDatabaseToRestore"
+      - "DB_NAMES= MyFirstDatabaseToRestore MySecondDatabaseToRestore"
       - CRON_SCHEDULE=0 1 * * *
     networks:
       - default
