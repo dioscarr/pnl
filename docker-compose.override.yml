@@ -3,7 +3,7 @@ version: "3.7"
 services:
   pnl:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Prodution
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000;
     ports:
       - "5000:5000"

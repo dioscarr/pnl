@@ -2,17 +2,17 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 
-ENV DB_SERVER="mssql" \
-    DB_USER="SA" \
-    DB_PASSWORD="" \
-    DB_NAMES="" \
-    CRON_SCHEDULE="0 1 * * sun" \
-    BACKUP_CLEANUP=false \
-    BACKUP_AGE=7
-
-RUN apt-get update && \
-    apt-get install -y cron && \
-    rm -rf /var/cache/apk/*
+#ENV DB_SERVER="mssql" \
+    #DB_USER="SA" \
+    #DB_PASSWORD="" \
+    #DB_NAMES="" \
+    #CRON_SCHEDULE="0 1 * * sun" \
+    #BACKUP_CLEANUP=false \
+    #BACKUP_AGE=7
+#
+#RUN apt-get update && \
+    #apt-get install -y cron && \
+    #rm -rf /var/cache/apk/*
 
 WORKDIR /app
 
