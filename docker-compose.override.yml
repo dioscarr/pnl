@@ -20,6 +20,6 @@ services:
       - pnl
     restart: always
     environment:
-      WEBSOCKET: true
-      DOMAINS: "devpnl.app -> http://pnl:5000"
-      STAGE: "production"
+      - WEBSOCKET: true
+      - DOMAINS: "devpnl.app -> http://pnl:5000"
+      - STAGE: "production"
