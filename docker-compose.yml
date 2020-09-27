@@ -13,8 +13,8 @@ services:
     volumes:
       - mssql-volume:/var/opt/mssql
       # - /storage/backup:/backup
-    networks:
-      - default
+    # networks:
+    #   - default
   pnl:
     image: dioscarr/pnl:linux
     container_name: pnl
