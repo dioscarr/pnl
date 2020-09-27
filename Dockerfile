@@ -42,7 +42,7 @@ COPY --from=cert /bin/mkcert /bin/mkcert
 
 COPY --from=cert /root/.local/share/mkcert/rootCA.pem /root/.local/share/mkcert/rootCA.pem
 
-ENV kestrel_Certificate_Default_Path=/app/https-web.pfx
+ENV kestrel_Certificates_Default_Path=/app/https-web.pfx
 ENV Kestrel_Certificates_Default_Password=https-web
 
 RUN apk update \
