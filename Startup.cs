@@ -86,6 +86,11 @@ namespace pnl
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+            app.Use((ctx, next) =>
+            {
+                ctx.Request.Scheme = "https";
+                return next();
+            });
             using (var srvc = app.ApplicationServices.CreateScope())
             {
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
