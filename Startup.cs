@@ -46,11 +46,11 @@ namespace pnl
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //  services.AddSignalR();
 
-
-            services.AddHttpContextAccessor();
             services.AddAntiforgery();
             services.AddDataProtection();
+
             //services.AddDataProtection().SetApplicationName("pnl");
+            services.AddHttpContextAccessor();
             services.AddScoped<IRenderContext>((sp) =>
             {
                 var httpContextAccessor = sp.GetService<IHttpContextAccessor>();

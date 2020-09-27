@@ -37,7 +37,7 @@ COPY --from=publish /app/publish .
 
 #EXPOSE 5000/tcp
 
-EXPOSE 5000 5001
+EXPOSE 5000
 
 #ENV ASPNETCORE_URLS http://*:5000
 
