@@ -11,3 +11,14 @@ services:
       - ~/.aspnet/https:/https:ro
       # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       # - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - pnl
+    restart: always
+    environment:
+      DOMAINS: "devpnl.app -> http://pnl:5000"
+      STAGE: "production"
