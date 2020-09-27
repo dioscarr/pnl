@@ -3,21 +3,20 @@ FROM golang:alpine as cert
 
 RUN apk update \
     && apk add git openssl nss-tools \
-    && rm -rf /var/cache/apk*
+    && rm -rf /var/cache/apk/*
 
 RUN cd /go && \
-    go get -u github.com/FiloScottle/mkvert && \
+    go get -u github.com/FiloScottle/mkcert && \
     cd src/github.com/FileScottile/mkcert && \
     go build -o /bin/mkcert
 
-WORKDIR /root/.local/share/mkcert/
-
+WORKDIR /root/.local/share/mkcert
+#copy from %localappdata%mkcert
 COPY rootCA*.pem /root/.local/share/mkcert/
 
 RUN mkcert -install \
     && mkcert -key-file https-web.key -cert-file https-web.pem 157.245.244.37 localhost 127.0.0.1 web \
-    && openssl pkcs12 -export -out https-web.pfx -inkey https-web.key -in \
-    https-web.pem rootCA.pem -passout pass:https-web
+    && openssl pkcs12 -export -out https-web.pfx -inkey https-web.key -in https-web.pem -certfile rootCA.pem -passout pass:https-web
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
@@ -41,16 +40,17 @@ WORKDIR /temp//path
 COPY --from=cert /bin/mkcert /bin/mkcert
 
 COPY --from=cert /root/.local/share/mkcert/rootCA.pem /root/.local/share/mkcert/rootCA.pem
+COPY --from=cert /root/.local/share/mkcert/htps-web.pfx /app/
 
-ENV kestrel_Certificates_Default_Path=/app/https-web.pfx
-ENV Kestrel_Certificates_Default_Password=https-web
+ENV kestrel_Certificates__Default__Path=/app/https-web.pfx
+ENV Kestrel_Certificates__Default__Password=https-web
 
 RUN apk update \
     && apk add nss-tools \ 
-    && rm -ef /var/cache/apk* \
+    && rm -rf /var/cache/apk/* \
     && mkcert -install \
     && apk del nss-tools \
-    && rm -ef /bin/mkcert
+    && rm -rf /bin/mkcert
 
 FROM base AS final
 WORKDIR /app
@@ -58,14 +58,14 @@ COPY --from=publish /app/publish .
 
 #EXPOSE 5000/tcp
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 5000 50001
+
 
 #ENV ASPNETCORE_URLS http://*:5000
 
-ENV ASPNETCORE_URLS = "https://+443;http://+80"
-ENV ASPNETCORE_HTTPS_PORT 443
-ENV ASPNETCORE_ENVIRONMENT Docker
+ENV ASPNETCORE_URLS  https://+:5001;http://+:5000
+#ENV ASPNETCORE_HTTPS_PORT 5001
+ENV ASPNETCORE_ENVIRONMENT Development
 
 
 ENTRYPOINT ["dotnet", "pnl.dll"]
