@@ -4,10 +4,9 @@ services:
   pnl:
     environment:
       - ASPNETCORE_ENVIRONMENT=Prodution
-      - ASPNETCORE_URLS=http://+:5000;https://+:5001
+      - ASPNETCORE_URLS=http://+:5000;
     ports:
       - "5000:5000"
-      - "5001:5001"
     volumes:
       - ~/.aspnet/https:/https:ro
       # - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
