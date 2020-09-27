@@ -16,13 +16,12 @@ using Skclusive.Material.Component;
 using Skclusive.Core.Component;
 using Microsoft.AspNetCore.Http;
 using pnl.Models;
-using Fluxor;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 
 namespace pnl
 {
-    public class Startup
+    public class Startup    
     {
         public Startup(IConfiguration configuration)
         {
