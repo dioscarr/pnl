@@ -47,6 +47,7 @@ namespace pnl
 
 
             services.AddHttpContextAccessor();
+            services.AddAntiforgery();
             services.AddScoped<IRenderContext>((sp) =>
             {
                 var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
