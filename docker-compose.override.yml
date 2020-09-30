@@ -22,4 +22,4 @@ services:
     restart: always
     environment:
       DOMAINS: "devpnl.app -> http://pnl:5000"
-      STAGE: "Production"
+      STAGE: "production"
