@@ -15,7 +15,8 @@ services:
     environment:
       DOMAINS: devpnl.app -> http://pnl:5000
       STAGE: production
-    image: steveltn/https-portal:1
+      WEBSOCKET: "true"
+    image: steveltn/https-portal:latest
     links:
     - pnl
     ports:
@@ -32,14 +33,15 @@ services:
     depends_on:
     - db
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:5000;
-    image: dioscarr/pnl:linux
+    image: dioscarr/pnl
     ports:
     - published: 5000
       target: 5000
     volumes:
-    - C:\Users\Diosc\.aspnet\https:/https:ro
+    - C:\Users\Diosc\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Diosc\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
 version: '3.7'
 volumes:
   mssql-volume: {}

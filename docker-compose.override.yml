@@ -24,3 +24,4 @@ services:
       WEBSOCKET: "true"
       DOMAINS: "devpnl.app -> http://pnl:5000"
       STAGE: "production"
+      #STAGE: "local"
