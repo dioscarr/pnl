@@ -17,11 +17,10 @@ using Skclusive.Core.Component;
 using Microsoft.AspNetCore.Http;
 using pnl.Models;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.HttpOverrides;
 
 namespace pnl
 {
-    public class Startup    
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -47,23 +46,23 @@ namespace pnl
             //  services.AddSignalR();
 
             services.AddAntiforgery();
-            services.AddDataProtection().SetApplicationName("pnl");
-            
+            services.AddDataProtection();
+
             //services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
-            services.AddScoped<TaxFormService>();
-            //services.AddScoped<IRenderContext>((sp) =>
-            //{
-            //    var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
-            //    bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
-            //    var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
-            //    return new RenderContext(isServer: true, isPreRendering);
-            //});
+            services.AddScoped<IRenderContext>((sp) =>
+            {
+                var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
+                bool? hasStarted = httpContextAccessor?.HttpContext?.Response.HasStarted;
+                var isPreRendering = !(hasStarted.HasValue && hasStarted.Value);
+                return new RenderContext(isServer: true, isPreRendering);
+            });
 
             
             services.AddServerSideBlazor();
             services.AddControllersWithViews();
             services.TryAddMaterialServices(new MaterialConfigBuilder().WithIsServer(true).WithIsPreRendering(false).Build());
+            services.AddScoped<TaxFormService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,15 +81,7 @@ namespace pnl
             }
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
-            app.Use((ctx, next) =>
-            {
-                ctx.Request.Scheme = "https";
-                return next();
-            });
+
             using (var srvc = app.ApplicationServices.CreateScope())
             {
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();

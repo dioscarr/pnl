@@ -16,7 +16,7 @@ services:
     # networks:
     #   - default
   pnl:
-    image: dioscarr/pnl:linux
+    image: dioscarr/pnl
     container_name: pnl
     build:
       context: .
