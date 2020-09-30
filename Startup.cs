@@ -81,11 +81,11 @@ namespace pnl
             }
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.Use((ctx, next) =>
-            {
-                ctx.Request.Scheme = "https";
-                return next();
-            });
+            //app.Use((ctx, next) =>
+            //{
+            //    ctx.Request.Scheme = "https";
+            //    return next();
+            //});
             using (var srvc = app.ApplicationServices.CreateScope())
             {
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
