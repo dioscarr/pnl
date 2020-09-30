@@ -21,5 +21,6 @@ services:
       - pnl
     restart: always
     environment:
+      WEBSOCK=true
       DOMAINS: "devpnl.app -> http://pnl:5000"
       STAGE: "production"
