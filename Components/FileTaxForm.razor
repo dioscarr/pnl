@@ -1,0 +1,26 @@
+﻿@inject TaxFormService service
+<Grid Container Style="padding: 20px;flex-grow: 1; min-height:100px; " Spacing="@Spacing.Five">  
+    <Grid Item Large="GridSize.Twelve" ExtraSmall="GridSize.Twelve" Justify="Justify.SpaceEvenly">
+        <Button 
+                @onclick="SaveAndReview"
+                Style="background-color:white; width:100%;" 
+                Type="ButtonType.Button" 
+                Variant="@ButtonVariant.Contained" 
+                Color="@Color.White" Size="@Size.Large">
+                    <ChildContent>Save and Review</ChildContent>
+        </Button>
+    </Grid>
+</Grid> 
+@code {
+
+    [Parameter]
+    public int TaxFormId { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+    public void SaveAndReview()
+    {
+        service.SaveAndReview(TaxFormId);
+    }
+}

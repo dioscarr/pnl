@@ -19,6 +19,11 @@ namespace pnl.Models
             _db = db;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public void SaveAndReview(int TaxFormId)
+        { 
+            
+        }
         public bool UpdateCurrentUser(Person model)
         {
             try
@@ -43,16 +48,14 @@ namespace pnl.Models
                 return true;
             }
         }
-        public (List<int>, List<TaxForm>) GetTaxYears() {
+        public (List<int>, List<TaxForm>) GetTaxYears(int NumberOfPreviousYears = 20) {
 
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             List<int> taxyears = new List<int>();
-            var PreviousYear = DateTime.UtcNow.AddYears(-1).Year;
-            var CurrentYear = DateTime.UtcNow.Year;
-            var NextYear = DateTime.UtcNow.AddYears(1).Year;
-            taxyears.Add(PreviousYear);
-            taxyears.Add(CurrentYear);
-            taxyears.Add(NextYear);
+            for (int yearIndex = 0; yearIndex < NumberOfPreviousYears; yearIndex++)
+            {
+                taxyears.Add(DateTime.UtcNow.AddYears(-yearIndex).Year);
+            }                      
             var TaxApplications = _db.TaxForms.Where(c => c.UserID == userID).ToList();
             return (taxyears, TaxApplications);
         }

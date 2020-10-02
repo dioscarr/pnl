@@ -22,10 +22,10 @@ COPY ["pnl.csproj", "./"]
 RUN dotnet restore "pnl.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "pnl.csproj" -c Release -o /app/build
+RUN dotnet build "pnl.csproj" -c Debug -o /app/build
 
 FROM build AS publish	
-RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
+RUN dotnet publish "pnl.csproj" -c Debug -o /app/publish
 
 FROM microsoft/mssql-tools:latest
 
@@ -48,4 +48,4 @@ EXPOSE 5000
 
 ENTRYPOINT ["dotnet", "pnl.dll"]
 # CMD ASPNETCORE_URLS=http://*:$PORT 
-# CMD CMD dotnet pnl.dll
+# CMD CMD dotnet pnl.dll    

@@ -4,24 +4,24 @@
             @if (!canDisplay)
             {
                 <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
-                   <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+                    <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
                 </Grid>
             }
             @if (canDisplay)
             {
                 <Grid Item ExtraSmall="@GridSize.Twelve">
                     <Typography>
-                        <ApplicationHeader TaxFormID="taxFormId"/>
+                        <ApplicationHeader TaxFormID="taxFormId" />
                     </Typography>
                 </Grid>
                 <Grid Item ExtraSmall="@GridSize.Twelve">
 
                     <Grid Container Spacing="@Spacing.Three">
                         <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                            <CurrentUserInfo TaxFormID="taxFormId"/>
+                            <CurrentUserInfo TaxFormID="taxFormId" />
                         </Grid>
                         <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                            <CurrentAddress TaxFormID ="taxFormId" />
+                            <CurrentAddress TaxFormID="taxFormId" />
                         </Grid>
                     </Grid>
 
@@ -36,8 +36,12 @@
                     <DependentList TaxFormID="taxFormId" @ref="dependentList" />
                 </Grid>
                 <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <ChildCareProvider TaxFormID ="taxFormId"/>
+                    <ChildCareProvider TaxFormID="taxFormId" />
                 </Grid>
+                <Grid Item ExtraSmall="@GridSize.Twelve">
+                    <FileTaxForm  TaxFormId="taxFormId"/>
+                </Grid>
+             
             }
         </Grid>
     </div>

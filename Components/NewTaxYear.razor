@@ -8,7 +8,7 @@
             </Grid>
             @foreach (var item in TaxYears)
             {
-                <Grid Item Large="GridSize.Four" ExtraSmall="GridSize.Twelve" Justify="Justify.Center">
+                <Grid Item Large="GridSize.Two" ExtraSmall="GridSize.Three" Justify="Justify.SpaceEvenly">
                     <Button Style="background-color:white;"
                             Type="ButtonType.Button" OnClick="()=>CheckIfTaxExist(item)" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
                         <ChildContent>@item</ChildContent>
