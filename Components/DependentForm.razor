@@ -6,31 +6,31 @@
         <DataAnnotationsValidator />
         <Grid Container Style="padding:20px;">
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputText @bind-Value="dependent.FirstName" placeholder="first name" />
+                <InputText @bind-Value="dependent.FirstName" placeholder="first name" style="width:100%;" />
                 <ValidationMessage style="color:red;" For="()=>dependent.FirstName" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputText @bind-Value="dependent.LastName" placeholder="first name" />
+                <InputText @bind-Value="dependent.LastName" placeholder="first name" style="width:100%;" />
                 <ValidationMessage style="color:red;" For="()=>dependent.LastName" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputDate @bind-Value="dependent.Birthday" placeholder="birthday" />
+                <InputDate @bind-Value="dependent.Birthday" placeholder="birthday" style="width:100%;"/>
                 <ValidationMessage style="color:red;" For="()=>dependent.Birthday" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputText @bind-Value="dependent.SSN" placeholder="SSN" />
+                <InputText @bind-Value="dependent.SSN" placeholder="SSN" style="width:100%;"  />
                 <ValidationMessage style="color:red;" For="()=>dependent.SSN" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" />
+                <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" style="width:100%;" />
                 <ValidationMessage style="color:red;" For="()=>dependent.MonthInHome" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" />
+                <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" style="width:100%;" />
                 <ValidationMessage style="color:red;" For="()=>dependent.RelationshipName" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">
-                <InputText @bind-Value="dependent.Code" placeholder="Code" />
+                <InputText @bind-Value="dependent.Code" placeholder="Code" style="width:100%;" />
                 <ValidationMessage style="color:red;" For="()=>dependent.Code" />
             </Grid>
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Three" Style="padding:20px 0;">

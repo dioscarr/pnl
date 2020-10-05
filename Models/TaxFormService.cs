@@ -21,8 +21,10 @@ namespace pnl.Models
         }
 
         public void SaveAndReview(int TaxFormId)
-        { 
-            
+        {
+            var taxform = _db.TaxForms.Find(TaxFormId);
+            taxform.isFiled = true;
+            _db.SaveChanges();
         }
         public bool UpdateCurrentUser(Person model)
         {

@@ -45,10 +45,10 @@ namespace pnl
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //  services.AddSignalR();
 
-            services.AddAntiforgery();
             services.AddDataProtection();
+            services.AddAntiforgery();
 
-            //services.AddDataProtection().SetApplicationName("pnl");
+            services.AddDataProtection().SetApplicationName("pnl");
             services.AddHttpContextAccessor();
             services.AddScoped<IRenderContext>((sp) =>
             {
@@ -62,7 +62,7 @@ namespace pnl
             services.AddServerSideBlazor();
             services.AddControllersWithViews();
             services.TryAddMaterialServices(new MaterialConfigBuilder().WithIsServer(true).WithIsPreRendering(false).Build());
-            services.AddScoped<TaxFormService>();
+            services.AddTransient<TaxFormService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
