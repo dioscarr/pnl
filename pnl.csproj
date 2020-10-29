@@ -22,9 +22,13 @@
 
   <ItemGroup>
     <None Include="docker-compose.dcproj" />
+    <None Include="wwwroot\img\Data-Audit.png" />
+    <None Include="wwwroot\img\LOgo.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BlazorAnimate" Version="3.0.0" />
+    <PackageReference Include="Blazored.Modal" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.0-rc.1.20451.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.1.20451.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0-rc.1.20451.17" />
@@ -44,6 +48,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating" Version="5.0.0-rc.1.20453.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc" Version="5.0.0-rc.1.20453.2" />
     <PackageReference Include="Skclusive.Material.Component" Version="3.0.2-preview1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\PnlAccess\Controllers\" />
+    <Folder Include="Areas\PnlAccess\Data\" />
+    <Folder Include="Areas\PnlAccess\Models\" />
+    <Folder Include="Areas\PnlAccess\Views\" />
+    <Folder Include="Designs\" />
   </ItemGroup>
 
 </Project>

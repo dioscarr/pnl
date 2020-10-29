@@ -1,49 +1,51 @@
 ﻿
     <div style="flex-grow: 1;">
-        <Grid Container Spacing="@Spacing.Three">
-            @if (!canDisplay)
-            {
-                <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
-                    <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
-                </Grid>
-            }
-            @if (canDisplay)
-            {
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <Typography>
-                        <ApplicationHeader TaxFormID="taxFormId" />
-                    </Typography>
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
+        <CascadingBlazoredModal>
+            <Grid Container Spacing="@Spacing.Three">
+                @if (!canDisplay)
+                {
+                    <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
+                        <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+                    </Grid>
+                }
+                @if (canDisplay)
+                {
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <Typography>
+                            <ApplicationHeader TaxFormID="taxFormId" />
+                        </Typography>
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
 
-                    <Grid Container Spacing="@Spacing.Three">
-                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                            <CurrentUserInfo TaxFormID="taxFormId" />
+                        <Grid Container Spacing="@Spacing.Three">
+                            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
+                                <CurrentUserInfo TaxFormID="taxFormId" />
+                            </Grid>
+                            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
+                                <CurrentAddress TaxFormID="taxFormId" />
+                            </Grid>
                         </Grid>
-                        <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                            <CurrentAddress TaxFormID="taxFormId" />
-                        </Grid>
+
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <Toggled TaxformId="taxFormId" />
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <DependentList TaxFormID="taxFormId" @ref="dependentList" />
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <ChildCareProvider TaxFormID="taxFormId" />
+                    </Grid>
+                    <Grid Item ExtraSmall="@GridSize.Twelve">
+                        <FileTaxForm TaxFormId="taxFormId" />
                     </Grid>
 
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <Toggled TaxformId="taxFormId" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <ChildCareProvider TaxFormID="taxFormId" />
-                </Grid>
-                <Grid Item ExtraSmall="@GridSize.Twelve">
-                    <FileTaxForm  TaxFormId="taxFormId"/>
-                </Grid>
-             
-            }
-        </Grid>
+                }
+            </Grid>
+        </CascadingBlazoredModal>
     </div>
 
 @code {
