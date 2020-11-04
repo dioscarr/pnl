@@ -1,18 +1,12 @@
 ﻿@inject TaxFormService service
-<Paper Style="padding:20px;">
-    <Grid Container Spacing="@Spacing.Three">
-        <Grid Item Small="@GridSize.Twelve" Large="@GridSize.Six">
-            <Typography Style="padding-left:20px;" Variant="@TypographyVariant.H6" Display="@Display.Block">
-                @TaxForm.TaxYear
-            </Typography>
-        </Grid>
-        <Grid Item  Small="@GridSize.Twelve" Large="@GridSize.Six">
-            <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Subtitle1" Display="@Display.Block">
-                @TaxForm.FilingStatus
-            </Typography>
-        </Grid>
-    </Grid>
-</Paper>
+<div style="padding:20px;" Class="ApplHeader">
+    <div style="padding-left:20px;">
+        @TaxForm.TaxYear
+    </div>
+    <div style="padding-left:20px;">
+        @TaxForm.FilingStatus
+    </div>
+</div>
 
 @code {
 

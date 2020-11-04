@@ -1,85 +1,185 @@
 ﻿@page
 @model LoginModel
-
 @{
-    ViewData["Title"] = "Log in";
+    Layout = "~/Areas/Identity/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+
+@{
+    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+    }
+    else
+    {
+        @*<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var provider in Model.ExternalLogins)
+                        {
+                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                        }
+                    </p>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </form>*@
+    }
+}
+
+<div class="fluid-container main-background-color onepage Main-padding">
+    <div class="Main-Box row">
+        <div class="col-sm-12 public-menu-col">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="~/img/LOgo.png" class="logocls" />
+                    </div>
+                    <div class="col-sm-9 public-menu ">
+                        <div>Home</div>
+                        <div>About Us</div>
+                        <div>Product and Pricing</div>
+                        <div>Resources</div>
+                        <div>Contact Us</div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
+            </div>
+        </div>
+        <div class="col-sm-6 body-left top-margin">
+            <div class="one-left">Tax consultation and preparation with a </div>
+            <div class="one-right">Human touch.</div>
+            <div><input type="text" value="" class="form-control get-started-input" /></div>
+            <div>
+                <button class="btn btn-primary get-started-btn ">Get Started</button>
+            </div>
+
+        </div>
+        <div class="col-sm-6 body-right top-margin">
+            <img src="~/img/Data-Audit.png" class="data-audit" />
+            <div class="loginFormBox">
+                <form id="account" method="post">
+                    <div class="pnlLogintitle">PNL TAX CORP</div>
+                    <div class="subtitle">
+                        <div class="secured">
+                            <img src="~/img/Secured.png" id="idsecured" />
+                        </div>
+                        <div class="advance">
+                            <img src="~/img/Advance.png" id="idadvance" />
+                        </div>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            
+                            <p>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            </p>
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary loginbtn">Log in</button>
+                        <p class="bysigning">
+                            By clicking Sign in, you agree to our Terms and have
+                            read and acknowledge our US Privacy Statement.
+                        </p>
+                    </div>
+                    <div class="form-group remembercreatenew">
                         <label asp-for="Input.RememberMe">
                             <input asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                        <p class="remembercreatenewBox">
+
+                            <img src="~/img/user.png" class="usernewaccount"/>
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create New Account</a>
                         </p>
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="fluid-container twopage">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="howitworks">How it works</div>
+            <img src="~/img/pageheaderribon.png" id="ribbon-icon" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 rectangles">
+            <img src="~/img/Youanswersimplequestions.png" id="square1-icon" />
+            <div>
+                You answer simple questions.
+                We do all the math.
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
+            </p>
+        </div>
+        <div class="col-sm-4 rectangles">
+            <img src="~/img/Uploapyour-tax-document.png" id="square2-icon" />
+            <div class="Upload-Your-tax-documents">
+                Upload Your tax
+                documents
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
+            </p>
+        </div>
+        <div class="col-sm-4 rectangles">            
+            <img src="D:\Users\diosc\Repos\pnl\Designs\lock-icon.png" id="square3-icon"  />
+            <div class="Upload-Your-tax-documents">
+                File with confidence
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
+            </p>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="howitworks">Security & protection</div>
+            <img src="~/img/pageheaderribon.png" id="ribbon-icon" />
+
+        </div>
+    </div>
+</div>
+
+<div class="fluid-container threepage" style="background-color:white;">
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+</div>
+
+<div class="fluid-container fourpage">
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+</div>
+<div id="vNav">
+    <div id="activePage"></div>
+    <div id="NextPage1">How it works</div>
+    <div id="NextPage2">How it works</div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="_framework/blazor.server.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
 }

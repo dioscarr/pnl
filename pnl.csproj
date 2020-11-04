@@ -17,13 +17,40 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\arrow-right.png" />
+    <Content Remove="wwwroot\img\lock-icon.png" />
+    <Content Remove="wwwroot\img\pageheaderribon.png" />
+    <Content Remove="wwwroot\img\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="docker-compose.dcproj" />
+    <None Include="wwwroot\img\Advance%402x.png" />
+    <None Include="wwwroot\img\Advance.png" />
+    <None Include="wwwroot\img\arrow-right.png" />
     <None Include="wwwroot\img\Data-Audit.png" />
+    <None Include="wwwroot\img\email%402x.png" />
+    <None Include="wwwroot\img\email.png" />
+    <None Include="wwwroot\img\Filewithconfidence%402x.png" />
+    <None Include="wwwroot\img\Filewithconfidence.png" />
+    <None Include="wwwroot\img\Lock%402x.png" />
+    <None Include="wwwroot\img\lock-icon.png" />
+    <None Include="wwwroot\img\Lock.png" />
     <None Include="wwwroot\img\LOgo.png" />
+    <None Include="wwwroot\img\pageheaderribon.png" />
+    <None Include="wwwroot\img\Secured%402x.png" />
+    <None Include="wwwroot\img\Secured.png" />
+    <None Include="wwwroot\img\TheStart-UpUltimat%402x.png" />
+    <None Include="wwwroot\img\TheStart-UpUltimat.png" />
+    <None Include="wwwroot\img\Uploapyour-tax-document%402x.png" />
+    <None Include="wwwroot\img\Uploapyour-tax-document.png" />
+    <None Include="wwwroot\img\user.png" />
+    <None Include="wwwroot\img\Youanswersimplequestions%402x.png" />
+    <None Include="wwwroot\img\Youanswersimplequestions.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,7 +82,6 @@
     <Folder Include="Areas\PnlAccess\Data\" />
     <Folder Include="Areas\PnlAccess\Models\" />
     <Folder Include="Areas\PnlAccess\Views\" />
-    <Folder Include="Designs\" />
   </ItemGroup>
 
 </Project>

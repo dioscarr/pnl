@@ -1,41 +1,37 @@
 ﻿@inject TaxFormService service
-<Card Style="max-width: 100%; min-height:100%; padding:20px;">
-    <Grid Container>
+<Card Style="max-width: 100%; min-height:100%; padding:20px;" class="CurrentAddress">
+    <div Container>
         @if (isEdit)
         {
-            <Grid Item Large="GridSize.Twelve">
+            <div>
                 <InputText name="Address.Address1" placeholder="Address1" @bind-Value="@UserCurrentAddress.Address1" />
                 <InputText name="Address.Address2" placeholder="Address2" @bind-Value="@UserCurrentAddress.Address2" />
                 <InputText name="Address.City" placeholder="City" @bind-Value="@UserCurrentAddress.City" />
                 <InputText name="Address.State" placeholder="State" @bind-Value="@UserCurrentAddress.State" />
                 <InputText name="Address.Zip" placeholder="Zip" @bind-Value="@UserCurrentAddress.Zip" />
-            </Grid>
+            </div>
         }
         else
         {
-            <Grid Item Large="GridSize.Twelve">
-
-                <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
-                            Display="@Display.Block"
-                            GutterBottom>
+            <div>
+                <div style="padding-left:20px;">
                     Mailing address
-                </Typography>
-                <CardContent>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address1</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Address2</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.City</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.State</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@UserCurrentAddress.Zip</Typography>
-                </CardContent>
-
-            </Grid>
+                </div>
+                <div>
+                    <div style="font-size: 14px;">@UserCurrentAddress.Address1</div>
+                    <div Style="font-size: 14px;">@UserCurrentAddress.Address2</div>
+                    <div style="font-size: 14px;">@UserCurrentAddress.City</div>
+                    <div style="font-size: 14px;">@UserCurrentAddress.State</div>
+                    <div style="font-size: 14px;">@UserCurrentAddress.Zip</div>
+                </div>
+            </div>
         }
 
-        <Grid Item Large="GridSize.Twelve" Justify="Justify.FlexEnd">
+        <div>
             <Button FullWidth OnClick="SaveCurrentTaformAddres">@displayCUbtnLabel()</Button>
-        </Grid>
+        </div>
 
-    </Grid>
+    </div>
 </Card>
         @code {
             [Parameter]

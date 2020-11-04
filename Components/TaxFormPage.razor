@@ -1,85 +1,134 @@
-﻿
-    <div style="flex-grow: 1;">
-        <CascadingBlazoredModal>
-            <Grid Container Spacing="@Spacing.Three">
-                @if (!canDisplay)
-                {
-                    <Grid Item Large="@GridSize.Twelve" ExtraSmall="@GridSize.Twelve">
-                        <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
-                    </Grid>
-                }
-                @if (canDisplay)
-                {
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <Typography>
-                            <ApplicationHeader TaxFormID="taxFormId" />
-                        </Typography>
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
+﻿<FormControl Component="fieldset" Class="vnav">
+    <RadioGroup Class="StepsBox" aria-Label="position" Name="position" Value="@Value" OnChange="@OnValueChanged" Row>
+        <FormControlLabel Label="Start" Placement="@Placement.Start">
+            <div class="step-line">
+                <div class="Criteria-Step-number">
+                    1
+                </div>
+            </div>  <Radio Value="Start" class="stepstext" />
+        </FormControlLabel>
+        <FormControlLabel Label="Criteria" Placement="@Placement.Start">
+            <div class="step-line">
+                <div class="Criteria-Step-number">
+                    2
+                </div>
+            </div><Radio Value="Criteria" class="stepstext" />
+        </FormControlLabel>
+        <FormControlLabel Label="Add Dependent" Placement="@Placement.Start">
+            <div class="step-line">
+                <div class="Criteria-Step-number">
+                    3
+                </div>
+            </div><Radio Value="Add Dependent" class="stepstext" />
+        </FormControlLabel>
+        <FormControlLabel Label="Dependents" Placement="@Placement.Start">
+            <div class="step-line">
+                <div class="Criteria-Step-number">
+                    4
+                </div>
+            </div><Radio Value="Dependents"class="stepstext" />
+        </FormControlLabel>
+        <FormControlLabel Label="Child Care" Placement="@Placement.Start">
+            <div class="step-line">
+                <div class="Criteria-Step-number">
+                    5
+                </div>
+            </div> <Radio Value="Child Care" class="stepstext" />
+        </FormControlLabel>
+    </RadioGroup>
+</FormControl>
+@code
+{
+    private string Value { set; get; } = "Start";
 
-                        <Grid Container Spacing="@Spacing.Three">
-                            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                                <CurrentUserInfo TaxFormID="taxFormId" />
-                            </Grid>
-                            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Six">
-                                <CurrentAddress TaxFormID="taxFormId" />
-                            </Grid>
-                        </Grid>
-
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <Toggled TaxformId="taxFormId" />
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <ChildCareProvider TaxFormID="taxFormId" />
-                    </Grid>
-                    <Grid Item ExtraSmall="@GridSize.Twelve">
-                        <FileTaxForm TaxFormId="taxFormId" />
-                    </Grid>
-
-                }
-            </Grid>
-        </CascadingBlazoredModal>
-    </div>
-
-@code {
-
-    private int taxFormId { set; get; }
-    private bool ReloadDependentList { set; get; }
-    private bool canDisplay { get; set; } = false;
-
-    DependentList dependentList;
-
-    private void OnNewTaxYearEvent(int tFormId)
+    private void OnValueChanged(ChangeEventArgs args)
     {
-        taxFormId = tFormId;
-        if (taxFormId > 0)
-        {
-            canDisplay = true;            
-        }
-
+        Value = args.Value.ToString();
+        stepin = Value;
         StateHasChanged();
-    }
-    private void OnReloadDependetEvent(bool changed)
-    {   
-        ReloadDependentList = changed;
-
-        dependentList.GetDependets();
-        StateHasChanged();
-    }
-
-    protected override Task OnInitializedAsync()
-    {
-        if (taxFormId > 0)
-        {
-            canDisplay = true;
-        }
-        return base.OnInitializedAsync();
     }
 }
+<div class="filetaxes">
+
+    @if (!canDisplay)
+    {
+
+        <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
+
+    }
+    @if (canDisplay)
+    {
+        @if (stepin == "Start")
+        {
+            <div class="inprogress-existing">
+                <ApplicationHeader TaxFormID="taxFormId" />
+                <CurrentUserInfo TaxFormID="taxFormId" />
+                <CurrentAddress TaxFormID="taxFormId" />
+            </div>
+        }
+        else if (stepin == "Criteria")
+        {
+            <div class="stepin-Criteria">
+                <Toggled TaxformId="taxFormId" />
+            </div>
+        }
+        else if (stepin == "Add Dependent")
+        {
+            <div class="stepin-Add-Dependent">
+                <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
+            </div>
+        }
+        else if (stepin == "Dependents")
+        {
+            <div class="stepin-Dependents">
+                <DependentList TaxFormID="taxFormId" @ref="dependentList" />
+            </div>
+        }
+        else if (stepin == "Child Care")
+        {
+            <div class="stepin-child-care">
+                <ChildCareProvider TaxFormID="taxFormId" />
+            </div>
+        }
+            @*<div class="stepin-child-care">
+                <FileTaxForm TaxFormId="taxFormId" />
+            </div>*@
+            }
+        </div>
+
+        @code {
+
+            private int taxFormId { set; get; }
+            private bool ReloadDependentList { set; get; }
+            private bool canDisplay { get; set; } = false;
+            private string stepin { get; set; } = "Start";
+
+            DependentList dependentList;
+
+            private void OnNewTaxYearEvent(int tFormId)
+            {
+                taxFormId = tFormId;
+                if (taxFormId > 0)
+                {
+                    canDisplay = true;
+                }
+
+                StateHasChanged();
+            }
+            private void OnReloadDependetEvent(bool changed)
+            {
+                ReloadDependentList = changed;
+
+                dependentList.GetDependets();
+                StateHasChanged();
+            }
+
+            protected override Task OnInitializedAsync()
+            {
+                if (taxFormId > 0)
+                {
+                    canDisplay = true;
+                }
+                return base.OnInitializedAsync();
+            }
+        }

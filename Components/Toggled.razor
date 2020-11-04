@@ -12,7 +12,7 @@
         {
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four" Style="padding-left:20px;">
                 <Paper Style="padding-left:20px;">
-                    <FormControlLabel Label="@item.name">
+                    <FormControlLabel Label="@item.name" class="steps-names">
                         <Switch Checked="@item.isToggled"
                                 OnChange="() => {
                                       item.HandleToggleChanged();

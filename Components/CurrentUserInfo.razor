@@ -1,43 +1,43 @@
 ﻿@inject TaxFormService service
 
 
-<Card Style="max-width: 100%; min-height: 100%; padding:20px;">
-    <Grid Container Large="GridSize.Twelve">        
+<div style="max-width: 100%; min-height: 100%; padding:20px;" class="CurrentUserInfo">
+            
         @if (isUserInfo)
         {
             <CurrentUserInfoForm OnSave="OnSave" CurrentUser="CurrentUser" TaxFormID="TaxFormID" @ref="cuif" />
         }
         else
         {
-            <Grid Item Large="GridSize.Twelve" Justify="Justify.FlexEnd">
-                <Typography Style="padding-left:20px;" Display="@Display.Block">
+            <div>
+                <div style="padding-left:20px;">
                     Basic Information
-                    @if(ShowUpdateUserInfoMesage)
+                    @if (ShowUpdateUserInfoMesage)
                     {
-                    <div class="alert alert-info">
-                        Do you want to update your profile information with the recent update?
-                        <Button OnClick="()=> { UpdateCurrentUserMainInfo(); }">Yes</Button>
-                        <Button OnClick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</Button>
-                    </div>
+                        <div class="alert alert-info">
+                            Do you want to update your profile information with the recent update?
+                            <Button OnClick="()=> { UpdateCurrentUserMainInfo(); }">Yes</Button>
+                            <Button OnClick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</Button>
+                        </div>
                     }
-                </Typography>
+                </div>
                 
-                <CardContent>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Occupation</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.SSN</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Email</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Phone</Typography>
-                    <Typography Style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</Typography>
-                </CardContent>
-            </Grid>
+                <div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Occupation</div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.SSN</div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Email</div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Phone</div>
+                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</div>
+                </div>
+            </div>
         }
-        <Grid Item Large="GridSize.Twelve" Justify="Justify.FlexEnd">
+        <div >
             <Button FullWidth OnClick="Save">@displayCUbtnLabel()</Button>
-        </Grid>
-    </Grid>
+        </div>
+</div>
 
-</Card>
+
 
 @code {
 
