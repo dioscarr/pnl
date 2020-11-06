@@ -53,41 +53,41 @@
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.17, )"
+              "version": "[5.0.0-rc.2.20475.17, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.17, )"
+              "version": "[5.0.0-rc.2.20475.17, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.17, )"
+              "version": "[5.0.0-rc.2.20475.17, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.17, )"
+              "version": "[5.0.0-rc.2.20475.17, )"
             },
             "Microsoft.Azure.SignalR": {
               "target": "Package",
-              "version": "[1.5.1, )"
+              "version": "[1.6.0, )"
             },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[5.0.0-rc.2.20475.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[5.0.0-rc.2.20475.6, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[5.0.0-rc.2.20475.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.0-rc.1.20451.13, )"
+              "version": "[5.0.0-rc.2.20475.6, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
@@ -95,25 +95,29 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20453.2, )"
+              "version": "[5.0.0-rc.2.20516.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20453.2, )"
+              "version": "[5.0.0-rc.2.20516.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20453.2, )"
+              "version": "[5.0.0-rc.2.20516.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Templating": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20453.2, )"
+              "version": "[5.0.0-rc.2.20516.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
               "target": "Package",
-              "version": "[5.0.0-rc.1.20453.2, )"
+              "version": "[5.0.0-rc.2.20516.1, )"
             },
             "Skclusive.Material.Component": {
+              "target": "Package",
+              "version": "[5.0.0-rc3, )"
+            },
+            "Skclusive.Material.Script": {
               "target": "Package",
               "version": "[3.0.2-preview1, )"
             }

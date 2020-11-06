@@ -10,7 +10,7 @@
     <EditForm Model="CareProviderModel" OnValidSubmit="SaveCareProvider">
         <DataAnnotationsValidator />
 
-        <Grid Container Spacing="Spacing.Two">
+        <Grid Container >
             <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
                 <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" style="width:100%;"  />
             </Grid>

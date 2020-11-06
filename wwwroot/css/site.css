@@ -818,3 +818,7 @@ justify-self: start;
     width:90vw;
     margin:0 auto;
 }
+
+#taxpanel {
+    background-color:black;
+}

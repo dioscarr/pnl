@@ -3,7 +3,22 @@
 
 // Write your JavaScript code.
 
-function viewTaxesPanel() {
-    document.getElementsByClassName("view-taxes-by-year");
+
+
+hidePanel();
+function showPanel() {
+    var taxPanel = document.getElementsByClassName("view-taxes-by-year");
+    taxPanel.show();
 
 }
+
+function hidePanel() {
+    var taxPanel = document.getElementsByClassName("view-taxes-by-year");
+    taxPanel.hide();
+
+}
+
+document.getElementById("viewtaxesbtn").addEventListener("click", function () {
+    taxPanel();
+})
+

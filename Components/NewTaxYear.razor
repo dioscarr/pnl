@@ -1,45 +1,45 @@
 ﻿@inject TaxFormService service
-    <div class="TaxYearsInProcess">
-@foreach (var item in TaxYearsInProcess)
+<div class="TaxYearsInProcess">
+    @foreach (var item in TaxYearsInProcess)
 {
-        <button class="Continueapplication animate__animated animate__bounceInDown" style="background-color:white;" @onclick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
-            <div>Tax Return</div>
-            <div>@item.TaxYear</div>
-            <div>Continue..</div>
-        </button>
+    <button class="Continueapplication animate__animated animate__bounceInDown" style="background-color:white;" @onclick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
+        <div>Tax Return</div>
+        <div>@item.TaxYear</div>
+        <div>Continue..</div>
+    </button>
 }
-    </div>
-    <div class="TaxYears">
-       
-@foreach (var item in TaxYears)
+</div>
+<div class="TaxYears">
+
+    @foreach (var item in TaxYears)
 {
-        <button class="Taxyear" @onclick="()=>CheckIfTaxExist(item)">
-            
-            <div>@item</div>
-           
-        </button>
+    <button class="Taxyear" @onclick="()=>CheckIfTaxExist(item)">
+
+        <div>@item</div>
+
+    </button>
 }
-    </div>
+</div>
 
 @if (isFilingStatusVisiable)
 {
-    <div class="isFilingStatusVisiable">
-        <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
-            <option value="-1">Select Filing Status</option>
-            @foreach (var value in filingStatuses)
+<div class="isFilingStatusVisiable">
+    <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
+        <option value="-1">Select Filing Status</option>
+        @foreach (var value in filingStatuses)
             {
-                <option value="@value.Id">@value.Name</option>
+        <option value="@value.Id">@value.Name</option>
             }
-        </select>
-    </div>
+    </select>
+</div>
 }
 @if (isSubmitVisiable || FilingStatus > 0)
 {
-    <div class="FilingStatus">
-        <Button Type="ButtonType.Button" OnClick="@CreateNewTaxFormAsync" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small">
-            <ChildContent>Open Application</ChildContent>
-        </Button>
-    </div>
+<div class="FilingStatus">
+    <Button Type="ButtonType.Button" OnClick="@CreateNewTaxFormAsync" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small">
+        <ChildContent>Open Application</ChildContent>
+    </Button>
+</div>
 }
 @code {
     [Parameter]

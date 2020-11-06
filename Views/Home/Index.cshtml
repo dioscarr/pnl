@@ -4,6 +4,9 @@
     </div>
     <div class="view-my-taxes">
         <a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Index">VIEW TAXES</a>
-        <div class="view-taxes-arrow"><img src="~/img/ViewMyTaxes.png" /></div>
-    <div class="view-taxes-by-year"></div>
+        <div id="viewtaxesbtn" class="view-taxes-arrow"><img src="~/img/ViewMyTaxes.png" /></div>
+    </div>
+    <div id="taxpanel">
+        <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />        
+    </div>
 </div>
