@@ -18,9 +18,12 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\img\arrow-right.png" />
+    <Content Remove="wwwroot\img\avatar.png" />
     <Content Remove="wwwroot\img\lock-icon.png" />
+    <Content Remove="wwwroot\img\LOgo.png" />
     <Content Remove="wwwroot\img\pageheaderribon.png" />
     <Content Remove="wwwroot\img\user.png" />
+    <Content Remove="wwwroot\img\ViewMyTaxes.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +35,7 @@
     <None Include="wwwroot\img\Advance%402x.png" />
     <None Include="wwwroot\img\Advance.png" />
     <None Include="wwwroot\img\arrow-right.png" />
+    <None Include="wwwroot\img\avatar.png" />
     <None Include="wwwroot\img\Data-Audit.png" />
     <None Include="wwwroot\img\email%402x.png" />
     <None Include="wwwroot\img\email.png" />
@@ -49,6 +53,7 @@
     <None Include="wwwroot\img\Uploapyour-tax-document%402x.png" />
     <None Include="wwwroot\img\Uploapyour-tax-document.png" />
     <None Include="wwwroot\img\user.png" />
+    <None Include="wwwroot\img\ViewMyTaxes.png" />
     <None Include="wwwroot\img\Youanswersimplequestions%402x.png" />
     <None Include="wwwroot\img\Youanswersimplequestions.png" />
   </ItemGroup>

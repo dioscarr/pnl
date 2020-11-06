@@ -2,8 +2,10 @@
     <div class="TaxYearsInProcess">
 @foreach (var item in TaxYearsInProcess)
 {
-        <button style="background-color:white;" @onclick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
-            @item.TaxYear
+        <button class="Continueapplication animate__animated animate__bounceInDown" style="background-color:white;" @onclick="async() => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }" Variant="@ButtonVariant.Contained" Color="@Color.White" Size="@Size.Large">
+            <div>Tax Return</div>
+            <div>@item.TaxYear</div>
+            <div>Continue..</div>
         </button>
 }
     </div>
@@ -12,9 +14,9 @@
 @foreach (var item in TaxYears)
 {
         <button class="Taxyear" @onclick="()=>CheckIfTaxExist(item)">
-            <div>Tax Return</div>
+            
             <div>@item</div>
-            <div>Continue..</div>
+           
         </button>
 }
     </div>

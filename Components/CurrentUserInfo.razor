@@ -9,18 +9,22 @@
         }
         else
         {
-            <div>
+            
                 <div style="padding-left:20px;">
-                    Basic Information
-                    @if (ShowUpdateUserInfoMesage)
-                    {
-                        <div class="alert alert-info">
-                            Do you want to update your profile information with the recent update?
-                            <Button OnClick="()=> { UpdateCurrentUserMainInfo(); }">Yes</Button>
-                            <Button OnClick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</Button>
+                    <div class="CurrentUserInfoBox">
+                        <div>Is this information correct?</div>
+                        <div>
+                            @if (ShowUpdateUserInfoMesage)
+                            {
+                                <div class="alert alert-info">
+                                    Do you want to update your profile information with the recent update?
+                                    <Button OnClick="()=> { UpdateCurrentUserMainInfo(); }">Yes</Button>
+                                    <Button OnClick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</Button>
+                                </div>
+                            }
                         </div>
-                    }
-                </div>
+                    </div>
+            
                 
                 <div>
                     <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>

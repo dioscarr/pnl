@@ -1,49 +1,22 @@
-﻿<FormControl Component="fieldset" Class="vnav">
-    <RadioGroup Class="StepsBox" aria-Label="position" Name="position" Value="@Value" OnChange="@OnValueChanged" Row>
-        <FormControlLabel Label="Start" Placement="@Placement.Start">
-            <div class="step-line">
-                <div class="Criteria-Step-number">
-                    1
-                </div>
-            </div>  <Radio Value="Start" class="stepstext" />
-        </FormControlLabel>
-        <FormControlLabel Label="Criteria" Placement="@Placement.Start">
-            <div class="step-line">
-                <div class="Criteria-Step-number">
-                    2
-                </div>
-            </div><Radio Value="Criteria" class="stepstext" />
-        </FormControlLabel>
-        <FormControlLabel Label="Add Dependent" Placement="@Placement.Start">
-            <div class="step-line">
-                <div class="Criteria-Step-number">
-                    3
-                </div>
-            </div><Radio Value="Add Dependent" class="stepstext" />
-        </FormControlLabel>
-        <FormControlLabel Label="Dependents" Placement="@Placement.Start">
-            <div class="step-line">
-                <div class="Criteria-Step-number">
-                    4
-                </div>
-            </div><Radio Value="Dependents"class="stepstext" />
-        </FormControlLabel>
-        <FormControlLabel Label="Child Care" Placement="@Placement.Start">
-            <div class="step-line">
-                <div class="Criteria-Step-number">
-                    5
-                </div>
-            </div> <Radio Value="Child Care" class="stepstext" />
-        </FormControlLabel>
-    </RadioGroup>
-</FormControl>
+﻿
 @code
 {
-    private string Value { set; get; } = "Start";
+    private string Value { set; get; } = "1";
+    private int oldposition { set; get; } = 1 ;
+    private int currposition { set; get; } = 1;
+
+    public string next { get; set; } = "animate__animated animate__fadeInRight";
+    public string prv { get; set; } = "animate__animated animate__fadeOutLeft";
+
+    public string nextrev { get; set; } = "animate__animated animate__fadeOutRight";
+    public string prvrev { get; set; } = "animate__animated animate__fadeInLeft";
+
 
     private void OnValueChanged(ChangeEventArgs args)
     {
+        oldposition = int.Parse(Value.ToString());
         Value = args.Value.ToString();
+        currposition = int.Parse(args.Value.ToString());
         stepin = Value;
         StateHasChanged();
     }
@@ -58,43 +31,77 @@
     }
     @if (canDisplay)
     {
-        @if (stepin == "Start")
-        {
-            <div class="inprogress-existing">
+        <FormControl Component="fieldset" Class="vnav">
+            <RadioGroup Class="StepsBox" aria-Label="position" Name="position" Value="@Value" OnChange="@OnValueChanged" Row>
+                <FormControlLabel Label="Start" Placement="@Placement.Start">
+                    <div class="step-line">
+                        <div class="Criteria-Step-number">
+                            1
+                        </div>
+                    </div>  <Radio Value="1" class="stepstext" />
+                </FormControlLabel>
+                <FormControlLabel Label="Criteria" Placement="@Placement.Start">
+                    <div class="step-line">
+                        <div class="Criteria-Step-number">
+                            2
+                        </div>
+                    </div><Radio Value="2" class="stepstext" />
+                </FormControlLabel>
+                <FormControlLabel Label="Add Dependent" Placement="@Placement.Start">
+                    <div class="step-line">
+                        <div class="Criteria-Step-number">
+                            3
+                        </div>
+                    </div><Radio Value="3" class="stepstext" />
+                </FormControlLabel>
+                <FormControlLabel Label="Dependents" Placement="@Placement.Start">
+                    <div class="step-line">
+                        <div class="Criteria-Step-number">
+                            4
+                        </div>
+                    </div><Radio Value="4" class="stepstext" />
+                </FormControlLabel>
+                <FormControlLabel Label="Child Care" Placement="@Placement.Start">
+                    <div class="step-line">
+                        <div class="Criteria-Step-number">
+                            5
+                        </div>
+                    </div> <Radio Value="5" class="stepstext" />
+                </FormControlLabel>
+            </RadioGroup>
+        </FormControl>
+       
+            <div class="@((oldposition > currposition)? (stepin == "1" ? next : prv):(stepin == "1" ? prvrev : nextrev))  inprogress-existing ">
                 <ApplicationHeader TaxFormID="taxFormId" />
                 <CurrentUserInfo TaxFormID="taxFormId" />
                 <CurrentAddress TaxFormID="taxFormId" />
             </div>
-        }
-        else if (stepin == "Criteria")
-        {
-            <div class="stepin-Criteria">
+        
+            <div class="@((oldposition > currposition)? (stepin == "2" ? next : prv):(stepin == "2" ?prvrev : nextrev)) stepin-Criteria">
                 <Toggled TaxformId="taxFormId" />
             </div>
-        }
-        else if (stepin == "Add Dependent")
-        {
-            <div class="stepin-Add-Dependent">
+        
+            <div class="@((oldposition > currposition)? (stepin == "3" ? next : prv):(stepin == "3" ? prvrev : nextrev)) stepin-Add-Dependent ">
                 <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
             </div>
-        }
-        else if (stepin == "Dependents")
-        {
-            <div class="stepin-Dependents">
+       
+            <div class="@((oldposition > currposition)? (stepin == "4" ? next : prv):(stepin == "4" ? prvrev : nextrev)) stepin-Dependents ">
                 <DependentList TaxFormID="taxFormId" @ref="dependentList" />
             </div>
-        }
-        else if (stepin == "Child Care")
-        {
-            <div class="stepin-child-care">
+       
+            <div class="@((oldposition > currposition)? (stepin == "5" ? next : prv):(stepin == "5" ? prvrev : nextrev)) stepin-child-care ">
                 <ChildCareProvider TaxFormID="taxFormId" />
             </div>
-        }
-            @*<div class="stepin-child-care">
+       
+        @*<div class="stepin-child-care">
                 <FileTaxForm TaxFormId="taxFormId" />
             </div>*@
-            }
-        </div>
+    }
+</div>
+<div class="formNav">
+    <button>Previous</button>
+    <button>Next</button>
+</div>
 
         @code {
 

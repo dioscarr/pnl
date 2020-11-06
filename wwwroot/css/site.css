@@ -384,7 +384,9 @@ body {
 }
 
 .FormGroup-Root {
-    color: white !important;
+    /* color: black !important; */
+    /* font-weight: 900 !important; */
+    /* font-size: 16px; */
 }
 
 .StepsBox {
@@ -397,8 +399,11 @@ body {
 }
 
 .vnav {
-    width: 100vw;
     padding-top: 56px !important;
+    height: 400px;
+    width: 100vw;
+    left: -15px;
+    background-color: #efffff;
 }
 
 .step-line {
@@ -430,31 +435,57 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, 223px);
     justify-content: center;
+    background-color: white;
 }
 
 .TaxYearsInProcess {
-    height: 150px;
+      height: 80vh;
     display: inline-block;
     grid-template-columns: repeat(auto-fill, 212px);
     justify-content: center;
     margin: 56px auto;
     float: left;
-    
-
-    display:grid;
-    column-gap:2vw;
-    grid-template-columns:1fr 1fr 1fr;
+    font-size: 1.2em;
+    display: grid;
+    align-content: center;
+    column-gap: 2vw;
+    grid-template-columns: 1fr 1fr 1fr;
 
 }
 .TaxYearsInProcess button {
      background-color: #ffffff !important;
-     color: black !important;
-     height:150px;
+     color: #273a86;
+     height: 208px;
      border:none;
-     
-     width:150px;
+     font-siZe: 1.6em;
+     font-weight: 900;
+     margin-bottom: 50px;
+     width: 339px;
+     height:320px;
 }
-
+.TaxYearsInProcess button:hover{
+    border:none;
+    color:white !important;
+    background-color:#707aa5 !important;
+}
+.TaxYearsInProcess button:focus{
+    border:none;
+}
+.TaxYearsInProcess button div:nth-child(1) {
+    font-size: 0.9em;
+    color: #273a86 !important;
+    font-weight: 100;
+}
+.TaxYearsInProcess button div:nth-child(2) {
+    font-size: 1.9em;
+    color: #182352 !important;
+    font-weight:900;
+}
+.TaxYearsInProcess button div:nth-child(3) {
+    font-size: 0.8em;
+    color: #607D8B !important;
+    font-weight:600;
+}
 button{
     background-color:white !important;
 }
@@ -470,43 +501,36 @@ button{
 .inprogress-existing {
     grid-row: 2;
     height: 100vh;
-    color: white!important;
+    color: black !important;
+    background-color: white;
     width: 100vw;
     display: grid;
-    /* grid-template-columns: 7fr 11fr 1fr; */
     justify-content: center;
+    animation-duration: 0.6s !important; 
 }
 
 .filetaxes {
     display: grid;
-    /* grid-template-columns: 1fr 2fr; */
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 10fr;
-    /* color: white; */
+    color: black;
+    font-weight: 900 !important;
+    font-size: 16px;
 }
 .stepin-Criteria {
     grid-row: 2;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns:1fr;
-    justify-content: center;
-}
-
-.stein-Dependents {
-    grid-row: 2;
-    height: 100vh;
+    height: 82vh;
+    top: 30vh;
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
+    color: black;
+    position: absolute;
+    left: 0px;
+    /* background-color: white !important; */
 }
-.stepin-Add-Dependent {
-    grid-row: 2;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr justify-content: center;
-}
+
 .stepin-Dependents {
     grid-row: 2;
     height: 100vh;
@@ -514,6 +538,31 @@ button{
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
+    position: absolute;
+    top: 16vh;
+    left: 0px;
+}
+
+.stepin-Add-Dependent {
+    grid-row: 2;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr justify-content: center;
+    position:absolute !important;
+    top:16vh;
+    left:0px;
+}
+.stepin-Dependents {
+    grid-row: 2;
+    /* height: 58vh; */
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    position: absolute;
+    top: 16vh;
+    left: 0px;
 }
 .stepin-Child-Care {
     grid-row: 2;
@@ -522,29 +571,37 @@ button{
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
+    position: absolute;
+    top: 16vh;
+    left: 0px;
 }
 
 .Taxyear {
-    background-color: #4d5c98f7 !important;
-    color: white !important;
-    font-size: 3.5em !important;
+    background-color: #ffffff !important;
+    color: black !important;
+    font-size: 1.5em !important;
     margin: 30px !important;
-    box-shadow: 0px 2px 4px -1px black !important;
+    border: none;
+    box-shadow: 0px 2px 7px -2px #273a86bf;
+}
+.Taxyear:hover{
+    background-color:#273a8675 !important;
+    color:white !important;
+}
+.Taxyear:focus{
+    border:none;
 }
 .ApplHeader {
     width: 100vw;
     color: #273a86 !important;
     font-weight:900;
     font-size:2.3em;
-
-    background-color: #e2e2e2;
-
-    display:grid
-    grid-template-columns:1fr 1fr;
+    background-color: #ffffff;
 }
 .CurrentUserInfo {
     width:50%;
-    color: white!important;
+    color: #273a86!important;
+    font-size: 3.0em;
 }
 .CurrentAddress {
     width: 50%;
@@ -552,20 +609,20 @@ button{
 .Criteria-Step-number {
     position: absolute;
     font-size: 2em;
-    color: #ffffff;
+    color: #1e2d6d;
     font-weight: 900;
-    background-color: #172768eb;
+    background-color: #ffffffeb;
     border-radius: 100%;
     height: 50px;
     width: 50px;
     display: grid;
     justify-content: center;
     align-self: center;
-    padding: 6px;
+    padding: 4px;
     left: -102px;
-    top: -22px;
+    top: -24px;
     z-index: 1;
-    /* background: radial-gradient(circle, rgb(73 117 202 / 86%) 0%, rgb(39 58 134) 66%); */
+    box-shadow: 1px 1px 5px -2px #0000008c;
 }
 .Criteria-Step-number:hover
 {
@@ -573,11 +630,11 @@ button{
 
 }
 .Paper-Rounded {
-    border-radius: calc(var(--theme-shape-border-radius, 4) * 1px);
-    background-color: #273a86!important;
+    color: black !important;
+    background-color: #ffffff!important;
 }
 .steps-names {
-    color:white;
+    color: #273a86;
 }
 p{
     color:white!important;
@@ -588,4 +645,176 @@ p{
     background-color:#1f2e6d;
     height:50px;
     border-radius:10px;
+}
+.CurrentUserInfoBox {display:grid;grid-template-columns: 1fr;justify-items: center;}
+.CurrentUserInfoBox div:nth-child(2){
+ padding: 38px; 
+ display: grid;
+ grid-row-gap: 26px;
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(1){
+    
+color: #29792c;
+    
+font-weight: bold;
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(2){
+    
+color: #172252;
+    
+justify-self: start;
+    
+position: relative;
+    
+padding: 0px;
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(3){
+    
+color: #273a86;
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(4){
+    
+color: #000000;
+    
+font-size: .6em !important;
+    
+/* font-style: italic; */
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(5){
+    
+color: #474a5a;
+    
+padding: 1px 20px;
+    
+font-size: 22px !important;
+    
+border-radius: 10px;
+    
+background-color: #e2e2e2;
+}
+.CurrentUserInfoBox div:nth-child(2) div:nth-child(6){
+    font-size:0.8em !important;
+    color: #474a5a;
+    padding: 1px 20px;
+    font-size: 22px !important;
+    border-radius: 10px;
+    background-color: #e2e2e2;
+}
+.CurrentUserInfoBox div:nth-child(2) div{
+    font-size: 0.6em !important;
+    color:black;
+    /* justify-self:start; */
+}
+.dashboard {background-color:white;display:grid;grid-template-columns: 1fr;grid-template-rows:1fr 1fr;padding:50px;height: 59vh;}
+.formNav {
+position:fixed;
+bottom:0px;
+width:100vw;
+}
+
+.animate__fadeOutLeft {
+    left:1000px!important;
+}
+.container-fluid {
+    width: 100%;
+    /* padding-right: 15px; */
+    /* padding-left: 15px; */
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0px;
+}
+.Header_nav {
+    background-color: #273a86;
+    display: grid;
+    align-Items:center;    
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows:108px;
+    column-gap:10px;    
+}
+.logo-box {
+}
+.logo-box img {
+    width:160px;
+    position:relative;
+    left:3vw;
+
+}
+.account-box {
+
+display: grid;
+
+justify-items: end;
+}
+.account-box img {
+    width:50px;    
+    position:relative;
+    right:3vw;
+}
+.file-my-taxes a{
+    color:blue !important;
+    font-weight:600;
+    font-size:1.6em
+
+}
+.file-my-taxes a:hover{
+    color:#673AB7 !important;;
+}
+.file-my-taxes{
+    margin: 1vw auto;
+    width: 70vw;
+    height: 100px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-items: center;
+    color: blue !important;
+    box-shadow: 1px 1px 5px -2px #000000b0;
+    border-radius:15px;
+}
+.file-my-taxes:hover{
+    background-color:#e7eaac2e;
+
+}
+.view-my-taxes a{
+    color: blue !important;
+    font-weight: 600;
+    font-size: 1.6em;
+    justify-self: end;
+}
+.view-my-taxes {
+    display: grid;
+    grid-template-columns: 30fr 24fr!important;
+    margin: 1vw auto;
+    width: 70vw;
+    height: 100px;
+    background-color: white;
+    align-items: center;
+    justify-items: center;
+    color: blue !important;
+    box-shadow: 1px 1px 5px -2px #000000b0;
+    border-radius: 15px;
+}
+.view-my-taxes img{
+    
+justify-self:start;
+    
+height: 25px;
+    
+top: 2px;
+    
+position: relative;
+}
+
+.view-taxes-arrow {
+    
+justify-self: start;
+}
+
+.view-taxes-by-year {
+    background-color:white;
+    height:800px;
+    width:90vw;
+    margin:0 auto;
 }
