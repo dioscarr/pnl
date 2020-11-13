@@ -1,48 +1,48 @@
 ﻿@inject TaxFormService service
-<Paper Style="padding:20px;">
+
     @if(isSuccessfull)
     {
         <div class="alrt alert-success">
             Saved
         </div>
     }
-    <Typography Variant="@TypographyVariant.Button" Display="@Display.Block" GutterBottom> Child Care Provider Information </Typography>
+    <div style="display:block;" GutterBottom> Child Care Provider Information </div>
     <EditForm Model="CareProviderModel" OnValidSubmit="SaveCareProvider">
         <DataAnnotationsValidator />
 
-        <Grid Container >
-            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputNumber @bind-Value="CareProviderModel.AmountPaid" placeholder="AmountPaid" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.SSN_EIN" placeholder="SSN_EIN" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Address1" placeholder="Address1" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Address2" placeholder="Address2" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.City" placeholder="City" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.State" placeholder="State" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four">
-                <InputText @bind-Value="CareProviderModel.Zip" placeholder="Zip" style="width:100%;"  />
-            </Grid>
-            <Grid Item  ExtraSmall="GridSize.Twelve" Large="GridSize.Four" Style="padding:20px 0;">
-                <Button Type="ButtonType.Submit" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small" Style="margin: 8px; width: 100%;">
-                    <StartIcon><SaveIcon /></StartIcon><ChildContent Context="SubmitButton">Save Child Care Provider</ChildContent>
-                </Button>
-            </Grid>
-        </Grid>
+        <div class="container">
+            <div>
+                <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" style="width:100%;" />
+            </div>
+            <div>
+                <InputNumber @bind-Value="CareProviderModel.AmountPaid" placeholder="AmountPaid" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.SSN_EIN" placeholder="SSN_EIN" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Address1" placeholder="Address1" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Address2" placeholder="Address2" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.City" placeholder="City" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.State" placeholder="State" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Zip" placeholder="Zip" style="width:100%;" />
+            </div>
+            <div>
+                <button type="submit" style="margin: 8px; width: 100%;">
+                   Save Child Care Provider
+                </button>
+            </div>
+        </div>
     </EditForm>
-</Paper>
+
 
     @code {
 

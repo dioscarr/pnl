@@ -1,117 +1,66 @@
 ﻿@inject TaxFormService service
 
 <div style="width: 100%; margin-top: 24px;">
-    <Paper Style="width: 100%; overflow-x: auto;">
-        <Toolbar Class="@ToolbarClass">
-            @if (HasSelection)
-            {
-                <Typography Class="demo-table-toolbar-title"
-                            Color="@Color.Inherit"
-                            Variant="@TypographyVariant.Subtitle1">
-                    @SelectedCount selected
-                </Typography>
-                <IconButton aria-label="delete" OnClick="DeleteDependents">
-                    <DeleteIcon />
-                </IconButton>
-            }
-            else
-            {
-                <Typography Class="demo-table-toolbar-title"
-                            Variant="@TypographyVariant.H6"
-                            Id="tableTitle">
-                    Dependents
-                </Typography>
-                <IconButton aria-label="filter list">
-                    <FilterListIcon />
-                </IconButton>
-            }
-        </Toolbar>
-        <div>
-            <Table Style="min-width: 650px"
-                   aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell Padding="@Padding.Checkbox">
-                            <Checkbox Indeterminate="@AnySelected"
-                                      Checked="@AllSelected"
-                                      OnChange="@OnSelectAllClick"
-                                      InputProps="@(new Dictionary<string, object>{{ "aria-label", $"select all dependents" }})" />
-                        </TableCell>
-                        <TableCell>
-                            @CreateSortableColumn("FirstName", "First Name")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">
-                            @CreateSortableColumn("LastName", "Last Name")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">                           
-                            @CreateSortableColumn("Birthday", "D.O.B")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">                            
-                            @CreateSortableColumn("SSN", "SSN")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">                            
-                            @CreateSortableColumn("MonthInHome", "Month In Home")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">                            
-                            @CreateSortableColumn("RelationshipName", "RelationshipB")
-                        </TableCell>
-                        <TableCell Align="@Align.Right">                            
-                            @CreateSortableColumn("Code", "Code")
-                        </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    @foreach (var row in Dependents)
-                    {
-                        <TableRow Hover
-                                  @key="@row.id"
-                                  OnClick="@((_) => row.Selected = !row.Selected)"
-                                  TabIndex="-1"
-                                  Selected="@row.Selected"
-                                  aria-checked="@row.Selected"
-                                  Role="checkbox">
-                            <TableCell Padding="@Padding.Checkbox">
-                                <Checkbox Checked="@row.Selected"
-                                          InputProps="@(new Dictionary<string, object>{{ "aria-labelledby", $"enhanced-table-checkbox-{row.FirstName}" }})" />
-                            </TableCell>
-                            <TableCell Component="th"
-                                       Scope="row">
-                                @row.FirstName
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.LastName
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.Birthday.ToShortDateString()
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.SSN
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.MonthInHome.ToString()
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.RelationshipName
-                            </TableCell>
-                            <TableCell Align="@Align.Right">
-                                @row.Code
-                            </TableCell>
-                        </TableRow>
-                    }
-                    @if (EmptyRows > 0)
-                    {
-                        <TableRow Style="@($"height: {EmptyHeight}px;")">
-                            <TableCell colspan="6" />
-                        </TableRow>
-                    }
-                </TableBody>
-            </Table>
-        </div>
-    </Paper>
-    <FormControlLabel Label="Dense padding">
-        <Switch Checked="@Dense"
-                OnChange="@OnDenseChanged" />
-    </FormControlLabel>
+    @if (HasSelection)
+    {
+        @SelectedCount 
+                
+        <button @onclick="DeleteDependents">
+            <DeleteIcon />
+        </button>
+    }
+    else
+    {
+        <p>Dependents</p>
+    }
+    <div>
+        <table id="add-dependent-list">
+            <thead>
+                <tr>
+                    <td>FirstName</td>
+                    <td>Last Name</td>
+                    <td>D.O.B</td>
+                    <td>SSN</td>
+                    <td>Month In Home</td>
+                    <td>RelationshipB</td>
+                    <td>Code</td>
+                </tr>
+            </thead>
+        @foreach (var row in Dependents)
+        {
+            <tbody>
+                <tr>
+                    <td>
+        1                @row.FirstName
+                    </td>
+                        <td>
+                        @row.LastName
+                    </td>
+                    <td>
+                        @row.Birthday.ToShortDateString()`
+                    </td>
+                    <td>
+                        @row.SSN
+                    </td>
+                    <td>
+                        @row.MonthInHome.ToString()
+                    </td>
+                    <td>
+                        @row.RelationshipName
+                    </td>
+                    <td>
+                        @row.Code
+                    </td>
+                </tr>
+            </tbody>
+        }
+        </table>
+        
+    </div>
+    
+    
+        <Switch Checked="@Dense" OnChange="@OnDenseChanged" />
+    
 </div>
 
 @code {

@@ -25,74 +25,32 @@
 
     @if (!canDisplay)
     {
-
         <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
-
     }
     @if (canDisplay)
     {
-        <FormControl Component="fieldset" Class="vnav">
-            <RadioGroup Class="StepsBox" aria-Label="position" Name="position" Value="@Value" OnChange="@OnValueChanged" Row>
-                <FormControlLabel Label="Start" Placement="@Placement.Start">
-                    <div class="step-line">
-                        <div class="Criteria-Step-number">
-                            1
-                        </div>
-                    </div>  <Radio Value="1" class="stepstext" />
-                </FormControlLabel>
-                <FormControlLabel Label="Criteria" Placement="@Placement.Start">
-                    <div class="step-line">
-                        <div class="Criteria-Step-number">
-                            2
-                        </div>
-                    </div><Radio Value="2" class="stepstext" />
-                </FormControlLabel>
-                <FormControlLabel Label="Add Dependent" Placement="@Placement.Start">
-                    <div class="step-line">
-                        <div class="Criteria-Step-number">
-                            3
-                        </div>
-                    </div><Radio Value="3" class="stepstext" />
-                </FormControlLabel>
-                <FormControlLabel Label="Dependents" Placement="@Placement.Start">
-                    <div class="step-line">
-                        <div class="Criteria-Step-number">
-                            4
-                        </div>
-                    </div><Radio Value="4" class="stepstext" />
-                </FormControlLabel>
-                <FormControlLabel Label="Child Care" Placement="@Placement.Start">
-                    <div class="step-line">
-                        <div class="Criteria-Step-number">
-                            5
-                        </div>
-                    </div> <Radio Value="5" class="stepstext" />
-                </FormControlLabel>
-            </RadioGroup>
-        </FormControl>
-       
-            <div class="@((oldposition > currposition)? (stepin == "1" ? next : prv):(stepin == "1" ? prvrev : nextrev))  inprogress-existing ">
+        <div class="taxdetail">
+            <div class="detail-taxYear">2017</div>
+        </div>
+        <MatTabGroup>
+            <MatTab Label="Basic information" class="inprogress-existing ">
                 <ApplicationHeader TaxFormID="taxFormId" />
-                <CurrentUserInfo TaxFormID="taxFormId" />
-                <CurrentAddress TaxFormID="taxFormId" />
-            </div>
-        
-            <div class="@((oldposition > currposition)? (stepin == "2" ? next : prv):(stepin == "2" ?prvrev : nextrev)) stepin-Criteria">
+                @*<CurrentUserInfo TaxFormID="taxFormId" />
+                <CurrentAddress TaxFormID="taxFormId" />*@
+            </MatTab>
+            <MatTab Label="Criteria" class="stepin-Criteria">
                 <Toggled TaxformId="taxFormId" />
-            </div>
-        
-            <div class="@((oldposition > currposition)? (stepin == "3" ? next : prv):(stepin == "3" ? prvrev : nextrev)) stepin-Add-Dependent ">
+            </MatTab>
+            <MatTab Label="Add Dependent" cass="stepin-Add-Dependent">
                 <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-            </div>
-       
-            <div class="@((oldposition > currposition)? (stepin == "4" ? next : prv):(stepin == "4" ? prvrev : nextrev)) stepin-Dependents ">
+            </MatTab>
+            <MatTab Label="All Dependents" class="stepin-Dependents">
                 <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-            </div>
-       
-            <div class="@((oldposition > currposition)? (stepin == "5" ? next : prv):(stepin == "5" ? prvrev : nextrev)) stepin-child-care ">
+            </MatTab>
+            <MatTab Label="Child Care" class="stepin-child-care">
                 <ChildCareProvider TaxFormID="taxFormId" />
-            </div>
-       
+            </MatTab>
+        </MatTabGroup>
         @*<div class="stepin-child-care">
                 <FileTaxForm TaxFormId="taxFormId" />
             </div>*@

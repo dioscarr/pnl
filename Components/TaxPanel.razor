@@ -1,40 +1,33 @@
-﻿<Paper class="demo-tabs-root">
-    <AppBar Position="@AppBarPosition.Static">
-        <Tabs Value="@Value"
-              OnChange="@HandleChange"
-              aria-label="wrapped label tabs example">
-            <Tab Id="wrapped-tab"
-                 Control="wrapped-tabpanel"
-                 Wrapped
-                 Label="2018"
-                 Value="0" />
-            <Tab Id="wrapped-tab"
-                 Control="wrapped-tabpanel"
-                 Label="2019"
-                 Value="1" />
-            <Tab Id="wrapped-tab"
-                 Control="wrapped-tabpanel"
-                 Label="2020"
-                 Value="2" />
-        </Tabs>
-    </AppBar>
-        <div style="@((int.Parse(Value.ToString()) == 0))"> 2016 </div>
-        <div style="@((int.Parse(Value.ToString()) == 1))"> 2017 </div>
-        <div style="@((int.Parse(Value.ToString()) == 3))"> 2018 </div>
-        <div style="@((int.Parse(Value.ToString()) == 4))"> 2019 </div>
-        <div style="@((int.Parse(Value.ToString()) == 5))"> 2020 </div>
-</Paper>
+﻿<div id="taxPanel">
+    <MatTabGroup>
+        <MatTab Label="2017">
+            <div class="taxdetail">
+                <div class="detail-taxYear">2017</div>
 
-@code
-        {
-    private object Value { set; get; } = 0;
+            </div>
+        </MatTab>
+        <MatTab Label="2018">
+             <div class="taxdetail">
+                 <div class="detail-taxYear">2018</div>
 
-    public int tabindex { get; set; } = 5;
+            </div>
+        </MatTab>
+        <MatTab Label="2019">
+            <div class="taxdetail">
+                <div class="detail-taxYear">2019</div>
 
-    private void HandleChange(object value)
-    {
-        Value = value;
-
-        StateHasChanged();
-    }
-}
+            </div>
+        </MatTab>
+        <MatTab Label="2020">
+            <div class="taxdetail">
+                <div class="detail-taxYear">2020</div>
+                <div class="detail-taxYear-filing">Filing</div>
+                <div class="detail-taxYear-application-status">Application Status</div>
+                <div class="detail-taxYear-date-updated">Date last updated</div>
+                <div class="detail-taxYear-filing-status">Single</div>
+                <div class="detail-taxYear-application-status-val">Inprocess</div>
+                <div class="detail-taxYear-date-updated-val">11/06/2020</div>                
+            </div>
+        </MatTab>
+    </MatTabGroup>
+</div>
