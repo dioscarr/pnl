@@ -500,30 +500,32 @@ button{
 
 .inprogress-existing {
     grid-row: 2;
-    height: 100vh;
+    /* height: 100vh; */
     color: black !important;
     background-color: white;
     width: 100vw;
     display: grid;
     justify-content: center;
-    animation-duration: 0.6s !important; 
+    animation-duration: 0.6s !important;
 }
 
 .filetaxes {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 10fr;
-    color: black;
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+    /* grid-template-rows: 1fr 10fr; */
+    color: #fcff47;
     font-weight: 900 !important;
     font-size: 16px;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
 }
 .stepin-Criteria {
-    grid-row: 2;
-    height: 82vh;
-    top: 30vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 1fr;
+    /* grid-row: 2; */
+    /* height: 82vh; */
+    /* top: 30vh; */
+    /* width: 100vw; */
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
     justify-content: center;
     color: black;
     position: absolute;
@@ -548,9 +550,6 @@ button{
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template-columns: 1fr justify-content: center;
-    position:absolute !important;
-    top:16vh;
     left:0px;
 }
 .stepin-Dependents {
@@ -705,7 +704,7 @@ background-color: #e2e2e2;
     color:black;
     /* justify-self:start; */
 }
-.dashboard {background-color:white;display:grid;grid-template-columns: 1fr;grid-template-rows:1fr 1fr;padding:50px;height: 59vh;}
+.dashboard {background-color:white;display:grid;grid-template-columns: 1fr;grid-template-rows:1fr 1fr;padding:50px;height: 89vh;}
 .formNav {
 position:fixed;
 bottom:0px;
@@ -758,7 +757,7 @@ justify-items: end;
 
 }
 .file-my-taxes a:hover{
-    color:#673AB7 !important;;
+    color:#673AB7 !important;
 }
 .file-my-taxes{
     margin: 1vw auto;
@@ -774,7 +773,8 @@ justify-items: end;
     border-radius:15px;
 }
 .file-my-taxes:hover{
-    background-color:#e7eaac2e;
+       background-color:#4b6fff !important;
+    color: white !important;
 
 }
 .view-my-taxes a{
@@ -782,6 +782,11 @@ justify-items: end;
     font-weight: 600;
     font-size: 1.6em;
     justify-self: end;
+}
+.view-my-taxes:hover {
+    background-color:#4b6fff !important;
+    color: white !important;
+
 }
 .view-my-taxes {
     display: grid;
@@ -820,5 +825,97 @@ justify-self: start;
 }
 
 #taxpanel {
-    background-color:black;
+  background-color: #ffffff;
+  height: 50vh;
+  box-shadow: 0px 0 11px -4px #615d5d;
+  border-radius: 15px;
+}
+.add-dependent-form {
+display:grid;
+grid-template-columns:1fr 1fr 1fr 1fr;
+}
+.taxdetail {
+    background-color: #ffffff !important;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-content: center;
+    align-self: center;
+    border-radius: 15px;
+    color: black;
+}
+.detail-taxYear {font-size:3em;font-weight:900;color: white;display: grid;/* grid-column: 1/7; */}
+
+.detail-taxYear-filing {
+    font-size:1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+.detail-taxYear-filing-status {
+    font-size: 1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+.detail-taxYear-application-status {
+    font-size: 1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+.detail-taxYear-application-status-val {
+      font-size: 1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+.detail-taxYear-date-updated {
+     font-size: 1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+.detail-taxYear-date-updated-val {
+       font-size: 1.9em;
+    color: #000000;
+    font-weight: 900;
+    align-content: center;
+    display: grid;
+}
+#add-dependent-list{
+    background-color:lightcoral;
+}
+
+
+.mdc-tab-scroller__scroll-content{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;    
+}
+.mdc-tab-scroller__scroll-content div{
+ font-size:1.5em;
+ display:grid;
+ justify-self:center;
+ padding:2px 100px;
+  margin:0px 10px;
+ 
+}
+.mdc-tab-scroller__scroll-content div:focus{
+    border:none;
+    border-color:blue;
+    outline:none;
+    box-shadow:1px 1px 1px #0087ff;
+   
+}
+
+.mdc-tab-scroller__scroll-content div:hover{
+ background-color:#dadada;
+
 }
