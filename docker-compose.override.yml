@@ -3,7 +3,7 @@ version: "3.7"
 services:
   pnl:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:5000;
     ports:
       - "5000:5000"
@@ -24,4 +24,3 @@ services:
       WEBSOCKET: "true"
       DOMAINS: "devpnl.app -> http://pnl:5000"
       STAGE: "production"
-    #    STAGE: "local"
