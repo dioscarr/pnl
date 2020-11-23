@@ -2,43 +2,41 @@
 
 
 <div style="max-width: 100%; min-height: 100%; padding:20px;" class="CurrentUserInfo">
-            
-        @if (isUserInfo)
-        {
-            <CurrentUserInfoForm OnSave="OnSave" CurrentUser="CurrentUser" TaxFormID="TaxFormID" @ref="cuif" />
-        }
-        else
-        {
-            
-                <div style="padding-left:20px;">
-                    <div class="CurrentUserInfoBox">
-                        <div>Is this information correct?</div>
-                        <div>
-                            @if (ShowUpdateUserInfoMesage)
-                            {
-                                <div class="alert alert-info">
-                                    Do you want to update your profile information with the recent update?
-                                    <Button OnClick="()=> { UpdateCurrentUserMainInfo(); }">Yes</Button>
-                                    <Button OnClick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</Button>
-                                </div>
-                            }
+
+    @if (!isUserInfo)
+    {
+       
+        <div style="padding-left:20px;">
+            <div class="CurrentUserInfoBox">
+                @if (ShowUpdateUserInfoMesage)
+                {
+                    <div>
+                        <div class="alert alert-info">
+                            Do you want to update your profile information with the recent update?
+                            <button @onclick="()=> { UpdateCurrentUserMainInfo(); }">Yes</button>
+                            <button @onclick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</button>
                         </div>
                     </div>
-            
-                
-                <div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Occupation</div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.SSN</div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Email</div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Phone</div>
-                    <div style="font-size: 14px;" Color="@Color.TextSecondary" GutterBottom>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</div>
-                </div>
+                }
             </div>
-        }
-        <div >
-            <Button FullWidth OnClick="Save">@displayCUbtnLabel()</Button>
+            <div class="CurrentUserInformation ">
+                <div>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>
+                <div>@CurrentUser?.Occupation</div>
+                <div>@CurrentUser?.SSN</div>
+                <div>@CurrentUser?.Email</div>
+                <div>@CurrentUser?.Phone</div>
+                <div>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</div>
+            </div>
         </div>
+
+    }
+    else
+    {
+        <CurrentUserInfoForm OnSave="OnSave" CurrentUser="CurrentUser" TaxFormID="TaxFormID" @ref="cuif" />
+    }
+    <div>
+        <button @onclick="Save">@displayCUbtnLabel()</button>
+    </div>
 </div>
 
 

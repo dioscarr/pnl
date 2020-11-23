@@ -1,11 +1,7 @@
 ﻿@inject TaxFormService service
-<div style="padding:20px;" Class="ApplHeader">
-    <div style="padding-left:20px;">
-        @TaxForm.TaxYear
-    </div>
-    <div style="padding-left:20px;">
-        @TaxForm.FilingStatus
-    </div>
+<div Class="ApplHeader">
+        <span>@TaxForm.TaxYear</span>
+        <span>@TaxForm.FilingStatus</span>
 </div>
 
 @code {

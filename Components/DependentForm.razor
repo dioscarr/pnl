@@ -1,6 +1,9 @@
 ﻿@inject TaxFormService service
 
 <div class="add-dependent-form">
+    <div class="dependentlist-info">
+        If any dependent please complete the following form.
+    </div>
     <EditForm Model="dependent" OnValidSubmit="AddDependent">
         <DataAnnotationsValidator />
     
@@ -33,9 +36,9 @@
                 <ValidationMessage style="color:red;" For="()=>dependent.Code" />
     
     
-                <Button Type="ButtonType.Submit" Variant="@ButtonVariant.Contained" Color="@Color.Primary" Size="@Size.Small" Style="margin: 8px;">
-                    <StartIcon><SaveIcon /></StartIcon><ChildContent Context="SubmitButton">Add New Dependent</ChildContent>
-                </Button>
+                <button type="submit" class="btn-Add-Dependent">
+                   Add New Dependent
+                </button>
     
     
     </EditForm>

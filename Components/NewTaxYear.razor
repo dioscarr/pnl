@@ -9,7 +9,7 @@
     </button>
 }
 </div>
-<div class="TaxYears">
+@*<div class="TaxYears">
 
     @foreach (var item in TaxYears)
 {
@@ -19,9 +19,9 @@
 
     </button>
 }
-</div>
+</div>*@
 
-@if (isFilingStatusVisiable)
+@*@if (isFilingStatusVisiable)
 {
 <div class="isFilingStatusVisiable">
     <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
@@ -40,7 +40,7 @@
         <ChildContent>Open Application</ChildContent>
     </Button>
 </div>
-}
+}*@
 @code {
     [Parameter]
     public EventCallback<int> OnNewTaxYearEvent { get; set; }

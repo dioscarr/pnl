@@ -10,6 +10,9 @@ for details on configuring this project to bundle and minify static web assets. 
     right: 0px;
     z-index: 2;
 }
+html {
+    overflow: hidden;
+}
 
 #activePage {
     border-radius: 100%;
@@ -66,7 +69,7 @@ a {
 }
 
 .btn-primary {
-    color: #fff;
+    color: #273a86;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
@@ -186,18 +189,18 @@ body {
 }
 
 .public-menu {
-    display: flex;
-    /* grid-template-columns:repeat( auto-fill, minmax(150px, 1fr) ); */
-    align-self: end;
+    display: grid;
+    grid-template-columns: 7fr 10fr 19fr 10fr 13fr;
     color: #fcff47;
-    column-gap: 2.5em;
     align-self: normal;
-    align-self: flex-end;
-    justify-content: flex-end;
+    grid-row: 1;
+    font-size: 25px;
+    align-content: center;
+    justify-items: end;
 }
 
 .logocls {
-    width: 100%;
+    width: 200px;
     border: none;
 }
 
@@ -226,31 +229,33 @@ body {
 }
 
 .data-audit {
-    width: 76%;
     z-index: 1;
     float: left;
+    width: 350px;
     position: absolute;
-    top: 18.6vh;
-    height: 64vh;
+    /* transform: scale(1.35); */
+    margin-top: 82px;
+    width: 754px;
+    height: 666px;
 }
 
 .loginFormBox {
-    width: 359px;
-    height: 65vh;
+    width: 315px;
+    height: 55vh;
     background-color: white;
     align-self: end;
-    display: block;
-    float: right;
+    display: grid;
     border-radius: 30px;
-    padding: 10px 15px;
-    position: absolute;
-    z-index: 2;
-    right: 0px;
+    padding: 10px 47px;
+    position: relative;
+    top: -64px;
+    z-index: 1;
     box-shadow: -5px 6px 6px 5px #0000008c;
+    justify-self: end;
 }
 
 .top-margin {
-    padding-top: 15vh;
+    padding-top: 0vh;
 }
 
 .get-started-input {
@@ -258,11 +263,14 @@ body {
 }
 
 .get-started-btn {
-    width: 150px;
-    background-color: white !important;
+    /* width: 308px; */
+    background-color: #F3EFEF !important;
     color: #005cbf !important;
     font-weight: 600;
-    margin-top: 2vh;
+    padding: 10px 89px;
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 16px;
 }
 
 .subtitle {
@@ -273,9 +281,18 @@ body {
 .secured {
     align-self: center;
     justify-self: center;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    align-items: center;
 }
 
 .advance {
+        align-self: center;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    align-items: center;
+}
 }
 
 #idsecured {
@@ -294,7 +311,7 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    height: 50px;
+    height: 114px;
     font-weight: 600;
     font-size: 2.0em;
 }
@@ -302,7 +319,13 @@ body {
 .loginbtn {
     border-radius: 20px;
     width: 100%;
+    font-weight: 700;
+    Color: black;
 }
+
+    .loginbtn:hover {
+        color: #273a86;
+    }
 
 .bysigning {
     color: black;
@@ -327,7 +350,7 @@ body {
     font-size: 1.0em;
     align-items: center;
 }
-
+.ReviewUserInformation {background-color: #ffffff00;border-radius:15px;display: grid;grid-template-columns: 1fr 1fr;}
 .onepage {
     height: 100vh;
     padding-left: 10vw;
@@ -372,9 +395,37 @@ body {
 .Upload-Your-tax-documents {
 }
 
-.Main-padding {
+.Main-Box
+{
+    display:grid;
+    width: 100%;
+    height: inherit;
+    grid-template-columns: 54fr 38fr;
+    grid-template-rows: 231px auto;
 }
 
+.public-menu-col
+{
+    grid-column: 1/3;
+    grid-row: 1;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+}
+.logobox{display:grid;align-self:center;grid-row: 1;}
+.body-left 
+{
+   grid-column:1; 
+   grid-row:2;
+}
+
+.body-right 
+{
+   grid-column:2;
+   grid-row:2;
+   display: grid;
+   padding-bottom: 15vh;
+}
 #ribbon-icon {
     margin: 7px auto 56px;
 }
@@ -439,57 +490,112 @@ body {
 }
 
 .TaxYearsInProcess {
-      height: 80vh;
-    display: inline-block;
-    grid-template-columns: repeat(auto-fill, 212px);
-    justify-content: center;
+    display: grid !important;
+    width: 61vw;
+    height: 67vh;
     margin: 56px auto;
-    float: left;
     font-size: 1.2em;
-    display: grid;
-    align-content: center;
-    column-gap: 2vw;
+    justify-items: center;
     grid-template-columns: 1fr 1fr 1fr;
-
-}
-.TaxYearsInProcess button {
-     background-color: #ffffff !important;
-     color: #273a86;
-     height: 208px;
-     border:none;
-     font-siZe: 1.6em;
-     font-weight: 900;
-     margin-bottom: 50px;
-     width: 339px;
-     height:320px;
-}
-.TaxYearsInProcess button:hover{
-    border:none;
-    color:white !important;
-    background-color:#707aa5 !important;
-}
-.TaxYearsInProcess button:focus{
-    border:none;
-}
-.TaxYearsInProcess button div:nth-child(1) {
-    font-size: 0.9em;
-    color: #273a86 !important;
-    font-weight: 100;
-}
-.TaxYearsInProcess button div:nth-child(2) {
-    font-size: 1.9em;
-    color: #182352 !important;
-    font-weight:900;
-}
-.TaxYearsInProcess button div:nth-child(3) {
-    font-size: 0.8em;
-    color: #607D8B !important;
-    font-weight:600;
-}
-button{
-    background-color:white !important;
+    column-gap: 109px;
+    align-self: center;
 }
 
+    .TaxYearsInProcess button {
+        background-color: #ffffff !important;
+        color: #273a86;
+        border: none;
+        font-siZe: 1.6em;
+        font-weight: 900;
+        margin-bottom: 50px;
+        width: 339px;
+        /* box-shadow: 0px 20px 20px 0px #00000042; */
+        height: 320px;
+        display: grid;
+        align-self: center;
+        /* grid-template-rows: 50px 50px; */
+    }
+
+        .TaxYearsInProcess button:hover {
+            border: none;
+            color: white !important;
+           box-shadow: 0px 20px 20px 0px #00000042;
+           
+        }
+
+        .TaxYearsInProcess button:focus {
+            border: none;
+        }
+
+        .TaxYearsInProcess button div:nth-child(1) {
+            font-size: 0.9em;
+            color: #273a86 !important;
+            font-weight: 100;
+            top: 95px;
+            position: absolute;
+            justify-self: center;
+            display: grid;
+            width: 96%;
+        }
+
+        .TaxYearsInProcess button div:nth-child(2) {
+            font-size: 1.9em;
+            color: #182352 !important;
+            font-weight: 900;
+            line-height: 158px;
+            grid-area:10000;
+            padding: 200px;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+        }
+.TaxYearsInProcess button:focus {
+outline:none;
+}
+
+        .TaxYearsInProcess button div:nth-child(2):hover {          
+/*             -webkit-animation: bounce-top 2.1s none;
+            animation: bounce-top 2.1s none; */
+        }
+
+        .TaxYearsInProcess button div:nth-child(3) {
+            font-size: 0.8em;
+            color: #607D8B !important;
+            font-weight: 600;
+            bottom: 58px;
+            position: absolute;
+            /* left: 34%; */
+            justify-self: center;
+            display: grid;
+            width: 96%;
+        }
+
+button {
+    background-color: #ffffff00 !important;
+    border-radius: 15px;
+    /* width:300px; */
+    /* height:50px; */
+}
+.btn-Add-Dependent
+{
+    display:grid;
+    width: 100%;
+    justify-self:center;
+    height: 50px;    
+    margin-top: 30px;
+    color: white;
+    justify-content: center;
+    align-content: center;
+    border: none;
+    font-size: 1.2em;
+    background-color: #1d2f79 !important;
+    box-shadow: -11px -6px 13px -6px #334591, 9px 9px 13px -3px #0e2066;
+}
+.btn-Add-Dependent:hover{
+        background-color: 142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color: #fbfe47;
+}
 .isFilingStatusVisiable {
     height: 100vh;
     width: 100vw;
@@ -499,80 +605,235 @@ button{
 }
 
 .inprogress-existing {
-    grid-row: 2;
-    /* height: 100vh; */
-    color: black !important;
-    background-color: white;
-    width: 100vw;
+    grid-row: 1;
+    color: white !important;
+    grid-column: 1;
+    width: auto;
     display: grid;
-    justify-content: center;
+    position: relative;
+    justify-items: start;
     animation-duration: 0.6s !important;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    align-items: center;
+    grid-template-columns: repeat(5, 1fr) !important;
 }
 
 .filetaxes {
-    /* display: grid; */
-    /* grid-template-columns: 1fr; */
-    /* grid-template-rows: 1fr 10fr; */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
     color: #fcff47;
     font-weight: 900 !important;
+    /* height: 232px; */
     font-size: 16px;
-    /* display: grid; */
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: 1fr;
+}
+
+#tax-form-pages-inline {
+    display:grid;
+    grid-template-rows: 10vh 9vh 63vh;
+    row-gap: 27px !important;
+    width: 100vw;
+}
+.stepin-ReviewUserInformation {
+    grid-row: 2;
+    display: grid !important;
+    justify-content: center;
+    color: white;
+    left: 0px;
+    background-color: #28356b;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    padding: 51px 3vw;
+    margin-right: -3vw;
+    width: 84vw !important;
+    box-shadow: 0px 6px 3px 0px #2e429038, 0px 3px 3px 0px #1a2962cc;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.stepin-Criteria button{
+ height: 50px !important;
+ width: 551px;
+ grid-column: 1/8;
+ grid-row: 5;
+ align-self: center;
+ color: white;
+ border: none;
+ border-radius:15px;
+ justify-self:center;
+ background-color: #1d2f79 !important;
+ box-shadow: -11px -6px 13px -6px #334591, 9px 9px 13px -3px #0e2066;
+}
+.stepin-Criteria button:hover {
+    background-color:142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color:#fbfe47;
 }
 .stepin-Criteria {
-    /* grid-row: 2; */
-    /* height: 82vh; */
-    /* top: 30vh; */
-    /* width: 100vw; */
-    /* display: grid; */
-    /* grid-template-columns: 1fr; */
+    grid-row: 2;
+    display: grid !important;
     justify-content: center;
     color: black;
-    position: absolute;
     left: 0px;
-    /* background-color: white !important; */
+    background-color: #28356b;
+    grid-template-columns: repeat( auto-fit, minmax(206px, 1fr) );
+    grid-template-rows: repeat( auto-fill, minmax(62px, 65px))  192px;
+    padding: 51px 3vw;
+    margin-right: -3vw;
+    width: 84vw !important;
+    font-size: 1.0em;
+    font-weight: 300;
+    box-shadow: 0px 6px 3px 0px #2e429038, 0px 3px 3px 0px #1a2962cc;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.stepin-Criteria > div{
+    display:grid;
+    background-color: #ffffff00;
+    border-radius:15px;
+    justify-content: start;
+    align-content:center;
+}
+.stepin-Criteria > div >div:nth-child(2){
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows: repeat(9,46px);
+    font-size: 1.1em;
+    font-weight: 400;
+    width: 90vw;
+    column-gap: 250px;
+    margin-left: 5vw;
+    row-gap: 0px;
+    height: inherit;
 }
 
 .stepin-Dependents {
-    grid-row: 2;
-    height: 100vh;
-    width: 100vw;
+     padding: 51px 3vw;
+     margin-right: -3vw;
+     width: 84vw !important;
+     margin-top: 100px;
+     box-shadow: 0px 6px 3px 0px #2e429038, 0px 3px 3px 0px #1a2962cc;
+     border-bottom-right-radius: 20px;
+     border-bottom-left-radius: 20px;
+     background-color: #28356b;
+}
+
+.stepin-Dependents > div {
+    background-color: #ffffff00;
+    width: 90vw !important;
+    height: 100%;
+    color: white;
+    /* margin-left: 5vw; */
+    border-radius: 15px;
+    grid-template-rows: 165px auto;
     display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    position: absolute;
-    top: 16vh;
-    left: 0px;
+}
+
+.dependentlist-info
+{
+    color: #fcff47;
+    font-size: 1.5em;
+    align-items: center;
+    display: grid;
+    font-weight: 400;
+    margin: 0 auto;
 }
 
 .stepin-Add-Dependent {
+    left: 0px;
     grid-row: 2;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    left:0px;
+    grid-template-columns: 1fr 1fr;
+    background-color: #28356b;
+    padding: 51px 3vw;
+    margin-right: -3vw;
+    width: 84vw !important;
+    transform: scale(0.8,0.8);
+    box-shadow: 0px 6px 3px 0px #2e429038, 0px 3px 3px 0px #1a2962cc;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
+}
+
 .stepin-Dependents {
     grid-row: 2;
-    /* height: 58vh; */
-    width: 100vw;
-    display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
-    position: absolute;
-    top: 16vh;
     left: 0px;
+    box-shadow: -14px -11px 17px 8px #2e4290, 4px 14px 18px 5px #1a2962cc;
+    border-radius: 20px;
 }
-.stepin-Child-Care {
-    grid-row: 2;
-    height: 100vh;
-    width: 100vw;
+
+.stepin-child-care {
+  grid-row: 2;
+  display: grid !important;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  height: 62vh !important;
+  grid-template-rows: 165px auto;
+  box-shadow: 0px 6px 3px 0px #2e429038, 0px 3px 3px 0px #1a2962cc;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  align-self: center;
+  background-color: #28356b;
+}
+}
+
+.stepin-child-care form{
+
+width: 90vw;
+
+margin-left: 5vw;
+
+background-color: transparent;
+
+height: 100%;
+
+border-radius: 15px;
+
+justify-content: center;
+
+/* padding:  0 31px; */
+
+display: grid;
+
+/* grid-template-columns: 1fr 1fr; */
+}
+.stepin-child-care form input{height: 46px !important;border-radius: 10px;margin-top: 10px !important;border: none;}
+
+.stepin-child-care form > div {
+    width: 60vw;
+    justify-self: center;
     display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
+    grid-template-rows: repeat(5,78px);
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    margin: 0 auto;
+    align-content: center;
+}
+.stepin-child-care form button{
+    height:50px;
+    width: 100% !important;
+    border-radius:15px;
+    background-color: #1d2f79 !important;
+    color: white;
+    border: none;
+    box-shadow: -11px -6px 13px -6px #334591, 9px 9px 13px -3px #0e2066;
+}
+ 
+.stepin-child-care form button:hover{
+    background-color:142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color:#fbfe47;
+} 
+.step {
     position: absolute;
-    top: 16vh;
-    left: 0px;
+    height: 49vh;
+    margin-top: auto;
+    width: 90vw;
 }
 
 .Taxyear {
@@ -583,28 +844,75 @@ button{
     border: none;
     box-shadow: 0px 2px 7px -2px #273a86bf;
 }
-.Taxyear:hover{
-    background-color:#273a8675 !important;
-    color:white !important;
-}
-.Taxyear:focus{
-    border:none;
-}
+
+    .Taxyear:hover {
+        background-color: #273a8675 !important;
+        color: white !important;
+    }
+
+    .Taxyear:focus {
+        border: none;
+    }
+
 .ApplHeader {
-    width: 100vw;
-    color: #273a86 !important;
-    font-weight:900;
-    font-size:2.3em;
-    background-color: #ffffff;
+    width: 90vw;
+    color: #ffffff !important;
+    font-weight: 400;
+    font-size: 1.3em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 8fr;
 }
+
 .CurrentUserInfo {
-    width:50%;
-    color: #273a86!important;
-    font-size: 3.0em;
+    width: 50%;
+    color: #e0e0e0 !important;
+    font-size: 2.0em;
+    justify-self: center !important;
+    grid-row: 1;
+    grid-column: 2;
 }
+.CurrentUserInfo div:nth-child(2) button{
+    background-color: #27356b !important;
+    width:90%;
+    margin-left:20px;
+    box-shadow: -7px -6px 13px -6px #344585, 9px 9px 13px -3px #0e2066;
+}
+.CurrentUserInfo button{
+     background-color: #273a86 !important;
+     color: white;
+     width:100%;
+     height:50px;
+     font-size:0.6em;
+     border: none;
+     height:40px !important;
+ }
+ .CurrentUserInfo button:hover{
+    background-color:#142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color:#fbfe47;
+ }
+
+ .CurrentAddressStep button{
+    background-color: #27356b !important;
+    height: 42px;
+    color: white;
+    font-size: 1.3em;
+    width: 90%;
+    border: none;
+    box-shadow: -7px -6px 13px -6px #344585, 9px 9px 13px -3px #1d2a5d;
+ }
+ .CurrentAddressStep button:hover{
+    background-color:#142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color:#fbfe47;
+} 
+
 .CurrentAddress {
     width: 50%;
 }
+.QuestionStep {font-size:2.3em;color: #fcff47;grid-row:1/3;grid-column:1;align-self: center;justify-self: center;}
+
+
 .Criteria-Step-number {
     position: absolute;
     font-size: 2em;
@@ -623,143 +931,186 @@ button{
     z-index: 1;
     box-shadow: 1px 1px 5px -2px #0000008c;
 }
-.Criteria-Step-number:hover
-{
-    background-color:green!important;
 
-}
+    .Criteria-Step-number:hover {
+        background-color: green !important;
+    }
+
 .Paper-Rounded {
     color: black !important;
-    background-color: #ffffff!important;
+    /* background-color: #ffffff!important; */
 }
+
 .steps-names {
-    color: #273a86;
+    color: #ffffff;
 }
-p{
-    color:white!important;
-    font-size:1.59em!important;
+
+p {
+    color: black !important;
+    font-size: .9em !important;
 }
-.Button-Label{
-    color:white!important;
-    background-color:#1f2e6d;
-    height:50px;
-    border-radius:10px;
-}
-.CurrentUserInfoBox {display:grid;grid-template-columns: 1fr;justify-items: center;}
-.CurrentUserInfoBox div:nth-child(2){
- padding: 38px; 
- display: grid;
- grid-row-gap: 26px;
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(1){
-    
-color: #29792c;
-    
-font-weight: bold;
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(2){
-    
-color: #172252;
-    
-justify-self: start;
-    
-position: relative;
-    
-padding: 0px;
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(3){
-    
-color: #273a86;
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(4){
-    
-color: #000000;
-    
-font-size: .6em !important;
-    
-/* font-style: italic; */
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(5){
-    
-color: #474a5a;
-    
-padding: 1px 20px;
-    
-font-size: 22px !important;
-    
-border-radius: 10px;
-    
-background-color: #e2e2e2;
-}
-.CurrentUserInfoBox div:nth-child(2) div:nth-child(6){
-    font-size:0.8em !important;
-    color: #474a5a;
-    padding: 1px 20px;
-    font-size: 22px !important;
+
+.Button-Label {
+    color: white !important;
+    background-color: #1f2e6d;
+    height: 50px;
     border-radius: 10px;
-    background-color: #e2e2e2;
 }
-.CurrentUserInfoBox div:nth-child(2) div{
-    font-size: 0.6em !important;
-    color:black;
-    /* justify-self:start; */
+
+.CurrentUserInfoBox {
+    color: white;
 }
-.dashboard {background-color:white;display:grid;grid-template-columns: 1fr;grid-template-rows:1fr 1fr;padding:50px;height: 89vh;}
+
+    .CurrentUserInfoBox div:nth-child(2) {
+        padding: 38px;
+        display: grid;
+        grid-row-gap: 26px;
+    }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(1) {
+            color: #29792c;
+            font-weight: bold;
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(2) {
+            color: #172252;
+            justify-self: start;
+            position: relative;
+            padding: 0px;
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(3) {
+            color: #273a86;
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(4) {
+            color: #000000;
+            font-size: .6em !important;
+            /* font-style: italic; */
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(5) {
+            color: #474a5a;
+            padding: 1px 20px;
+            font-size: 22px !important;
+            border-radius: 10px;
+            background-color: #e2e2e2;
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div:nth-child(6) {
+            font-size: 0.8em !important;
+            color: #474a5a;
+            padding: 1px 20px;
+            font-size: 22px !important;
+            border-radius: 10px;
+            background-color: #e2e2e2;
+        }
+
+        .CurrentUserInfoBox div:nth-child(2) div {
+            font-size: 0.6em !important;
+            color: black;
+            /* justify-self:start; */
+        }
+
+.dashboard {
+    background-color: #ffffff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 50px;
+    height: 89vh;
+}
+
 .formNav {
-position:fixed;
-bottom:0px;
-width:100vw;
+    position: fixed;
+    bottom: 50px;
+    width: 100vw;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.formNav button {
+    height: 50px !important;   
+    width: 551px;
+    color: white;
+    border: none;
+    background-color: #1d2f79 !important;
+    box-shadow: -11px -6px 13px -6px #334591, 9px 9px 13px -3px #0e2066;
+}
+.formNav button:hover {
+    background-color:142360 !important;
+    box-shadow: 1px 8px 13px -6px #9f9f231a;
+    color:#fbfe47;
+}
+
+.formNav button:focus {
+ outline:none;
 }
 
 .animate__fadeOutLeft {
-    left:1000px!important;
+    left: 1000px !important;
 }
+
 .container-fluid {
-    width: 100%;
+    /* width: 100%; */
     /* padding-right: 15px; */
-    /* padding-left: 15px; */
+    padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
     padding: 0px;
 }
+
 .Header_nav {
     background-color: #273a86;
     display: grid;
-    align-Items:center;    
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows:108px;
-    column-gap:10px;    
+    align-Items: center;
+    width: 90vw;
+    grid-template-columns: 8fr 1fr 1fr;
+    grid-template-rows: 108px;
+    column-gap: 10px;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
+
+.greetingsHello {
+    font-weight: 600 !important;
+    color: white !important;
+}
+
 .logo-box {
 }
-.logo-box img {
-    width:160px;
-    position:relative;
-    left:3vw;
 
-}
+    .logo-box img {
+        width: 320px;
+        height: 96px;
+        position: relative;
+        left: -21px;
+    }
+
 .account-box {
+    display: grid;
+    justify-items: end;
+}
 
-display: grid;
+    .account-box img {
+        width: 50px;
+        position: relative;
+        right: 3vw;
+    }
 
-justify-items: end;
+.file-my-taxes a {
+    color: blue !important;
+    font-weight: 600;
+    font-size: 1.6em
 }
-.account-box img {
-    width:50px;    
-    position:relative;
-    right:3vw;
-}
-.file-my-taxes a{
-    color:blue !important;
-    font-weight:600;
-    font-size:1.6em
 
-}
-.file-my-taxes a:hover{
-    color:#673AB7 !important;
-}
-.file-my-taxes{
+    .file-my-taxes a:hover {
+        color: #673AB7 !important;
+    }
+
+.file-my-taxes {
     margin: 1vw auto;
     width: 70vw;
     height: 100px;
@@ -770,27 +1121,29 @@ justify-items: end;
     justify-items: center;
     color: blue !important;
     box-shadow: 1px 1px 5px -2px #000000b0;
-    border-radius:15px;
+    border-radius: 15px;
 }
-.file-my-taxes:hover{
-       background-color:#4b6fff !important;
-    color: white !important;
 
-}
-.view-my-taxes a{
+    .file-my-taxes:hover {
+        background-color: #4b6fff !important;
+        color: white !important;
+    }
+
+.view-my-taxes a {
     color: blue !important;
     font-weight: 600;
     font-size: 1.6em;
     justify-self: end;
 }
-.view-my-taxes:hover {
-    background-color:#4b6fff !important;
-    color: white !important;
 
+.view-my-taxes:hover {
+    background-color: #4b6fff !important;
+    color: white !important;
 }
+
 .view-my-taxes {
     display: grid;
-    grid-template-columns: 30fr 24fr!important;
+    grid-template-columns: 30fr 24fr !important;
     margin: 1vw auto;
     width: 70vw;
     height: 100px;
@@ -801,41 +1154,93 @@ justify-items: end;
     box-shadow: 1px 1px 5px -2px #000000b0;
     border-radius: 15px;
 }
-.view-my-taxes img{
-    
-justify-self:start;
-    
-height: 25px;
-    
-top: 2px;
-    
-position: relative;
-}
+
+    .view-my-taxes img {
+        justify-self: start;
+        height: 25px;
+        top: 2px;
+        position: relative;
+    }
 
 .view-taxes-arrow {
-    
-justify-self: start;
+    justify-self: start;
 }
 
 .view-taxes-by-year {
-    background-color:white;
-    height:800px;
-    width:90vw;
-    margin:0 auto;
+    background-color: white;
+    height: 800px;
+    width: 90vw;
+    margin: 0 auto;
 }
 
 #taxpanel {
-  background-color: #ffffff;
-  height: 50vh;
-  box-shadow: 0px 0 11px -4px #615d5d;
-  border-radius: 15px;
+    background-color: #ffffff;
+    height: 50vh;
+    box-shadow: 0px 0 11px -4px #615d5d00;
+    border-radius: 15px;
+}
+
+
+#taxpanel .mdc-tab-scroller__scroll-content{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    grid-template-rows:50px;
+    column-gap:15px;
+    padding:0 3vw;
+    background-color: #253576;
+    height:50px;
+    padding:30px;
+}
+
+#taxpanel .mdc-tab-scroller__scroll-content >div{
+background-color:white;
+border-radius:15px;
+display:grid;
+justify-content:center;
+align-content:center;
+font-weight:700;
+font-size:16px !important;
+
+}
+
+.mdc-tab--active
+{
+    background-color: #1c2858 !important;
+    color: white;
 }
 .add-dependent-form {
-display:grid;
-grid-template-columns:1fr 1fr 1fr 1fr;
+    display: grid;
+    justify-content: center;
+    background-color: #ffffff00;
+    width: 100%;
+    border-radius: 15px;
+    height: 100%;
+    grid-template-rows: 165px auto;
 }
+.add-dependent-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    justify-items: center;
+    background-color: #ffffff00;
+    min-width: 88%;
+    margin: 0 5vw;
+    border-radius: 15px;
+    height: inherit;
+    column-gap:60px;
+    row-gap:20px;
+    position: absolute;
+}
+
+    .add-dependent-form input {
+     height: 46px !important;
+     border-radius: 10px;
+     margin-top: 10px !important;
+     border: none;
+    }
+
 .taxdetail {
-    background-color: #ffffff !important;
+    /* background-color: #ffffff !important; */
     width: 100%;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -844,58 +1249,107 @@ grid-template-columns:1fr 1fr 1fr 1fr;
     align-content: center;
     align-self: center;
     border-radius: 15px;
-    color: black;
+    color: white;
+    height: 158px;
 }
-.detail-taxYear {font-size:3em;font-weight:900;color: white;display: grid;/* grid-column: 1/7; */}
+
+.detail-taxYear {
+    font-size: 3em;
+    font-weight: 900;
+    color: white;
+    padding: 0 80px;
+    display: grid;
+    /* grid-column: 1/7; */
+}
 
 .detail-taxYear-filing {
-    font-size:1.9em;
-    color: #000000;
+    font-size: 1.9em;
+    color: #ffffff;
     font-weight: 900;
     align-content: center;
     display: grid;
 }
+
 .detail-taxYear-filing-status {
     font-size: 1.9em;
-    color: #000000;
-    font-weight: 900;
+    color: #ffffff;
+    font-weight: 300;
     align-content: center;
     display: grid;
 }
+
 .detail-taxYear-application-status {
     font-size: 1.9em;
-    color: #000000;
-    font-weight: 900;
+    color: #ffffff;
+    font-weight: 300;
     align-content: center;
     display: grid;
 }
+
 .detail-taxYear-application-status-val {
-      font-size: 1.9em;
-    color: #000000;
-    font-weight: 900;
+    font-size: 1.9em;
+    color: #ffffff;
+    font-weight: 300;
     align-content: center;
     display: grid;
 }
+
 .detail-taxYear-date-updated {
-     font-size: 1.9em;
-    color: #000000;
-    font-weight: 900;
+    font-size: 1.9em;
+    color: #ffffff;
+    font-weight: 300;
     align-content: center;
     display: grid;
 }
+
 .detail-taxYear-date-updated-val {
-       font-size: 1.9em;
-    color: #000000;
-    font-weight: 900;
+    font-size: 1.9em;
+    color: #ffffff;
+    font-weight: 300;
     align-content: center;
     display: grid;
 }
-#add-dependent-list{
-    background-color:lightcoral;
+
+#add-dependent-list {
+    height: 100%;
+    align-items: center;
+    grid-template-rows: 56px;
+    font-weight: 400;
+    color: black;
+    border: none;
+    display: grid;
+    justify-content: center;
+    align-content: start;
+    /* width: 50vw !important; */
+}
+#add-dependent-list thead tr{
+
+    color: black !important;
+    font-weight:600 !important;
+    border-bottom: 1px solid #ffffff;
+    height: 59px;
+    background-color: #f3efef;
+    box-shadow: 0px 0px 6px -2px #00000094;
 }
 
+#add-dependent-list tr {
+    color: white;
+    border-bottom: 1px solid #3452c7;
+    height: 59px;
+    background-color: #f2f2f21a;
+    box-shadow: 0px 0px 6px -2px #00000094;
+}
 
-.mdc-tab-scroller__scroll-content{
+#add-dependent-list tr td {
+    min-width: 211px;
+    font-size: 1.0em !important;
+    border-right: 1px solid black;
+}
+.stepin-Dependents p {
+    font-weight: 1.1em !important;
+    padding-left: 50px !important;
+}
+/*.mdc-tab-scroller__scroll-content{
     display:grid;
     grid-template-columns:1fr 1fr 1fr 1fr;    
 }
@@ -913,9 +1367,1376 @@ grid-template-columns:1fr 1fr 1fr 1fr;
     outline:none;
     box-shadow:1px 1px 1px #0087ff;
    
+}*/
+.slide-in-right {
+    /* left: -139vh; */
+    z-index: 1;
+    -webkit-animation: slide-in-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-18 14:52:36
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(2000px);
+        transform: translateX(2000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(-1000);
+        transform: translateX(1000);
+        opacity: 1;
+    }
 }
 
-.mdc-tab-scroller__scroll-content div:hover{
- background-color:#dadada;
+@keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(1000px);
+        transform: translateX(-112px);
+        transform: translatey(0px);
+        opacity: 0;
+    }
 
+    100% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(-1600px);
+        transform: translatey(0px);
+        opacity: 1;
+    }
 }
+
+.slide-out-left {
+    /* Z-INDEX: 2; */
+    -webkit-animation: slide-out-left 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-out-left 0.3s cubic-bezier(0.5, 1.13, 0.68, 0.53) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-18 15:12:40
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-out-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-left {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(-2000px);
+        transform: translateX(-2000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-left {
+    0% {
+        -webkit-transform: translate(5vw, 10vh) scale(1,1);
+        transform: translate(5vw, 10vh) scale(1,1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translate(-100vw, 10vh) scale(0.3,0.3);
+        transform: translate(-100vw, 10vh) scale(0.3,0.3);
+        opacity: 0;
+    }
+}
+
+.slide-out-right {
+    -webkit-animation: slide-out-right 0.3s cubic-bezier(0.52, 0.93, 0.85, 0.76) both;
+    animation: slide-out-right 0.3s cubic-bezier(0.44, 0.6, 0.72, 0.63) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-18 15:29:27
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-out-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-right {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(2000px);
+        transform: translateX(2000px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-right {
+    0% {
+        -webkit-transform: translate(5vw, 10vh)  scale(1, 1);
+        transform: translate(5vw, 10vh)  scale(1, 1);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translate(100vw, 10vh)  scale(0.3, 0.3);
+        transform: translate(100vw, 10vh)  scale(0.3, 0.3);
+        opacity: 0;
+    }
+}
+
+.slide-in-left {
+    -webkit-animation: slide-in-left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: slide-in-left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-18 15:30:19
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-left {
+    0% {
+        -webkit-transform: translateX(-1000px);
+        transform: translateX(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        -webkit-transform: translateX(-3000px);
+        transform: translateX(0px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(-1963px);
+        transform: translateX(-1963px);
+        opacity: 1;
+    }
+}
+
+.slide-out-left { /* left:-100vw; */
+}
+
+.slide-out-right {
+    /* left: -200vw; */
+}
+
+
+
+
+
+.Grid-Root {
+    background-color: #ffffff00 !important;
+    display: grid !important;
+    width: 100vw !important;
+    grid-template-columns: repeat( auto-fit, minmax(486px, 1fr) ) !important;
+    font-size: 1.1em;
+}
+
+
+.navbar-nav a {
+    color: Yellow !important;
+}
+
+.navbar-nav button {
+    color: #98e5e3 !important;
+}
+
+
+
+
+
+
+.slide-in-blurred-right {
+    z-index: 1;
+    -webkit-animation: slide-in-blurred-right 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    animation: slide-in-blurred-right 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-19 19:59:47
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-blurred-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-blurred-right {
+    0% {
+        -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+        transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+        -webkit-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-blurred-right {
+    0% {
+        -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+        transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+        -webkit-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.slide-out-blurred-right {
+    -webkit-animation: slide-out-blurred-right 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+    animation: slide-out-blurred-right 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-19 20:6:44
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-out-blurred-right
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-blurred-right {
+    0% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(1000px) scaleX(2) scaleY(0.2);
+        transform: translateX(1000px) scaleX(2) scaleY(0.2);
+        -webkit-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-blurred-right {
+    0% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(1000px) scaleX(2) scaleY(0.2);
+        transform: translateX(1000px) scaleX(2) scaleY(0.2);
+        -webkit-transform-origin: 0% 50%;
+        transform-origin: 0% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+}
+
+
+.slide-out-blurred-left {
+    -webkit-animation: slide-out-blurred-left 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+    animation: slide-out-blurred-left 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-19 20:7:46
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-out-blurred-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-out-blurred-left {
+    0% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(-1000px) scaleX(2) scaleY(0.2);
+        transform: translateX(-1000px) scaleX(2) scaleY(0.2);
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-blurred-left {
+    0% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateX(-1000px) scaleX(2) scaleY(0.2);
+        transform: translateX(-1000px) scaleX(2) scaleY(0.2);
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+}
+
+.slide-in-blurred-left {
+    -webkit-animation: slide-in-blurred-left 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    animation: slide-in-blurred-left 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-19 20:8:58
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-blurred-left
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-blurred-left {
+    0% {
+        -webkit-transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+        transform: translateX(-1500px) scaleX(2.5) scaleY(0.2);
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-blurred-left {
+    0% {
+        -webkit-transform: translateX(-1000px) scaleX(2.5) scaleY(0.2);
+        transform: translateX(-1500px) scaleX(2.5) scaleY(0.2);
+        -webkit-transform-origin: 100% 50%;
+        transform-origin: 100% 50%;
+        -webkit-filter: blur(40px);
+        filter: blur(40px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+        transform: translateX(0) scaleY(1) scaleX(1);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-filter: blur(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.text-focus-in {
+    z-index:1;
+    -webkit-animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 9:22:23
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation text-focus-in
+ * ----------------------------------------
+ */
+@-webkit-keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(1px);
+        filter: blur(1px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+
+.text-blur-out {
+    z-index:2;
+    -webkit-animation: text-blur-out 1.2s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-blur-out 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 9:24:4
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation text-blur-out
+ * ----------------------------------------
+ */
+@-webkit-keyframes text-blur-out {
+    0% {
+        -webkit-filter: blur(0.01);
+        filter: blur(0.01);
+
+    }
+
+    100% {
+        -webkit-filter: blur(12px) opacity(0%);
+        filter: blur(1px) opacity(0%);
+    }
+}
+
+@keyframes text-blur-out {
+    0% {
+        -webkit-filter: blur(0.01);
+        filter: blur(0.01);
+    }
+
+    100% {
+        -webkit-filter: blur(1px) opacity(0%);
+        filter: blur(1px) opacity(0%);
+    }
+}
+
+
+
+
+.steps-position {
+    background: #98e5e326;
+    grid-row: 1;
+    display: grid;
+    grid-column: 1;
+    grid-template-columns: repeat(5, 1fr) !important;
+    width: 90vw;
+    margin: 0 5vw;
+    align-items: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    justify-items: center;
+}
+    .steps-position div {
+      
+    }
+
+.step-position-pair {
+    display:grid;
+    grid-template-columns:7fr 3fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-position-pair > div{
+        justify-self: end;
+    margin-right: 15px;
+}
+
+.circlesteps {
+    background-color: #28356b;
+    color: #7e7e7e;
+    height: 50px;
+    border-radius: 50%;
+    width: 50px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    z-index: 1;
+    /* box-shadow: -1px 20px 20px -2px #0000004f; */
+}
+
+
+
+.heartbeat {
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 13:45:50
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation heartbeat
+ * ----------------------------------------
+ */
+@-webkit-keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        -webkit-transform: scale(0.91);
+        transform: scale(0.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        -webkit-transform: scale(0.91);
+        transform: scale(0.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+.flip-scale-up-hor {
+    -webkit-animation: flip-scale-up-hor 0.5s linear both;
+    animation: flip-scale-up-hor 0.5s linear both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 13:50:9
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation flip-scale-up-hor
+ * ----------------------------------------
+ */
+@-webkit-keyframes flip-scale-up-hor {
+    0% {
+        -webkit-transform: scale(1) rotateX(0);
+        transform: scale(1) rotateX(0);
+    }
+
+    50% {
+        -webkit-transform: scale(2.5) rotateX(-90deg);
+        transform: scale(2.5) rotateX(-90deg);
+    }
+
+    100% {
+        -webkit-transform: scale(1) rotateX(-180deg);
+        transform: scale(1) rotateX(-180deg);
+    }
+}
+
+@keyframes flip-scale-up-hor {
+    0% {
+        -webkit-transform: scale(1) rotateX(0);
+        transform: scale(1) rotateX(0);
+    }
+
+    50% {
+        -webkit-transform: scale(2.5) rotateX(-90deg);
+        transform: scale(2.5) rotateX(-90deg);
+    }
+
+    100% {
+        -webkit-transform: scale(1) rotateX(-180deg);
+        transform: scale(1) rotateX(-180deg);
+    }
+}
+
+
+.bounce-top {
+    z-index:1;
+    -webkit-animation: bounce-top 0.9s both;
+    animation: bounce-top 0.9s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 13:52:56
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation bounce-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes bounce-top {
+    0% {
+        -webkit-transform: translateY(-45px);
+        transform: translateY(-45px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: translateY(-24px);
+        transform: translateY(-24px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    65% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    82% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    93% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    25%, 55%, 75%, 87% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+}
+
+@keyframes bounce-top {
+    0% {
+        -webkit-transform: translateY(-45px);
+        transform: translateY(-45px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: translateY(-24px);
+        transform: translateY(-24px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    65% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    82% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    93% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    25%, 55%, 75%, 87% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+}
+
+
+.tracking-in-expand {
+    -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 13:57:22
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation tracking-in-expand
+ * ----------------------------------------
+ */
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.bounce-top {
+    -webkit-animation: bounce-top 0.9s both;
+    animation: bounce-top 0.9s both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-20 16:15:7
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation bounce-top
+ * ----------------------------------------
+ */
+@-webkit-keyframes bounce-top {
+    0% {
+        -webkit-transform: translateY(-45px);
+        transform: translateY(-45px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: translateY(-24px);
+        transform: translateY(-24px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    65% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    82% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    93% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    25%, 55%, 75%, 87% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+}
+
+@keyframes bounce-top {
+    0% {
+        -webkit-transform: translateY(-45px);
+        transform: translateY(-45px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+        opacity: 1;
+    }
+
+    24% {
+        opacity: 1;
+    }
+
+    40% {
+        -webkit-transform: translateY(-24px);
+        transform: translateY(-24px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    65% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    82% {
+        -webkit-transform: translateY(-6px);
+        transform: translateY(-6px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    93% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    25%, 55%, 75%, 87% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+        opacity: 1;
+    }
+}
+
+.CurrentUserInformation 
+{
+    background-color:transparent;
+}
+
+.CurrentUserInformation div{
+    color: white;
+    font-size: 0.7em !important;
+    font-weight: 200;
+}
+.CurrentUserInformation div{
+    font-size: 0.5em !important;
+    font-weight:400!important;
+    color:#ffffff;
+}
+
+.CurrentUserInformation div:nth-child(1){
+    font-size: 1.0em !important;
+    font-weight:600!important;
+    color:#fcff47;
+}
+
+.CurrentAddressStep {
+    grid-column: 2;
+    grid-row: 2;
+    width: 50%;
+    color: #e0e0e0 !important;
+    justify-self: center !important;
+    padding-left: 39px;
+    font-size:1.3em !important;
+    font-weight:600!important;
+}
+.CurrentAddressStep >div{
+     font-size: 0.7em !important;
+    font-weight:400!important;
+    color:#ffffff;
+    display:grid;
+}
+.CurrentAddressStep >div:nth-child(1){
+      font-size: 1.0em !important;
+    font-weight:600!important;
+    color:#fcff47;
+}
+
+
+input{
+    height: 46px !important;
+    border-radius: 10px;
+    margin-top: 10px !important;
+    padding:0px !important;
+    
+    border: none;
+}
+.ative-position {
+    background-color: #379b58 !important;
+    color: white;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+
+.text-focus-in {
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 1s cubic-bezier(0.07, 1.07, 0.7, 1.04) both;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-21 21:49:28
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation text-focus-in
+ * ----------------------------------------
+ */
+@-webkit-keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.jello-vertical {
+    -webkit-animation: jello-vertical 0.6s cubic-bezier(0.07, 1.07, 0.7, 1.04) both;
+    animation: jello-vertical 0.4s cubic-bezier(0, 1.62, 0.4, 1.31) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-21 22:0:41
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation jello-vertical
+ * ----------------------------------------
+ */
+@-webkit-keyframes jello-vertical {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(0.85, 1.15, 1);
+        transform: scale3d(0.85, 1.15, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes jello-vertical {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+        transform: scale3d(0.75, 1.25, 1);
+    }
+
+    40% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+        transform: scale3d(1.25, 0.75, 1);
+    }
+
+    50% {
+        -webkit-transform: scale3d(0.85, 1.15, 1);
+        transform: scale3d(0.85, 1.15, 1);
+    }
+
+    65% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+        transform: scale3d(1.05, 0.95, 1);
+    }
+
+    75% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+        transform: scale3d(0.95, 1.05, 1);
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+.scale-in-center {
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-21 22:8:33
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation scale-in-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.slide-in-bottom {
+    -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-11-22 11:38:20
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation slide-in-bottom
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translateY(1000px);
+        transform: translateY(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-bottom {
+    0% {
+        -webkit-transform: translate(5vw, 100vh);
+        transform: translate(5vw, 100vh);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translate(5vw, 10vh);
+        transform: translate(5vw, 10vh);
+        opacity: 1;
+    }
+}
+
+#account.form-control input{
+    padding:0px;
+}
+
+#securedlbl {
+color:black;
+}
+#advancelbl {
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

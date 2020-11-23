@@ -1,42 +1,23 @@
 ﻿@inject TaxFormService service
 
-<Paper Style="padding:20px;">
-    <Typography Style="padding-left:20px;" Variant="@TypographyVariant.Button"
-                Display="@Display.Block"
-                GutterBottom>
-        Check All That Apply:
-    </Typography>
-    <Grid Container>
 
         @foreach (var item in Source)
         {
-            <Grid Item ExtraSmall="GridSize.Twelve" Large="GridSize.Four" Style="padding-left:20px;">
-                <Paper Style="padding-left:20px;">
-                    <FormControlLabel Label="@item.name" class="steps-names">
-                        <Switch Checked="@item.isToggled"
-                                OnChange="() => {
-                                      item.HandleToggleChanged();
-                                      StateHasChanged();
-                                  }"
-                                Value="@item.name" />
-                    </FormControlLabel>
-                </Paper>
-            </Grid>
+            <div>            
+                <FormControlLabel Label="@item.name" class="steps-names">
+                    <Switch Checked="@item.isToggled"
+                            OnChange="() => 
+                                        {
+                                            item.HandleToggleChanged();
+                                            StateHasChanged();
+                                        }"
+                            Value="@item.name" />
+                </FormControlLabel>
+            </div>
+            
         }
-    </Grid>
-    <Button Variant="@ButtonVariant.Contained"
-            Color="@Color.Primary"
-            Size="@Size.Small"
-            OnClick="@SaveSelectedCriterias"
-            Style="margin: 8px;">
-        <StartIcon>
-            <SaveIcon />
-        </StartIcon>
-        <ChildContent>
-            Save
-        </ChildContent>
-    </Button>
-</Paper>
+    <button class="btn btn-primary" @onclick="@SaveSelectedCriterias">Save selected</button>
+
 
 @code {
     [Parameter]

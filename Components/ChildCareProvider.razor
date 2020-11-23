@@ -1,16 +1,17 @@
 ﻿@inject TaxFormService service
-
+    <div class="dependentlist-info">
+        Please complete the following form if applicable.
+    </div>
     @if(isSuccessfull)
     {
         <div class="alrt alert-success">
             Saved
         </div>
-    }
-    <div style="display:block;" GutterBottom> Child Care Provider Information </div>
+    }    
     <EditForm Model="CareProviderModel" OnValidSubmit="SaveCareProvider">
         <DataAnnotationsValidator />
 
-        <div class="container">
+        <div>
             <div>
                 <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" style="width:100%;" />
             </div>

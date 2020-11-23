@@ -17,7 +17,7 @@ namespace pnl.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-preview.8.20407.4");
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -611,6 +611,8 @@ namespace pnl.Migrations
                         .HasForeignKey("pnl.Data.Models.Address", "PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
@@ -620,6 +622,8 @@ namespace pnl.Migrations
                         .HasForeignKey("TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TaxForm");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.DependentCareProviders", b =>
@@ -629,6 +633,8 @@ namespace pnl.Migrations
                         .HasForeignKey("TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TaxForm");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
@@ -644,6 +650,10 @@ namespace pnl.Migrations
                         .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Filingstatus");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxFormAddress", b =>
@@ -653,6 +663,8 @@ namespace pnl.Migrations
                         .HasForeignKey("pnl.Data.Models.TaxFormAddress", "TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TaxForm");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxFormCriteria", b =>
@@ -662,6 +674,8 @@ namespace pnl.Migrations
                         .HasForeignKey("TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TaxForm");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxFormPerson", b =>
@@ -671,6 +685,33 @@ namespace pnl.Migrations
                         .HasForeignKey("pnl.Data.Models.TaxFormPerson", "TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("TaxForms");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.FilingStatus", b =>
+                {
+                    b.Navigation("TaxForm");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Person", b =>
+                {
+                    b.Navigation("Address");
+
+                    b.Navigation("TaxForms");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
+                {
+                    b.Navigation("DependentCareProviders");
+
+                    b.Navigation("DependentsClaimed");
+
+                    b.Navigation("TaxFormAddress");
+
+                    b.Navigation("TaxFormCriterias");
+
+                    b.Navigation("TaxFormPerson");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,67 +1,52 @@
 ﻿@inject TaxFormService service
 
-<div style="width: 100%; margin-top: 24px;">
-    @if (HasSelection)
-    {
-        @SelectedCount 
-                
-        <button @onclick="DeleteDependents">
-            <DeleteIcon />
-        </button>
-    }
-    else
-    {
-        <p>Dependents</p>
-    }
-    <div>
-        <table id="add-dependent-list">
-            <thead>
-                <tr>
-                    <td>FirstName</td>
-                    <td>Last Name</td>
-                    <td>D.O.B</td>
-                    <td>SSN</td>
-                    <td>Month In Home</td>
-                    <td>RelationshipB</td>
-                    <td>Code</td>
-                </tr>
-            </thead>
-        @foreach (var row in Dependents)
-        {
-            <tbody>
-                <tr>
-                    <td>
-        1                @row.FirstName
-                    </td>
-                        <td>
-                        @row.LastName
-                    </td>
-                    <td>
-                        @row.Birthday.ToShortDateString()`
-                    </td>
-                    <td>
-                        @row.SSN
-                    </td>
-                    <td>
-                        @row.MonthInHome.ToString()
-                    </td>
-                    <td>
-                        @row.RelationshipName
-                    </td>
-                    <td>
-                        @row.Code
-                    </td>
-                </tr>
-            </tbody>
-        }
-        </table>
-        
+   
+    <div class="DependentList">
+        <div class="dependentlist-info">Please review the following information!</div>
+        <div>
+            <table id="add-dependent-list">
+                <thead>
+                    <tr>
+                        <td>FirstName</td>
+                        <td>Last Name</td>
+                        <td>D.O.B</td>
+                        <td>SSN</td>
+                        <td>Month In Home</td>
+                        <td>RelationshipB</td>
+                        <td>Code</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var row in Dependents)
+                {
+                        <tr>
+                            <td>
+                                @row.FirstName
+                            </td>
+                            <td>
+                                @row.LastName
+                            </td>
+                            <td>
+                                @row.Birthday.ToShortDateString()
+                            </td>
+                            <td>
+                                @row.SSN
+                            </td>
+                            <td>
+                                @row.MonthInHome.ToString()
+                            </td>
+                            <td>
+                                @row.RelationshipName
+                            </td>
+                            <td>
+                                @row.Code
+                            </td>
+                        </tr>
+                }
+                 </tbody>
+            </table>
+        </div>
     </div>
-    
-    
-        <Switch Checked="@Dense" OnChange="@OnDenseChanged" />
-    
-</div>
 
 @code {
     [Parameter]

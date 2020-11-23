@@ -48,6 +48,7 @@
         <div class="logo-box">
             <img src="~/img/LOgo.png" />
         </div>
+        <partial name="_LoginPartial" />
         <div class="account-box">
             <a class="nav-link text-dark" asp-area="" asp-controller="UserAccount" asp-action="Index">
                 <img src="~/img/avatar.png" />
@@ -57,17 +58,12 @@
     </div>
     <div class="container-fluid">
         <main role="main" class="pb-3">
-
             <component type="typeof(App)" render-mode="ServerPrerendered" />
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - pnl - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+  
     
         <script src="_framework/blazor.server.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

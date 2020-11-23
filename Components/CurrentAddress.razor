@@ -1,6 +1,5 @@
 ﻿@inject TaxFormService service
-<Card Style="max-width: 100%; min-height:100%; padding:20px;" class="CurrentAddress">
-    <div Container>
+    <div class="CurrentAddressStep">
         @if (isEdit)
         {
             <div>
@@ -13,26 +12,22 @@
         }
         else
         {
-            <div>
-                <div style="padding-left:20px;">
-                    Mailing address
-                </div>
-                <div>
-                    <div style="font-size: 14px;">@UserCurrentAddress.Address1</div>
-                    <div Style="font-size: 14px;">@UserCurrentAddress.Address2</div>
-                    <div style="font-size: 14px;">@UserCurrentAddress.City</div>
-                    <div style="font-size: 14px;">@UserCurrentAddress.State</div>
-                    <div style="font-size: 14px;">@UserCurrentAddress.Zip</div>
-                </div>
-            </div>
+            
+            <div>Mailing address</div>
+            <div>@UserCurrentAddress.Address1</div>
+            <div>@UserCurrentAddress.Address2</div>
+            <div>@UserCurrentAddress.City</div>
+            <div>@UserCurrentAddress.State</div>
+            <div>@UserCurrentAddress.Zip</div>
+                            
         }
 
         <div>
-            <Button FullWidth OnClick="SaveCurrentTaformAddres">@displayCUbtnLabel()</Button>
+            <button @onclick="SaveCurrentTaformAddres">@displayCUbtnLabel()</button>
         </div>
 
     </div>
-</Card>
+
         @code {
             [Parameter]
             public int TaxFormID { get; set; }

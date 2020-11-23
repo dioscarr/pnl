@@ -11,5 +11,18 @@
         $(viewTaxPanel).on("click", function(){
             alert();            
         });
+
+        var s = $(".TaxYearsInProcess button div:nth-child(2)");
+        s.hover(function () {
+            var self = this;
+            $(this).addClass("bounce-top");
+         
+        });
+
+        s.mouseleave(function () {
+            $(this).removeClass("bounce-top");
+        });
+
+
     })
 

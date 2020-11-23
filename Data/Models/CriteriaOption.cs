@@ -13,6 +13,6 @@ namespace pnl.Data.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public string Name { get; set; }
-        public bool Enabled { get; set; }
+        public bool Enabled { get; set; }       
     }
 }
