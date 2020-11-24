@@ -21,16 +21,11 @@ namespace pnl.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly IHostingEnvironment _env;
-        public LoginModel(SignInManager<IdentityUser> signInManager, 
-            ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            IHostingEnvironment env)
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger,UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _env = env;
         }
 
         [BindProperty]
@@ -61,9 +56,7 @@ namespace pnl.Areas.Identity.Pages.Account
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
-            }
-            logoPath = _env.WebRootFileProvider.GetFileInfo("img/LOgo.png")?.PhysicalPath;
-            logoPath = _env.WebRootPath;
+            }            
             returnUrl ??= Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process

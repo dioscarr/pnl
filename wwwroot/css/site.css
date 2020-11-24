@@ -240,15 +240,14 @@ body {
 }
 
 .loginFormBox {
-    width: 315px;
-    height: 55vh;
+    width: 317px;
     background-color: white;
     align-self: end;
     display: grid;
     border-radius: 30px;
-    padding: 10px 47px;
+    padding: 13px 39px;
     position: relative;
-    top: -64px;
+    top: -67px;
     z-index: 1;
     box-shadow: -5px 6px 6px 5px #0000008c;
     justify-self: end;
@@ -2474,11 +2473,9 @@ font-size:16px !important;
 
 input{
     height: 46px !important;
-    border-radius: 10px;
-    margin-top: 10px !important;
-    padding:0px !important;
-    
-    border: none;
+    border-radius: 10px !important;
+    /* margin-top: 10px !important; */
+    padding: 0px 15px 0px 15px !important;
 }
 .ative-position {
     background-color: #379b58 !important;
