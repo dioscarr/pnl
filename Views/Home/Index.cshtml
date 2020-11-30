@@ -6,7 +6,10 @@
         <a class="nav-link text-dark">VIEW TAXES</a>
         <div id="viewtaxesbtn" class="view-taxes-arrow"><img src="~/img/ViewMyTaxes.png" /></div>
     </div>
+    <div id="TaxFormInProgress">
+        <component type="typeof(TaxFormInProgress)" render-mode="ServerPrerendered" />
+    </div>
     <div id="taxpanel">
-        <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />        
+        <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />
     </div>
 </div>

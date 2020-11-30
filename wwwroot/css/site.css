@@ -472,11 +472,11 @@ body {
 }
 
 .FilingStatus {
-    height: 100vh;
-    width: 100vw;
     display: grid;
     grid-template-columns: repeat(auto-fill, 223px);
     justify-content: center;
+    grid-column: 4;
+    grid-row: 1;
 }
 
 .TaxYears {
@@ -490,29 +490,25 @@ body {
 
 .TaxYearsInProcess {
     display: grid !important;
-    width: 61vw;
-    height: 67vh;
+    /* width: 61vw; */
+    /* height: 67vh; */
     margin: 56px auto;
     font-size: 1.2em;
-    justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    /* grid-template-columns: 1fr 1fr 1fr; */
     column-gap: 109px;
-    align-self: center;
+    align-content: center;
 }
 
     .TaxYearsInProcess button {
         background-color: #ffffff !important;
-        color: #273a86;
         border: none;
         font-siZe: 1.6em;
         font-weight: 900;
         margin-bottom: 50px;
-        width: 339px;
-        /* box-shadow: 0px 20px 20px 0px #00000042; */
-        height: 320px;
-        display: grid;
-        align-self: center;
-        /* grid-template-rows: 50px 50px; */
+        width: 325px;
+        height: 310px;
+        align-content: center;
     }
 
         .TaxYearsInProcess button:hover {
@@ -570,10 +566,11 @@ outline:none;
         }
 
 button {
-    background-color: #ffffff00 !important;
-    border-radius: 15px;
-    /* width:300px; */
-    /* height:50px; */
+    background-color: #ffffff !important;
+    border-radius: 10px;
+    width:300px;
+    height: 40px;
+    align-self: center;
 }
 .btn-Add-Dependent
 {
@@ -620,23 +617,58 @@ button {
 
 .filetaxes {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
     color: #fcff47;
     font-weight: 900 !important;
-    /* height: 232px; */
     font-size: 16px;
-    display: grid;
     justify-content: center;
     justify-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit,367px);
+    grid-template-rows: repeat(auto-fit,361px);
+    height: 81vh;
+    max-height: 93vh;
+    overflow-y: auto;
+    column-gap: 4vw;
+    overflow-x: hidden;
+    padding: 56px 3vw 0px 3vw;
+}
+
+.filing-status{
+    display:grid;
+    justify-content:center;
+    align-self: center;
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.filing-status select {
+   display: grid;
+   width:250px;
+   border-radius:10px;
+   height:40px;
+   text-align:center !important;
+   padding:5px 10px;
+}
+.custom-select-taxt-year{
+    justify-self:center;
+    align-self: center;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.custom-select-taxt-year select{
+    display: grid;
+    width:250px;
+    border-radius:10px;
+    height:40px;
+    text-align:center !important;
+    padding:5px 10px;
 }
 
 #tax-form-pages-inline {
     display:grid;
     grid-template-rows: 10vh 9vh 63vh;
-    row-gap: 27px !important;
     width: 100vw;
+    padding-top: 0px;
 }
 .stepin-ReviewUserInformation {
     grid-row: 2;
@@ -672,14 +704,13 @@ button {
     color:#fbfe47;
 }
 .stepin-Criteria {
-    grid-row: 2;
     display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(231px,1fr));
+    grid-row: 2;
     justify-content: center;
-    color: black;
+    color: white;
     left: 0px;
     background-color: #28356b;
-    grid-template-columns: repeat( auto-fit, minmax(206px, 1fr) );
-    grid-template-rows: repeat( auto-fill, minmax(62px, 65px))  192px;
     padding: 51px 3vw;
     margin-right: -3vw;
     width: 84vw !important;
@@ -696,6 +727,7 @@ button {
     border-radius:15px;
     justify-content: start;
     align-content:center;
+    grid-template-columns: 1fr 9fr;
 }
 .stepin-Criteria > div >div:nth-child(2){
     display: grid;
@@ -950,8 +982,8 @@ p {
 }
 
 .Button-Label {
-    color: white !important;
-    background-color: #1f2e6d;
+    color: black !important;
+    background-color: #ffffff;
     height: 50px;
     border-radius: 10px;
 }
@@ -1015,8 +1047,8 @@ p {
     background-color: #ffffff;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    padding: 50px;
+    grid-template-rows: 73px 1fr;
+    padding: 0 50px;
     height: 89vh;
 }
 
@@ -1066,11 +1098,11 @@ p {
     display: grid;
     align-Items: center;
     width: 90vw;
-    grid-template-columns: 8fr 1fr 1fr;
     grid-template-rows: 108px;
     column-gap: 10px;
     padding-left: 5vw;
     padding-right: 5vw;
+    grid-template-columns: 1fr 7fr 1fr 1fr;
 }
 
 .greetingsHello {
@@ -1102,7 +1134,7 @@ p {
 .file-my-taxes a {
     color: blue !important;
     font-weight: 600;
-    font-size: 1.6em
+    font-size: 1.0em;
 }
 
     .file-my-taxes a:hover {
@@ -1112,7 +1144,7 @@ p {
 .file-my-taxes {
     margin: 1vw auto;
     width: 70vw;
-    height: 100px;
+    height: 43px;
     background-color: white;
     display: grid;
     grid-template-columns: 1fr;
@@ -1131,7 +1163,7 @@ p {
 .view-my-taxes a {
     color: blue !important;
     font-weight: 600;
-    font-size: 1.6em;
+    font-size: 1.0em;
     justify-self: end;
 }
 
@@ -1145,7 +1177,7 @@ p {
     grid-template-columns: 30fr 24fr !important;
     margin: 1vw auto;
     width: 70vw;
-    height: 100px;
+    height: 43px;
     background-color: white;
     align-items: center;
     justify-items: center;
@@ -1578,6 +1610,10 @@ font-size:16px !important;
 
 .navbar-nav button {
     color: #98e5e3 !important;
+    background-color: transparent !important;
+    justify-self: start;
+    width: 178px;
+    display: flex;
 }
 
 
@@ -2725,18 +2761,254 @@ color:black;
     background-color:orange !important;
 
 }
+.new-tax-year
+{
+    height:80vh;
+    position: relative;
+    width: 57vw;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content:center;
+    grid-template-rows: 125px auto;
+}
+
+
+#us-map {
+    /* display: grid; */
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100%;
+    justify-self: center;
+    align-self: center;
+}
+}
+
+path:hover, circle:hover {
+    stroke: #002868 !important;
+    stroke-width: 2px;
+    stroke-linejoin: round;
+    fill: #002868 !important;
+    cursor: pointer;
+}
+
+#path67 {
+    fill: none !important;
+    stroke: #A9A9A9 !important;
+    cursor: default;
+}
+
+#info-box {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: #ffffff;
+    border: 2px solid #BF0A30;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: arial;
+}
+
+.selectablemap
+{
+    
+grid-column: 1/5;
+    
+grid-row: 2;
+    
+justify-self:center;
+}
+
+.states-dd {
+    grid-row: 1;
+    display: grid;
+    grid-column: 2;
+    align-self: center;
+}
+.states-dd select {
+    display:grid;
+    justify-self:center;
+    height: 40px;
+    padding-left: 15px;
+    border-radius: 10px;
+}
+
+.selectablemap path {
+    fill: rgb(255 255 255) !important;
+}
+
+.selectablemap path:hover {
+    background-color:forestgreen !important;
+    fill: #d6d6d6 !important;
+}
+
+
+.FileNew {
+     
+/* font-size: 0.9em; */
+     
+/* color: #273a86 !important; */
+     
+/* font-weight: 100; */
+     
+top: 95px;
+     
+justify-self: center;
+     
+display: grid;
+     
+/* width: 96%; */
+     
+/* background-color: #ffffff !important; */
+     
+/* border: none; */
+     
+/* font-siZe: 1.6em; */
+     
+/* font-weight: 900; */
+     
+/* margin-bottom: 50px; */
+     
+/* width: 325px; */
+     
+/* height: 310px; */
+     
+/* align-self: center; */
+}
+button.FileNew:hover {
+    background-color:white;
+    color:black !important;
+}
 
 
 
+.returntodashboard {
+    position: relative;
+    justify-content: center;
+    display: grid;
+    }
+
+.returntodashboard a{
+    color:black !important;
+    text-decoration:none;
+    font-size:1.4em
+    height:40px;
+    background-color:white !important;
+    border-radius:10px;
+}
 
 
+.returntodashboard a:hover{
+    color:#bec9ff !important;
+    text-decoration:none;
+}
+#TaxFormInProgress{
+    width: 66vw;
+    display:grid !important;
+    justify-self: center;
+    margin-bottom: 8px;
+    justify-items: center;
+    border-radius: 10px;
+    padding: 0 2vw;
+    box-shadow: 0px 0px 6px 4px #00000017;
+}
+.view-taxes-btn-list {
+    color: #02308a;
+    font-weight: 600;
+    border-radius: 0px;
+    border: none;
+    border-top: 0.5px solid #0000002e;
+    width: 100%;
+    border-bottom: 0.5px solid #0000002e;
+}
+
+.view-taxes-btn-list:hover {
+    background-color:#9da5c7 !important;
+
+}
+.view-taxes-btn-list:focus {
+    outline:none;
+}
 
 
+.tax-archived {
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 50px;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding: 0 2vw;
+}
+
+.taxpanel-DependentsClaimed
+{
+    display:grid;
+    grid-column:2;
+}
+
+.tax-archived > div:nth-child(1) {grid-column:1/3;}
+
+.tax-archived-years {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+    justify-items:center;
+    width: 70vw;
+}
+.archived-detail
+{
+    color:#273A86;
+    width:250px;
+    width:250px;
+    text-align:center;
+    padding:5px 10px;
+    cursor:pointer;
+}
+.archived-detail:hover
+{
+    background-color:#273A86;
+    color:white;
+ 
+}
 
 
+.taxPanel
+{
+    width: 70vw;
+    display: grid;
+    grid-template-rows: 50px 35px auto;
+    margin: 0 auto;
+    border-radius: 10px;
+    height: 100%;
+    box-shadow: 0px 0px 6px 4px #00000017;
+}
+.archived-title {
+    color: #707070;
+    font-size:1.5em;
+    font-weight:600;
+    justify-self: center;
+}
 
+.taxpanel-criteria {
 
+/* max-height: 155px; */
 
+/* overflow-y: scroll; */
 
+grid-column: 1;
 
+width: 100%;
 
+display: grid;
+
+grid-row: 2;
+
+grid-template-columns: 1fr 1fr 1fr;
+
+row-gap: 15px;
+}
+.DependentsClaimed {
+grid-column:2;
+}
+}

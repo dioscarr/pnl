@@ -1,89 +1,120 @@
 ﻿@inject pnl.Models.TaxFormService tService
 
-<div id="taxPanel">
-    @foreach (TaxForm item in TaxYearsInProcess)
+<div class="taxPanel">
+    <div class="archived-title">Archived</div>
+    <div class="tax-archived-years">
+    @foreach (TaxForm item in TaxArchived)
     {
-        <div class="tax-archived-years">
-            <div class="archived-detail">@item.TaxYear</div>
-        </div>
+        <div class="archived-detail" @onclick="()=>GetTaxArchivedTaxInfo(item.ID)">@item.TaxYear</div>
     }
-
-    @foreach (TaxForm item in TaxYearsInProcess)
-    {
-        <div class="tax-archived-detail @(DateTime.Now.Year == item.TaxYear)?"activeArchived":"")>
-            <div class="detail-taxYear">@item.TaxYear</div>
-            <div class="detail-taxYear-filing">@item.Filingstatus</div>            
-            <div class="detail-taxYear-date-updated">Dependent Claimed @item.DependentsClaimed.Count()</div>
-            <div class="detail-taxYear-date-updated-val">@DateTime.Now.ToShortDateString()</div>
-        </div>
-    }
-
     </div>
-
+    <div class="tax-archived">       
+        <div>
+            @if (SelectedTaxForm.taxtForm.isFiled != false)
+            {
+                @(SelectedTaxForm.taxtForm.isFiled == true ? "The information has been submitted." : "")
+            }
+            </div>
+        <div class="taxpanel-DependentsClaimed">
+            @if (SelectedTaxForm.taxtForm.DependentsClaimed != null) 
+            { 
+                @foreach (var item in SelectedTaxForm.taxtForm.DependentsClaimed)
+                {
+                    <div>@item.FirstName, @item.LastName</div>
+                    <div>@item.Birthday, <span>@item.SSN</span></div>
+                    <div>Time at Home @item.RelationshipName</div>
+                    <div>Relationship @item.RelationshipName</div>
+                    <div>Code @item.Code</div>
+                }
+            }
+        </div>
+        <div class="taxpanel-criteria">
+            @if (SelectedTaxForm.taxtForm.TaxFormCriterias != null)
+            {
+                @foreach (var item in SelectedTaxForm.taxtForm.TaxFormCriterias)
+                {
+                    <div>@item.Name</div>
+                }
+            }
+            </div>
+        <div>
+            <a class="nav-link text-dark" href="/Report/GetPdf?TaxFormId=@SelectedTaxForm.taxtForm.ID" target="_blank">Download Summary</a>
+        </div>
+    </div>
+</div>
 @code{
-public EventCallback<int> OnNewTaxYearEvent { get; set; }
-private int TaxYear { get; set; } = 0;
-private List<int> TaxYears { get; set; }
-private List<TaxForm> TaxYearsInProcess { get; set; }
-private int FilingStatus { get; set; } = -1;
-private int TaxFormId { set; get; } = 0;
-private bool isFilingStatusVisiable { get; set; } = false;
-private bool isSubmitVisiable { get; set; } = false;
-public List<FilingStatus> filingStatuses { get; set; }
+    public EventCallback<int> OnNewTaxYearEvent { get; set; }
+    private int TaxYear { get; set; } = 0;
+    private List<int> TaxYears { get; set; }
+    private List<TaxForm> TaxYearsInProcess { get; set; }
+    private List<TaxForm> TaxArchived { get; set; }
+    private ReportData SelectedTaxForm { get; set; }
+    private List<TaxFormCriteria> Criterias { get; set; }
+    private int FilingStatus { get; set; } = -1;
+    private int TaxFormId { set; get; } = 0;
+    private bool isFilingStatusVisiable { get; set; } = false;
+    private bool isSubmitVisiable { get; set; } = false;
+    public List<FilingStatus> filingStatuses { get; set; }
+    public string Detail { set; get; } = "this is a test content";
 
 
-protected override void OnInitialized()
-{
-    TaxYears = new List<int>();
-    (TaxYears, TaxYearsInProcess) = tService.GetTaxYears();
-    filingStatuses = new List<FilingStatus>();
-    filingStatuses = tService.GetfilingStatuses();
-    base.OnInitialized();
-}
+    protected override void OnInitialized()
+    {
+        TaxYears = new List<int>();
+        (TaxYears, TaxYearsInProcess, TaxArchived) = tService.GetTaxYearsAndArchived();
+        filingStatuses = new List<FilingStatus>();
+        filingStatuses = tService.GetfilingStatuses();
+        Criterias = new List<TaxFormCriteria>();
+        SelectedTaxForm = new ReportData();
+        base.OnInitialized();
+    }
 
-private void HandleTaxYearChange(ChangeEventArgs args)
-{
-    if (int.TryParse(args.Value?.ToString(), out int taxYear))
+    private void HandleTaxYearChange(ChangeEventArgs args)
     {
-        TaxYear = taxYear;
+        if (int.TryParse(args.Value?.ToString(), out int taxYear))
+        {
+            TaxYear = taxYear;
+        }
     }
-}
-private void HandleFilingStatusChange(ChangeEventArgs args)
-{
+    private void HandleFilingStatusChange(ChangeEventArgs args)
+    {
 
-    if (int.TryParse(args.Value?.ToString(), out int filingstatus))
-    {
-        FilingStatus = filingstatus;
+        if (int.TryParse(args.Value?.ToString(), out int filingstatus))
+        {
+            FilingStatus = filingstatus;
+        }
+        if (FilingStatus > 0)
+        {
+            isSubmitVisiable = true;
+        }
+        else
+        {
+            isSubmitVisiable = false;
+        }
     }
-    if (FilingStatus > 0)
+    private async Task CheckIfTaxExist(int taxyear)
     {
-        isSubmitVisiable = true;
+        TaxYear = taxyear;
+        isFilingStatusVisiable = true;
+        TaxForm t = await tService.CheckIfTaxExist(TaxYear);
+        if (t != null)
+        {
+            TaxFormId = t.ID;
+        }
+        StateHasChanged();
     }
-    else
+    private async Task CreateNewTaxFormAsync()
     {
-        isSubmitVisiable = false;
-    }
-}
-private async Task CheckIfTaxExist(int taxyear)
-{
-    TaxYear = taxyear;
-    isFilingStatusVisiable = true;
-    TaxForm t = await tService.CheckIfTaxExist(TaxYear);
-    if (t != null)
-    {
+        TaxForm t = await tService.CreateNewTaxFormAsync(TaxYear, FilingStatus);
         TaxFormId = t.ID;
+        TaxYears = new List<int>();
+        TaxYears.Add(TaxYear);
+        await OnNewTaxYearEvent.InvokeAsync(t.ID);
+        StateHasChanged();
     }
-    StateHasChanged();
-}
+    private void GetTaxArchivedTaxInfo(int id)
+    {
 
-
-private async Task CreateNewTaxFormAsync()
-{
-    TaxForm t = await tService.CreateNewTaxFormAsync(TaxYear, FilingStatus);
-    TaxFormId = t.ID;
-    TaxYears = new List<int>();
-    TaxYears.Add(TaxYear);
-    await OnNewTaxYearEvent.InvokeAsync(t.ID);
-    StateHasChanged();
-}
+        SelectedTaxForm = tService.GetReport(id);
+    }
 }

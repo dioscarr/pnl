@@ -48,12 +48,15 @@
         <div class="logo-box">
             <img src="~/img/LOgo.png" />
         </div>
+        <div class="returntodashboard">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Dashboard</a>
+
+        </div>
         <partial name="_LoginPartial" />
         <div class="account-box">
             <a class="nav-link text-dark" asp-area="" asp-controller="UserAccount" asp-action="Index">
                 <img src="~/img/avatar.png" />
             </a>
-
         </div>
     </div>
     <div class="container-fluid">
@@ -64,7 +67,7 @@
     </div>
 
   
-    
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
         <script src="_framework/blazor.server.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

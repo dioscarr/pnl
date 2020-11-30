@@ -2,14 +2,12 @@
 <div>
     @foreach (var item in Source)
     {
-        <Switch Checked="@item.isToggled"
-                OnChange="()=> {
+        <input checked="@item.isToggled"
+                @onchange="()=> {
                             item.HandleToggleChanged();
                             StateHasChanged();
                         }"
-                Value="CheckedB"
-                Color="@item.color"
-                InputProps="@(new Dictionary<string, object>{{ "aria-label", "secondary switch" }})" />
+                Value="CheckedB"/>
     }
 </div>
 @code

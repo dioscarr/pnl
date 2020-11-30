@@ -124,6 +124,10 @@
             "Skclusive.Material.Script": {
               "target": "Package",
               "version": "[3.0.2-preview1, )"
+            },
+            "iTextSharp.LGPLv2.Core": {
+              "target": "Package",
+              "version": "[1.7.0, )"
             }
           },
           "imports": [

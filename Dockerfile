@@ -14,7 +14,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
     #apt-get install -y cron && \
     #rm -rf /var/cache/apk/*
 
-WORKDIR /app
+WORKDIR /
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
@@ -22,18 +22,18 @@ COPY ["pnl.csproj", "./"]
 RUN dotnet restore "pnl.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "pnl.csproj" -c Release -o /app/build
+RUN dotnet build "pnl.csproj" -c Debug -o /build
 
 FROM build AS publish	
-RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
+RUN dotnet publish "pnl.csproj" -c Release -o /publish
 
 FROM microsoft/mssql-tools:latest
 
 WORKDIR /temp//path
 
 FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+WORKDIR /
+COPY --from=publish /publish .
 
 #EXPOSE 5000/tcp
 

@@ -70,32 +70,6 @@
         }
     }
 
-
-
-
-
-
-    private string OrderBy { set; get; } = "Calories";
-
-    private Sort Direction { set; get; } = Sort.Ascending;
-
-    private string SortMessage => "sort " + (Direction == Sort.Descending ? "descending" : "ascending");
-
-    private RenderFragment CreateSortableColumn(string name, string label)
-    {
-        return@<TableSortLabel Active="@(OrderBy == name)"
-                               Direction="@Direction"
-                               OnClick="@CreateOnSortClick(name)">
-        @label
-        @if (OrderBy == name)
-        {
-            <span class="demo-sort-visually-hidden">
-                @SortMessage
-            </span>
-        }
-        </TableSortLabel>;
-    }
-
     private EventCallback<EventArgs> CreateOnSortClick(string name)
     {
         return EventCallback.Factory.Create<System.EventArgs>(this, (_) =>
@@ -104,58 +78,10 @@
         });
     }
 
-    private IEnumerable<Dependent> GetSortedRows()
-    {
-        if (Direction == Sort.Ascending)
-        {
-            if (OrderBy == "FirstName")
-                return Dependents.OrderBy(row => row.FirstName);
-            else if (OrderBy == "LastName")
-                return Dependents.OrderBy(row => row.LastName);
-            else if (OrderBy == "Birthday")
-                return Dependents.OrderBy(row => row.Birthday);
-            else if (OrderBy == "SSN")
-                return Dependents.OrderBy(row => row.SSN);
-            else if (OrderBy == "MonthInHome")
-                return Dependents.OrderBy(row => row.MonthInHome);
-            else if (OrderBy == "RelationshipName")
-                return Dependents.OrderBy(row => row.RelationshipName);
-            else if (OrderBy == "Code")
-                return Dependents.OrderBy(row => row.Code);
-        }
-        else
-        {
-            if (OrderBy == "FirstName")
-                return Dependents.OrderByDescending(row => row.FirstName);
-            else if (OrderBy == "LastName")
-                return Dependents.OrderByDescending(row => row.LastName);
-            else if (OrderBy == "Birthday")
-                return Dependents.OrderByDescending(row => row.Birthday);
-            else if (OrderBy == "SSN")
-                return Dependents.OrderByDescending(row => row.SSN);
-            else if (OrderBy == "MonthInHome")
-                return Dependents.OrderByDescending(row => row.MonthInHome);
-            else if (OrderBy == "RelationshipName")
-                return Dependents.OrderByDescending(row => row.RelationshipName);
-            else if (OrderBy == "Code")
-                return Dependents.OrderByDescending(row => row.Code);
-
-        }
-        return Dependents;
-    }
 
     private void HandleSortClick(string name)
     {
-        if (OrderBy == name)
-        {
-            Direction = Direction == Sort.Ascending ? Sort.Descending : Sort.Ascending;
-        }
-        else
-        {
-            Direction = Sort.Ascending;
-        }
-
-        OrderBy = name;
+        
 
         StateHasChanged();
     }
@@ -166,7 +92,7 @@
 
     private bool Dense { set; get; } = false;
 
-    private Size Size => Dense ? Size.Small : Size.Medium;
+ 
 
     private bool AnySelected => HasSelection && SelectedCount < Dependents.Count;
 
