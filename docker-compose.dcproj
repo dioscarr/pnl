@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>678fb760-a9e3-4112-a8f1-81f24a78e751</ProjectGuid>
+    <ProjectGuid>0b34e515-ff44-417b-bf85-516adfaa23e3</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>pnl</DockerServiceName>

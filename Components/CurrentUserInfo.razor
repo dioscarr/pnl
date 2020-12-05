@@ -1,0 +1,102 @@
+﻿@inject TaxFormService service
+
+
+<div style="max-width: 100%; min-height: 100%; padding:20px;" class="CurrentUserInfo">
+
+    @if (!isUserInfo)
+    {
+       
+        <div style="padding-left:20px;">
+            <div class="CurrentUserInfoBox">
+                @if (ShowUpdateUserInfoMesage)
+                {
+                    <div>
+                        <div class="alert alert-info">
+                            Do you want to update your profile information with the recent update?
+                            <button @onclick="()=> { UpdateCurrentUserMainInfo(); }">Yes</button>
+                            <button @onclick="(() => { ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage; })">No</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="CurrentUserInformation ">
+                <div>@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>
+                <div>@CurrentUser?.Occupation</div>
+                <div>@CurrentUser?.SSN</div>
+                <div>@CurrentUser?.Email</div>
+                <div>@CurrentUser?.Phone</div>
+                <div>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <CurrentUserInfoForm OnSave="OnSave" CurrentUser="CurrentUser" TaxFormID="TaxFormID" @ref="cuif" />
+    }
+    <div>
+        <button @onclick="Save">@displayCUbtnLabel()</button>
+    </div>
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public int TaxFormID { get; set; }
+    public Person CurrentUser { get; set; }
+    private bool isUserInfo { get; set; } = false;
+    CurrentUserInfoForm cuif;
+    public bool ShowUpdateUserInfoMesage { set; get; } = false;
+
+
+
+    protected override Task OnInitializedAsync()
+    {
+        GetUserInfo();
+        return base.OnInitializedAsync();
+    }
+
+    private void GetUserInfo()
+    {
+        CurrentUser = service.GetCurrentUser(TaxFormID);
+    }
+
+    public string displayCUbtnLabel()
+    {
+        if (isUserInfo)
+        {
+
+            return "Save";
+        }
+        else
+        {
+            return "Edit";
+        }
+
+    }
+    public void OnSave(Person model)
+    {
+        CurrentUser = service.SaveTaxFormCurrentUserInfo(model, TaxFormID);
+
+    }
+    public void UpdateCurrentUserMainInfo()
+    {
+
+        service.UpdateCurrentUser(CurrentUser);
+        ShowUpdateUserInfoMesage = !ShowUpdateUserInfoMesage;
+    }
+    public void Save()
+    {
+        isUserInfo = !isUserInfo;
+        ShowUpdateUserInfoMesage = false;
+        if (!isUserInfo)
+        {
+            cuif.Save();
+            ShowUpdateUserInfoMesage = true;
+
+            StateHasChanged();
+        }
+    }
+}

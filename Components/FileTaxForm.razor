@@ -1,0 +1,17 @@
+﻿@inject TaxFormService service
+<div style="padding: 20px;flex-grow: 1; min-height:100px;">  
+    <button @onclick="SaveAndReview" style="background-color:white; width:100%;">Save and Review</button>
+</div> 
+@code {
+
+    [Parameter]
+    public int TaxFormId { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+    private void SaveAndReview()
+    {
+        service.SaveAndReview(TaxFormId);
+    }
+}

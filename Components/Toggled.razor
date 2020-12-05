@@ -1,0 +1,34 @@
+﻿@inject TaxFormService service
+
+@foreach (var item in Source)
+{
+    <div>
+        <input type="checkbox" checked="@item.isToggled" @onchange="() => { item.HandleToggleChanged(); StateHasChanged();}" Value="@item.name" />
+        <label>@item.name</label>
+    </div>
+}
+<button class="btn btn-primary" @onclick="@SaveSelectedCriterias">Save selected</button>
+@code {
+    [Parameter]
+    public int TaxformId { get; set; } = 0;
+    public string Title { set; get; }
+    public List<ToggleMe> Source { set; get; }
+    protected override void OnInitialized()
+    {
+        Source = new List<ToggleMe>();
+        Source = service.GetCriteriaOptions();
+        if (TaxformId > 0)
+        {
+            var taxformcriteria = service.GetTaxFormCriteria(TaxformId);
+            foreach (var item in taxformcriteria)
+            {
+                Source.Where(c => c.name == item.Name).First().isToggled = true;
+            }
+        }
+        base.OnInitialized();
+    }
+    public async Task SaveSelectedCriterias()
+    {
+        Source = await service.SaveSelectedCriteriasAsync(Source, TaxformId);
+    }
+}

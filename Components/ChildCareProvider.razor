@@ -1,0 +1,71 @@
+﻿@inject TaxFormService service
+    <div class="dependentlist-info">
+        Please complete the following form if applicable.
+    </div>
+    @if(isSuccessfull)
+    {
+        <div class="alrt alert-success">
+            Saved
+        </div>
+    }    
+    <EditForm Model="CareProviderModel" OnValidSubmit="SaveCareProvider">
+        <DataAnnotationsValidator />
+
+        <div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.ProviderName" placeholder="ProviderName" style="width:100%;" />
+            </div>
+            <div>
+                <InputNumber @bind-Value="CareProviderModel.AmountPaid" placeholder="AmountPaid" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.SSN_EIN" placeholder="SSN_EIN" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Address1" placeholder="Address1" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Address2" placeholder="Address2" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.City" placeholder="City" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.State" placeholder="State" style="width:100%;" />
+            </div>
+            <div>
+                <InputText @bind-Value="CareProviderModel.Zip" placeholder="Zip" style="width:100%;" />
+            </div>
+            <div>
+                <button type="submit" style="margin: 8px; width: 100%;">
+                   Save Child Care Provider
+                </button>
+            </div>
+        </div>
+    </EditForm>
+
+
+    @code {
+
+
+        [Parameter]
+        public int TaxFormID { get; set; }
+
+        public bool isSuccessfull { get; set; } = false;
+
+        private DependentCareProviders CareProviderModel { get; set; } = new DependentCareProviders();
+        protected override void OnInitialized()
+        {
+            CareProviderModel = service.GetCareProviderIfExist(TaxFormID);
+            base.OnInitialized();
+        }
+
+        public void SaveCareProvider()
+        {
+            CareProviderModel.TaxFormID = TaxFormID;
+            CareProviderModel = service.SaveCareProvider(CareProviderModel);
+            if (CareProviderModel.id > 0)
+                isSuccessfull = true;
+            StateHasChanged();
+        }
+    }

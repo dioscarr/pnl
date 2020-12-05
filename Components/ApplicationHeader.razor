@@ -1,0 +1,24 @@
+﻿@inject TaxFormService service
+<div Class="ApplHeader">
+        <span>@TaxForm.TaxYear</span>
+        <span>@TaxForm.FilingStatus</span>
+</div>
+
+@code {
+
+    [Parameter]
+    public int TaxFormID { set; get; }
+
+    private TaxForm TaxForm { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TaxForm = new TaxForm();
+        GetTaxForm();
+        base.OnInitialized();
+    }
+    private void GetTaxForm()
+    {
+        TaxForm = service.GetTaxForm(TaxFormID);
+    }
+}

@@ -1,0 +1,72 @@
+﻿@inject TaxFormService service
+    <div class="CurrentAddressStep">
+        @if (isEdit)
+        {
+            <div>
+                <InputText name="Address.Address1" placeholder="Address1" @bind-Value="@UserCurrentAddress.Address1" />
+                <InputText name="Address.Address2" placeholder="Address2" @bind-Value="@UserCurrentAddress.Address2" />
+                <InputText name="Address.City" placeholder="City" @bind-Value="@UserCurrentAddress.City" />
+                <InputText name="Address.State" placeholder="State" @bind-Value="@UserCurrentAddress.State" />
+                <InputText name="Address.Zip" placeholder="Zip" @bind-Value="@UserCurrentAddress.Zip" />
+            </div>
+        }
+        else
+        {
+            
+            <div>Mailing address</div>
+            <div>@UserCurrentAddress.Address1</div>
+            <div>@UserCurrentAddress.Address2</div>
+            <div>@UserCurrentAddress.City</div>
+            <div>@UserCurrentAddress.State</div>
+            <div>@UserCurrentAddress.Zip</div>
+                            
+        }
+
+        <div>
+            <button @onclick="SaveCurrentTaformAddres">@displayCUbtnLabel()</button>
+        </div>
+
+    </div>
+
+        @code {
+            [Parameter]
+            public int TaxFormID { get; set; }
+            [Parameter]
+            public bool isEdit { get; set; } = false;
+
+            public Address UserCurrentAddress { get; set; }
+
+            protected override Task OnInitializedAsync()
+            {
+                GetCurrentUserAddress();
+                return base.OnInitializedAsync();
+            }
+            public void SaveCurrentTaformAddres()
+            {
+                isEdit = !isEdit;
+                
+            }
+
+            private void GetCurrentUserAddress()
+            {
+                UserCurrentAddress = service.GetCurrentUserAddress();
+            }
+
+            public string displayCUbtnLabel()
+            {
+                if (isEdit)
+                {
+
+                    return "Save";
+                }
+                else
+                {
+                    return "Edit";
+                }
+
+            }
+
+
+
+
+        }

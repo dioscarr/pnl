@@ -1,13 +1,26 @@
-version: '3.4'
+version: "3.7"
 
 services:
   pnl:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:5000;
     ports:
-      - "80"
-      - "443"
+      - "5000:5000"
     volumes:
+      # - ~/.aspnet/https:/https:ro
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  https-portal:
+    image: steveltn/https-portal:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - pnl
+    restart: always
+    environment:
+      WEBSOCKET: "true"
+      DOMAINS: "devpnl.app -> http://pnl:5000"
+      STAGE: "production"

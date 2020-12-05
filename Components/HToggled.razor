@@ -1,0 +1,19 @@
+﻿
+<div>
+    @foreach (var item in Source)
+    {
+        <input checked="@item.isToggled"
+                @onchange="()=> {
+                            item.HandleToggleChanged();
+                            StateHasChanged();
+                        }"
+                Value="CheckedB"/>
+    }
+</div>
+@code
+{
+    [Parameter]
+    public string Title { set; get; }
+    [Parameter]
+    public List<ToggleMe> Source { set; get; }
+}

@@ -1,9 +1,20 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+
+#ENV DB_SERVER="mssql" \
+    #DB_USER="SA" \
+    #DB_PASSWORD="" \
+    #DB_NAMES="" \
+    #CRON_SCHEDULE="0 1 * * sun" \
+    #BACKUP_CLEANUP=false \
+    #BACKUP_AGE=7
+#
+#RUN apt-get update && \
+    #apt-get install -y cron && \
+    #rm -rf /var/cache/apk/*
+
+WORKDIR /
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
@@ -11,12 +22,30 @@ COPY ["pnl.csproj", "./"]
 RUN dotnet restore "pnl.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "pnl.csproj" -c Release -o /app/build
+RUN dotnet build "pnl.csproj" -c Debug -o /build
 
-FROM build AS publish
-RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
+FROM build AS publish	
+RUN dotnet publish "pnl.csproj" -c Release -o /publish
+
+FROM microsoft/mssql-tools:latest
+
+WORKDIR /temp//path
 
 FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+WORKDIR /
+COPY --from=publish /publish .
+
+#EXPOSE 5000/tcp
+
+EXPOSE 5000
+
+#ENV ASPNETCORE_URLS http://*:5000
+
+#ENV ASPNETCORE_URLS  https://+:5001;http://+:5000
+#ENV ASPNETCORE_HTTPS_PORT 5001
+#ENV ASPNETCORE_ENVIRONMENT Development
+
+
 ENTRYPOINT ["dotnet", "pnl.dll"]
+# CMD ASPNETCORE_URLS=http://*:$PORT 
+# CMD CMD dotnet pnl.dll    

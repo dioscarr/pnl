@@ -1,0 +1,17 @@
+﻿
+
+@inject TaxFormService service
+@foreach (var item in TaxYearsInProcess)
+{  
+    <button class="view-taxes-btn-list">@item.TaxYear</button>
+}
+@code {
+    private List<TaxForm> TaxYearsInProcess { get; set; }
+    private List<TaxForm> TaxArchived { get; set; }
+    private List<int> TaxYears { get; set; }
+    protected override void OnInitialized()
+    {
+        (TaxYears, TaxYearsInProcess, TaxArchived) = service.GetTaxYearsAndArchived();
+        base.OnInitialized();
+    }
+}

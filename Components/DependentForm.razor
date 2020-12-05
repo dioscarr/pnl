@@ -1,0 +1,98 @@
+﻿@inject TaxFormService service
+
+<div class="add-dependent-form">
+    <div class="dependentlist-info">
+        If any dependent please complete the following form.
+    </div>
+    <EditForm Model="dependent" OnValidSubmit="AddDependent">
+        <DataAnnotationsValidator />
+    
+    
+                <InputText @bind-Value="dependent.FirstName" placeholder="first name" style="width:100%;" />
+                <ValidationMessage style="color:red;" For="()=>dependent.FirstName" />
+    
+    
+                <InputText @bind-Value="dependent.LastName" placeholder="first name" style="width:100%;" />
+                <ValidationMessage style="color:red;" For="()=>dependent.LastName" />
+    
+    
+                <InputDate @bind-Value="dependent.Birthday" placeholder="birthday" style="width:100%;"/>
+                <ValidationMessage style="color:red;" For="()=>dependent.Birthday" />
+    
+    
+                <InputText @bind-Value="dependent.SSN" placeholder="SSN" style="width:100%;"  />
+                <ValidationMessage style="color:red;" For="()=>dependent.SSN" />
+    
+    
+                <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" style="width:100%;" />
+                <ValidationMessage style="color:red;" For="()=>dependent.MonthInHome" />
+    
+    
+                <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" style="width:100%;" />
+                <ValidationMessage style="color:red;" For="()=>dependent.RelationshipName" />
+    
+    
+                <InputText @bind-Value="dependent.Code" placeholder="Code" style="width:100%;" />
+                <ValidationMessage style="color:red;" For="()=>dependent.Code" />
+    
+    
+                <button type="submit" class="btn-Add-Dependent">
+                   Add New Dependent
+                </button>
+    
+    
+    </EditForm>
+</div>
+
+@code {
+        [Parameter]
+        public int TaxFormID { get; set; }
+        [Parameter]
+        public EventCallback<bool> OnReloadDependetEvent { get; set; }
+
+        public Dependent dependent { get; set; }
+
+        private string FirstName { get; set; }
+        private string LastName { get; set; }
+        private DateTime Birthday { get; set; }
+        private string SSN { get; set; }
+        private int MonthInHome { get; set; }
+        private string RelationshipName { get; set; }
+        private string Code { get; set; }
+        private void HandleFirstNameChange(ChangeEventArgs args) => FirstName = args.Value?.ToString();
+        private void HandleLastNameChange(ChangeEventArgs args) => LastName = args.Value?.ToString();
+        private void HandleBirthdayChange(ChangeEventArgs args)
+        {
+            if (DateTime.TryParse(args.Value?.ToString(), out DateTime birthday))
+            {
+                Birthday = birthday;
+            }
+        }
+        private void HandleSSNChange(ChangeEventArgs args) => SSN = args.Value?.ToString();
+        private void HandleMonthInHomeChange(ChangeEventArgs args)
+        {
+            if (int.TryParse(args.Value?.ToString(), out int monthInHome))
+            {
+                MonthInHome = monthInHome;
+            }
+        }
+        private void HandleRelationshipNameChange(ChangeEventArgs args) => RelationshipName = args.Value?.ToString();
+        private void HandleCodeChange(ChangeEventArgs args) => Code = args.Value?.ToString();
+
+        protected override void OnInitialized()
+        {
+            dependent = new Dependent();
+            base.OnInitialized();
+        }
+
+        private async Task AddDependent()
+        {
+            dependent.TaxFormID = TaxFormID;
+            var d = await service.AddDependentAsync(dependent);
+            if (dependent.id > 0)
+            {
+                await OnReloadDependetEvent.InvokeAsync(true);
+            }
+            dependent = new Dependent();
+        }
+}

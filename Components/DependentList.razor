@@ -1,0 +1,132 @@
+﻿@inject TaxFormService service
+
+   
+    <div class="DependentList">
+        <div class="dependentlist-info">Please review the following information!</div>
+        <div>
+            <table id="add-dependent-list">
+                <thead>
+                    <tr>
+                        <td>FirstName</td>
+                        <td>Last Name</td>
+                        <td>D.O.B</td>
+                        <td>SSN</td>
+                        <td>Month In Home</td>
+                        <td>RelationshipB</td>
+                        <td>Code</td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var row in Dependents)
+                {
+                        <tr>
+                            <td>
+                                @row.FirstName
+                            </td>
+                            <td>
+                                @row.LastName
+                            </td>
+                            <td>
+                                @row.Birthday.ToShortDateString()
+                            </td>
+                            <td>
+                                @row.SSN
+                            </td>
+                            <td>
+                                @row.MonthInHome.ToString()
+                            </td>
+                            <td>
+                                @row.RelationshipName
+                            </td>
+                            <td>
+                                @row.Code
+                            </td>
+                        </tr>
+                }
+                 </tbody>
+            </table>
+        </div>
+    </div>
+
+@code {
+    [Parameter]
+    public int TaxFormID { get; set; } = 0;
+
+
+    private List<Dependent> Dependents { get; set; }
+    protected override Task OnInitializedAsync()
+    {
+        GetDependets();
+
+        return base.OnInitializedAsync();
+    }
+    public void GetDependets()
+    {
+        if (TaxFormID > 0)
+        {
+            Dependents = new List<Dependent>();
+            Dependents = service.GetDependets(TaxFormID);
+            StateHasChanged();
+        }
+    }
+
+    private EventCallback<EventArgs> CreateOnSortClick(string name)
+    {
+        return EventCallback.Factory.Create<System.EventArgs>(this, (_) =>
+        {
+            HandleSortClick(name);
+        });
+    }
+
+
+    private void HandleSortClick(string name)
+    {
+        
+
+        StateHasChanged();
+    }
+
+    private string media = "@media";
+
+    private string ToolbarClass => $"demo-table-toolbar{(HasSelection ? " demo-table-toolbar-hilight" : "")}";
+
+    private bool Dense { set; get; } = false;
+
+ 
+
+    private bool AnySelected => HasSelection && SelectedCount < Dependents.Count;
+
+    private bool AllSelected => Dependents.All(row => row.Selected);
+
+    private int SelectedCount => Dependents.Count(row => row.Selected);
+
+    private bool HasSelection => SelectedCount > 0;
+
+    private int RowsPerPage => 6;
+
+    private int EmptyRows => RowsPerPage - Dependents.Count;
+
+    private int EmptyHeight => (Dense ? 33 : 53) * EmptyRows;
+
+    private void OnDenseChanged(EventArgs args)
+    {
+        Dense = !Dense;
+
+        StateHasChanged();
+    }
+
+    private void OnSelectAllClick(EventArgs args)
+    {
+        var allSelected = AllSelected;
+
+        Dependents.ForEach(row => row.Selected = !allSelected);
+
+        StateHasChanged();
+    }
+    private void DeleteDependents()
+    {
+        Dependents = service.DeleteDependents(Dependents.Where(c => c.Selected == true).ToList(), TaxFormID);
+
+        StateHasChanged();
+    }
+}
