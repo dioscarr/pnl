@@ -6378,11 +6378,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\diosc\\Repos\\LinuxContainerizedApp\\pnl\\pnl.csproj",
+      "projectUniqueName": "D:\\Users\\diosc\\Repos\\pnl\\pnl.csproj",
       "projectName": "pnl",
-      "projectPath": "D:\\Users\\diosc\\Repos\\LinuxContainerizedApp\\pnl\\pnl.csproj",
+      "projectPath": "D:\\Users\\diosc\\Repos\\pnl\\pnl.csproj",
       "packagesPath": "C:\\Users\\Diosc\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\diosc\\Repos\\LinuxContainerizedApp\\pnl\\obj\\",
+      "outputPath": "D:\\Users\\diosc\\Repos\\pnl\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -6445,7 +6445,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-preview.8.20417.9\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

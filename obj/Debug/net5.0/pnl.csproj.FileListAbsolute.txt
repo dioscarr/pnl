@@ -399,3 +399,15 @@ D:\Users\diosc\Repos\LinuxContainerizedApp\pnl\bin\Debug\net5.0\zh-Hant\Microsof
 D:\Users\diosc\Repos\LinuxContainerizedApp\pnl\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Users\diosc\Repos\LinuxContainerizedApp\pnl\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 D:\Users\diosc\Repos\LinuxContainerizedApp\pnl\bin\Debug\net5.0\runtimes\win7-x86\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.csprojAssemblyReference.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.GeneratedMSBuildEditorConfig.editorconfig
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.AssemblyInfoInputs.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.AssemblyInfo.cs
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.csproj.CoreCompileInputs.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.MvcApplicationPartsAssemblyInfo.cs
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.RazorAssemblyInfo.cache
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.RazorAssemblyInfo.cs
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.dll
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\ref\pnl.dll
+D:\Users\diosc\Repos\pnl\obj\Debug\net5.0\pnl.pdb
