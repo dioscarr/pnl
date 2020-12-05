@@ -1,7 +1,7 @@
 services:
   pnl:
     build:
-      context: D:\Users\diosc\Repos\LinuxContainerizedApp\pnl
+      context: D:\Users\diosc\Repos\pnl
       dockerfile: Dockerfile
     environment:
       ASPNETCORE_ENVIRONMENT: Development
