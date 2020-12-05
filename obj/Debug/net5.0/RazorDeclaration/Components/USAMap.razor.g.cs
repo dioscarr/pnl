@@ -125,7 +125,7 @@ using BlazorAnimate;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 179 "D:\Users\diosc\Repos\pnl\Components\USAMap.razor"
+#line 180 "D:\Users\diosc\Repos\pnl\Components\USAMap.razor"
        
     [Parameter]
     public EventCallback<string> OnMapStateSeletion { get; set; }
