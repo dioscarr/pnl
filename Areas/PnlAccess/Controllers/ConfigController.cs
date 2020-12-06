@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace pnl.Areas.PnlAccess.Controllers
 {
-    [Area("pnlaccess")]
+    [Area("PnlAccess")]
     public class ConfigController : Controller
     {
         // GET: HomeController

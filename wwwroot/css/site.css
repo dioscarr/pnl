@@ -56,13 +56,47 @@ html {
     display: block;
     background-color: #7a77d1;
 }
-
 a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
 }
+.greetings {
+    display: grid;
+    grid-area:greetings;
+    align-self: baseline;
+    height: inherit;
+}
+.profileimg {
+    grid-area:profileimg;
+    height: inherit;
+    display: grid;
+    justify-self: start;
+}
+.signout {
+    grid-area:signout;
+    align-content: end;
+    display: grid;
+    height: inherit;
+    justify-items: end;
+}
 
+.signout button{
+    text-align:end !important;
+    justify-self: end !important;
+    width: inherit !important;
+}
+.profile-nav {
+    display: grid !important;
+    grid-template-areas:
+        "greetings profileimg"
+        "signout profileimg";
+    height: 50px;
+    grid-template-rows: 11px 22px;
+    grid-template-columns: 63fr 45fr;
+    background-color: transparent;
+    justify-items: end;
+}
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;
@@ -118,7 +152,6 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
 }
 
 .footer {
@@ -1092,7 +1125,13 @@ p {
     margin-left: auto;
     padding: 0px;
 }
+header{
+    background-color:#273a86 !important;
+    background: #273a86 !important;
+    height: inherit;
+}
 
+header {}
 .Header_nav {
     background-color: #273a86;
     display: grid;
@@ -1122,13 +1161,14 @@ p {
 
 .account-box {
     display: grid;
-    justify-items: end;
+    height: inherit;
+    justify-items: center;
 }
 
     .account-box img {
-        width: 50px;
+        width: inherit;
         position: relative;
-        right: 3vw;
+        height: inherit;
     }
 
 .file-my-taxes a {
@@ -1324,7 +1364,10 @@ font-size:16px !important;
     align-content: center;
     display: grid;
 }
-
+.account-box a
+{
+    height: inherit;
+}
 .detail-taxYear-date-updated {
     font-size: 1.9em;
     color: #ffffff;
@@ -3011,4 +3054,6 @@ row-gap: 15px;
 .DependentsClaimed {
 grid-column:2;
 }
+}}}olumn:2;
 }
+}}}

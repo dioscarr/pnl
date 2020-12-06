@@ -146,6 +146,10 @@ namespace pnl
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapAreaControllerRoute(name: "PnlAccess",
+                    areaName: "PnlAccess",
+                    pattern: "pnlaccess/{controller=Config}/{action=Index}/{id?}");
+
                 //  endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapRazorPages();
                 endpoints.MapBlazorHub();

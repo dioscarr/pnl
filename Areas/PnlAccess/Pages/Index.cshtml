@@ -2,7 +2,7 @@
 @model pnl.Areas.PnlAccess.Pages.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";    
 }
 
 <h1>Index</h1>
@@ -10,7 +10,7 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
+<table id ="TaxesRecords" class="table">
     <thead>
         <tr>
             <th>
@@ -41,3 +41,11 @@
 }
     </tbody>
 </table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $('#TaxesRecords').DataTable();
+    });
+</script>
