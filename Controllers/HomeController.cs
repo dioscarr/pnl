@@ -59,7 +59,11 @@ namespace pnl.Controllers
                     throw;
                 }
             }
-            return View();
+
+
+
+
+            return View(_db.TaxForms.Where(c=>c.UserID == User.Claims.First().Value).OrderByDescending(c=>c.TaxYear).FirstOrDefault());
         }
 
         public IActionResult Privacy()

@@ -1125,6 +1125,18 @@ p {
     margin-left: auto;
     padding: 0px;
 }
+
+.hello{
+      color: #273a86;
+      font-size: 17px;
+      font-weight: 400;
+}
+.hello-first-name{
+    color: #273a86;
+    font-size: 36px;
+    font-weight: bolder;
+}
+
 header{
     background-color:#273a86 !important;
     background: #273a86 !important;
@@ -3054,6 +3066,8 @@ row-gap: 15px;
 .DependentsClaimed {
 grid-column:2;
 }
-}}}olumn:2;
+.d-user-info {
+    display:grid;
+    width:200px;
+    justify-self:center;
 }
-}}}
