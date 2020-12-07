@@ -14,25 +14,31 @@
 </div>
 <div class="row">
     <div class="col-sm-4 file-my-taxes">
-        <a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Create"><div class="main-button-fonts">Get Started</div></a>
+        <div class="d-btns-box">
+            <a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Create"><div class="main-button-fonts">Get Started</div></a>
+        </div>
     </div>
-    <div class="col-sm-4 view-my-taxes">
-        <a class="nav-link text-dark">
-            <div class="main-button-fonts">Continue</div>
-            <div class="continue-message">You have not completed your 2020 taxes</div>
-            <div class="continue-message">You have not completed your 2020 taxes</div>
-        </a>            
+    <div class="col-sm-4 file-my-taxes">
+        <div class="d-btns-box">
+            <a class="nav-link text-dark">
+                <div class="main-button-fonts">Continue</div>
+                <div class="continue-message">You have not completed your 2020 taxes</div>
+                <div class="continue-message">You have not completed your 2020 taxes</div>
+            </a>
+            </div>
+        </div>
+    <div class="col-sm-4 file-my-taxes">
+        <div class="d-btns-box">
+            <a class="nav-link text-dark">
+                <div class="main-button-fonts">Notifications</div>
+                <div class="nonewmessage">No new message</div>
+            </a>
+        </div>
     </div>
-    <div class="col-sm-4 view-my-taxes">
-        <a class="nav-link text-dark">
-            <div class="main-button-fonts">Notifications</div>
-            <div class="nonewmessage">No new message</div>
-        </a>        
+        @*<div id="TaxFormInProgress">
+            <component type="typeof(TaxFormInProgress)" render-mode="ServerPrerendered" />
+        </div>
+        <div id="taxpanel">
+            <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />
+        </div>*@
     </div>
-    @*<div id="TaxFormInProgress">
-        <component type="typeof(TaxFormInProgress)" render-mode="ServerPrerendered" />
-    </div>
-    <div id="taxpanel">
-        <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />
-    </div>*@
-</div>
