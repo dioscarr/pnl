@@ -10,9 +10,7 @@ for details on configuring this project to bundle and minify static web assets. 
     right: 0px;
     z-index: 2;
 }
-html {
-    overflow: hidden;
-}
+
 .d-btns-box {/* width: 80%; */display: grid;}
 .d-btns-box {
     width: 300px;
@@ -165,8 +163,14 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+    color: white !important;
+    font-weight: bold;
+    background-color: #273a86;
 }
 
+.text-muted {
+    color: white !important;
+}
 
 .FormControl-Root {
     margin: 0;
@@ -180,7 +184,7 @@ body {
 }
 
 body {
-    background-color: #f7f7f7 !important;
+    background-color: #ffffff !important;
 }
 
 .ExistingApplicationBox {
@@ -1135,20 +1139,22 @@ p {
       color: #273a86;
       font-size: 17px;
       font-weight: 400;
+      height: 25px;
 }
 .hello-first-name{
     color: #273a86;
     font-size: 36px;
     font-weight: bolder;
+    height: 25px;
 }
 
-header{
+.header{
     background-color:#273a86 !important;
     background: #273a86 !important;
-    height: inherit;
+    height: 176px;
+    padding: 35px 0px !important;
 }
 
-header {}
 .Header_nav {
     background-color: #273a86;
     display: grid;
@@ -1204,15 +1210,20 @@ header {}
      color: blue !important;
      border-radius: 15px;
      font-weight: 600;
-     height: 200px;
+     height: 152px;
      background-color: white;
-     width: 300px;
      display: grid;
      justify-items: center;
      align-content: center;
      font-size: 24px;
      border: 1px solid #273a8666;
 }
+.d-btns-box-center a, .d-btns-box-right a, .d-btns-box a{
+    display:grid;
+    width: 290px !important;
+    height: 290px!important;
+}
+
 .nonewmessage
 {
     font-size:12px;
@@ -1229,16 +1240,15 @@ header {}
 
 .main-button-fonts
 {
-    font-size:26px;
-    color:black;
-    font-weight:bolder;
+    font-size: 26px !important;
+    color: #525252;
+    font-weight: bolder !important;
 }
 .main-button-fonts div:nth-child(1)
 {
     font-size:26px !important;
-    color:black;
+    color: grey;
     font-weight:bolder !important;
-    
 }
 
 
@@ -1252,12 +1262,13 @@ header {}
 .d-btns-box-large
 {
     width: 100%;
+    height: 250px;
 }
 .d-btns-box-large a{
     width:100%;
 }
 .d-btns-box-large .main-button-fonts{
-    width: 290px !important;
+    width: 336px !important;
     font-size: 54px !important;
     font-weight: 100;
 }
@@ -1710,6 +1721,7 @@ font-size:16px !important;
 
 .navbar-nav a {
     color: Yellow !important;
+    font-size: 17px;
 }
 
 .navbar-nav button {
@@ -3093,7 +3105,10 @@ button.FileNew:hover {
     font-weight:600;
     justify-self: center;
 }
-
+.header img:nth-child(1) {
+    max-width: 291px;
+    /* justify-self: baseline; */
+}
 .taxpanel-criteria {
 
 /* max-height: 155px; */
@@ -3118,7 +3133,29 @@ grid-column:2;
 .d-user-info {
     display:grid;
     width:200px;
+    height: 209px;
+    grid-template-rows: 19px 50px;
     justify-self:center;
-}er;
+    padding-top: 68px;
 }
+
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 10vw !IMPORTANT;
+    padding-left: 10vw  !IMPORTANT;
+    margin-right: auto;
+    margin-left: auto;
+}
+#bkicon1 {
+    position: absolute;
+    left:0px;
+    top:250px;
+    width: 73px;
+}
+#bkicon2 {
+    position: absolute;
+    right: 0px;
+    top: 450px;
+    width: 73px;
 }
