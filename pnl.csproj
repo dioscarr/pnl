@@ -17,11 +17,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\bkicon.png" />
+    <Content Remove="wwwroot\img\viewandmanagedocicons.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="docker-compose.dcproj" />
+    <None Include="wwwroot\img\bkicon.png" />
+    <None Include="wwwroot\img\viewandmanagedocicons.png" />
   </ItemGroup>
 
   <ItemGroup>
