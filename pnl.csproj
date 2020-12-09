@@ -17,7 +17,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\img\biglifeicon.png" />
     <Content Remove="wwwroot\img\bkicon.png" />
+    <Content Remove="wwwroot\img\Circle2.png" />
+    <Content Remove="wwwroot\img\Circle3.png" />
+    <Content Remove="wwwroot\img\CircleMax.png" />
+    <Content Remove="wwwroot\img\computerimg.png" />
+    <Content Remove="wwwroot\img\creditcardimg.png" />
+    <Content Remove="wwwroot\img\efileicon.png" />
+    <Content Remove="wwwroot\img\facebookicon.png" />
+    <Content Remove="wwwroot\img\guidanceicon.png" />
+    <Content Remove="wwwroot\img\igicons.png" />
+    <Content Remove="wwwroot\img\linkedinicon.png" />
+    <Content Remove="wwwroot\img\moneyimg.png" />
+    <Content Remove="wwwroot\img\Proctection.png" />
+    <Content Remove="wwwroot\img\SatifactionGuaranteed.png" />
+    <Content Remove="wwwroot\img\twittericon.png" />
     <Content Remove="wwwroot\img\viewandmanagedocicons.png" />
   </ItemGroup>
 
@@ -27,7 +42,22 @@
 
   <ItemGroup>
     <None Include="docker-compose.dcproj" />
+    <None Include="wwwroot\img\biglifeicon.png" />
     <None Include="wwwroot\img\bkicon.png" />
+    <None Include="wwwroot\img\Circle2.png" />
+    <None Include="wwwroot\img\Circle3.png" />
+    <None Include="wwwroot\img\CircleMax.png" />
+    <None Include="wwwroot\img\computerimg.png" />
+    <None Include="wwwroot\img\creditcardimg.png" />
+    <None Include="wwwroot\img\efileicon.png" />
+    <None Include="wwwroot\img\facebookicon.png" />
+    <None Include="wwwroot\img\guidanceicon.png" />
+    <None Include="wwwroot\img\igicons.png" />
+    <None Include="wwwroot\img\linkedinicon.png" />
+    <None Include="wwwroot\img\moneyimg.png" />
+    <None Include="wwwroot\img\Proctection.png" />
+    <None Include="wwwroot\img\SatifactionGuaranteed.png" />
+    <None Include="wwwroot\img\twittericon.png" />
     <None Include="wwwroot\img\viewandmanagedocicons.png" />
   </ItemGroup>
 

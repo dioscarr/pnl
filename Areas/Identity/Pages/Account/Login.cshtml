@@ -76,11 +76,11 @@
                     </div>
                     <div class="form-group">
                         <div class="checkbox">
-                            
+
                             <p>
                                 <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                             </p>
-                           
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -97,7 +97,7 @@
                         </label>
                         <p class="remembercreatenewBox">
 
-                            <img src="~/img/user.png" class="usernewaccount"/>
+                            <img src="~/img/user.png" class="usernewaccount" />
                             <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create New Account</a>
                         </p>
                     </div>
@@ -106,67 +106,397 @@
         </div>
     </div>
 </div>
-
-<div class="twopage">
-    <div class="">
-        <div class="">
-            <div class="howitworks">How it works</div>
-            <img src="~/img/pageheaderribon.png" id="ribbon-icon" />
-
-        </div>
-    </div>
-    <div class="">
-        <div class="rectangles">
-            <img src="~/img/Youanswersimplequestions.png" id="square1-icon" />
-            <div>
-                You answer simple questions.
-                We do all the math.
+    <div class="container-fluid primary-padding">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title">How it works</div>
+                <div class="devider">
+                    <img src="~/img/pageheaderribon.png" />
+                </div>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
-            </p>
         </div>
-        <div class=" rectangles">
-            <img src="~/img/Uploapyour-tax-document.png" id="square2-icon" />
-            <div class="Upload-Your-tax-documents">
-                Upload Your tax
-                documents
+        <div class="row">
+            <div class="col-sx-12 col-md-4">
+                <div class="hworks-box">
+                    <div class="img">
+                        <img id="img-1" src="~/img/Youanswersimplequestions.png" />
+                    </div>
+                    <div class="heading3">
+                        You answer simple questions. <br />
+                        We do all the math.
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                        venenatis varius.
+                    </div>
+                </div>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
-            </p>
-        </div>
-        <div class="rectangles">            
-            <img src="D:\Users\diosc\Repos\pnl\Designs\lock-icon.png" id="square3-icon"  />
-            <div class="Upload-Your-tax-documents">
-                File with confidence
+            <div class="col-sx-12 col-md-4">
+                <div class="hworks-box">
+                    <div class="img">
+                        <img id="img-2" src="~/img/Uploapyour-tax-document.png" />
+                    </div>
+                    <div class="heading3">
+                        Upload Your tax <br />
+                        documents
+                    </div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                        venenatis varius.
+                    </div>
+                </div>
             </div>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
-            </p>
+            <div class="col-sx-12 col-md-4">
+                <div class="hworks-box">
+                    <div class="img"><img id="img-3" src="~/img/Locksm.png" /></div>
+                    <div class="heading3">File with confidence</div>
+                    <div class="desc">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                        venenatis varius.
+                    </div>
+                </div>
+            </div>
         </div>
-        
-    </div>
-    <div class="">
-        <div class="">
-            <div class="howitworks">Security & protection</div>
-            <img src="~/img/pageheaderribon.png" id="ribbon-icon" />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title">Security & protection</div>
+                <div class="devider">
+                    <img src="~/img/pageheaderribon.png" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="securitypage-box">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="securitypage-box rowspan1">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span>01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="securitypage-box rowspan2">
+                    <div class="inner-securitypage-box">
+                        <img src="~/img/Proctection.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="securitypage-box rowspan1">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span>01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="securitypage-box rowspan1">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span>01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 offset-md-4 off-sm-0">
+                <div class="securitypage-box rowspan1">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span>01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="securitypage-box">
+                    <div class="inner-securitypage-box">
+                        <div class="sec-header3">
+                            <span>01.</span><span>lorem ipsum</span>
+                        </div>
+                        <div class="sec-desc">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    </div>
-</div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title-page3">
+                    How it works Your satisfaction, <span>guaranteed</span>
+                </div>
+                <div class="devider">
+                    <img src="~/img/pageheaderribon.png" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box1">
+                    <div class="circles-s-g1">
+                        <div>Maximum</div>
+                        <div>Refund</div>
+                        <div>GUARANTEED</div>
+                    </div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box2">
+                    <div class="circles-s-g2">
+                        <div>Complete</div>
+                        <div>Check</div>
+                        <div>OF YOUR RETURN</div>
+                    </div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box3">
+                    <div class="circles-s-g3">
+                        <div>100%</div>
+                        <div>Accurate</div>
+                        <div>Calculations</div>
+                        <div>guaranteed</div>
+                    </div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box4">
+                    <div class="circles-s-g4"></div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box5">
+                    <div class="circles-s-g5"></div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box6">
+                    <div class="circles-s-g6"></div>
+                </div>
+                <div class="circle3-content">
+                    <div class="circle3-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle3-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title-page4">Help center</div>
+                <div class="devider">
+                    <img src="~/img/pageheaderribon.png" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box7">
+                    <div class="circles-s-g7"></div>
+                </div>
+                <div class="circle4-content">
+                    <div class="circle4-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle4-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box8">
+                    <div class="circles-s-g8"></div>
+                </div>
+                <div class="circle4-content">
+                    <div class="circle4-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle4-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="circles-s-g-box9">
+                    <div class="circles-s-g9"></div>
+                </div>
+                <div class="circle4-content">
+                    <div class="circle4-content-caption">
+                        We search over 350 tax deductions
+                    </div>
+                    <div class="circle4-content-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title-page4">
+                    <button>View All</button>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="card padding-large">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                    dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                    venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                </div>
+            </div>
+            <div class="col-sm-3">
 
-<div class="threepage" style="background-color:white;">
-    <div class="">
-        <div class=""></div>
-    </div>
-</div>
+                <div class="card">
+                    <div class="content-card">
+                        <div class="content-title">Social</div>
+                        <div class="social-media-icons">
+                            <img src="~/img/facebookicon.png" />
+                            <img src="~/img/twittericon.png" />
+                            <img src="~/img/igicons.png" />
+                            <img src="~/img/linkedinicon.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="sub-title">About Use</div>
+                    <div class="content-bottom">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                        venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="sub-title">Help & Support</div>
+                    <div class="content-bottom">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                        dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                        venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                    </div>
+                </div>
+            </div>
 
-<div class="fourpage">
-    <div class="">
-        <div class=""></div>
-    </div>
-</div>
+            <div class="col-sm-3">
+                <div class="card justifyleft">
+                    <div class="sub-title">Quick Links</div>
+                    <div class="content-bottom">
+                        About Us
+                        <br />
+                        Product & Pricing
+                        <br />
+                        Resources
+                        <br />
+                        Contact Us
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card primary-blue border-radius">
+                    <div class="content-card">
+                        <div class="content-title"><img src="~/img/LOgo.png" /></div>
+                        <div class="content-card-body color-white">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                            ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                            venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 @section Scripts {

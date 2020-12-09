@@ -3,39 +3,40 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 
 #ENV DB_SERVER="mssql" \
-    #DB_USER="SA" \
-    #DB_PASSWORD="" \
-    #DB_NAMES="" \
-    #CRON_SCHEDULE="0 1 * * sun" \
-    #BACKUP_CLEANUP=false \
-    #BACKUP_AGE=7
+#DB_USER="SA" \
+#DB_PASSWORD="" \
+#DB_NAMES="" \
+#CRON_SCHEDULE="0 1 * * sun" \
+#BACKUP_CLEANUP=false \
+#BACKUP_AGE=7
 #
 #RUN apt-get update && \
-    #apt-get install -y cron && \
-    #rm -rf /var/cache/apk/*
+#apt-get install -y cron && \
+#rm -rf /var/cache/apk/*
 
-WORKDIR /
+WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["pnl.csproj", "./"]
-RUN dotnet restore "pnl.csproj"
+RUN dotnet watch run restore "pnl.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "pnl.csproj" -c Debug -o /build
+RUN dotnet watch run build "pnl.csproj" -c Debug -o /app/build
 
 FROM build AS publish	
-RUN dotnet publish "pnl.csproj" -c Release -o /publish
+RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
 
 FROM microsoft/mssql-tools:latest
 
 WORKDIR /temp//path
 
 FROM base AS final
-WORKDIR /
-COPY --from=publish /publish .
+WORKDIR /app
+COPY --from=app/publish /app/publish .
 
 #EXPOSE 5000/tcp
+
 
 EXPOSE 5000
 
