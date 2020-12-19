@@ -158,15 +158,15 @@ body {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    bottom: 0px;
     width: 100%;
+    height: 100px;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
     color: white !important;
     font-weight: bold;
-    background-color: #273a86;    
-    
+    background-color: #273a86;
 }
 footer container {
     display: grid;
@@ -245,7 +245,7 @@ body {
     color: #fcff47;
     align-self: normal;
     grid-row: 1;
-    font-size: 25px;
+    font-size: 15px;
     align-content: center;
     justify-items: end;
 }
@@ -310,6 +310,11 @@ body {
 
 .get-started-input {
     width: 27vw;
+}
+
+.loginFormBox input
+{
+    width:89%;
 }
 
 .get-started-btn {
@@ -668,14 +673,14 @@ button {
 
 .filetaxes {
     display: grid;
-    color: #fcff47;
+    color: #02308A;
     font-weight: 900 !important;
     font-size: 16px;
     justify-content: center;
     justify-items: center;
     grid-template-columns: repeat(auto-fit,367px);
     grid-template-rows: repeat(auto-fit,361px);
-    height: 81vh;
+    height: 100vh;
     max-height: 93vh;
     overflow-y: auto;
     column-gap: 4vw;
@@ -817,7 +822,7 @@ button {
 
 .dependentlist-info
 {
-    color: #fcff47;
+    color: #000000;
     font-size: 1.5em;
     align-items: center;
     display: grid;
@@ -829,7 +834,7 @@ button {
     left: 0px;
     grid-row: 2;
     grid-template-columns: 1fr 1fr;
-    background-color: #28356b;
+    background-color: #ffffff;
     padding: 51px 3vw;
     margin-right: -3vw;
     width: 84vw !important;
@@ -1104,7 +1109,7 @@ p {
 }
 
 .formNav {
-    position: fixed;
+    position: relative;
     bottom: 50px;
     width: 100vw;
     z-index: 1;
@@ -1388,7 +1393,7 @@ font-size:16px !important;
      height: 46px !important;
      border-radius: 10px;
      margin-top: 10px !important;
-     border: none;
+     /* border: none; */
     }
 
 .taxdetail {
@@ -2098,33 +2103,32 @@ font-size:16px !important;
     justify-items: center;
 }
     .steps-position div {
-      
     }
 
 .step-position-pair {
     display:grid;
-    grid-template-columns:7fr 3fr;
     align-items: center;
-    justify-content: center;
+    justify-items: center;
 }
 
 .step-position-pair > div{
-        justify-self: end;
-    margin-right: 15px;
+        /* justify-self: end; */
+        margin-right: 15px;
 }
 
 .circlesteps {
     background-color: #28356b;
     color: #7e7e7e;
     height: 50px;
-    border-radius: 50%;
-    width: 50px;
+    border-radius: 29px;
+    width: 106px;
     padding: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
     z-index: 1;
     /* box-shadow: -1px 20px 20px -2px #0000004f; */
+    grid-row: 1;
 }
 
 
@@ -2411,6 +2415,7 @@ font-size:16px !important;
 .tracking-in-expand {
     -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    grid-row: 2;
 }
 
 /* ----------------------------------------------
@@ -2639,8 +2644,8 @@ input{
     padding: 0px 15px 0px 15px !important;
 }
 .ative-position {
-    background-color: #379b58 !important;
-    color: white;
+    background-color: #fcff47 !important;
+    color: #28356b;
     font-size: 1.8em;
     font-weight: 600;
 }
@@ -3181,9 +3186,9 @@ grid-column:2;
 
 
 
-div {
-    outline: 1px solid red;
-}
+/*div {*/
+    /* outline: 1px solid red; */
+/*}
 
 .section-title {
     font-size: 34px;
@@ -3282,16 +3287,16 @@ div {
 
 .securitypage-box {
     display: grid !important;
-    grid-template-rows: 30px 100px;
+    grid-template-rows: 30px 100px;*/
     /* justify-self: center !important; */
-    min-height: 180px;
+    /*min-height: 180px;
 }
 
 .rowspan1 {
     min-height: 179px;
-    height: 180px;
+    height: 180px;*/
     /* position: relative; */
-}
+/*}
 
 .rowspan2 {
     min-height: 388px;
@@ -3672,9 +3677,9 @@ div {
     height: 300px;
     width: 100%;
     display: grid;
-    align-content: center;
+    align-content: center;*/
     /* justify-content: center; */
-    background-position: center;
+    /*background-position: center;
 }
 
 .circles-s-g-box8 {
@@ -3840,6 +3845,7 @@ div {
 .primary-padding {
     padding-left: 10vw !important;
     padding-right: 10vw !important;
+    background-color: white;
 }
 
 .social-media-icons {
@@ -3850,4 +3856,4 @@ div {
 .content-title {
     font-size: 24px;
     font-weight: 700;
-}
+}*/

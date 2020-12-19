@@ -26,136 +26,152 @@
 }
 
 <div class=" main-background-color onepage Main-padding">
-    <div class="Main-Box ">
-        <div class="public-menu-col">
-            <div class="logobox">
-                <img src="~/img/LOgo.png" class="logocls" />
+        <div class="Main-Box ">
+            <div class="public-menu-col">
+                <div class="logobox">
+                    <img src="~/img/LOgo.png" class="logocls" />
+                </div>
+                <div class="col-sm-9 public-menu ">
+                    <div>Home</div>
+                    <div>About Us</div>
+                    <div>Product and Pricing</div>
+                    <div>Resources</div>
+                    <div>Contact Us</div>
+                </div>
             </div>
-            <div class="col-sm-9 public-menu ">
-                <div>Home</div>
-                <div>About Us</div>
-                <div>Product and Pricing</div>
-                <div>Resources</div>
-                <div>Contact Us</div>
-            </div>
-        </div>
-        <div class="body-left top-margin">
-            <div class="one-left">Tax consultation and preparation with a </div>
-            <div class="one-right">Human touch.</div>
-            <div><input type="text" value="" class="form-control get-started-input" /></div>
-            <div>
-                <button class="btn btn-primary get-started-btn ">Get Started</button>
-            </div>
+            <div class="body-left top-margin">
+                <div class="one-left">Tax consultation and preparation with a </div>
+                <div class="one-right">Human touch.</div>
+                <div><input type="text" value="" class="form-control get-started-input" /></div>
+                <div>
+                    <button class="btn btn-primary get-started-btn ">Get Started</button>
+                </div>
 
-        </div>
-        <div class="body-right top-margin">
-            <img src="~/img/Data-Audit.png" class="data-audit" />
-            <div class="loginFormBox">
-                <form id="account" method="post">
-                    <div class="pnlLogintitle">PNL TAX CORP</div>
-                    <div class="subtitle">
-                        <div class="secured">
-                            <div><img src="~/img/Secured.png" id="idsecured" /></div>
-                            <div id="securedlbl">Secured</div>
+            </div>
+            <div class="body-right top-margin">
+                <img src="~/img/Data-Audit.png" class="data-audit" />
+                <div class="loginFormBox">
+                    <form id="account" method="post">
+                        <div class="pnlLogintitle">PNL TAX CORP</div>
+                        <div class="subtitle">
+                            <div class="secured">
+                                <div><img src="~/img/Secured.png" id="idsecured" /></div>
+                                <div id="securedlbl">Secured</div>
+                            </div>
+                            <div class="advance">
+                                <div><img src="~/img/Advance.png" id="idadvance" /></div>
+                                <div id="advancelbl">Advance</div>
+                            </div>
                         </div>
-                        <div class="advance">
-                            <div><img src="~/img/Advance.png" id="idadvance" /></div>
-                            <div id="advancelbl">Advance</div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Input.Email"></label>
-                        <input asp-for="Input.Email" class="form-control" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password"></label>
-                        <input asp-for="Input.Password" class="form-control" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
 
-                            <p>
-                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                <p>
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary loginbtn">Log in</button>
+                            <p class="bysigning">
+                                By clicking Sign in, you agree to our Terms and have
+                                read and acknowledge our US Privacy Statement.
                             </p>
-
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary loginbtn">Log in</button>
-                        <p class="bysigning">
-                            By clicking Sign in, you agree to our Terms and have
-                            read and acknowledge our US Privacy Statement.
-                        </p>
-                    </div>
-                    <div class="form-group remembercreatenew">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                        <p class="remembercreatenewBox">
+                        <div class="form-group remembercreatenew">
+                            <label asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                            <p class="remembercreatenewBox">
 
-                            <img src="~/img/user.png" class="usernewaccount" />
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create New Account</a>
-                        </p>
-                    </div>
-                </form>
+                                <img src="~/img/user.png" class="usernewaccount" />
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create New Account</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </div> 
+
+
+
+
     <div class="container-fluid primary-padding">
         <div class="row">
             <div class="col-sm-12">
                 <div class="section-title">How it works</div>
                 <div class="devider">
-                    <img src="~/img/pageheaderribon.png" />
+                    <img src="~/img/pageheaderribon.svg" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sx-12 col-md-4">
                 <div class="hworks-box">
-                    <div class="img">
-                        <img id="img-1" src="~/img/Youanswersimplequestions.png" />
-                    </div>
-                    <div class="heading3">
-                        You answer simple questions. <br />
-                        We do all the math.
-                    </div>
-                    <div class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                        venenatis varius.
-                    </div>
-                </div>
-            </div>
-            <div class="col-sx-12 col-md-4">
-                <div class="hworks-box">
-                    <div class="img">
-                        <img id="img-2" src="~/img/Uploapyour-tax-document.png" />
-                    </div>
-                    <div class="heading3">
-                        Upload Your tax <br />
-                        documents
-                    </div>
-                    <div class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                        venenatis varius.
+                    <div class="square">
+                        <div class="square-box">
+                            <div class="img">
+                                <img id="img-1" src="~/img/Youanswersimplequestions.svg" />
+                            </div>
+                            <div class="heading3">
+                                You answer simple questions. <br />
+                                We do all the math.
+                            </div>
+                            <div class="desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                                venenatis varius.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-sx-12 col-md-4">
                 <div class="hworks-box">
-                    <div class="img"><img id="img-3" src="~/img/Locksm.png" /></div>
-                    <div class="heading3">File with confidence</div>
-                    <div class="desc">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                        ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                        venenatis varius.
+                    <div class="square">
+                        <div class="square-box">
+                            <div class="img">
+                                <img id="img-2" src="~/img/Uploapyour-tax-document.svg" />
+                            </div>
+                            <div class="heading3">
+                                Upload Your tax <br />
+                                documents
+                            </div>
+                            <div class="desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                                venenatis varius.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sx-12 col-md-4">
+                <div class="hworks-box">
+                    <div class="square">
+                        <div class="square-box">
+                            <div class="img"><img id="img-3" src="~/img/Locksm.svg" /></div>
+                            <div class="heading3">File with confidence</div>
+                            <div class="desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+                                venenatis varius.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,16 +180,16 @@
             <div class="col-sm-12">
                 <div class="section-title">Security & protection</div>
                 <div class="devider">
-                    <img src="~/img/pageheaderribon.png" />
+                    <img src="~/img/pageheaderribon.svg" />
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="securitypage-box">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                    <div class="inner-securitypage-box ">
+                        <div class="sec-header3 ">
+                            <div class="numberslabel">01.</div><div>lorem ipsum</div>
                         </div>
                         <div class="sec-desc">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -182,15 +198,32 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-4">
-                <div class="securitypage-box rowspan1">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span>01.</span><span>lorem ipsum</span>
+                <div>
+                    <div class="securitypage-box rowspan1">
+                        <div class="inner-securitypage-box pull-right">
+                            <div class="sec-header3  pull-right ">
+                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                            </div>
+                            <div class="sec-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                            </div>
                         </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+                <div>
+                    <div class="securitypage-box rowspan1">
+                        <div class="inner-securitypage-box  pull-right">
+                            <div class="sec-header3  pull-right">
+                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                            </div>
+                            <div class="sec-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -198,54 +231,44 @@
             <div class="col-sm-4">
                 <div class="securitypage-box rowspan2">
                     <div class="inner-securitypage-box">
-                        <img src="~/img/Proctection.png" />
+                        <img src="~/img/Proctection.svg" />
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="securitypage-box rowspan1">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span>01.</span><span>lorem ipsum</span>
+                <div>
+                    <div class="securitypage-box rowspan1">
+                        <div class="inner-securitypage-box pull-left">
+                            <div class="sec-header3 pull-left">
+                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                            </div>
+                            <div class="sec-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                            </div>
                         </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                    </div>
+                </div>
+                <div>
+                    <div class="securitypage-box rowspan1">
+                        <div class="inner-securitypage-box pull-left">
+                            <div class="sec-header3 pull-left">
+                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
+                            </div>
+                            <div class="sec-desc">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="securitypage-box rowspan1">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span>01.</span><span>lorem ipsum</span>
-                        </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 offset-md-4 off-sm-0">
-                <div class="securitypage-box rowspan1">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span>01.</span><span>lorem ipsum</span>
-                        </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="col-sm-12">
                 <div class="securitypage-box">
                     <div class="inner-securitypage-box">
                         <div class="sec-header3">
-                            <span>01.</span><span>lorem ipsum</span>
+                            <span class="numberslabel">01.</span><span>lorem ipsum</span>
                         </div>
                         <div class="sec-desc">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -262,7 +285,7 @@
                     How it works Your satisfaction, <span>guaranteed</span>
                 </div>
                 <div class="devider">
-                    <img src="~/img/pageheaderribon.png" />
+                    <img src="~/img/pageheaderribon.svg" />
                 </div>
             </div>
         </div>
@@ -270,9 +293,9 @@
             <div class="col-sm-12 col-md-4">
                 <div class="circles-s-g-box1">
                     <div class="circles-s-g1">
-                        <div>Maximum</div>
+                        <!-- <div>Maximum</div>
                         <div>Refund</div>
-                        <div>GUARANTEED</div>
+                        <div>GUARANTEED</div> -->
                     </div>
                 </div>
                 <div class="circle3-content">
@@ -288,9 +311,9 @@
             <div class="col-sm-12 col-md-4">
                 <div class="circles-s-g-box2">
                     <div class="circles-s-g2">
-                        <div>Complete</div>
+                        <!-- <div>Complete</div>
                         <div>Check</div>
-                        <div>OF YOUR RETURN</div>
+                        <div>OF YOUR RETURN</div> -->
                     </div>
                 </div>
                 <div class="circle3-content">
@@ -306,10 +329,10 @@
             <div class="col-sm-12 col-md-4">
                 <div class="circles-s-g-box3">
                     <div class="circles-s-g3">
-                        <div>100%</div>
+                        <!-- <div>100%</div>
                         <div>Accurate</div>
                         <div>Calculations</div>
-                        <div>guaranteed</div>
+                        <div>guaranteed</div> -->
                     </div>
                 </div>
                 <div class="circle3-content">
@@ -371,7 +394,7 @@
             <div class="col-sm-12">
                 <div class="section-title-page4">Help center</div>
                 <div class="devider">
-                    <img src="~/img/pageheaderribon.png" />
+                    <img src="~/img/pageheaderribon.svg" />
                 </div>
             </div>
         </div>
@@ -422,7 +445,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="section-title-page4">
-                    <button>View All</button>
+                    <button class="viewallbtn">View All</button>
                     <div></div>
                 </div>
             </div>
@@ -441,10 +464,10 @@
                     <div class="content-card">
                         <div class="content-title">Social</div>
                         <div class="social-media-icons">
-                            <img src="~/img/facebookicon.png" />
-                            <img src="~/img/twittericon.png" />
-                            <img src="~/img/igicons.png" />
-                            <img src="~/img/linkedinicon.png" />
+                            <img src="~/img/facebookicon.svg" />
+                            <img src="~/img/twittericon.svg" />
+                            <img src="~/img/igicons.svg" />
+                            <img src="~/img/linkedinicon.svg" />
                         </div>
                     </div>
                 </div>
@@ -470,7 +493,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="card justifyleft">
                     <div class="sub-title">Quick Links</div>
                     <div class="content-bottom">
@@ -484,10 +507,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card primary-blue border-radius">
+            <div class="col-sm-4">
+                <div class="card primary-blue border-radius card-shadow">
                     <div class="content-card">
-                        <div class="content-title"><img src="~/img/LOgo.png" /></div>
+                        <div class="content-title"><img src="~/img/LOgo.svg" style="width:200px;" /></div>
                         <div class="content-card-body color-white">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
                             ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
@@ -497,8 +520,15 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
 
-
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="_framework/blazor.server.js"></script>

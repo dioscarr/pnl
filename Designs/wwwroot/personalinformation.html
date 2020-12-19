@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - pnl</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+    <base href="~/" />
+</head>
+
+<body>
+    <header
+        class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
+        <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
+            <img src="/img/LOgo.svg" /></a>
+        <button class="btn btn-primary" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <partial name="_LoginPartial" />
+            <ul class="navbar-nav flex-grow-1 menu-ul padding0px15px">
+                <li class="nav-item">
+                    <a class="nav-link menu-link-color" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link-color" asp-area="" asp-controller="TaxForm" asp-action="Create">About
+                        Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link-color" href="/pnlaccess">Product & Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link-color" href="/PnlAccess/config">Resources</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link-color" href="#">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="primary-padding container-fluid">
+        <div class="row">
+            <div class="col-sm-12 ">
+                <div class="section-title">
+                    <h3 class="">Personal Information</h3>
+                </div>  
+                
+            </div>
+        </div>
+        <div class="row">            
+            
+            <div class="col-sm-12 col-md-5">
+                <div class="the-row-column-title">
+                    <h6>First Name</h6>   
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="first-name" type="text" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+                <div class="the-row-column-title">
+                    <h6>M.I</h6>   
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="M-I" type="text" />
+                </div>
+            </div>
+               
+            <div class="col-sm-12 col-md-5">                
+                <div class="the-row-column-title">
+                    <h6>Last Name</h6>   
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="Last-Name" type="text" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">               
+                <div class="the-row-column-title">
+                    <h6>Telephone</h6>   
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="Telephone" type="text" />
+                </div>
+            </div>
+            <div class="col-sm-3">               
+                <div class="the-row-column-title">
+                    <h6>Date of birth</h6>   
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="birthdate" type="text" />
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <h6>Your Job Title</h6>
+            </div>
+          
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div><h6>Are you a U.S citizen?</h6></div>
+                <div>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div> <h6>Last Year, were you:</h6></div>
+                <div>
+                    <span><h6>A. Full-time student</h6></span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+                <div>
+                    <span><h6>B. Totally and permanently disabled</h6></span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+                <div>
+                    <span><h6>C. Legally Blind</h6></span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div><h6> Mailing Address</h6></div>
+                <div>
+                    <input class="form-control" type="text" name="MailingAddress" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div><h6>Apt # / Suite</h6></div>
+                <div>
+                    <input class="form-control" type="text" name="MailingAddress" />
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div><h6>City</h6></div>
+                <div>
+                    <input class="form-control" type="text" name="MailingAddress" />
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div><h6>State</h6></div>
+                <div>
+                    <input class="form-control" type="text" name="MailingAddress" />
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div><h6>Zip Code</h6></div>
+                <div>
+                    <input class="form-control" type="text" name="MailingAddress" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12"><h6>As of December 31, 2019, were you:</h6></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <span><input class="form-control" type="checkbox" /></span><span>Never Married</span>
+            </div>
+            <div class="col-sm-9">
+                <i>(This includes registered domestic partnerships, civil unions, or
+                    other formal relationships under state law)</i>
+            </div>
+            <div class="col-sm-3">
+                <span><input class="form-control" type="checkbox" /></span><span>Married</span>
+            </div>
+            <div class="col-sm-7">
+                <h6>Did you live with your spouse during any part of the last six months
+                of 2017?</h6>
+            </div>
+            <div class="col-sm-2">
+                <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                <span><input class="form-control" type="checkbox" /></span><span>No</span>
+            </div>
+            <div class="col-sm-3">
+                <span><input class="form-control" type="checkbox" /></span><span>Divorced</span>
+            </div>
+            <div class="col-sm-3"><h6>Date of final decree</h6></div>
+            <div class="col-sm-6"><input class="form-control" type="date" /></div>
+            <div class="col-sm-3">
+                <span><input class="form-control" type="checkbox" /></span><span><h6>Legally Separated</h6></span>
+            </div>
+            <div class="col-sm-3"><h6>Date of separate maintenance agreement</h6></div>
+            <div class="col-sm-6"><input class="form-control" type="date" /></div>
+
+            <div class="col-sm-3">
+                <span><input class="form-control" type="checkbox" /></span><span><h6>Widowed</h6></span>
+            </div>
+            <div class="col-sm-3"><h6>Year of spouse’s death</h6></div>
+            <div class="col-sm-6"><input class="form-control" type="date" /></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div><h6>Can anyone claim you or your spouse as a dependent?</h6></div>
+                <div>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Unsure</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12"><h6>Spouse information</h6></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5"><h6>First Name</h6></div>
+            <div class="col-sm-2"><h6>M.I</h6></div>
+            <div class="col-sm-5"><h6>Last Name</h6></div>
+            <div class="col-sm-5"><input class="form-control" type="text" /></div>
+            <div class="col-sm-2"><input class="form-control" type="text" /></div>
+            <div class="col-sm-5"><input class="form-control" type="text" /></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><h6>Telephone</h6></div>
+            <div class="col-sm-3"><h6>Date of birth</h6></div>
+            <div class="col-sm-5"><h6>Your Job Title</h6></div>
+            <div class="col-sm-4"><input class="form-control" type="text" /></div>
+            <div class="col-sm-3"><input class="form-control" type="text" /></div>
+            <div class="col-sm-5"><input class="form-control" type="text" /></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div><h6>Are you a U.S citizen?</h6></div>
+                <div>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div><h6></h6>Last Year, were you:</div>
+                <div>
+                    <span><h6></h6>A. Full-time student</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+                <div>
+                    <span><h6></h6>B. Totally and permanently disabled</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+                <div>
+                    <span><h6></h6>C. Legally Blind</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12"><h6></h6>Have you or your spouse:</div>
+            <div class="col-sm-12">
+                <span><h6></h6>A. Been a victim of identity theft?</span>
+                <span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </span>
+            </div>
+            <div class="col-sm-12">
+                <span><h6></h6>B. Adopted a child?</span>
+                <span>
+                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
+                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12"><h6></h6>List the names below of:</div>
+            <div class="col-sm-12">
+                <ul>
+                    <li>
+                        everyone who lived with you last year (other than your spouse)
+                    </li>
+                    <li>anyone you supported but did not live with you last year</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <div class="dependent-columns-header">
+                    <h6></h6>Name (first, last) Do not enter your name or spouse’s name below
+                </div>
+                <div class="dependent-columns-row-content">
+                    <input class="form-control" type="text" name="dependent-name" class="form-control"
+                        value="Mary Jane" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">Date of Birth</div>
+                <div class="dependent-columns-row-content">
+                    <input class="form-control" type="datetime" name="" id="dependentBirthday" class="form-control"
+                        placeholder="mm/dd/yyyy" value="" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">Relationship to you</div>
+                <div class="dependent-columns-row-content">
+                    <input class="form-control" type="text" name="dependent-Relationship" id="dependentRelationship"
+                        value="Sister " />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <h6></h6>Number of months lived in your home last year
+                </div>
+                <div class="dependent-columns-row-content">
+                    <input class="form-control" type="number" name="dependent-TimelivingWithDependent"
+                        id="dependentTimelivingWithDependent" value="7" step="1" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <div><h6></h6>Us</div>
+                    <div><h6></h6>Citizen</div>
+                </div>
+                <div class="dependent-columns-row-content">
+                    <select class="form-control" name="dependent-Us-Citizen-dw" id="dependentUsCitizen">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <h6>Resident</h6>
+                    <h6>of US,</h6>
+                    <h6>Canada,</h6>
+                    <h6>or Mexico</h6>
+                    <h6>last year</h6>
+                </div>
+                <div class="dependent-columns-row-content">
+                    <select class="form-control" name="Residence-Of-location-dw" id="ResidenceOflocation">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <h6>Single or</h6>
+                    <h6>Married as</h6>
+                    <h6>of 12/31/19</h6>
+                    <h6>(S/M)</h6>
+                </div>
+                <div class="dependent-columns-row-content">
+                    <select class="form-control" name="dependent-marital-status-dw" id="dependentMaritalStatus">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <h6>Full-time</h6>
+                    <h6>Student</h6>
+                    <h6>last year</h6>
+                </div>
+                <div class="dependent-columns-row-content">
+                    <select class="form-control" name="dependent-is-full-time-student-dw"
+                        id="dependentIsFullTimeStudent">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header">
+                    <h6>Totally and</h6>
+                    <h6>Permanently</h6>
+                    <h6>Disabled</h6>
+                </div>
+                <div class="dependent-columns-row-content">
+                    <select class="form-control" name="dependent-is-totally-permanently-disabled-dw"
+                        id="dependentITotallyPrmanentlyDisabled">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-1">
+                <div class="dependent-columns-header"></div>
+                <div class="dependent-columns-row-content">
+                    <button class="btn btn-primary" class="add-depend">+</button>
+                    <button class="btn btn-primary" class="remove-dependent">-</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+    <script src="/js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>

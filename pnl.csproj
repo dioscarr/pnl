@@ -17,48 +17,44 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\img\biglifeicon.png" />
-    <Content Remove="wwwroot\img\bkicon.png" />
-    <Content Remove="wwwroot\img\Circle2.png" />
-    <Content Remove="wwwroot\img\Circle3.png" />
-    <Content Remove="wwwroot\img\CircleMax.png" />
-    <Content Remove="wwwroot\img\computerimg.png" />
-    <Content Remove="wwwroot\img\creditcardimg.png" />
-    <Content Remove="wwwroot\img\efileicon.png" />
-    <Content Remove="wwwroot\img\facebookicon.png" />
-    <Content Remove="wwwroot\img\guidanceicon.png" />
-    <Content Remove="wwwroot\img\igicons.png" />
-    <Content Remove="wwwroot\img\linkedinicon.png" />
-    <Content Remove="wwwroot\img\moneyimg.png" />
-    <Content Remove="wwwroot\img\Proctection.png" />
-    <Content Remove="wwwroot\img\SatifactionGuaranteed.png" />
-    <Content Remove="wwwroot\img\twittericon.png" />
-    <Content Remove="wwwroot\img\viewandmanagedocicons.png" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="docker-compose.dcproj" />
-    <None Include="wwwroot\img\biglifeicon.png" />
-    <None Include="wwwroot\img\bkicon.png" />
-    <None Include="wwwroot\img\Circle2.png" />
-    <None Include="wwwroot\img\Circle3.png" />
-    <None Include="wwwroot\img\CircleMax.png" />
-    <None Include="wwwroot\img\computerimg.png" />
-    <None Include="wwwroot\img\creditcardimg.png" />
-    <None Include="wwwroot\img\efileicon.png" />
-    <None Include="wwwroot\img\facebookicon.png" />
-    <None Include="wwwroot\img\guidanceicon.png" />
-    <None Include="wwwroot\img\igicons.png" />
-    <None Include="wwwroot\img\linkedinicon.png" />
-    <None Include="wwwroot\img\moneyimg.png" />
-    <None Include="wwwroot\img\Proctection.png" />
-    <None Include="wwwroot\img\SatifactionGuaranteed.png" />
-    <None Include="wwwroot\img\twittericon.png" />
-    <None Include="wwwroot\img\viewandmanagedocicons.png" />
+    <None Include="wwwroot\img\biglifeicon.svg" />
+    <None Include="wwwroot\img\border.svg" />
+    <None Include="wwwroot\img\Circle1.svg" />
+    <None Include="wwwroot\img\Circle2.svg" />
+    <None Include="wwwroot\img\Circle3.svg" />
+    <None Include="wwwroot\img\computerimg.svg" />
+    <None Include="wwwroot\img\creditcardimg.svg" />
+    <None Include="wwwroot\img\Data-Audit.svg" />
+    <None Include="wwwroot\img\efileicon.svg" />
+    <None Include="wwwroot\img\email.svg" />
+    <None Include="wwwroot\img\facebookicon.svg" />
+    <None Include="wwwroot\img\foursquare-check-in.svg" />
+    <None Include="wwwroot\img\Group 59.svg" />
+    <None Include="wwwroot\img\guidanceicon.svg" />
+    <None Include="wwwroot\img\igicons.svg" />
+    <None Include="wwwroot\img\linkedinicon.svg" />
+    <None Include="wwwroot\img\lock.svg" />
+    <None Include="wwwroot\img\Locksm.svg" />
+    <None Include="wwwroot\img\LOgo.svg" />
+    <None Include="wwwroot\img\moneyimg.svg" />
+    <None Include="wwwroot\img\pageheaderribon.svg" />
+    <None Include="wwwroot\img\Path 25.svg" />
+    <None Include="wwwroot\img\Path 26.svg" />
+    <None Include="wwwroot\img\Path 27.svg" />
+    <None Include="wwwroot\img\Proctection.svg" />
+    <None Include="wwwroot\img\Rectangle 18.svg" />
+    <None Include="wwwroot\img\Rectangle 19.svg" />
+    <None Include="wwwroot\img\right-arrow.svg" />
+    <None Include="wwwroot\img\shield.svg" />
+    <None Include="wwwroot\img\twittericon.svg" />
+    <None Include="wwwroot\img\Uploapyour-tax-document.svg" />
+    <None Include="wwwroot\img\user.svg" />
+    <None Include="wwwroot\img\Youanswersimplequestions.svg" />
   </ItemGroup>
 
   <ItemGroup>
