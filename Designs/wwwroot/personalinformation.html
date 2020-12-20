@@ -11,7 +11,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
+
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
     <base href="~/" />
 </head>
 
@@ -20,48 +26,44 @@
         class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
         <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
             <img src="/img/LOgo.svg" /></a>
-        <button class="btn btn-primary" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+       
         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-            <partial name="_LoginPartial" />
-            <ul class="navbar-nav flex-grow-1 menu-ul padding0px15px">
-                <li class="nav-item">
-                    <a class="nav-link menu-link-color" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link-color" asp-area="" asp-controller="TaxForm" asp-action="Create">About
-                        Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link-color" href="/pnlaccess">Product & Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link-color" href="/PnlAccess/config">Resources</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link-color" href="#">Contact Us</a>
-                </li>
-            </ul>
+            
         </div>
     </header>
+    <div class="container ">   
+        div.row>div.col-sm-12>div.steps-top-nav>div*5.steps-box>span.step-number+span.step-caption
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="mininavigation">
+                    <div class="mini-navigation-inner-box">
+                        <button id="viewDocument">
+                            <img src="/img/document-management-icon-sm.svg" class="viewDocIcon">
+                                <span> View Your Documents</span>
+                        </button>
+                        <button id="SaveAndReturn">
+                            <img src="/img/home-icon.svg" class="viewDocIcon">
+                                <span>Save & Return To Dashboard</span>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="primary-padding container-fluid">
+    <div class="container main-border">
         <div class="row">
             <div class="col-sm-12 ">
                 <div class="section-title">
                     <h3 class="">Personal Information</h3>
-                </div>  
-                
+                </div>
+
             </div>
-        </div>
-        <div class="row">            
-            
+        </div>       
+        <div class="row">
             <div class="col-sm-12 col-md-5">
                 <div class="the-row-column-title">
-                    <h6>First Name</h6>   
+                    <h6>First Name</h6>
                 </div>
                 <div class="the-row-column-content">
                     <input class="form-control" name="first-name" type="text" />
@@ -69,16 +71,16 @@
             </div>
             <div class="col-sm-12 col-md-2">
                 <div class="the-row-column-title">
-                    <h6>M.I</h6>   
+                    <h6>M.I</h6>
                 </div>
                 <div class="the-row-column-content">
                     <input class="form-control" name="M-I" type="text" />
                 </div>
             </div>
-               
-            <div class="col-sm-12 col-md-5">                
+
+            <div class="col-sm-12 col-md-5">
                 <div class="the-row-column-title">
-                    <h6>Last Name</h6>   
+                    <h6>Last Name</h6>
                 </div>
                 <div class="the-row-column-content">
                     <input class="form-control" name="Last-Name" type="text" />
@@ -86,251 +88,590 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-4">               
+            <div class="col-sm-4">
                 <div class="the-row-column-title">
-                    <h6>Telephone</h6>   
+                    <h6>Telephone</h6>
                 </div>
                 <div class="the-row-column-content">
                     <input class="form-control" name="Telephone" type="text" />
                 </div>
             </div>
-            <div class="col-sm-3">               
+            <div class="col-sm-3">
                 <div class="the-row-column-title">
-                    <h6>Date of birth</h6>   
+                    <h6>Date of birth</h6>
                 </div>
                 <div class="the-row-column-content">
                     <input class="form-control" name="birthdate" type="text" />
+                    <i>mm/dd/yyy</i>
                 </div>
             </div>
             <div class="col-sm-5">
-                <h6>Your Job Title</h6>
+
+                <div class="the-row-column-title">
+                    <h6>Your Job Title</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="job-title" type="text" />
+                </div>
             </div>
-          
+
         </div>
         <div class="row">
-            <div class="col-sm-4">
-                <div><h6>Are you a U.S citizen?</h6></div>
-                <div>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
-                </div>
+            <div class="col-sm-4"> 
+                    <div class="the-row-column-title">
+                        <div>Are you a U.S citizen?</div>
+                    </div>
+                    <div class="the-row-column-content">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="isCitizen" id="isCitizenrdyes" />
+                            <label class="form-check-label" for="isCitizenrdyes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="isCitizen" id="isCitizenrdno" checked />
+                            <label class="form-check-label" for="isCitizenrdno"> No </label>
+                        </div>
+                    </div>   
             </div>
             <div class="col-sm-8">
-                <div> <h6>Last Year, were you:</h6></div>
+               <div class="the-row-column-content">
                 <div>
-                    <span><h6>A. Full-time student</h6></span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                    <h5>Last Year, were you:</h5>
                 </div>
-                <div>
-                    <span><h6>B. Totally and permanently disabled</h6></span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            <h6>A. Full-time student</h6>
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isFullTimeStudent"
+                                    id="isFullTimeStudentyes" />
+                                <label class="form-check-label" for="isFullTimeStudentyes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isFullTimeStudent"
+                                    id="isFullTimeStudentno" checked />
+                                <label class="form-check-label" for="isFullTimeStudentno"> No </label>
+                            </div>
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <span><h6>C. Legally Blind</h6></span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+            </div>
+                <div class="the-row-column-content">
+                    <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            <h6>B. Totally and permanently disabled</h6>
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isDisabled" id="isDisabledyes" />
+                                <label class="form-check-label" for="isDisabledyes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isDisabled" id="isDisabledno"
+                                    checked />
+                                <label class="form-check-label" for="isDisabledno"> No </label>
+                            </div>
+                        </span>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="the-row-column-content">
+                    <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            <h6>C. Legally Blind</h6>
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isBlind" id="isBlindyes" />
+                                <label class="form-check-label" for="isBlindyes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isBlind" id="isBlindno" checked />
+                                <label class="form-check-label" for="isBlindno"> No </label>
+                            </div>
+                        </span>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-sm-12">
-                <div><h6> Mailing Address</h6></div>
-                <div>
+                <div class="the-row-column-title">
+                    <h6> Mailing Address</h6>
+                </div>
+                <div class="the-row-column-content">
                     <input class="form-control" type="text" name="MailingAddress" />
                 </div>
             </div>
             <div class="col-sm-3">
-                <div><h6>Apt # / Suite</h6></div>
-                <div>
-                    <input class="form-control" type="text" name="MailingAddress" />
+                <div class="the-row-column-title">
+                    <h6>Apt # / Suite</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" type="text" name="apt" />
                 </div>
             </div>
 
             <div class="col-sm-2">
-                <div><h6>City</h6></div>
-                <div>
-                    <input class="form-control" type="text" name="MailingAddress" />
+                <div class="the-row-column-title">
+                    <h6>City</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" type="text" name="City" />
                 </div>
             </div>
             <div class="col-sm-2">
-                <div><h6>State</h6></div>
-                <div>
-                    <input class="form-control" type="text" name="MailingAddress" />
+                <div class="the-row-column-title">
+                    <h6>State</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" type="text" name="State" />
                 </div>
             </div>
             <div class="col-sm-5">
-                <div><h6>Zip Code</h6></div>
-                <div>
-                    <input class="form-control" type="text" name="MailingAddress" />
+                <div class="the-row-column-title">
+                    <h6>Zip Code</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" type="text" name="Zip" />
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12"><h6>As of December 31, 2019, were you:</h6></div>
+            <div class="col-sm-12">
+                <div class="the-row-column-title">   
+                    <h6>As of December 31, 2019, were you:</h6>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-3">
-                <span><input class="form-control" type="checkbox" /></span><span>Never Married</span>
+            <div class="col-sm-3 border-bottom">                
+            <div class="the-row-column-title ">
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" value="" name="NeverMarried" id="NeverMarriedid" />
+                    <label class="form-check-label" for="NeverMarriedid">
+                        Never Married
+                    </label>
+                </div>
             </div>
-            <div class="col-sm-9">
+            </div>
+            <div class="col-sm-9  border-bottom">
+            <div class="the-row-column-title ">
+                
+                
                 <i>(This includes registered domestic partnerships, civil unions, or
                     other formal relationships under state law)</i>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <span><input class="form-control" type="checkbox" /></span><span>Married</span>
-            </div>
-            <div class="col-sm-7">
-                <h6>Did you live with your spouse during any part of the last six months
-                of 2017?</h6>
-            </div>
-            <div class="col-sm-2">
-                <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                <span><input class="form-control" type="checkbox" /></span><span>No</span>
-            </div>
-            <div class="col-sm-3">
-                <span><input class="form-control" type="checkbox" /></span><span>Divorced</span>
-            </div>
-            <div class="col-sm-3"><h6>Date of final decree</h6></div>
-            <div class="col-sm-6"><input class="form-control" type="date" /></div>
-            <div class="col-sm-3">
-                <span><input class="form-control" type="checkbox" /></span><span><h6>Legally Separated</h6></span>
-            </div>
-            <div class="col-sm-3"><h6>Date of separate maintenance agreement</h6></div>
-            <div class="col-sm-6"><input class="form-control" type="date" /></div>
+            <div class="col-sm-3  border-bottom">
+                
+                <div class="the-row-column-title">
+                    <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" value="" id="Marriedid" name="Married" />
+                        <label class="form-check-label" for="Marriedid">
+                            Married
+                        </label>
+                    </div>
+                    </div>
+                
 
-            <div class="col-sm-3">
-                <span><input class="form-control" type="checkbox" /></span><span><h6>Widowed</h6></span>
             </div>
-            <div class="col-sm-3"><h6>Year of spouse’s death</h6></div>
-            <div class="col-sm-6"><input class="form-control" type="date" /></div>
+            <div class="col-sm-9  border-bottom">
+                <div class="the-row-column-title ">
+                
+                    <span class="inline-radio-box">
+                        <h6>If yes, did you get married in 2019?</h6>
+                        
+                        <span class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gotMarryLastYear"
+                            id="gotMarryLastYearyes" />
+                            <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
+                        </span>
+                        <span class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gotMarryLastYear" id="gotMarryLastYearno"
+                            checked />
+                            <label class="form-check-label" for="gotMarryLastYearno"> No </label>
+                        </span>
+                    </span>
+                </div>
+                
+                <div class="the-row-column-title ">
+                    <span class="inline-radio-box">
+                        <h6>Did you live with your spouse during any part of the last six months
+                            of 2017?</h6>
+
+                        <span class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="isSixMonthlivingWithSpouse"
+                                id="isSixMonthlivingWithSpouseyes" />
+                            <label class="form-check-label" for="isSixMonthlivingWithSpouseyes">Yes</label>
+                        </span>
+                        <span class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="isSixMonthlivingWithSpouse"
+                                id="isSixMonthlivingWithSpouseno" checked />
+                            <label class="form-check-label" for="isSixMonthlivingWithSpouseno"> No </label>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title"><div class="form-check ">
+                <input class="form-check-input " type="checkbox" value="" id="Divorcedid" name="Divorced" />
+                <label class="form-check-label" for="Divorceid">
+                Divoced
+                </label>
+                </div></div>
+
+            </div>
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title ">                
+                    <h6>Date of final decree</h6>
+                </div>
+            </div>
+            <div class="col-sm-6 border-bottom">
+                <div class="the-row-column-title"> <input class="form-control width1" type="date" /></div>
+            </div>
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" name="DecreeDate" id="DecreeDateid" />
+                        <label class="form-check-label" for="DecreeDateid">
+                            Legally Separated
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title ">
+                    <h6>Date of separate maintenance agreement</h6>
+                </div>
+            </div>
+            <div class="col-sm-6 border-bottom">
+                <div class="the-row-column-title"> <input class="form-
+                control width1" type="date" /></div>
+            </div>
+
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title">
+                    <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Widowed
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-3 border-bottom">
+                <div class="the-row-column-title ">                
+                    <h6>Year of spouse’s death</h6>
+                </div>
+            </div>
+            <div class="col-sm-6 border-bottom">
+                <div class="the-row-column-content ">
+                
+                    <input class="form-control width1" type="date" /></div>
+                </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <div><h6>Can anyone claim you or your spouse as a dependent?</h6></div>
-                <div>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Unsure</span>
+                <div class="the-row-column-title">
+                    <h6>Can anyone claim you or your spouse as a dependent?</h6>
+                </div>
+                <div class="the-row-column-title">
+                    <span class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                    </span>
+                    <span class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked />
+                        <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                    </span>
+                    <span class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked />
+                        <label class="form-check-label" for="flexRadioDefault2"> Unsure </label>
+                    </span>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12"><h6>Spouse information</h6></div>
+        <div class="row form-bk-gray">
+            <div class="col-sm-12">
+                <div class="section-title">
+                    <h3 class="">Spouse information</h3>
+                </div>
+
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-5"><h6>First Name</h6></div>
-            <div class="col-sm-2"><h6>M.I</h6></div>
-            <div class="col-sm-5"><h6>Last Name</h6></div>
-            <div class="col-sm-5"><input class="form-control" type="text" /></div>
-            <div class="col-sm-2"><input class="form-control" type="text" /></div>
-            <div class="col-sm-5"><input class="form-control" type="text" /></div>
+        <div class="row form-bk-gray">
+
+            <div class="col-sm-12 col-md-5">
+                <div class="the-row-column-title">
+                    <h6>First Name</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="first-name" type="text" />
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-2">
+                <div class="the-row-column-title">
+                    <h6>M.I</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="M-I" type="text" />
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-5">
+                <div class="the-row-column-title">
+                    <h6>Last Name</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="Last-Name" type="text" />
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-4"><h6>Telephone</h6></div>
-            <div class="col-sm-3"><h6>Date of birth</h6></div>
-            <div class="col-sm-5"><h6>Your Job Title</h6></div>
-            <div class="col-sm-4"><input class="form-control" type="text" /></div>
-            <div class="col-sm-3"><input class="form-control" type="text" /></div>
-            <div class="col-sm-5"><input class="form-control" type="text" /></div>
+        <div class="row form-bk-gray" style="padding-bottom: 45px;">
+            <div class="col-sm-4">
+                <div class="the-row-column-title">
+                    <h6>Telephone</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="Telephone" type="text" />
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="the-row-column-title">
+                    <h6>Date of birth</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="birthdate" type="text" />
+                    <i>mm/dd/yyy</i>
+                </div>
+            </div>
+            <div class="col-sm-5">
+
+                <div class="the-row-column-title">
+                    <h6>Your Job Title</h6>
+                </div>
+                <div class="the-row-column-content">
+                    <input class="form-control" name="job-title" type="text" />
+                </div>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-sm-4">
-                <div><h6>Are you a U.S citizen?</h6></div>
-                <div>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                <div class="the-row-column-title">
+                    <h5>Are you a U.S citizen?</h5>
+                </div>
+                <div class="the-row-column-content">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                        <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked />
+                        <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-8">
-                <div><h6></h6>Last Year, were you:</div>
-                <div>
-                    <span><h6></h6>A. Full-time student</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+                <div class="the-row-column-title">
+                    <h5 class="section-subtitles">Last Year, your spouse was:</h5>
+                </div>                
+                <div class="the-row-column-content">
+                    <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            A. Full-time student
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input " type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1" />
+                                <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked />
+                                <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                            </div>
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <span><h6></h6>B. Totally and permanently disabled</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+            </div>
+                <div class="the-row-column-content">
+                    <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            <h6>B. Totally and permanently disabled</h6>
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input " type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1" />
+                                <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                            </div>
+                            <div class="form-check  form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked />
+                                <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                            </div>
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <span><h6></h6>C. Legally Blind</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
+            </div>
+
+            <div class="the-row-column-content">
+                <div class="border-bottom">
+                    <div class="inline-radio-box">
+                        <span>
+                            <h6>C. Legally Blind</h6>
+                        </span>
+                        <span>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault1" />
+                                <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="flexRadioDefault2" checked />
+                                <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                            </div>
+                        </span>
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12"><h6></h6>Have you or your spouse:</div>
             <div class="col-sm-12">
-                <span><h6></h6>A. Been a victim of identity theft?</span>
-                <span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
-                </span>
+                <div class="the-row-column-title">
+                <div class="section-subtitle">
+                    <h3 class="">Have you or your spouse:</h3>
+                </div>
+                </div>
             </div>
             <div class="col-sm-12">
-                <span><h6></h6>B. Adopted a child?</span>
-                <span>
-                    <span><input class="form-control" type="checkbox" /></span><span>Yes</span>
-                    <span><input class="form-control" type="checkbox" /></span><span>No</span>
-                </span>
+                <div class="the-row-column-content">
+                    <div class="border-bottom">
+                        <div class="inline-radio-box">
+                            <span>
+                                <h6>A. Been a victim of identity theft?</h6>
+                            </span>
+                            <span>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="identity" id="identityyes" />
+                                    <label class="form-check-label" for="identityyes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="identity" id="identityno"
+                                        checked />
+                                    <label class="form-check-label" for="identityno"> No </label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 ">
+                <div class="the-row-column-content">
+                <div class="border-bottom">
+                    <div class="inline-radio-box ">
+                    <span>
+                        <h6></h6>B. Adopted a child?
+                    </span>
+                    <span>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                            <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                checked />
+                            <label class="form-check-label" for="flexRadioDefault2"> No </label>
+                        </div>
+                    </span>
+                </div>
+            </div>
             </div>
         </div>
+        </div>
         <div class="row">
-            <div class="col-sm-12"><h6></h6>List the names below of:</div>
             <div class="col-sm-12">
-                <ul>
-                    <li>
-                        everyone who lived with you last year (other than your spouse)
-                    </li>
-                    <li>anyone you supported but did not live with you last year</li>
-                </ul>
+                <div class="the-row-column-title">
+                    <h6></h6>List the names below of:
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="the-row-column-content">
+
+                    <ul>
+                        <li>
+                            everyone who lived with you last year (other than your spouse)
+                        </li>
+                        <li>anyone you supported but did not live with you last year</li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-3">
-                <div class="dependent-columns-header">
-                    <h6></h6>Name (first, last) Do not enter your name or spouse’s name below
-                </div>
-                <div class="dependent-columns-row-content">
-                    <input class="form-control" type="text" name="dependent-name" class="form-control"
+                <div class="the-row-column-content">
+
+                    <div class="dependent-columns-header">
+                        <h6>Name (first, last) Do not enter your name or spouse’s name below</h6>
+                    </div>
+                    <div class="dependent-columns-row-content">
+                        <input class="form-control" type="text" name="dependent-name" class="form-control"
                         value="Mary Jane" />
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">Date of Birth</div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-title">Date of Birth</div>
+                <div class="the-row-column-content">
                     <input class="form-control" type="datetime" name="" id="dependentBirthday" class="form-control"
                         placeholder="mm/dd/yyyy" value="" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">Relationship to you</div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-title">Relationship to you</div>
+                <div class="the-row-column-content">
                     <input class="form-control" type="text" name="dependent-Relationship" id="dependentRelationship"
                         value="Sister " />
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
+                <div class="the-row-column-title">
                     <h6></h6>Number of months lived in your home last year
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <input class="form-control" type="number" name="dependent-TimelivingWithDependent"
                         id="dependentTimelivingWithDependent" value="7" step="1" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
-                    <div><h6></h6>Us</div>
-                    <div><h6></h6>Citizen</div>
+                <div class="the-row-column-title">
+                    <div>
+                        <h6></h6>Us
+                    </div>
+                    <div>
+                        <h6></h6>Citizen
+                    </div>
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <select class="form-control" name="dependent-Us-Citizen-dw" id="dependentUsCitizen">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -338,14 +679,14 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
-                    <h6>Resident</h6>
-                    <h6>of US,</h6>
-                    <h6>Canada,</h6>
-                    <h6>or Mexico</h6>
-                    <h6>last year</h6>
+                <div class="the-row-column-title ">
+                    Resident
+                    of US,
+                    Canada,
+                    or Mexico
+                    last year
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <select class="form-control" name="Residence-Of-location-dw" id="ResidenceOflocation">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -353,13 +694,13 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
-                    <h6>Single or</h6>
-                    <h6>Married as</h6>
-                    <h6>of 12/31/19</h6>
-                    <h6>(S/M)</h6>
+                <div class="the-row-column-title">
+                    Single or
+                    Married as
+                    of 12/31/19
+                    (S/M)
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <select class="form-control" name="dependent-marital-status-dw" id="dependentMaritalStatus">
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -367,12 +708,12 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
-                    <h6>Full-time</h6>
-                    <h6>Student</h6>
-                    <h6>last year</h6>
+                <div class="the-row-column-title">
+                    Full-time
+                    Student
+                    last year
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <select class="form-control" name="dependent-is-full-time-student-dw"
                         id="dependentIsFullTimeStudent">
                         <option value="Yes">Yes</option>
@@ -381,12 +722,12 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header">
-                    <h6>Totally and</h6>
-                    <h6>Permanently</h6>
-                    <h6>Disabled</h6>
+                <div class="the-row-column-title">
+                    Totally and
+                    Permanently
+                    Disabled
                 </div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-content">
                     <select class="form-control" name="dependent-is-totally-permanently-disabled-dw"
                         id="dependentITotallyPrmanentlyDisabled">
                         <option value="Yes">Yes</option>
@@ -395,15 +736,26 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-1">
-                <div class="dependent-columns-header"></div>
-                <div class="dependent-columns-row-content">
+                <div class="the-row-column-title"></div>
+                <div class="the-row-column-content">
                     <button class="btn btn-primary" class="add-depend">+</button>
                     <button class="btn btn-primary" class="remove-dependent">-</button>
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="step-nav-box">
+                    <div class="step-nav">
+                        <button id="prev-step">Previous Step</button>
+                        <button id="next-step">Next Step</button>
+                        <button id="revire-submit">Review & Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
@@ -413,7 +765,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
     <script src="/js/site.js" asp-append-version="true"></script>
 </body>
 
