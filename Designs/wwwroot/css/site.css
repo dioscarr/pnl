@@ -1324,15 +1324,29 @@ margin-top: -50px;
 .basic-info-parrg2 {
   padding: 0;
 }
+
+.check-list-info img {
+  height: 30px;
+}
+.check-list-info {
+  padding: 5px 0 5px 28px;
+  font-size: 15px;
+}
+
+.check-list-info span {
+  padding: 10px 0;
+  padding-left: 10px;
+}
+
 .checklist-review {
   color: #273a86;
   font-weight: 900;
-  font-size: 32px;
+  font-size: 20px;
+  column-gap: 20px;
 }
 .basic-information-title {
   color: #02308a;
   font-size: 18px;
-  font-weight: 600;
 }
 
 .example {
@@ -1409,6 +1423,18 @@ margin-top: -50px;
   font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: italic;
+}
+#check-list-img {
+  height: 40px;
+}
+
+.form-check-input[type="checkbox"]:checked {
+  background-image: none;
+  background-color: #66b49d !important;
+}
+
+.form-check-input:checked {
+  border-color: #66b49d !important;
 }
 
 @media only screen and (max-width: 600px) {
