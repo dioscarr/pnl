@@ -1,0 +1,11 @@
+<svg id="attention-icon" xmlns="http://www.w3.org/2000/svg" width="64" height="72.494" viewBox="0 0 64 72.494">
+  <g id="question-mark" transform="translate(-29.994)">
+    <path id="Path_265" data-name="Path 265" d="M261.453,9.373A31.79,31.79,0,0,0,238.826,0l-2.832,32,2.832,40.494,8.591-9.661a32.006,32.006,0,0,0,14.036-53.46Z" transform="translate(-176.832 0)" fill="#273a86"/>
+    <path id="Path_266" data-name="Path 266" d="M39.367,9.373A32.006,32.006,0,0,0,53.4,62.833l8.591,9.661V0A31.79,31.79,0,0,0,39.367,9.373Z" fill="#587cc4"/>
+    <path id="Path_267" data-name="Path 267" d="M238.826,60l-2.832,23.5,2.832,23.5a23.5,23.5,0,1,0,0-47.009Z" transform="translate(-176.832 -51.504)" fill="#d7cfe6"/>
+    <path id="Path_268" data-name="Path 268" d="M89.994,83.5a23.531,23.531,0,0,0,23.5,23.5V60A23.531,23.531,0,0,0,89.994,83.5Z" transform="translate(-51.504 -51.504)" fill="#ece6f2"/>
+    <path id="Path_269" data-name="Path 269" d="M238.826,90l-2.832,19.257,2.832,19.257a19.257,19.257,0,0,0,0-38.513Z" transform="translate(-176.832 -77.257)" fill="#ece6f2"/>
+    <path id="Path_270" data-name="Path 270" d="M119.994,109.257a19.279,19.279,0,0,0,19.257,19.257V90A19.279,19.279,0,0,0,119.994,109.257Z" transform="translate(-77.257 -77.257)" fill="#fff5f5"/>
+  </g>
+  <text id="i" transform="translate(37 21) rotate(180)" fill="#fb636f" font-size="30" font-family="OpenSans-Extrabold, Open Sans" font-weight="800" letter-spacing="0.04em"><tspan x="0" y="0">i</tspan></text>
+</svg>

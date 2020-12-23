@@ -110,7 +110,9 @@
             </div>
             @if (position == 1)
             {
-                <div class="@("stepin-Criteria step" +(position == 2 ? active:blockActive))"
+                
+
+                @*<div class="@("stepin-Criteria step" +(position == 2 ? active:blockActive))"
                      style="@((position == 2? "display:block;":"display:block;"))">
                     <Toggled TaxformId="taxFormId" />
                 </div>
@@ -121,7 +123,7 @@
                         <CurrentUserInfo TaxFormID="taxFormId" />
                         <CurrentAddress TaxFormID="taxFormId" />
                     </div>
-                </div>
+                </div>*@
             }
             @if (position == 2)
             {
