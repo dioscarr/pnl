@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - pnl</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <base href="~/" />
+
+    <script src="/js/dropzone.min.js"></script>
+    <link rel="stylesheet" href="/js/dropzone.min.css">
+
+
+  </head>
+
+  <body>
+    <header
+      class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue"
+    >
+      <a
+        class="navbar-brand brand-logo"
+        asp-area=""
+        asp-controller="Home"
+        asp-action="Index"
+      >
+        <img src="/img/LOgo.svg"
+      /></a>
+
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
+      ></div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div id="mininavigation">
+            <div class="mini-navigation-inner-box">
+              <button id="viewDocument">
+                <img
+                  src="/img/document-management-icon-sm.svg"
+                  class="viewDocIcon"
+                />
+                <span> View Your Documents</span>
+              </button>
+              <button id="SaveAndReturn">
+                <img src="/img/home-icon.svg" class="viewDocIcon" />
+                <span>Save & Return To Dashboard</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="min-height: 100%; padding-bottom: 90px">
+      <div class="container main-border">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="steps-top-nav">
+              <span class="steps-box">
+                <div class="step-number step-number-active">STEP 1</div>
+                <div class="step-caption step-caption-active">Basic Information</div>
+              </span>
+              <span class="steps-box">
+                <div class="step-number">STEP 2</div>
+                <div class="step-caption">Personal information</div>
+              </span>
+              <span class="steps-box">
+                <div class="step-number">STEP 3</div>
+                <div class="step-caption">income</div>
+              </span>
+              <span class="steps-box">
+                <div class="step-number">STEP 4</div>
+                <div class="step-caption">Additional Information</div>
+              </span>
+              <span class="steps-box">
+                <div class="step-number">STEP 5</div>
+                <div class="step-caption">review</div>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="hr-line">
+              <hr />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="the-row-column-content">
+              <div class="awesomejohn">All right</div>
+              <div class="john">John!</div>
+              <p class="colorpkblue basic-info-parrg1">
+                Let's start by getting some basic information. 
+                use the right column to add or edit your full name,
+                telephone, email & mailing address
+              </p>
+              <p class="colorpkblue basic-info-parrg2">
+                You can also get a jumpstart by uploading your
+                previous tax return which would automatically 
+                provide us with important information.
+              </p>
+             
+              <form action="/file-upload" class="dropzone">
+                <div class="dz-message" data-dz-message><span>Upload Previous Tax Returns</span></div>
+                <div class="fallback">
+                  <input name="file" type="file" multiple />
+                </div>
+              </form>
+              
+              <p class="step1-fileupload-message">You can click here to upload PDF document or you can drag and 
+                drop the document to this box.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="the-row-column-content">
+              <div class="basic-information-title paddingbotttom25px">Basic information</div>
+              <div class="main-border-grey  padding30px">
+                <div class="name">John Doe</div>
+              <div class="tel">Tel:123-456-7890</div>
+              <div class="email">Email: johndoe@gmail.com</div>
+              <br>
+              <div class="mainling-address paddingtop20px">
+                Mailing Address
+              </div>
+              <div class="address1">935 York Street</div>
+              <div class="address2">Apt. 2</div>
+              <div class="city">East Rutherford</div>
+              <div class="statezipcode">NJ, 07073</div>
+              <div class="photo-id">
+                <span>
+                  <img src="/img/photo-id-icon.svg"/>
+                </span>
+                <span class="photo-id-label">Photo ID</span>
+                <span class="check-list-chk paddingleft10px">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      name="NeverMarried"
+                      id="NeverMarriedid"
+                    />
+                    <label class="form-check-label" for="NeverMarriedid">
+                    
+                    </label>
+                  </div>
+              </span>
+              <span class="colorpkblue"><a href="/">Upload Document</a></span>
+            </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="step-nav-box">
+                <div class="step-nav">                 
+                    <div id="next-step">
+                      <form action="/step2.html">
+                        <button id="next-step-id">Next Step</button>
+                      </form>
+                    </div>
+                    <div id="next-step">
+                    <form action="/step5-2.html">
+                    <button id="revire-submit">Review & Submit</button>
+                    </form>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
+    <script src="/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+    function handleFileSelect(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+
+    var files = evt.dataTransfer.files; // FileList object.
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  function handleDragOver(evt) {
+    evt.stopPropagation();
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  }
+
+  // Setup the dnd listeners.
+  var dropZone = document.getElementById('drop_zone');
+  dropZone.addEventListener('dragover', handleDragOver, false);
+  dropZone.addEventListener('drop', handleFileSelect, false);
+    </script>
+  </body>
+</html>
