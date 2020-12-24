@@ -1,186 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - pnl</title>
-    <link rel="stylesheet" href="/css/site.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-    <base href="~/" />
-  </head>
-  <body>
-    <header
-      class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue"
-    >
-      <a
-        class="navbar-brand brand-logo"
-        asp-area=""
-        asp-controller="Home"
-        asp-action="Index"
-      >
-        <img src="/img/LOgo.svg"
-      /></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-      >
-        <partial name="_LoginPartial" />
-        <ul class="navbar-nav flex-grow-1 menu-ul padding0px15px">
-          <li class="nav-item">
-            <a
-              class="nav-link menu-link-color"
-              asp-area=""
-              asp-controller="Home"
-              asp-action="Index"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link menu-link-color"
-              asp-area=""
-              asp-controller="TaxForm"
-              asp-action="Create"
-              >About Us</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link menu-link-color" href="/pnlaccess"
-              >Product & Pricing</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link menu-link-color" href="/PnlAccess/config"
-              >Resources</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link menu-link-color" href="#">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </header>
 
-    <div class="primary-padding container-fluid primary-blue">
-      <div class="row">
-        <div class="col-sm-12 col-md-6 d-none d-sm-block">
-          <div class="lanontent">
-            <div class="landing-content-tding-cop">
-              <p class="slog-small">Tax consultation and preparation with a</p>
-              <div class="slog-large">Human touch.</div>
-            </div>
-            <div class="landing-content-middle">
-              <p>Work with a tax pro from home. Provide virtual tax services. PNL Tax Corp philosophy is that if you could buy a car, get a mortgage all at the comfort of your computer why can't you get the best accounting services and tax preparations also from the comfort of your home or anywhere.</p>
-              <div class="getstarted">
-                <button class="btn btn-primary">Get Started</button>
-              </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - pnl</title>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <base href="~/" />
+</head>
+
+<body>
+  <header
+    class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
+    <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
+      <img src="/img/LOgo.svg" /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+      <partial name="_LoginPartial" />
+      <ul class="navbar-nav flex-grow-1 menu-ul padding0px15px">
+        <li class="nav-item">
+          <a class="nav-link menu-link-color" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link menu-link-color" asp-area="" asp-controller="TaxForm" asp-action="Create">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link menu-link-color" href="/pnlaccess">Product & Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link menu-link-color" href="/PnlAccess/config">Resources</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link menu-link-color" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="primary-padding container-fluid primary-blue">
+    <div class="row">
+      <div class="col-sm-12 col-md-6 d-none d-sm-block">
+        <div class="lanontent">
+          <div class="landing-content-tding-cop">
+            <p class="slog-small">Tax consultation and preparation with a</p>
+            <div class="slog-large">Human touch.</div>
+          </div>
+          <div class="landing-content-middle">
+            <p>Work with a tax pro from home. Provide virtual tax services. PNL Tax Corp philosophy is that if you could
+              buy a car, get a mortgage all at the comfort of your computer why can't you get the best accounting
+              services and tax preparations also from the comfort of your home or anywhere.</p>
+            <div class="getstarted">
+              <button class="btn btn-primary">Get Started</button>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-12 col-md-6">
-          <div class="landing-content data-audit">
-            <div class="signin-form">
-              <div class="signin-form-company-title">PNL TAX CORP</div>
-              <div class="signin-form-subtop">
-                <div class="secured">
-                  <div class="securedIcon"></div>
-                  <div class="securedCaption">Secured</div>
-                </div>
-                <div class="advance">
-                  <div class="advanceIcon"></div>
-                  <div class="advanceCaption">Secured</div>
-                </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="landing-content data-audit">
+          <div class="signin-form">
+            <div class="signin-form-company-title">PNL TAX CORP</div>
+            <div class="signin-form-subtop">
+              <div class="secured">
+                <div class="securedIcon"></div>
+                <div class="securedCaption">Secured</div>
               </div>
-              <div class="input-box">
-                <div class="emailIcon"></div>
-                <div class="emailInput">
-                  <input type="email" value="" class="form-control"  placeholder="Email"/>
-                </div>
+              <div class="advance">
+                <div class="advanceIcon"></div>
+                <div class="advanceCaption">Secured</div>
               </div>
-              <div class="input-box">
-                <div class="passwordlIcon"></div>
-                <div class="passwordlInput">
-                  <input type="password" value="" class="form-control" placeholder="Password" />
-                </div>
+            </div>
+            <div class="input-box">
+              <div class="emailIcon"></div>
+              <div class="emailInput">
+                <input type="email" value="" class="form-control" placeholder="Email" />
               </div>
-              <div class="forget-password smllfnt">
-               <a href=""> Forgot Password?</a>
+            </div>
+            <div class="input-box">
+              <div class="passwordlIcon"></div>
+              <div class="passwordlInput">
+                <input type="password" value="" class="form-control" placeholder="Password" />
               </div>
-              <div class="signin-button-box">
-                <form method="get" action="/step1.html"><button class="btn btn-primary">
+            </div>
+            <div class="forget-password smllfnt">
+              <a href=""> Forgot Password?</a>
+            </div>
+            <div class="signin-button-box">
+              <form method="get" action="/step1.html"><button class="btn btn-primary">
                   <div class="signin-button-inner-box">
                     <div class="signinBtnIcon"></div>
-                    <div class="signin-btn-text">Sign In</div> 
+                    <div class="signin-btn-text">Sign In</div>
                   </div>
                 </button>
-                </form>
- 
-               </div>
-              <div class="terms-conditions">
-                By clicking Sign in, you agree to our Terms and have read and
-                acknowledge our US Privacy Statement.
+              </form>
+
+            </div>
+            <div class="terms-conditions">
+              By clicking Sign in, you agree to our Terms and have read and
+              acknowledge our US Privacy Statement.
+            </div>
+            <div class="remember-me">
+              <div class="remember-me-chk">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                </div>
+
               </div>
-              <div class="remember-me">
-                <div class="remember-me-chk">
-                  <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                  </div>
-                  
-                </div>
-                <div class="Create-Account disp">
-                  <div class="createAccountIcon"></div>
-                  <div><button class="btn btn-primary">Create Account</button></div>
-                </div>
+              <div class="Create-Account disp">
+                <div class="createAccountIcon"></div>
+                <div><button class="btn btn-primary">Create Account</button></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-12 col-md-6.d-none d-md-block d-lg-none">
-          <div class="landing-content">
-            <div class="landing-content-top">
-              <p class="slog-small">Tax consultation and preparation with a</p>
-              <div class="slog-large">Human touch.</div>
-            </div>
-            <div class="landing-content-middle">
-              <p>Work with a tax pro from home. Provide virtual tax services. PNL Tax Corp philosophy is that if you could buy a car, get a mortgage all at the comfort of your computer why can't you get the best accounting services and tax preparations also from the comfort of your home or anywhere.</p>
-              <div class="getstarted">
-                <button class="btn btn-primary">Get Started</button>
-              </div>
+      <div class="col-sm-12 col-md-6.d-none d-md-block d-lg-none">
+        <div class="landing-content">
+          <div class="landing-content-top">
+            <p class="slog-small">Tax consultation and preparation with a</p>
+            <div class="slog-large">Human touch.</div>
+          </div>
+          <div class="landing-content-middle">
+            <p>Work with a tax pro from home. Provide virtual tax services. PNL Tax Corp philosophy is that if you could
+              buy a car, get a mortgage all at the comfort of your computer why can't you get the best accounting
+              services and tax preparations also from the comfort of your home or anywhere.</p>
+            <div class="getstarted">
+              <button class="btn btn-primary">Get Started</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="primary-padding container-fluid ">
+  </div>
+  <div class="primary-padding container-fluid ">
     <div class="row">
       <div class="col-sm-12"></div>
     </div>
@@ -205,7 +168,8 @@
                 You answer simple questions. We do all the math.
               </div>
               <div class="desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam venenatis varius.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat.
+                Curabitur sed nunc vel diam venenatis varius.
               </div>
             </div>
           </div>
@@ -257,42 +221,13 @@
       </div>
     </div>
     <section class="desktop-tablet-only">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">01.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <div>
-          <div class="securitypage-box rowspan1">
-            <div class="inner-securitypage-box pull-right">
-              <div class="sec-header3 pull-right">
-                <span class="numberslabel">06.</span><span>lorem ipsum</span>
-              </div>
-              <div class="sec-desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                  ac dolor in tellus convallis feugiat. Curabitur.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="securitypage-box rowspan1">
-            <div class="inner-securitypage-box pull-right">
-              <div class="sec-header3 pull-right">
-                <span class="numberslabel">05.</span><span>lorem ipsum</span>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">01.</div>
+                <div>lorem ipsum</div>
               </div>
               <div class="sec-desc">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
@@ -302,19 +237,78 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div class="securitypage-box rowspan2">
-          <div class="inner-securitypage-box">
-            <img class="fullimg" src="/img/Proctection.svg" />
+      <div class="row">
+        <div class="col-sm-4">
+          <div>
+            <div class="securitypage-box rowspan1">
+              <div class="inner-securitypage-box pull-right">
+                <div class="sec-header3 pull-right">
+                  <span class="numberslabel">06.</span><span>lorem ipsum</span>
+                </div>
+                <div class="sec-desc">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                    ac dolor in tellus convallis feugiat. Curabitur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="securitypage-box rowspan1">
+              <div class="inner-securitypage-box pull-right">
+                <div class="sec-header3 pull-right">
+                  <span class="numberslabel">05.</span><span>lorem ipsum</span>
+                </div>
+                <div class="sec-desc">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                    ac dolor in tellus convallis feugiat. Curabitur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="securitypage-box rowspan2">
+            <div class="inner-securitypage-box">
+              <img class="fullimg" src="/img/Proctection.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <div class="securitypage-box rowspan1">
+              <div class="inner-securitypage-box pull-left">
+                <div class="sec-header3 pull-left">
+                  <span class="numberslabel">02.</span><span>lorem ipsum</span>
+                </div>
+                <div class="sec-desc">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                    ac dolor in tellus convallis feugiat. Curabitur.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="securitypage-box rowspan1">
+              <div class="inner-securitypage-box pull-left">
+                <div class="sec-header3 pull-left">
+                  <span class="numberslabel">03.</span><span>lorem ipsum</span>
+                </div>
+                <div class="sec-desc">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                    ac dolor in tellus convallis feugiat. Curabitur.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
-        <div>
-          <div class="securitypage-box rowspan1">
-            <div class="inner-securitypage-box pull-left">
-              <div class="sec-header3 pull-left">
-                <span class="numberslabel">02.</span><span>lorem ipsum</span>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">04.</div>
+                <div>lorem ipsum</div>
               </div>
               <div class="sec-desc">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
@@ -323,141 +317,111 @@
             </div>
           </div>
         </div>
-        <div>
-          <div class="securitypage-box rowspan1">
-            <div class="inner-securitypage-box pull-left">
-              <div class="sec-header3 pull-left">
-                <span class="numberslabel">03.</span><span>lorem ipsum</span>
-              </div>
-              <div class="sec-desc">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                  ac dolor in tellus convallis feugiat. Curabitur.</p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">04.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
     <!--Security Protection Order for Mobile-->
-  <section class="mobile-only">
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="securitypage-box rowspan2 mobile-security-icon">
-          <div class="inner-securitypage-box">
-            <img class="fullimg" src="/img/Proctection.svg" />
-          </div>
-        </div>
-      </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">01.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
+    <section class="mobile-only">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="securitypage-box rowspan2 mobile-security-icon">
+            <div class="inner-securitypage-box">
+              <img class="fullimg" src="/img/Proctection.svg" />
             </div>
           </div>
         </div>
-      </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">02.</div>
-              <div>lorem ipsum</div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">01.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
             </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
+          </div>
+        </div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">02.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">03.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">04.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">05.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Box-->
+        <div class="col-sm-12">
+          <div class="securitypage-box">
+            <div class="inner-securitypage-box">
+              <div class="sec-header3">
+                <div class="numberslabel">06.</div>
+                <div>lorem ipsum</div>
+              </div>
+              <div class="sec-desc">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+                  ac dolor in tellus convallis feugiat. Curabitur.</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">03.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">04.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">05.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Box-->
-      <div class="col-sm-12">
-        <div class="securitypage-box">
-          <div class="inner-securitypage-box">
-            <div class="sec-header3">
-              <div class="numberslabel">06.</div>
-              <div>lorem ipsum</div>
-            </div>
-            <div class="sec-desc">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              ac dolor in tellus convallis feugiat. Curabitur.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-</section>
+
+    </section>
     <!--How it works Your satisfaction, guaranteed-->
     <div class="row ">
       <div class="col-sm-12">
@@ -475,131 +439,137 @@
       <div class="row">
         <div class="col-sm-12 col-md-4">
           <div class="satisfaction-box satisfaction-card">
-                <img src="/img/Circle1.svg">
-                <div class="satisfaction-box-content">
-                  <h2>We search over 350 tax deductions</h2>
-                  <div class="satisfaction-box-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                      dolor in tellus convallis feugiat. Curabitur.
-                  </div>
-                </div>              
-              </div>              
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <div class="satisfaction-box satisfaction-card">
-                  <img src="/img/Circle2.svg">
-                  <div class="satisfaction-box-content">
-                    <h2>We search over 350 tax deductions</h2>
-                      <div class="satisfaction-box-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                        dolor in tellus convallis feugiat. Curabitur.
-                      </div>
-                  </div>              
-                </div>              
+            <img src="/img/Circle1.svg">
+            <div class="satisfaction-box-content">
+              <h2>We search over 350 tax deductions</h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-              <div class="satisfaction-box satisfaction-card">
-                    <img src="/img/Circle3.svg">
-                    <div class="satisfaction-box-content">
-                      <h2>We search over 350 tax deductions</h2>
-                        <div class="satisfaction-box-body">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                          dolor in tellus convallis feugiat. Curabitur.
-                        </div>
-                    </div>              
-                  </div>              
-              </div>
           </div>
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <div class="satisfaction-box satisfaction-card">
-                    <img src="/img/guidanceicon.svg">
-                    <div class="satisfaction-box-content">
-                      <h2>Guidance in case of an audit
-                        </h2>
-                      <div class="satisfaction-box-body">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                          dolor in tellus convallis feugiat. Curabitur.
-                      </div>
-                    </div>              
-                  </div>              
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="satisfaction-box satisfaction-card">
+            <img src="/img/Circle2.svg">
+            <div class="satisfaction-box-content">
+              <h2>We search over 350 tax deductions</h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
               </div>
-              <div class="col-sm-12 col-md-4">
-                <div class="satisfaction-box satisfaction-card">
-                      <img src="/img/biglifeicon.svg">
-                      <div class="satisfaction-box-content">
-                        <h2>Big life changes? We can help</h2>
-                          <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
-                          </div>
-                      </div>              
-                    </div>              
-                </div>
-                <div class="col-sm-12 col-md-4">
-                  <div class="satisfaction-box satisfaction-card">
-                        <img src="/img/efileicon.svg">
-                        <div class="satisfaction-box-content">
-                          <h2>Get your fastest tax refund possible </h2>
-                            <div class="satisfaction-box-body">
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                              dolor in tellus convallis feugiat. Curabitur.
-                            </div>
-                        </div>              
-                      </div>              
-                  </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="satisfaction-box satisfaction-card">
+            <img src="/img/Circle3.svg">
+            <div class="satisfaction-box-content">
+              <h2>We search over 350 tax deductions</h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
               </div>
-      </section>
-    <section class="blog-section">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="section-title-page4">Help center</div>
-        <div class="devider">
-          <img src="/img/pageheaderribon.svg" />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row thinner">
-      <div class="col-sm-12 col-md-4">
-        <div class="blog-box blog-card">
-              <img src="/img/creditcardimg.png">
-              <div class="blog-box-content">
-                <h4><bold>Lorem ipsum dolor sit amet
-                  consectetur adipisscing</bold></h4>
-                  <div class="blog-box-body">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                    dolor in tellus convallis feugiat. Curabitur.
-                  </div>
-              </div>              
-            </div>              
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <div class="satisfaction-box satisfaction-card">
+            <img src="/img/guidanceicon.svg">
+            <div class="satisfaction-box-content">
+              <h2>Guidance in case of an audit
+              </h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="satisfaction-box satisfaction-card">
+            <img src="/img/biglifeicon.svg">
+            <div class="satisfaction-box-content">
+              <h2>Big life changes? We can help</h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="satisfaction-box satisfaction-card">
+            <img src="/img/efileicon.svg">
+            <div class="satisfaction-box-content">
+              <h2>Get your fastest tax refund possible </h2>
+              <div class="satisfaction-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="blog-section">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="section-title-page4">Help center</div>
+          <div class="devider">
+            <img src="/img/pageheaderribon.svg" />
+          </div>
+        </div>
+      </div>
+      <div class="row thinner">
+        <div class="col-sm-12 col-md-4">
+          <div class="blog-box blog-card">
+            <img src="/img/creditcardimg.png">
+            <div class="blog-box-content">
+              <h4>
+                <bold>Lorem ipsum dolor sit amet
+                  consectetur adipisscing</bold>
+              </h4>
+              <div class="blog-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="blog-box blog-card">
-                <img src="/img/moneyimg.png">
-                <div class="blog-box-content">
-                  <h4><bold>Lorem ipsum dolor sit amet
-                    consectetur adipisscing</bold></h4>
-                    <div class="blog-box-body">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                      dolor in tellus convallis feugiat. Curabitur.
-                    </div>
-                </div>              
-              </div>              
-          </div>
-          <div class="col-sm-12 col-md-4">
-            <div class="blog-box blog-card">
-                  <img src="/img/computerimg.png">
-                  <div class="blog-box-content">
-                    <h4><bold>Lorem ipsum dolor sit amet
-                      consectetur adipisscing</bold></h4>
-                      <div class="blog-box-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                        dolor in tellus convallis feugiat. Curabitur.
-                      </div>
-                  </div>              
-                </div>              
+            <img src="/img/moneyimg.png">
+            <div class="blog-box-content">
+              <h4>
+                <bold>Lorem ipsum dolor sit amet
+                  consectetur adipisscing</bold>
+              </h4>
+              <div class="blog-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
             </div>
-     
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <div class="blog-box blog-card">
+            <img src="/img/computerimg.png">
+            <div class="blog-box-content">
+              <h4>
+                <bold>Lorem ipsum dolor sit amet
+                  consectetur adipisscing</bold>
+              </h4>
+              <div class="blog-box-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+                dolor in tellus convallis feugiat. Curabitur.
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
     <!--View All btn-->
@@ -613,65 +583,65 @@
     <!--Social-->
     <div class="">
       <div class="row footer-social">
-      <div class="col-sm-8">
-        <div class="top-footer">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-          dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-          venenatis varius. Donec rutrum sit amet sapien eu euismod.
+        <div class="col-sm-8">
+          <div class="top-footer">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+            dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+            venenatis varius. Donec rutrum sit amet sapien eu euismod.
+          </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="social-card">    
+        <div class="col-sm-4">
+          <div class="social-card">
             <div class="content-title">Social</div>
             <div class="social-media-icons">
               <img src="/img/facebookicon.svg" />
               <img src="/img/twittericon.svg" />
               <img src="/img/igicons.svg" />
               <img src="/img/linkedinicon.svg" />
-            </div>          
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="footer-card">
-          <div class="sub-title">About Use</div>
-          <div class="content-bottom">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-            dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-            venenatis varius. Donec rutrum sit amet sapien eu euismod.
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
-        <div class="footer-card">
-          <div class="sub-title">Help & Support</div>
-          <div class="content-bottom">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-            dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-            venenatis varius. Donec rutrum sit amet sapien eu euismod.
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="footer-card">
+            <div class="sub-title">About Use</div>
+            <div class="content-bottom">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+              dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+              venenatis varius. Donec rutrum sit amet sapien eu euismod.
+            </div>
           </div>
         </div>
-      </div>
+        <div class="col-sm-3">
+          <div class="footer-card">
+            <div class="sub-title">Help & Support</div>
+            <div class="content-bottom">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
+              dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
+              venenatis varius. Donec rutrum sit amet sapien eu euismod.
+            </div>
+          </div>
+        </div>
 
-      <div class="col-sm-2">
-        <div class="footer-card  justifyleft">
-          <div class="sub-title">Quick Links</div>
-          <div class="content-bottom">
-           <p class="lnht"> <a href="#">About Us</a>
-            <br />
-            <a href=#>Product & Pricing</a>
-            <br />
-            <a href="#">Resources</a>
-            <br />
-            <a href="#">Contact Us</a>
-          </p>
+        <div class="col-sm-2">
+          <div class="footer-card  justifyleft">
+            <div class="sub-title">Quick Links</div>
+            <div class="content-bottom">
+              <p class="lnht"> <a href="#">About Us</a>
+                <br />
+                <a href=#>Product & Pricing</a>
+                <br />
+                <a href="#">Resources</a>
+                <br />
+                <a href="#">Contact Us</a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="footer-cta">
-                    <div class="content-title">
+        <div class="col-sm-4">
+          <div class="footer-cta">
+            <div class="content-title">
               <img src="/img/LOgo.svg" style="width: 200px" />
             </div>
             <div class="content-card-body color-white">
@@ -679,10 +649,10 @@
               ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
               venenatis varius. Donec rutrum sit amet sapien eu euismod.
             </div>
-         
+
+          </div>
         </div>
       </div>
-    </div>
     </div>
     <!--Empty row-->
     <div class="row">
@@ -694,21 +664,14 @@
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script
-      type="text/javascript"
-      charset="utf8"
-      src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
 
     <script src="/js/site.js" asp-append-version="true"></script>
     <script type="text/javascript">
@@ -717,5 +680,6 @@
         window.scrollY = document.body.scrollHeight;
       }
     </script>
-  </body>
+</body>
+
 </html>
