@@ -19,7 +19,7 @@ WORKDIR /app
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
 COPY ["pnl.csproj", "./"]
-RUN dotnet run restore "pnl.csproj"
+RUN dotnet restore "pnl.csproj"
 COPY . .
 WORKDIR "/src/"
 RUN dotnet build "pnl.csproj" -c Debug -o /app/build
