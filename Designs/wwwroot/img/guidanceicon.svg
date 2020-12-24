@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="guidanceicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" viewBox="0 0 350 323.5" style="enable-background:new 0 0 350 323.5;" xml:space="preserve">
+<svg version="1.1" id="Circle1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 373 270" style="enable-background:new 0 0 373 270;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FF7676;}
 </style>
-<path id="Path_28" class="st0" d="M152.1,219.3l-46-46.2l16.2-16.2l29.7,29.7l75.7-75.7l16.2,16.2L152.1,219.3z M175,35.2l-103.5,46
-	v69c0,63.8,44.2,123.4,103.5,138.1c59.3-14.5,103.5-74.1,103.5-138.1v-69L175,35.2z"/>
+<g>
+	<g>
+		<path id="Path_28_2_" class="st0" d="M166.3,185.4l-40.4-40.4l14.2-14.2l26.2,26.1l66.5-66.5l14.2,14.3L166.3,185.4z M186.5,24
+			L95.7,64.4v60.6c0,56,38.7,108.4,90.8,121.1c52-12.7,90.8-65.1,90.8-121.1V64.4L186.5,24z"/>
+	</g>
+</g>
 </svg>
