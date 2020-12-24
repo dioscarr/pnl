@@ -33,7 +33,7 @@ WORKDIR /temp//path
 
 FROM base AS final
 WORKDIR /app
-COPY --from=app/publish /app/publish .
+COPY --from=publish /app/publish .
 
 #EXPOSE 5000/tcp
 
