@@ -1010,8 +1010,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-weight: 700 !important;
-    color: #3A3A3A;
-    font-weight: 12px;
+    color: #3A3A3A;    
     font-size: 14px;
 }
 
