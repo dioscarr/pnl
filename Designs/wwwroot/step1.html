@@ -28,11 +28,29 @@
 
 <body>
   <header
-    class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
+    class="primary-padding container-fluid primary-blue header">
     <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
       <img src="/img/LOgo.svg" /></a>
-
-    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"></div>
+    <div class="partial-login">
+    
+      <div class="greetings-name">
+          <a  class="nav-link manage-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <span class="greetingsHello">Hello, </span>
+              <span class="nav-currentUser"> @User.Identity.Name!</span>
+          </a>       
+        </div>
+        <div class="nav-item profileimg">
+            <div class="account-box">
+                    <a class="" asp-area="" asp-controller="UserAccount" asp-action="Index"><img src="/img/avatar.png" /></a>
+            </div>
+    
+    </div>
+      <div class="nav-item signout">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button type="submit" class="nav-link btn btn-link text-dark">Not you? Sign out</button>
+        </form>        
+      </div>
+    </div>
   </header>
   <div class="container">
     <div class="row">

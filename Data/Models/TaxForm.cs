@@ -18,6 +18,8 @@ namespace pnl.Data.Models
         public int TaxYear { get; set; }
         public bool isFiled { get; set; }
         public string FilingStatus { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set; }
 
         [Required][ForeignKey("Person")]
         public int PersonID { get; set; }

@@ -1,12 +1,4 @@
-﻿<header class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
-    <a class="navbar-brand brand-logo"
-       asp-area=""
-       asp-controller="Home"
-       asp-action="Index">
-        <img src="/img/LOgo.svg" />
-    </a>
-    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"></div>
-</header>
+﻿
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -20,7 +12,7 @@
                         <img src="/img/home-icon.svg" class="viewDocIcon" />
                         <span>Save & Return To Dashboard</span>
                     </button>
-                </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -133,14 +125,14 @@
                     <div class="step-nav-box">
                         <div class="step-nav">
                             <div id="next-step">
-                                <form action="/step2.html">
-                                    <button id="next-step-id">Next Step</button>
-                                </form>
+                                @*<form action="/step2.html">*@
+                                    <button id="next-step-id" @onclick="Next">Next Step</button>
+                                @*</form>*@
                             </div>
                             <div id="next-step">
-                                <form action="/step5-2.html">
-                                    <button id="revire-submit">Review & Submit</button>
-                                </form>
+                                @*<form action="/step5-2.html">*@
+                                    <button id="revire-submit"  @onclick="SubmitReview">Review & Submit</button>
+                                @*</form>*@
                             </div>
                         </div>
                     </div>
@@ -151,5 +143,19 @@
 </div>
 
 @code {
+    [Parameter]
+    public EventCallback<int> NextPage { get; set; }
+
+    [Parameter]
+    public EventCallback<int> FinalPage { get; set; }
+
+    public async Task Next()
+    {
+        await NextPage.InvokeAsync(2);
+    }
+    public async Task SubmitReview()
+    {
+        await FinalPage.InvokeAsync(5);
+    }
 
 }

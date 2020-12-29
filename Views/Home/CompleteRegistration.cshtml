@@ -1,0 +1,27 @@
+﻿@model pnl.Models.UserAccountViewModel
+
+<form asp-action="Update" asp-controller="Home">
+    @Html.HiddenFor(c => c.CurrentUser.id)
+    @Html.HiddenFor(c => c.CurrentUser.UserId)
+    <h4>Basic Information</h4>
+    @Html.TextBoxFor(c => c.CurrentUser.FirstName, null, new { @Placeholder = "First Name" })
+    @Html.TextBoxFor(c => c.CurrentUser.MiddleName, null, new { @Placeholder = "MiddleName" })
+    @Html.TextBoxFor(c => c.CurrentUser.LastName, null, new { @Placeholder = "LastName" })
+    @Html.TextBoxFor(c => c.CurrentUser.Email, null, new { @Placeholder = "Email" })
+    @Html.TextBoxFor(c => c.CurrentUser.Birthday, null, new { @Placeholder = "Birthday" })
+    @Html.TextBoxFor(c => c.CurrentUser.SSN, null, new { @Placeholder = "SSN" })
+    @Html.TextBoxFor(c => c.CurrentUser.Occupation, null, new { @Placeholder = "Occupation" })
+    <br />
+    <br />
+    <h4>Address</h4>
+    @Html.HiddenFor(c => c.Address.id)
+    @Html.HiddenFor(c => c.Address.PersonID)
+
+    @Html.TextBoxFor(c => c.Address.Address1, null, new { @Placeholder = "Address1" })
+    @Html.TextBoxFor(c => c.Address.Address2, null, new { @Placeholder = "Address2" })
+    @Html.TextBoxFor(c => c.Address.City, null, new { @Placeholder = "City" })
+    @Html.TextBoxFor(c => c.Address.State, null, new { @Placeholder = "State" })
+    @Html.TextBoxFor(c => c.Address.Zip, null, new { @Placeholder = "Zip" })
+    <input type="submit" value="Update" placeholder="Update" />
+</form>
+

@@ -1,7 +1,15 @@
 ﻿@inject TaxFormService service
 
-@code
-{
+    <div id="tax-form-pages-inline">
+        @if (position == 1){<Step1 NextPage="Next" FinalPage="SubmitReview" />}
+        @if (position == 2){<Step2 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+        @if (position == 3){<Step3 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+        @if (position == 4){<Step4 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+        @if (position == 5){<Step5 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+        @if (position == 6){<Step6 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+    </div>
+
+@code {
     private string Value { set; get; } = "1";
     private int oldposition { set; get; } = 1;
     private int currposition { set; get; } = 1;
@@ -11,214 +19,6 @@
 
     public string nextrev { get; set; } = "animate__animated animate__fadeOutRight";
     public string prvrev { get; set; } = "animate__animated animate__fadeInLeft";
-
-
-    private void OnValueChanged(ChangeEventArgs args)
-    {
-        oldposition = int.Parse(Value.ToString());
-        Value = args.Value.ToString();
-        currposition = int.Parse(args.Value.ToString());
-        stepin = Value;
-        StateHasChanged();
-    }
-}
-<div class="filetaxes">
-
-    @if (!canDisplay)
-    {
-        <NewTaxYear OnNewTaxYearEvent="OnNewTaxYearEvent" />
-    }
-    @if (canDisplay)
-    {
-        <div id="tax-form-pages-inline">
-            <div class="steps-position">
-                @if (@position == 1)
-                {
-                    <div class="step-position-pair" @onclick="()=>handleClick(1)">
-                        <div class="tracking-in-expand">@getLabel(position - 1)</div>
-                        <div class="circlesteps text-focus-in scale-in-center  ative-position">@position</div>
-                    </div>
-                }
-                @if (@position == 2)
-                {
-                    <div class="step-position-pair" @onclick="()=>handleClick(1)">
-                        <div>@getLabel(position - 2) </div>
-                        <div class="circlesteps">@(position - 1) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(2)">
-                        <div class="tracking-in-expand">@getLabel(position - 1)</div>
-                        <div class="circlesteps text-focus-in scale-in-center ative-position">@(position)</div>
-                    </div>
-                }
-                @if (@position == 3)
-                {
-                    <div class="step-position-pair" @onclick="()=>handleClick(1)">
-                        <div>@getLabel(position - 3) </div>
-                        <div class="circlesteps ">@(position - 2) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(2)">
-                        <div>@getLabel(position - 2)</div>
-                        <div class="circlesteps ">@(position - 1)</div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(3)">
-                        <div class="tracking-in-expand">@getLabel(position - 1)</div>
-                        <div class="circlesteps text-focus-in scale-in-center ative-position">@(position)</div>
-                    </div>
-                }
-                @if (@position == 4)
-                {
-                    <div class="step-position-pair" @onclick="()=>handleClick(1)">
-                        <div>@getLabel(position - 4) </div>
-                        <div class="circlesteps ">@(position - 3) </div>
-                    </div>
-                    <div class="step-position-pair " @onclick="()=>handleClick(2)">
-                        <div>@getLabel(position - 3) </div>
-                        <div class="circlesteps ">@(position - 2) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(3)">
-                        <div>@getLabel(position - 2) </div>
-                        <div class="circlesteps ">@(position - 1)</div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(4)">
-                        <div class="tracking-in-expand">@getLabel(position - 1) </div>
-                        <div class="circlesteps text-focus-in scale-in-center ative-position">@(position)</div>
-                    </div>
-                }
-                @if (@position == 5)
-                {
-                    <div class="step-position-pair" @onclick="()=>handleClick(1)">
-                        <div>@getLabel(position - 5) </div>
-                        <div class="circlesteps ">@(position - 4) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(2)">
-                        <div>@getLabel(position - 4) </div>
-                        <div class="circlesteps ">@(position - 3) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(3)">
-                        <div>@getLabel(position - 3) </div>
-                        <div class="circlesteps ">@(position - 2) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(4)">
-                        <div>@getLabel(position - 2) </div>
-                        <div class="circlesteps ">@(position - 1) </div>
-                    </div>
-                    <div class="step-position-pair" @onclick="()=>handleClick(5)">
-                        <div class="tracking-in-expand">@getLabel(position - 1) </div>
-                        <div class="circlesteps text-focus-in scale-in-center ative-position">@(position) </div>
-                    </div>
-                }
-            </div>
-            @if (position == 1)
-            {
-                
-                    <Step1/>
-                @*<div class="@("stepin-Criteria step" +(position == 2 ? active:blockActive))"
-                     style="@((position == 2? "display:block;":"display:block;"))">
-                    <Toggled TaxformId="taxFormId" />
-                </div>
-                <div class="@("stepin-ReviewUserInformation step" +(position == 1 ? active:blockActive))"
-                     style="@((position == 1? "display:block;":"display:block;"))">
-                    <div class="ReviewUserInformation">
-                        <div class="QuestionStep">Is this information correct?</div>
-                        <CurrentUserInfo TaxFormID="taxFormId" />
-                        <CurrentAddress TaxFormID="taxFormId" />
-                    </div>
-                </div>*@
-            }
-            @if (position == 2)
-            {
-                if (direction == 0)
-                {
-                    <div class="@("stepin-ReviewUserInformation step" +(position == 1 ? active:blockActive))"
-                         style="@((position == 1? "display:block;":"display:block;"))">
-                        <div class="ReviewUserInformation">
-                            <div class="QuestionStep">Is this information correct?</div>
-                            <CurrentUserInfo TaxFormID="taxFormId" />
-                            <CurrentAddress TaxFormID="taxFormId" />
-                        </div>
-                    </div>
-                }
-                if (direction == 1)
-                {
-                    <div class="@("stepin-Add-Dependent step" + (position == 3? active:blockActive))"
-                         style="@((position == 3? "display:block;":"display:block;"))">
-                        <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                    </div>
-                }
-                <div class="@("stepin-Criteria step" +(position == 2 ? active:blockActive))"
-                     style="@((position == 2? "display:block;":"display:block;"))">
-                    <Toggled TaxformId="taxFormId" />
-                </div>
-            }
-            @if (position == 3)
-            {
-                if (direction == 0)
-                {
-                    <div class="@("stepin-Criteria step" +(position == 2 ? active:blockActive))"
-                         style="@((position == 2? "display:block;":"display:block;"))">
-                        <Toggled TaxformId="taxFormId" />
-                    </div>
-                }
-                if (direction == 1)
-                {
-                    <div class="@("stepin-Dependents step" + (position == 4 ? active:blockActive))"
-                         style="@((position == 4? "display:block;":"display:block;"))">
-                        <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                    </div>
-                }
-                <div class="@("stepin-Add-Dependent step" + (position == 3? active:blockActive))"
-                     style="@((position == 3? "display:block;":"display:block;"))">
-                    <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                </div>
-            }
-            @if (position == 4)
-            {
-                if (direction == 0)
-                {
-                    <div class="@("stepin-Add-Dependent step" + (position == 3? active:blockActive))"
-                         style="@((position == 3? "display:block;":"display:block;"))">
-                        <DependentForm TaxFormID="taxFormId" OnReloadDependetEvent="OnReloadDependetEvent" />
-                    </div>
-                }
-                if (direction == 1)
-                {
-                    <div class="@("stepin-child-care step" + (position == 5 ? active : blockActive))"
-                         style="@((position == 5 ? "display:block;" : "display:block;"))">
-                        <ChildCareProvider TaxFormID="taxFormId" />
-                    </div>
-                }
-                <div class="@("stepin-Dependents step" + (position == 4 ? active:blockActive))"
-                     style="@((position == 4? "display:block;":"display:block;"))">
-                    <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                </div>
-            }
-            @if (position == 5)
-            {
-
-                if (direction == 0)
-                {
-                    <div class="@("stepin-Dependents step" + (position == 4 ? active:blockActive))"
-                         style="@((position == 4? "display:block;":"display:block;"))">
-                        <DependentList TaxFormID="taxFormId" @ref="dependentList" />
-                    </div>
-                }
-                <div class="@("stepin-child-care step" + (position == 5 ? active : blockActive))"
-                     style="@((position == 5 ? "display:block;" : "display:block;"))">
-                    <ChildCareProvider TaxFormID="taxFormId" />
-                </div>
-            }
-        </div>
-    }
-</div>
-<div class="formNav">
-    @if (taxFormId > 0 && canDisplay == true)
-    {
-        <button @onclick="()=> { decrement(); }">@getLabel(position - 2)</button>
-        <button @onclick="()=> { increment(); }">@getLabel(position)</button>
-    }
-</div>
-
-@code {
 
     private int taxFormId { set; get; }
     private bool ReloadDependentList { set; get; }
@@ -231,6 +31,34 @@
     private List<string> labels = new List<string>() { "Basic Information", "Criteria", "Add Dependents", "Review Dependents", "Child Care Information" };
     DependentList dependentList;
 
+    private void Next(int index)
+    {
+        if (index == 7)
+        {
+            SubmitTaxForm();
+        }
+
+        if (index < 7)
+            position = index;
+
+        active = " slide-in-bottom";
+        blockActive = " slide-out-left";
+
+    }
+    private void Prv(int index)
+    {
+        if (index > 0)
+            position = index;
+        active = " slide-in-bottom";
+        blockActive = " slide-out-right";
+    }
+
+    private void SubmitReview(int index) {
+        if (index > 0)
+            position = index;
+        active = " slide-in-bottom";
+        blockActive = " slide-out-right";
+    }
     private void increment()
     {
         if (position == 5)
@@ -298,6 +126,15 @@
     }
     public void SubmitTaxForm()
     {
-        var isFiled = service.SubmitTaxForm(taxFormId);        
+        var isFiled = service.SubmitTaxForm(taxFormId);
+    }
+
+    private void OnValueChanged(ChangeEventArgs args)
+    {
+        oldposition = int.Parse(Value.ToString());
+        Value = args.Value.ToString();
+        currposition = int.Parse(args.Value.ToString());
+        stepin = Value;
+        StateHasChanged();
     }
 }

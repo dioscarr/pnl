@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     var viewTaxPanel = $(".view-my-taxes");
     $(viewTaxPanel).on("click", function () {
-        alert();
+      
     });
 
     var s = $(".TaxYearsInProcess button div:nth-child(2)");
@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
     $("path, circle").hover(function (e) {
-        alert();
+      
         $('#info-box').css('display', 'block');
         $('#info-box').html($(this).data('info'));
     });
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
 
 window.GetState =  $(".selectablemap path").on("click", function () {
-    alert();
+   
     console.log("State: " + $(this).attr("id"));
     return $(this).attr("id");
 

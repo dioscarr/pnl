@@ -1,9 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,800;1,300;1,400;1,700;1,800&display=swap");
 
-div {
- /*outline: 1px solid #a3070717;*/
+
+
+html {
+  font-family: "Open Sans" !important;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+body {
+  font-family: "Open Sans" !important;
+  font-size: 12px;
+
+  margin: none !important;
+  font-family: "Open Sans" !important;
+  font-size: none !important;
+  font-weight:none !important;
+  line-height: none !important;
+  color: #02308a;
+  text-align:none !important;
+  background-color:none !important;
+  margin:0px;
+  
+}
+
+
+
+.header{
+  display:grid;
+  grid-template-columns:auto 400px;
+  
+}
+.header a {
+  color:white !important;
+}
+.header button {
+  color:white !important;
+}
+.partial-login
+{
+  display: grid;
+  grid-template-rows: 35px 45px;
+  align-self: center;
+}
+.text-align-left{
+  text-align: left;
+}
+.text-align-right{
+  text-align: right;
+}
+.text-align-center{
+  text-align:center;
+}
+
+.manage-link
+{
+  display: flex !important;
+  align-Items: end;
+}.greetingsHello
+{
+  color:white;
+  display:flex;
+  font-weight:700; 
+}
+.nav-currentUser
+{  
+  color:#fcff47;
+  display:flex;
+  font-weight:700;
+}
+
+.greetings-name{
+  grid-column:1;
+  grid-row:1;
+}
+.signout
+{
+  grid-column:1;
+  grid-row:2;
+}
+
+.profileimg
+{
+  grid-column:2;
+  grid-row:1/3;
+  
+}
+div {
+ /* outline: 1px solid #a3070717; */
+}
+
+/* template settings */
+.borderpkblue{
+  border:1px solid #02308a;
+}
+.colordarkblue{
+color:#2A2957;
+}
+.colorgreyout{
+color:#707070;
+}
+
+.btn-hover:hover{
+  background-color: #022f8a57;
+  border:none;
+  box-shadow: 1px 1px 6px -2px rgb(121, 121, 121);
+
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+}
+
+/* text shared */
+.p-text-center{
+  text-align: center;
+}
+
+
 
 a:hover {
   text-decoration: none !important;
@@ -17,6 +131,8 @@ a:hover {
 .sec-desc {
   text-align: center;
 }
+
+
 
 
 .forget-password {
@@ -38,10 +154,7 @@ a:hover {
   text-decoration: none;
 }
 
-body {
-  font-family: "Open Sans" !important;
-  font-size: 12px;
-}
+
 
 .nav-item a {
   font-family: "Merriweather", serif;
@@ -1807,5 +1920,264 @@ margin-top: -50px;
 
     text-align: center;
     text-transform: uppercase;
+  }
+}
+
+
+
+
+/* =============================++++++++++++++=================================================================*/
+/* ++++++++++++++++=++===+===++   Dashboard  ++==+====++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/* =============================++++++++++++++=================================================================*/
+/* ===================================PNL=====================================================================*/
+
+#bodyid{
+  overflow-x: hidden;
+  height:100%;
+  
+}
+#main-content{
+  overflow-Y: hidden;
+  min-height: 91vh;
+    overflow-y: hidden;
+}
+.dashboard-main-container{
+  height:100%;
+  overflow-Y: hidden;
+  overflow-x: hidden;
+}
+
+.d-awesomejohn-ovr{
+  font-style:normal;
+  font-weight: 400;
+
+}
+.d-john{
+  font-size: 51px;
+  font-weight: 600;
+  
+}
+.background-titles-left
+{
+  position: absolute;
+  left:-130px;
+  top:190px;
+  z-index:1;
+}
+.background-titles-left img
+{ 
+  height: 150px;
+  width: 400px;
+  transform: rotate3d(7, 7, 0, 180deg);
+}
+.background-titles-right
+{
+  position: absolute;
+  right:0px;
+  top:400px;
+  z-index:1;
+}
+.background-titles-right img
+{ 
+  position: absolute;
+  right:-210px;
+  height: 150px;
+  width: 400px;
+
+}
+.dashboard
+{
+  /* layout props */
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:'getstarted continue notifications';
+    
+  /* main css rules */  
+  height:200px;
+  min-height:300px;
+  width:100%;
+  justify-self: center;
+  align-content: center; 
+  grid-column-gap: 11vw;
+  
+}
+
+.dashboard-viewdocuments
+{
+  display: grid;
+  justify-content: end;
+  padding: 40px 0px 0px;
+  
+}
+.d-viewDocument{  
+  display: flex;
+  align-items: center;  
+  line-height: 5px;;
+  height:50px;
+  column-gap:20px;
+  color:#02308a;
+  background-color: #F3EFEF;
+  padding:12px 45px 12px; 
+}
+.viewmanagedocs-text{
+  font-size: 12px;
+  line-height: 0px;
+  margin-top: 18px;
+}
+.d-box{
+  justify-self: center;
+  display: grid;
+  height: 195px;
+  align-items: center;
+  
+  padding: 0px;
+
+}
+
+.d-box a:nth-child(1)
+{
+  line-height: 330px;
+  height: 330px;;
+}
+.d-getstarted,
+.d-continue,
+.d-notifications{
+  display: grid;
+  align-content: center;
+  height: 208px;
+ 
+  border-radius: 15px;
+  box-shadow:rgb(2, 48, 138) 0px 1px 9px -4px;
+  cursor: pointer;
+}
+.d-titlez{
+  font-size:1.9em !important;
+  font-weight: 900 !important;
+  justify-self: center; 
+}
+.d-getstarted-title, .d-continue-title, .d-notifications-title
+{
+  font-size: 1.9em !important;
+  font-weight: 900 !important;
+  height: 30px;
+  justify-self: center;  
+}
+
+.dashboard .d-getstarted {
+  grid-area: getstarted; 
+}
+.dashboard .d-continue{
+  grid-area: continue;  
+}
+.dashboard .d-notifications{
+  grid-area: notifications;  
+}
+.d-previous-taxes{
+  display: grid;
+  width:100%;
+  margin:0 auto;  
+}
+.btn-prv-taxes
+{ 
+  cursor: pointer; 
+  display: -webkit-flex;
+  display: flex;  
+  align-items: center;  
+  justify-content: center;
+  height:143px;
+  
+  min-width:700px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 4px -2px #02308a;  
+}
+.prv-taxes-list
+{
+  cursor:pointer;
+  padding-top:30px;
+  padding-bottom:10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10vw;
+  width: 100%;
+  justify-Items: center;
+  border-bottom:1px solid #70707065;
+}
+.prv-taxes-list:hover
+{ 
+	-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;  
+}
+.main-footer{
+  bottom: 0;
+  background-color: #023089;
+  color: white;
+  height: 78px;
+  clear: both;
+  position: inherit;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.main-footer p:nth-child(1){
+  display: inline-flex;
+  float:left;
+}
+.main-footer p:nth-child(2){
+  display: inline-flex;
+  float:right;
+  justify-self: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* animations */
+
+.color-change-2x {
+	-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-12-26 21:40:29
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation color-change-2x
+ * ----------------------------------------
+ */
+ @-webkit-keyframes color-change-2x {
+  0% {
+    background: #022f8a63;
+  }
+  100% {
+    background: #fcff47;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #022f8a21;
+  }
+  100% {
+    background:  #fcff472d;
   }
 }

@@ -1,0 +1,28 @@
+docker build -t dioscarr/pnl .
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123" -e "MSSQL_PID=Express" -p 1433:1433 -d microsoft/mssql-server-windows-developer
+
+docker run -p 8080:80 
+
+docker-compose up
+
+linux
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-CU5-ubuntu-18.04
+
+
+heroku buildpacks:set https://github.com/jincod/dotnetcore-buildpack#preview -a pnl-apt3k
+docker build -t registry.heroku.com/pnl-apt3k/web .
+heroku container:push web -a pnl-apt3k
+heroku container:release web -a pnl-apt3k
+
+ dotnet ef migrations add taxtyear --project pnl.csproj --startup-project pnl.csproj
+
+dotnet ef  update database --project pnl.csproj --startup-project pnl.csproj
+
+docker tag dioscarr/mssql:2019 devpnl.azurecr.io/mssql:2019
+
+docker push devpnl.azurecr.io/mssql:2019
+
+ docker tag pnl devpnl.azurecr.io/pnl
+
+ docker push devpnl.azurecr.io/pnl

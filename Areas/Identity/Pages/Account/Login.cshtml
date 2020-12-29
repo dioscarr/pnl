@@ -4,7 +4,7 @@
     Layout = "~/Areas/Identity/Views/Shared/_LayoutNoMenu.cshtml";
 }
 
-<header class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow header container-fluid primary-blue">
+<header class="primary-padding navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow container-fluid primary-blue">
     <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
         <img src="/img/LOgo.svg" />
     </a>
@@ -12,8 +12,7 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-        <partial name="_LoginPartial" />
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">        
         <ul class="navbar-nav flex-grow-1 menu-ul padding0px15px">
             <li class="nav-item">
                 <a class="nav-link menu-link-color" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -44,9 +43,7 @@
                 </div>
                 <div class="landing-content-middle">
                     <p>
-                        Work with a tax pro from home. Provide virtual tax services. PNL Tax Corp philosophy is that if you could
-                        buy a car, get a mortgage all at the comfort of your computer why can't you get the best accounting
-                        services and tax preparations also from the comfort of your home or anywhere.
+                        Work with an accountant or a tax specialist approved by the IRS from the comfort of anywhere.  Now a days we can buy and do anything from the comfort of anywhere thanks to technology and why not take advantage of that but, with The Human Touch. We understand that doing your taxes every year is overwhelming but it doesn’t have to be anymore, we understand that you are not a tax pro so we will not treat you like one that’s why we have our IRS approved tax specialist. Now you could relax and be assured that your taxes are in excellent hands.
                     </p>
                     <div class="getstarted">
                         <button class="btn btn-primary">Get Started</button>
@@ -73,13 +70,13 @@
                     <div class="input-box">
                         <div class="emailIcon"></div>
                         <div class="emailInput">
-                            <input  asp-for="Input.Email" type="email" value="" class="form-control" placeholder="Email" />
+                            <input  asp-for="Input.Email" type="email" class="form-control" placeholder="Email" value="dioscarr@gmail.com" />
                         </div>
                     </div>
                     <div class="input-box">
                         <div class="passwordlIcon"></div>
                         <div class="passwordlInput">
-                            <input type="password"  asp-for="Input.Password" value="" class="form-control" placeholder="Password" />
+                            <input type="password"  asp-for="Input.Password" value="Password@123" class="form-control" placeholder="Password" />
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
                     </div>
@@ -111,7 +108,9 @@
                         </div>
                         <div class="Create-Account disp">
                             <div class="createAccountIcon"></div>
-                            <div><button class="btn btn-primary">Create Account</button></div>
+                            <div>                           
+                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create Account</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,8 +163,7 @@
                             You answer simple questions. We do all the math.
                         </div>
                         <div class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac dolor in tellus convallis feugiat.
-                            Curabitur sed nunc vel diam venenatis varius.
+                            The question are just a formality such as name, address etc. with the information our IRS approved tax specialist determine how many deductions you may qualify for and determine if you should use an itemized deduction or use the standard deduction to maximize refund.
                         </div>
                     </div>
                 </div>
@@ -183,9 +181,7 @@
                             documents
                         </div>
                         <div class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur sed
-                            nunc vel diam venenatis varius.
+                            To show proof of income and deductions, then Our IRS approved tax specialist double check if more deduction can be taken and to check if all your income is taxable
                         </div>
                     </div>
                 </div>
@@ -198,9 +194,7 @@
                         <div class="img"><img id="img-3" src="/img/Locksm.png" /></div>
                         <div class="heading3">File with confidence</div>
                         <div class="desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur sed
-                            nunc vel diam venenatis varius.
+                            All of PNL TAX CORP tax specialist have been approved by the IRS and all of our accountants have accounting college degrees. Our website is verified by the IRS and our customers satisfaction is our number one priority
                         </div>
                     </div>
                 </div>
@@ -223,13 +217,10 @@
                     <div class="inner-securitypage-box">
                         <div class="sec-header3">
                             <div class="numberslabel">01.</div>
-                            <div>lorem ipsum</div>
+                            <div>(the website security )</div>
                         </div>
                         <div class="sec-desc">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                ac dolor in tellus convallis feugiat. Curabitur.
-                            </p>
+                           
                         </div>
                     </div>
                 </div>
@@ -241,12 +232,11 @@
                     <div class="securitypage-box rowspan1">
                         <div class="inner-securitypage-box pull-right">
                             <div class="sec-header3 pull-right">
-                                <span class="numberslabel">06.</span><span>lorem ipsum</span>
+                                <span class="numberslabel">06.</span><span> Permission only</span>
                             </div>
-                            <div class="sec-desc">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                    ac dolor in tellus convallis feugiat. Curabitur.
+                            <div class="sec-desc text-align-right">
+                                <p class="text-align-right">
+                                    our tax specialist are only allowed to look at your personal information for the authorized tax year
                                 </p>
                             </div>
                         </div>
@@ -256,12 +246,11 @@
                     <div class="securitypage-box rowspan1">
                         <div class="inner-securitypage-box pull-right">
                             <div class="sec-header3 pull-right">
-                                <span class="numberslabel">05.</span><span>lorem ipsum</span>
+                                <span class="numberslabel">05.</span><span>safe and secure</span>
                             </div>
                             <div class="sec-desc">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                    ac dolor in tellus convallis feugiat. Curabitur.
+                                <p class="sec-desc text-align-right">
+                                    all documents uploaded are secured by military grade cyber security and can be access at all time
                                 </p>
                             </div>
                         </div>
@@ -280,12 +269,11 @@
                     <div class="securitypage-box rowspan1">
                         <div class="inner-securitypage-box pull-left">
                             <div class="sec-header3 pull-left">
-                                <span class="numberslabel">02.</span><span>lorem ipsum</span>
+                                <span class="numberslabel">02.</span><span>irs approved</span>
                             </div>
                             <div class="sec-desc">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                    ac dolor in tellus convallis feugiat. Curabitur.
+                                <p class="text-align-left">
+                                    <a href="">PNL-TAX.com</a> is recognized and approve website by the IRS to e-file personal and business taxes
                                 </p>
                             </div>
                         </div>
@@ -295,12 +283,11 @@
                     <div class="securitypage-box rowspan1">
                         <div class="inner-securitypage-box pull-left">
                             <div class="sec-header3 pull-left">
-                                <span class="numberslabel">03.</span><span>lorem ipsum</span>
+                                <span class="numberslabel">03.</span><span>The Human Touch</span>
                             </div>
-                            <div class="sec-desc">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                    ac dolor in tellus convallis feugiat. Curabitur.
+                            <div class="sec-desc text-align-left">
+                                <p class="text-align-left">
+                                    all tax return are doubled check by our tax software and also by a real irs approved tax specialist
                                 </p>
                             </div>
                         </div>
@@ -314,12 +301,11 @@
                     <div class="inner-securitypage-box">
                         <div class="sec-header3">
                             <div class="numberslabel">04.</div>
-                            <div>lorem ipsum</div>
+                            <div>double protection</div>
                         </div>
-                        <div class="sec-desc">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                ac dolor in tellus convallis feugiat. Curabitur.
+                        <div class="sec-desc ">
+                            <p class="text-align-center">
+                                in addition to our website security all personal information is protected by a third party security authorized by the IRS
                             </p>
                         </div>
                     </div>
@@ -463,8 +449,7 @@
                     <div class="satisfaction-box-content">
                         <h2>We search over 350 tax deductions</h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>our tax specialist review the questionnaire to check all tax deductions to determine all the deductions you may qualify for that would result in the maximum refund possible.</p>
                         </div>
                     </div>
                 </div>
@@ -473,10 +458,9 @@
                 <div class="satisfaction-box satisfaction-card">
                     <img src="/img/Circle2.svg">
                     <div class="satisfaction-box-content">
-                        <h2>We search over 350 tax deductions</h2>
+                        <h2>Complete check of your return- the human touch</h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>the human touch- each return is ran through our tax software and then checked by a real IRS approved tax specialist to determine if you mad a mistake or to check if you are eligible for more tax deductions </p>
                         </div>
                     </div>
                 </div>
@@ -485,10 +469,9 @@
                 <div class="satisfaction-box satisfaction-card">
                     <img src="/img/Circle3.svg">
                     <div class="satisfaction-box-content">
-                        <h2>We search over 350 tax deductions</h2>
+                        <h2>100% accurate calculations guaranteed</h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>our tax software is updated every year and it is up to date with all new tax codes passed by congress</p>
                         </div>
                     </div>
                 </div>
@@ -503,8 +486,7 @@
                             Guidance in case of an audit
                         </h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>we offer our services if you are ever audited by the IRS even if your taxes were not filed with us</p>
                         </div>
                     </div>
                 </div>
@@ -515,8 +497,7 @@
                     <div class="satisfaction-box-content">
                         <h2>Big life changes? We can help</h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>we offer tax consultations to take advantage of all deductions, while you open a new business, move to a different state or even if you inherit assets</p>
                         </div>
                     </div>
                 </div>
@@ -525,10 +506,9 @@
                 <div class="satisfaction-box satisfaction-card">
                     <img src="/img/efileicon.svg">
                     <div class="satisfaction-box-content">
-                        <h2>Get your fastest tax refund possible </h2>
+                        <h2>E-file get the fastest tax refund possiblee </h2>
                         <div class="satisfaction-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>as recommended by the IRS e-file is the fastest and secure way to file individual and business taxes.</p>
                         </div>
                     </div>
                 </div>
@@ -551,13 +531,11 @@
                     <div class="blog-box-content">
                         <h4>
                             <bold>
-                                Lorem ipsum dolor sit amet
-                                consectetur adipisscing
+                                Check return status
                             </bold>
                         </h4>
                         <div class="blog-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>(<a href="https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp" target="_blank">https://sa.www4.irs.gov/irfof/lang/en/irfofgetstatus.jsp</a>)make sure you know the exact amount of your refund to get an update about your refund</p>
                         </div>
                     </div>
                 </div>
@@ -568,13 +546,11 @@
                     <div class="blog-box-content">
                         <h4>
                             <bold>
-                                Lorem ipsum dolor sit amet
-                                consectetur adipisscing
+                                FAQ
                             </bold>
                         </h4>
                         <div class="blog-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>answers to any of your tax questioned answered by the IRS(<a href="https://www.irs.gov/help/ita" target="_blank">https://www.irs.gov/help/ita</a>)</p>
                         </div>
                     </div>
                 </div>
@@ -585,13 +561,11 @@
                     <div class="blog-box-content">
                         <h4>
                             <bold>
-                                Lorem ipsum dolor sit amet
-                                consectetur adipisscing
+                                Forms, Instructions & publications (<a href="https://www.irs.gov/forms-instructions" target="_blank">https://www.irs.gov/forms-instructions</a>)
                             </bold>
                         </h4>
                         <div class="blog-box-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                            dolor in tellus convallis feugiat. Curabitur.
+                            <p>get instructions on all of the IRS tax forms and dates when forms got updated</p>
                         </div>
                     </div>
                 </div>
@@ -634,9 +608,7 @@
                 <div class="footer-card">
                     <div class="sub-title">About Use</div>
                     <div class="content-bottom">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                        dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                        venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                        <p>About us- PNL TAX CORP was started to help people take out the complexity and overwhelming feeling of doing your taxes every year. Our philosophy is, why does it have to be complicated? Now a days we can buy and do anything from the comfort of anywhere thanks to technology and why not take advantage of that. We here understand that everyone is not a tax specialist so why treat them like they are, why make the customer fill out the tax forms by themselves and still charge them for doing all the work? it doesn’t make sense, that is why here at PNL TAX CORP we provide The Human Touch, we ask you to fill out a basic questionnaire so we can get an idea of which tax bracket you fall under then our IRS approved tax specialist do the work in filling out the tax forms and determine the deductions you may qualify for. Doesn’t that make more sense?  Letting the specialist fill out the tax forms and determine your deductions and by doing so it provides you with assurance that your taxes would be done correctly.</p>
                     </div>
                 </div>
             </div>
@@ -644,9 +616,7 @@
                 <div class="footer-card">
                     <div class="sub-title">Help & Support</div>
                     <div class="content-bottom">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                        dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                        venenatis varius. Donec rutrum sit amet sapien eu euismod.
+                        <p>Help & support- if you have any trouble logging in or any questions feel free to email us at <a href="mailto:PNLTAXCORP@gmail.com">PNLTAXCORP@gmail.com</a> or contact us <a href="tel:3475673007">3475673007</a> via phone or text message</p>
                     </div>
                 </div>
             </div>
@@ -693,560 +663,6 @@
     </div>
 </div>
 
-
-
-
-
-
-@{
-    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-    {
-    }
-    else
-    {
-        @*<form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                <div>
-                    <p>
-                        @foreach (var provider in Model.ExternalLogins)
-                        {
-                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                        }
-                    </p>
-                </div>
-            </form>*@
-    }
-}
-
-@*<!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - pnl</title>
-        <link rel="stylesheet" href="/css/site.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-              integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-        <base href="~/" />
-    </head>
-
-    <body>*@
-
-@*<
-    </body>
-
-    </html>*@
-
-
-
-<!--<div class=" main-background-color onepage Main-padding">
-        <div class="Main-Box ">
-            <div class="public-menu-col">
-                <div class="logobox">
-                    <img src="~/img/LOgo.png" class="logocls" />
-                </div>
-                <div class="col-sm-9 public-menu ">
-                    <div>Home</div>
-                    <div>About Us</div>
-                    <div>Product and Pricing</div>
-                    <div>Resources</div>
-                    <div>Contact Us</div>
-                </div>
-            </div>
-            <div class="body-left top-margin">
-                <div class="one-left">Tax consultation and preparation with a </div>
-                <div class="one-right">Human touch.</div>
-                <div><input type="text" value="" class="form-control get-started-input" /></div>
-                <div>
-                    <button class="btn btn-primary get-started-btn ">Get Started</button>
-                </div>
-
-            </div>
-            <div class="body-right top-margin">
-                <img src="~/img/Data-Audit.png" class="data-audit" />
-                <div class="loginFormBox">
-                    <form id="account" method="post">
-                        <div class="pnlLogintitle">PNL TAX CORP</div>
-                        <div class="subtitle">
-                            <div class="secured">
-                                <div><img src="~/img/Secured.png" id="idsecured" /></div>
-                                <div id="securedlbl">Secured</div>
-                            </div>
-                            <div class="advance">
-                                <div><img src="~/img/Advance.png" id="idadvance" /></div>
-                                <div id="advancelbl">Advance</div>
-                            </div>
-                        </div>
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <div class="form-group">
-                            <label asp-for="Input.Email"></label>
-                            <input asp-for="Input.Email" class="form-control" />
-                            <span asp-validation-for="Input.Email" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Input.Password"></label>
-                            <input asp-for="Input.Password" class="form-control" />
-                            <span asp-validation-for="Input.Password" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-
-                                <p>
-                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary loginbtn">Log in</button>
-                            <p class="bysigning">
-                                By clicking Sign in, you agree to our Terms and have
-                                read and acknowledge our US Privacy Statement.
-                            </p>
-                        </div>
-                        <div class="form-group remembercreatenew">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
-                            <p class="remembercreatenewBox">
-
-                                <img src="~/img/user.png" class="usernewaccount" />
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Create New Account</a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="container-fluid primary-padding">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="section-title">How it works</div>
-                <div class="devider">
-                    <img src="~/img/pageheaderribon.svg" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sx-12 col-md-4">
-                <div class="hworks-box">
-                    <div class="square">
-                        <div class="square-box">
-                            <div class="img">
-                                <img id="img-1" src="~/img/Youanswersimplequestions.svg" />
-                            </div>
-                            <div class="heading3">
-                                You answer simple questions. <br />
-                                We do all the math.
-                            </div>
-                            <div class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                                venenatis varius.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sx-12 col-md-4">
-                <div class="hworks-box">
-                    <div class="square">
-                        <div class="square-box">
-                            <div class="img">
-                                <img id="img-2" src="~/img/Uploapyour-tax-document.svg" />
-                            </div>
-                            <div class="heading3">
-                                Upload Your tax <br />
-                                documents
-                            </div>
-                            <div class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                                venenatis varius.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sx-12 col-md-4">
-                <div class="hworks-box">
-                    <div class="square">
-                        <div class="square-box">
-                            <div class="img"><img id="img-3" src="~/img/Locksm.svg" /></div>
-                            <div class="heading3">File with confidence</div>
-                            <div class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                                ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                                venenatis varius.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="section-title">Security & protection</div>
-                <div class="devider">
-                    <img src="~/img/pageheaderribon.svg" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="securitypage-box">
-                    <div class="inner-securitypage-box ">
-                        <div class="sec-header3 ">
-                            <div class="numberslabel">01.</div><div>lorem ipsum</div>
-                        </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div>
-                    <div class="securitypage-box rowspan1">
-                        <div class="inner-securitypage-box pull-right">
-                            <div class="sec-header3  pull-right ">
-                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
-                            </div>
-                            <div class="sec-desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="securitypage-box rowspan1">
-                        <div class="inner-securitypage-box  pull-right">
-                            <div class="sec-header3  pull-right">
-                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
-                            </div>
-                            <div class="sec-desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="securitypage-box rowspan2">
-                    <div class="inner-securitypage-box">
-                        <img src="~/img/Proctection.svg" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div>
-                    <div class="securitypage-box rowspan1">
-                        <div class="inner-securitypage-box pull-left">
-                            <div class="sec-header3 pull-left">
-                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
-                            </div>
-                            <div class="sec-desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="securitypage-box rowspan1">
-                        <div class="inner-securitypage-box pull-left">
-                            <div class="sec-header3 pull-left">
-                                <span class="numberslabel">01.</span><span>lorem ipsum</span>
-                            </div>
-                            <div class="sec-desc">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12">
-                <div class="securitypage-box">
-                    <div class="inner-securitypage-box">
-                        <div class="sec-header3">
-                            <span class="numberslabel">01.</span><span>lorem ipsum</span>
-                        </div>
-                        <div class="sec-desc">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Maecenas ac dolor in tellus convallis feugiat. Curabitur.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="section-title-page3">
-                    How it works Your satisfaction, <span>guaranteed</span>
-                </div>
-                <div class="devider">
-                    <img src="~/img/pageheaderribon.svg" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <div class="circles-s-g-box1">
-                    <div class="circles-s-g1">-->
-<!-- <div>Maximum</div>
-<div>Refund</div>
-<div>GUARANTEED</div> -->
-<!--</div>
-    </div>
-    <div class="circle3-content">
-        <div class="circle3-content-caption">
-            We search over 350 tax deductions
-        </div>
-        <div class="circle3-content-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-            dolor in tellus convallis feugiat. Curabitur.
-        </div>
-    </div>
-</div>
-<div class="col-sm-12 col-md-4">
-    <div class="circles-s-g-box2">
-        <div class="circles-s-g2">-->
-<!-- <div>Complete</div>
-<div>Check</div>
-<div>OF YOUR RETURN</div> -->
-<!--</div>
-    </div>
-    <div class="circle3-content">
-        <div class="circle3-content-caption">
-            We search over 350 tax deductions
-        </div>
-        <div class="circle3-content-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-            dolor in tellus convallis feugiat. Curabitur.
-        </div>
-    </div>
-</div>
-<div class="col-sm-12 col-md-4">
-    <div class="circles-s-g-box3">
-        <div class="circles-s-g3">-->
-<!-- <div>100%</div>
-<div>Accurate</div>
-<div>Calculations</div>
-<div>guaranteed</div> -->
-<!--</div>
-        </div>
-        <div class="circle3-content">
-            <div class="circle3-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle3-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box4">
-            <div class="circles-s-g4"></div>
-        </div>
-        <div class="circle3-content">
-            <div class="circle3-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle3-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box5">
-            <div class="circles-s-g5"></div>
-        </div>
-        <div class="circle3-content">
-            <div class="circle3-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle3-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box6">
-            <div class="circles-s-g6"></div>
-        </div>
-        <div class="circle3-content">
-            <div class="circle3-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle3-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="section-title-page4">Help center</div>
-        <div class="devider">
-            <img src="~/img/pageheaderribon.svg" />
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box7">
-            <div class="circles-s-g7"></div>
-        </div>
-        <div class="circle4-content">
-            <div class="circle4-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle4-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box8">
-            <div class="circles-s-g8"></div>
-        </div>
-        <div class="circle4-content">
-            <div class="circle4-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle4-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-12 col-md-4">
-        <div class="circles-s-g-box9">
-            <div class="circles-s-g9"></div>
-        </div>
-        <div class="circle4-content">
-            <div class="circle4-content-caption">
-                We search over 350 tax deductions
-            </div>
-            <div class="circle4-content-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="section-title-page4">
-            <button class="viewallbtn">View All</button>
-            <div></div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-9">
-        <div class="card padding-large">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-            dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-            venenatis varius. Donec rutrum sit amet sapien eu euismod.
-        </div>
-    </div>
-    <div class="col-sm-3">
-
-        <div class="card">
-            <div class="content-card">
-                <div class="content-title">Social</div>
-                <div class="social-media-icons">
-                    <img src="~/img/facebookicon.svg" />
-                    <img src="~/img/twittericon.svg" />
-                    <img src="~/img/igicons.svg" />
-                    <img src="~/img/linkedinicon.svg" />
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="sub-title">About Use</div>
-            <div class="content-bottom">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                venenatis varius. Donec rutrum sit amet sapien eu euismod.
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="sub-title">Help & Support</div>
-            <div class="content-bottom">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac
-                dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                venenatis varius. Donec rutrum sit amet sapien eu euismod.
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-2">
-        <div class="card justifyleft">
-            <div class="sub-title">Quick Links</div>
-            <div class="content-bottom">
-                About Us
-                <br />
-                Product & Pricing
-                <br />
-                Resources
-                <br />
-                Contact Us
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card primary-blue border-radius card-shadow">
-            <div class="content-card">
-                <div class="content-title"><img src="~/img/LOgo.svg" style="width:200px;" /></div>
-                <div class="content-card-body color-white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-                    ac dolor in tellus convallis feugiat. Curabitur sed nunc vel diam
-                    venenatis varius. Donec rutrum sit amet sapien eu euismod.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-
-        <br />
-        <br />
-        <br />
-        <br />
-    </div>
-</div>-->
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script src="_framework/blazor.server.js"></script>

@@ -19,7 +19,7 @@ services:
     image: dioscarr/pnl
     container_name: pnl
     build:
-      context: .
+      context: .    
       dockerfile: Dockerfile
     depends_on:
       - db

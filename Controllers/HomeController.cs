@@ -29,29 +29,7 @@ namespace pnl.Controllers
             {
                 try
                 {
-
-                    var person = new Data.Models.Person()
-                    {
-                        UserId = User.Claims.First().Value,
-                        FirstName = "Dioscar",
-                        LastName = "Rodriguez",
-                        Birthday = DateTime.Parse("12/29/1985"),
-                        Email = User.Identity.Name,
-                        Phone = "3472009415",
-                        SSN = "888888888",
-                        Occupation = "Software Engineer",
-                        MiddleName = "D",
-                        Address = new Data.Models.Address() { 
-                            Address1 = "935 York street",
-                            Address2 = "2nd fl",
-                            City = "East Rutherford",
-                            State = "NJ",
-                            Zip = "07073"
-                        }
-                    };
-
-                    _db.Add(person);
-                    _db.SaveChanges();
+                    return RedirectToAction("CompleteRegistration");
                 }
                 catch (Exception)
                 {
@@ -60,10 +38,42 @@ namespace pnl.Controllers
                 }
             }
 
+            ViewData.Add("Title","dashbaord");
+            dashboard d = new dashboard(_db);
+            d.init(User.Claims.First().Value);
 
+            if (d.CurrentUser == null)
+            {
+                return RedirectToAction("CompleteRegistration");
+            }
+            return View(d);
+        }
+        public IActionResult CompleteRegistration()
+        {
 
+            return View(new UserAccountViewModel());
+        }
+        [HttpPost]
 
-            return View(_db.TaxForms.Where(c=>c.UserID == User.Claims.First().Value).OrderByDescending(c=>c.TaxYear).FirstOrDefault());
+        public IActionResult Update(UserAccountViewModel model)
+        {
+            var usrId = User.Claims.First().Value;
+            if (_db.Person.Any(c => c.UserId == usrId))
+            {
+                model.Address.PersonID = model.CurrentUser.id;
+                model.CurrentUser.Address = model.Address;
+                _db.Update(model.CurrentUser);
+                _db.SaveChanges();
+            }
+            else
+            {
+                model.CurrentUser.UserId = usrId;
+                model.CurrentUser.Address = model.Address;
+                _db.Person.Add(model.CurrentUser);
+                _db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

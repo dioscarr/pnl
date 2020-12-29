@@ -225,6 +225,9 @@ namespace pnl.Models
                 {
                     var taxform = _db.TaxForms.Find(taxFormId);
                     taxform.isFiled = true;
+                    taxform.CreatedOn = DateTime.Now;
+                    taxform.UpdatedOn= DateTime.Now;
+
                     _db.SaveChanges();
                     return true;
                 }
