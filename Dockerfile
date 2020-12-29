@@ -19,7 +19,7 @@ RUN dotnet build "pnl.csproj" -c Debug -o /app/build
 
 
 FROM build AS publish	
-RUN dotnet publish --no--restore "pnl.csproj" -c Release -o /app/publish
+RUN dotnet publish "pnl.csproj" -c Release -o /app/publish
 
 
 FROM microsoft/mssql-tools:latest
