@@ -10,7 +10,7 @@
 
 $(document).ready(function () {
 
-    window.open('.../Report/GetPdf?taxFormId=25', '_blank');
+    // window.open('.../Report/GetPdf?taxFormId=25', '_blank');
 
     var viewTaxPanel = $(".view-my-taxes");
     $(viewTaxPanel).on("click", function () {
