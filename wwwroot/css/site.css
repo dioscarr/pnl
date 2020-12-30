@@ -18,7 +18,12 @@ body {
     margin: 0px;
 }
 
-
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    word-break: break-word;
+}
 
 .header {
     display: grid;
@@ -533,6 +538,7 @@ a:hover {
     border: 1px solid #f3f3f3;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(56, 43, 43, 0.14);
     transition: all 0.3s cubic-bezier(.25,.8,.25, 1);
+    height: 100%;
 }
 
 .blog-card img {
@@ -540,8 +546,11 @@ a:hover {
     object-fit: cover;
 }
 
+
+
 .blog-box-content {
     padding: 26px 16px 62px 16px;
+    min-height: 200px;
 }
 
     .blog-box-content h4 {
@@ -860,7 +869,9 @@ a:hover {
 
 .social-card {
     color: #273a86 !important;
-    width: 70%;
+    width: 100%;
+    justify-content: center;
+    display: grid;
 }
 
 .justifyleft {
@@ -896,8 +907,8 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     margin-top: 16px;
+    justify-items: center;
 }
-
 
 .footer-social {
     padding-bottom: 5%;
@@ -922,6 +933,7 @@ a:hover {
 .content-title {
     font-size: 24px;
     font-weight: 700;
+    text-align: center;
 }
 
 .viewallsection {
@@ -963,7 +975,7 @@ a:hover {
 
 .square-box {
     position: relative;
-    min-height: 500px;
+    min-height: 542px;
     border: 2px solid #273A86;
     box-shadow: 0px 2px 4px -3px #3e3030d9;
     line-height: 1.8em;
@@ -1751,6 +1763,14 @@ a:hover {
 }
 
 @media only screen and (max-width: 600px) {
+    body{
+        font-size :11px !important;
+
+    }
+a{
+    word-wrap: break-word;
+    text-decoration:none;
+}
 
     .desktop-tablet-only {
         display: none;
