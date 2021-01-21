@@ -104,307 +104,362 @@
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="the-row-column-title">
-                    <div>Are you a U.S citizen?</div>
-                </div>
-                <div class="the-row-column-content">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isCitizen" id="isCitizenrdyes" checked="@(st2.isCitizen == true)" @onchange="@(()=>st2.isCitizen = true)" />
-                        <label class="form-check-label" for="isCitizenrdyes">Yes</label>
+
+        @foreach (var item in formSteps.Where(c => c.TheStep == 2 && c.Section == 2).ToList())
+        {
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="the-row-column-title">
+                        <div>@item.Questions.First(c => c.Order == 1).TheQuestion</div>
                     </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isCitizen" id="isCitizenrdno" checked="@(st2.isCitizen == false)" @onchange="@(()=>st2.isCitizen = false)" />
-                        <label class="form-check-label" for="isCitizenrdno"> No </label>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="the-row-column-content">
-                    <div>
-                        <h5>Last Year, were you:</h5>
-                    </div>
-                    <div class="border-bottom">
-                        <div class="inline-radio-box">
-                            <span>
-                                <h6>A. Full-time student</h6>
-                            </span>
-                            <span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isFullTimeStudent"
-                                           id="isFullTimeStudentyes" checked="@(st2.isFullTimeStudent == true)" @onchange="@(()=>st2.isFullTimeStudent = true)" />
-                                    <label class="form-check-label" for="isFullTimeStudentyes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isFullTimeStudent"
-                                           id="isFullTimeStudentno" checked="@(st2.isFullTimeStudent == false)" @onchange="@(()=>st2.isFullTimeStudent = false)" />
-                                    <label class="form-check-label" for="isFullTimeStudentno"> No </label>
-                                </div>
-                            </span>
+                    <div class="the-row-column-content">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c => c.Order == 1).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c => c.Order == 1).Id, "Yes"))"
+                                   @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 1).Id, "Yes"))" />
+                            <label class="form-check-label" for="isCitizenrdyes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c => c.Order == 1).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c => c.Order == 1).Id, "No"))"
+                                   @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 1).Id, "No"))" />
+                            <label class="form-check-label" for="isCitizenrdno"> No </label>
                         </div>
                     </div>
                 </div>
-                <div class="the-row-column-content">
-                    <div class="border-bottom">
-                        <div class="inline-radio-box">
-                            <span>
-                                <h6>B. Totally and permanently disabled</h6>
-                            </span>
-                            <span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isDisabled" id="isDisabledyes"
-                                           checked="@(st2.isPermanentlyDisabled == true)" @onchange="@(()=>st2.isPermanentlyDisabled = true)" />
-                                    <label class="form-check-label" for="isDisabledyes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isDisabled" id="isDisabledno"
-                                           checked="@(st2.isPermanentlyDisabled == false)" @onchange="@(()=>st2.isPermanentlyDisabled = false)" />
-                                    <label class="form-check-label" for="isDisabledno"> No </label>
-                                </div>
-                            </span>
+                <div class="col-sm-8">
+                    <div class="the-row-column-content">
+                        <div>
+                            <h5>Last Year, were you:</h5>
+                        </div>
+                        <div class="border-bottom">
+                            <div class="inline-radio-box">
+                                <span>
+                                    <h6>@item.Questions.First(c => c.Order == 2).TheQuestion</h6>
+                                </span>
+                                <span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c => c.Order == 2).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 2).Id, "Yes"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 2).Id, "Yes"))" />
+                                        <label class="form-check-label" for="isFullTimeStudentyes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c => c.Order == 2).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 2).Id, "No"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 2).Id, "No"))" />
+                                        <label class="form-check-label" for="isFullTimeStudentno"> No </label>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="the-row-column-content">
+                        <div class="border-bottom">
+                            <div class="inline-radio-box">
+                                <span>
+                                    <h6>@item.Questions.First(c => c.Order == 3).TheQuestion</h6>
+                                </span>
+                                <span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c => c.Order == 3).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 3).Id, "Yes"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 3).Id, "Yes"))" />
+                                        <label class="form-check-label" for="isDisabledyes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c => c.Order == 3).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 3).Id, "No"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 3).Id, "No"))" />
+                                        <label class="form-check-label" for="isDisabledno"> No </label>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="the-row-column-content">
+                        <div class="border-bottom">
+                            <div class="inline-radio-box">
+                                <span>
+                                    <h6>@item.Questions.First(c => c.Order == 4).TheQuestion</h6>
+                                </span>
+                                <span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="@item.Questions.First(c => c.Order == 4).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 4).Id, "Yes"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 4).Id, "Yes"))" />
+                                        <label class="form-check-label" for="isBlindyes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="@item.Questions.First(c => c.Order == 4).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c => c.Order == 4).Id, "No"))"
+                                               @onchange="@(() => SetAnswer(item.Questions.First(c => c.Order == 4).Id, "No"))" />
+                                        <label class="form-check-label" for="isBlindno"> No </label>
+                                    </div>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="the-row-column-content">
-                    <div class="border-bottom">
-                        <div class="inline-radio-box">
-                            <span>
-                                <h6>C. Legally Blind</h6>
-                            </span>
-                            <span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isBlind" id="isBlindyes"
-                                           checked="@(st2.isLegallyBlind== true)" @onchange="@(()=>st2.isLegallyBlind= true)" />
-                                    <label class="form-check-label" for="isBlindyes">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isBlind" id="isBlindno"
-                                           checked="@(st2.isLegallyBlind == false)" @onchange="@(()=>st2.isLegallyBlind = false)" />
-                                    <label class="form-check-label" for="isBlindno"> No </label>
-                                </div>
-                            </span>
+            <div class="row bottom-padding">
+                <div class="col-sm-12">
+                    <div class="the-row-column-title">
+                        <h6> Mailing Address</h6>
+                    </div>
+                    <div class="the-row-column-content">
+                        <input class="form-control" type="text" name="MailingAddress" @bind-value="UserCurrentAddress.Address1" />
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="the-row-column-title">
+                        <h6>Apt # / Suite</h6>
+                    </div>
+                    <div class="the-row-column-content">
+                        <input class="form-control" type="text" name="apt" @bind-value="UserCurrentAddress.Address2" />
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="the-row-column-title">
+                        <h6>City</h6>
+                    </div>
+                    <div class="the-row-column-content">
+                        <input class="form-control" type="text" name="City" @bind-value="UserCurrentAddress.City" />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="the-row-column-title">
+                        <h6>State</h6>
+                    </div>
+                    <div class="the-row-column-content">
+                        <input class="form-control" type="text" name="State" @bind-value="UserCurrentAddress.State" />
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="the-row-column-title">
+                        <h6>Zip Code</h6>
+                    </div>
+                    <div class="the-row-column-content">
+                        <input class="form-control" type="text" name="Zip" @bind-value="UserCurrentAddress.Zip" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="the-row-column-title">
+                        <h6>As of December 31, 2019, were you:</h6>
+                    </div>
+                </div>
+            </div>
+        }
+        @foreach (var item in formSteps.Where(c => c.TheStep == 2 && c.Section == 2).ToList())
+        {
+            <div class="row">
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title ">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==5).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Never Married"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==5).Id,"Never Married"))" />
+                            @*<input class="form-check-input" type="checkbox" value="" name="NeverMarried" id="NeverMarriedid"
+                            checked="@(st2.neverMarried== true)" @onchange="@(()=>st2.neverMarried= !st2.neverMarried)" />*@
+                            <label class="form-check-label" for="NeverMarriedid">
+                                Never Married
+                            </label>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-sm-9  border-bottom">
+                    <div class="the-row-column-title ">
+                        <i>
+                            (This includes registered domestic partnerships, civil unions, or
+                            other formal relationships under state law)
+                        </i>
+                    </div>
+                </div>
+                <div class="col-sm-3  border-bottom">
+                    <div class="the-row-column-title">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==5).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Married"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==5).Id,"Married"))" />
+                            @*<input class="form-check-input" type="checkbox" value="" id="Marriedid" name="isMarried"
+                            checked="@(st2.isMarried== true)" @onchange="@(()=>st2.isMarried= !st2.isMarried)" />*@
+                            <label class="form-check-label" for="Marriedid">
+                                Married
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9  border-bottom">
+                    <div class="the-row-column-title ">
 
-        <div class="row bottom-padding">
-            <div class="col-sm-12">
-                <div class="the-row-column-title">
-                    <h6> Mailing Address</h6>
-                </div>
-                <div class="the-row-column-content">
-                    <input class="form-control" type="text" name="MailingAddress" @bind-value="UserCurrentAddress.Address1" />
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="the-row-column-title">
-                    <h6>Apt # / Suite</h6>
-                </div>
-                <div class="the-row-column-content">
-                    <input class="form-control" type="text" name="apt" @bind-value="UserCurrentAddress.Address2" />
-                </div>
-            </div>
+                        <span class="inline-radio-box">
+                            <h6>@item.Questions.First(c => c.Order == 6).TheQuestion</h6>
 
-            <div class="col-sm-2">
-                <div class="the-row-column-title">
-                    <h6>City</h6>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="@item.Questions.First(c=>c.Order==6).Id"
+                                       checked="@(GetRadioState(item.Questions.First(c=>c.Order==6).Id,"Yes"))"
+                                       @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==6).Id,"Yes"))" />
+                                <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="@item.Questions.First(c=>c.Order==6).Id"
+                                       checked="@(GetRadioState(item.Questions.First(c=>c.Order==6).Id,"No"))"
+                                       @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==6).Id,"No"))" />
+                                <label class="form-check-label" for="gotMarryLastYearno"> No </label>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="the-row-column-title ">
+                        <span class="inline-radio-box">
+                            <h6>
+                                @item.Questions.First(c => c.Order == 7).TheQuestion
+                            </h6>
+
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="@item.Questions.First(c=>c.Order==7).Id"
+                                       checked="@(GetRadioState(item.Questions.First(c=>c.Order==7).Id,"Yes"))"
+                                       @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==7).Id,"Yes"))" />
+                                <label class="form-check-label" for="isSixMonthlivingWithSpouseyes">Yes</label>
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio"
+                                       name="@item.Questions.First(c=>c.Order==7).Id"
+                                       checked="@(GetRadioState(item.Questions.First(c=>c.Order==7).Id,"No"))"
+                                       @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==7).Id,"No"))" />
+                                <label class="form-check-label" for="isSixMonthlivingWithSpouseno"> No </label>
+                            </span>
+                        </span>
+                    </div>
                 </div>
-                <div class="the-row-column-content">
-                    <input class="form-control" type="text" name="City" @bind-value="UserCurrentAddress.City" />
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==5).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Divoced"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==5).Id,"Divoced"))" />
+                            @*<input class="form-check-input " type="checkbox" value="" id="Divorcedid" name="Divorced"
+                            checked="@(st2.isDivorced== true)" @onchange="@(()=>st2.isDivorced= !st2.isDivorced)" />*@
+                            <label class="form-check-label" for="Divorceid">
+                                Divoced
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="the-row-column-title">
-                    <h6>State</h6>
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title ">
+                        <h6> @item.Questions.First(c => c.Order == 12).TheQuestion</h6>
+                    </div>
                 </div>
-                <div class="the-row-column-content">
-                    <input class="form-control" type="text" name="State" @bind-value="UserCurrentAddress.State" />
+                <div class="col-sm-6 border-bottom">
+                    <div class="the-row-column-title">
+                        <input class="form-control width1" type="date" @bind-value="DateOfFinalDecree" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-5">
-                <div class="the-row-column-title">
-                    <h6>Zip Code</h6>
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==5).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Legally Separated"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==5).Id,"Legally Separated"))" />
+                            @*<input class="form-check-input" type="checkbox" value="" name="DecreeDate" id="DecreeDateid"
+                            checked="@(st2.isLeggalySeparated==true)" @onchange="@(()=>st2.isLeggalySeparated=!st2.isLeggalySeparated)" />*@
+                            <label class="form-check-label" for="DecreeDateid">
+                                Legally Separated
+                            </label>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="the-row-column-content">
-                    <input class="form-control" type="text" name="Zip" @bind-value="UserCurrentAddress.Zip" />
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title ">
+                        <h6> @item.Questions.First(c => c.Order == 13).TheQuestion</h6>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="the-row-column-title">
-                    <h6>As of December 31, 2019, were you:</h6>
+                <div class="col-sm-6 border-bottom">
+                    <div class="the-row-column-title">
+                        <input class="form-control width1" type="date" @bind-value="@st2.separateAgreementDate" />
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title ">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" name="NeverMarried" id="NeverMarriedid"
-                               checked="@(st2.neverMarried== true)" @onchange="@(()=>st2.neverMarried= !st2.neverMarried)" />
-                        <label class="form-check-label" for="NeverMarriedid">
-                            Never Married
-                        </label>
+
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==5).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Legally Separated"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==5).Id,"Legally Separated"))" />
+                            @*<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                            checked="@(st2.isWidowed== true)" @onchange="@(()=>st2.isDivorced= !st2.isWidowed)" />*@
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Widowed
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-3 border-bottom">
+                    <div class="the-row-column-title ">
+                        <h6> @item.Questions.First(c => c.Order == 14).TheQuestion</h6>
+                    </div>
+                </div>
+                <div class="col-sm-6 border-bottom">
+                    <div class="the-row-column-content ">
+                        <input class="form-control width1" type="date" @bind-value="@spouseDeathDate" />
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9  border-bottom">
-                <div class="the-row-column-title ">
-                    <i>
-                        (This includes registered domestic partnerships, civil unions, or
-                        other formal relationships under state law)
-                    </i>
-                </div>
-            </div>
-            <div class="col-sm-3  border-bottom">
-                <div class="the-row-column-title">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" id="Marriedid" name="isMarried"
-                               checked="@(st2.isMarried== true)" @onchange="@(()=>st2.isMarried= !st2.isMarried)" />
-                        <label class="form-check-label" for="Marriedid">
-                            Married
-                        </label>
+            <div class="row bottom-padding">
+                <div class="col-sm-12">
+                    <div class="the-row-column-title">
+                        <h6> @item.Questions.First(c => c.Order == 11).TheQuestion</h6>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-9  border-bottom">
-                <div class="the-row-column-title ">
-
-                    <span class="inline-radio-box">
-                        <h6>If yes, did you get married in 2019?</h6>
-
+                    <div class="the-row-column-content">
                         <span class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="isMarriedLastYear"
-                                   id="gotMarryLastYearyes"
-                                   checked="@(st2.isMarriedLastYear== true)" @onchange="@(()=>st2.isMarriedLastYear= true)" />
-                            <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==11).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==11).Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==11).Id,"Yes"))" />
+                            <label class="form-check-label" for="flexRadioDefault1">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="isMarriedLastYear" id="gotMarryLastYearno"
-                                   checked="@(st2.isMarriedLastYear== false)" @onchange="@(()=>st2.isMarriedLastYear= false)" />
-                            <label class="form-check-label" for="gotMarryLastYearno"> No </label>
-                        </span>
-                    </span>
-                </div>
-
-                <div class="the-row-column-title ">
-                    <span class="inline-radio-box">
-                        <h6>
-                            Did you live with your spouse during any part of the last six months
-                            of 2017?
-                        </h6>
-
-                        <span class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="isSixMonthlivingWithSpouse"
-                                   checked="@(st2.liveWithSpouse2017== true)" @onchange="@(()=>st2.liveWithSpouse2017= true)" />
-                            <label class="form-check-label" for="isSixMonthlivingWithSpouseyes">Yes</label>
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==11).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==11).Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==11).Id,"No"))" />
+                            <label class="form-check-label" for="flexRadioDefault2"> No </label>
                         </span>
                         <span class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="isSixMonthlivingWithSpouse"
-                                   checked="@(st2.liveWithSpouse2017== false)" @onchange="@(()=>st2.liveWithSpouse2017= false)" />
-                            <label class="form-check-label" for="isSixMonthlivingWithSpouseno"> No </label>
+                            <input class="form-check-input" type="radio"
+                                   name="@item.Questions.First(c=>c.Order==11).Id"
+                                   checked="@(GetRadioState(item.Questions.First(c=>c.Order==11).Id,"Unsure"))"
+                                   @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==11).Id,"Unsure"))" />
+                            <label class="form-check-label" for="flexRadioDefault2"> Unsure </label>
                         </span>
-                    </span>
-                </div>
-            </div>
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title">
-                    <div class="form-check ">
-                        <input class="form-check-input " type="checkbox" value="" id="Divorcedid" name="Divorced"
-                               checked="@(st2.isDivorced== true)" @onchange="@(()=>st2.isDivorced= !st2.isDivorced)" />
-                        <label class="form-check-label" for="Divorceid">
-                            Divoced
-                        </label>
                     </div>
                 </div>
-
             </div>
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title ">
-                    <h6>Date of final decree</h6>
-                </div>
-            </div>
-            <div class="col-sm-6 border-bottom">
-                <div class="the-row-column-title">
-                    <input class="form-control width1" type="date" @bind-value="@st2.decreeDate" />
-                </div>
-            </div>
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="DecreeDate" id="DecreeDateid"
-                               checked="@(st2.isLeggalySeparated==true)" @onchange="@(()=>st2.isLeggalySeparated=!st2.isLeggalySeparated)" />
-                        <label class="form-check-label" for="DecreeDateid">
-                            Legally Separated
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title ">
-                    <h6>Date of separate maintenance agreement</h6>
-                </div>
-            </div>
-            <div class="col-sm-6 border-bottom">
-                <div class="the-row-column-title">
-                    <input class="form-control width1" type="date" @bind-value="@st2.separateAgreementDate" />
-                </div>
-            </div>
-
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title">
-                    <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
-                               checked="@(st2.isWidowed== true)" @onchange="@(()=>st2.isDivorced= !st2.isWidowed)" />
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Widowed
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-sm-3 border-bottom">
-                <div class="the-row-column-title ">
-                    <h6>Year of spouse’s death</h6>
-                </div>
-            </div>
-            <div class="col-sm-6 border-bottom">
-                <div class="the-row-column-content ">
-
-                    <input class="form-control width1" type="date" @bind-value="@st2.spouseDeathDate" />
-                </div>
-            </div>
-        </div>
-        <div class="row bottom-padding">
-            <div class="col-sm-12">
-                <div class="the-row-column-title">
-                    <h6>Can anyone claim you or your spouse as a dependent?</h6>
-                </div>
-                <div class="the-row-column-content">
-                    <span class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isClaimedOrSpouseAsDependent"
-                               checked="@(st2.isClaimedOrSpouseAsDependent == 1) " @onchange="@(()=>st2.isClaimedOrSpouseAsDependent =1)" />
-                        <label class="form-check-label" for="flexRadioDefault1">Yes</label>
-                    </span>
-                    <span class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isClaimedOrSpouseAsDependent"
-                               checked="@(st2.isClaimedOrSpouseAsDependent == 2) " @onchange="@(()=>st2.isClaimedOrSpouseAsDependent =2)" />
-                        <label class="form-check-label" for="flexRadioDefault2"> No </label>
-                    </span>
-                    <span class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="isClaimedOrSpouseAsDependent"
-                               checked="@(st2.isClaimedOrSpouseAsDependent == 0) " @onchange="@(()=>st2.isClaimedOrSpouseAsDependent =0)" />
-                        <label class="form-check-label" for="flexRadioDefault2"> Unsure </label>
-                    </span>
-                </div>
-            </div>
-        </div>
+        }
         @if (st2.isMarried)
         {
             <div class="row form-bk-gray">
@@ -561,61 +616,72 @@
                 </div>
             </div>
         }
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="the-row-column-title">
-                    <div class="section-subtitle">
-                        <h3 class="">Have you  @(st2.isMarried?"or your spouse":""):</h3>
+        @foreach (var item in formSteps.Where(c => c.TheStep == 2 && c.Section == 5).ToList())
+        { 
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="the-row-column-title">
+                        <div class="section-subtitle">
+                            <h3 class="">Have you  @(st2.isMarried?"or your spouse":""):</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="the-row-column-content">
-                    <div class="border-bottom">
-                        <div class="inline-radio-box">
-                            <span>
-                                <h6>A. Been a victim of identity theft?</h6>
-                            </span>
-                            <span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="identityTheft" id="identityTheft1"
-                                           checked="@(st2.identityTheft==true)" @onchange="()=>st2.identityTheft = true" />
-                                    <label class="form-check-label" for="identityTheft1">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="identityTheft" id="identityTheft2"
-                                           checked="@(st2.identityTheft==false)" @onchange="()=>st2.identityTheft = false" />
-                                    <label class="form-check-label" for="identityTheft2"> No </label>
-                                </div>
-                            </span>
+                <div class="col-sm-12">
+                    <div class="the-row-column-content">
+                        <div class="border-bottom">
+                            <div class="inline-radio-box">
+                                <span>
+                                    <h6>@item.Questions.First(c => c.Order == 1).TheQuestion</h6>
+                                </span>
+                                <span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c=>c.Order==1).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c=>c.Order==1).Id,"Yes"))"
+                                               @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==1).Id,"Yes"))" />
+                                        <label class="form-check-label" for="identityTheft1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c=>c.Order==1).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c=>c.Order==1).Id,"No"))"
+                                               @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==1).Id,"No"))" />
+                                        <label class="form-check-label" for="identityTheft2"> No </label>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 ">
+                    <div class="the-row-column-content">
+                        <div class="border-bottom">
+                            <div class="inline-radio-box ">
+                                <span>
+                                    <h6>@item.Questions.First(c => c.Order == 2).TheQuestion</h6>
+                                </span>
+                                <span>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c=>c.Order==2).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c=>c.Order==2).Id,"Yes"))"
+                                               @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==2).Id,"Yes"))" />
+                                        <label class="form-check-label" for="adoptedAChild1">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio"
+                                               name="@item.Questions.First(c=>c.Order==1).Id"
+                                               checked="@(GetRadioState(item.Questions.First(c=>c.Order==2).Id,"No"))"
+                                               @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==2).Id,"No"))" />
+                                        <label class="form-check-label" for="adoptedAChild2"> No </label>
+                                    </div>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 ">
-                <div class="the-row-column-content">
-                    <div class="border-bottom">
-                        <div class="inline-radio-box ">
-                            <span>
-                                <h6></h6>B. Adopted a child?
-                            </span>
-                            <span>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="adoptedAChild" id="adoptedAChild1"
-                                           checked="@(st2.adoptedAChild==true)" @onchange="()=>st2.adoptedAChild = true" />
-                                    <label class="form-check-label" for="adoptedAChild1">Yes</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="adoptedAChild" id="adoptedAChild2"
-                                           checked="@(st2.adoptedAChild==false)" @onchange="()=>st2.adoptedAChild = false" />
-                                    <label class="form-check-label" for="adoptedAChild2"> No </label>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
         <div class="row">
             <div class="col-sm-12">
                 <div class="the-row-column-title">
@@ -714,11 +780,11 @@
         <DependentForm TaxFormID="TaxFormID" OnReloadDependetEvent="OnReloadDependetEvent" />
         @foreach (Dependent d in Dependents)
         {
-            <div class="row .d-none .d-md-block border-bottom dependent-row" >
+            <div class="row .d-none .d-md-block border-bottom dependent-row">
                 <div class="col-sm-12 col-md-2">
                     <div class=" nopaddingsmallfont">
                         <p>@d.FirstName @d.LastName</p>
-               
+
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-2">
@@ -769,12 +835,12 @@
                         <p>@d.TotallyPermanentlyDisabled</p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-1">                    
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                        </svg>                      
-                    
+                <div class="col-sm-12 col-md-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                    </svg>
+
                 </div>
             </div>
         }
@@ -827,16 +893,32 @@
 
     public Step2VM st2 { get; set; }
 
+    public List<FormStep> formSteps { get; set; }
+
+    public List<Question> questions { set; get; }
+    public List<Answer> answers { get; set; }
+
+    public DateTime DateOfFinalDecree { get; set; }
+    public DateTime separateAgreementDate { get; set; }
+    public DateTime spouseDeathDate { get; set; }
+
     protected override void OnInitialized()
     {
         st2 = new Step2VM();
         Dependents = new List<Dependent>();
         Dependents = service.GetDependets(TaxFormID);
+
+        formSteps = new List<FormStep>();
+        answers = new List<Answer>();
+        answers = service.GetAnswers(TaxFormID, 2);
+        formSteps = service.GetFormStep(2);
+
         base.OnInitialized();
     }
 
     public async Task Next()
     {
+        service.SaveProgressStep3(answers);
         SaveProgress(2);
         await NextPage.InvokeAsync(3);
     }
@@ -861,5 +943,27 @@
     public async Task SubmitReview()
     {
         await FinalPage.InvokeAsync(5);
+    }
+    public void SetAnswer(int qId, string qAn)
+    {
+        if (answers.Any(c => c.QuestionId == qId))//update
+        {
+            Answer ans = answers.First(c => c.QuestionId == qId);
+            ans.TheAnswer = qAn;
+            ans.UpdatedOn = DateTime.Now;
+        }
+        else //insert
+        {
+            answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = qId, TheAnswer = qAn, AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
+        }
+    }
+    public bool GetRadioState(int id, string val)
+    {
+        if (answers.Any(c => c.QuestionId == id))
+        {
+            var checkedval = (answers.First(c => c.QuestionId == id).TheAnswer == val) ? true : false;
+            return checkedval;
+        }
+        return false;
     }
 }
