@@ -1,4 +1,4 @@
-﻿
+﻿@inject TaxFormService service
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -12,7 +12,7 @@
                         <img src="/img/home-icon.svg" class="viewDocIcon" />
                         <span>Save & Return To Dashboard</span>
                     </button>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
@@ -85,17 +85,17 @@
                 <div class="the-row-column-content">
                     <div class="basic-information-title paddingbotttom25px">Basic information</div>
                     <div class="main-border-grey  padding30px">
-                        <div class="name">John Doe</div>
-                        <div class="tel">Tel:123-456-7890</div>
-                        <div class="email">Email: johndoe@gmail.com</div>
+                        <div class="name">@CurrentUser?.FirstName @CurrentUser?.MiddleName @CurrentUser?.LastName</div>
+                        <div class="tel">tel:<a href="tel:@CurrentUser?.Phone">@CurrentUser?.Phone</a></div>
+                        <div class="email">Email: <a href="mailto: @CurrentUser?.Email">@CurrentUser?.Email</a></div>
                         <br>
                         <div class="mainling-address paddingtop20px">
                             Mailing Address
                         </div>
-                        <div class="address1">935 York Street</div>
-                        <div class="address2">Apt. 2</div>
-                        <div class="city">East Rutherford</div>
-                        <div class="statezipcode">NJ, 07073</div>
+                        <div class="address1">@UserCurrentAddress.Address1</div>
+                        <div class="address2"> @UserCurrentAddress.Address2</div>
+                        <div class="city">@UserCurrentAddress.City</div>
+                        <div class="statezipcode">@UserCurrentAddress.State, @UserCurrentAddress.Zip</div>
                         <div class="photo-id">
                             <span>
                                 <img src="/img/photo-id-icon.svg" />
@@ -126,12 +126,12 @@
                         <div class="step-nav">
                             <div id="next-step">
                                 @*<form action="/step2.html">*@
-                                    <button id="next-step-id" @onclick="Next">Next Step</button>
+                                <button id="next-step-id" @onclick="Next">Next Step</button>
                                 @*</form>*@
                             </div>
                             <div id="next-step">
                                 @*<form action="/step5-2.html">*@
-                                    <button id="revire-submit"  @onclick="SubmitReview">Review & Submit</button>
+                                <button id="revire-submit" @onclick="SubmitReview">Review & Submit</button>
                                 @*</form>*@
                             </div>
                         </div>
@@ -143,11 +143,16 @@
 </div>
 
 @code {
-    [Parameter]
-    public EventCallback<int> NextPage { get; set; }
-
-    [Parameter]
-    public EventCallback<int> FinalPage { get; set; }
+        [Parameter]
+        public EventCallback<int> NextPage { get; set; }
+        [Parameter]
+        public EventCallback<int> FinalPage { get; set; }
+        [Parameter]
+        public int TaxFormID { get; set; }
+        [Parameter]
+        public Person CurrentUser { get; set; }
+        [Parameter]
+        public Address UserCurrentAddress { get; set; }
 
     public async Task Next()
     {
@@ -157,5 +162,6 @@
     {
         await FinalPage.InvokeAsync(5);
     }
+
 
 }

@@ -25,5 +25,9 @@ namespace pnl.Data
         public DbSet<TaxFormAddress> TaxFormAddress { set; get; }
         public DbSet<TaxFormPerson> TaxFormPeople { set; get; }
         public DbSet<QuestionsTaxForm> QuestionsTaxForms{ get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<AnswerType> AnswerTypes{ get; set; }
+        public DbSet<Answer> Answers{ get; set; }
+        public DbSet<FormStep> FormSteps { get; set; }
     }
 }

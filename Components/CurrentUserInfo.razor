@@ -24,7 +24,7 @@
                 <div>@CurrentUser?.Occupation</div>
                 <div>@CurrentUser?.SSN</div>
                 <div>@CurrentUser?.Email</div>
-                <div>@CurrentUser?.Phone</div>
+                <div><a href="tel:@CurrentUser?.Phone">@CurrentUser?.Phone</a></div>
                 <div>@CurrentUser?.Birthday.ToString("dd/MM/yyyy")</div>
             </div>
         </div>

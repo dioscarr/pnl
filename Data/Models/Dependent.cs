@@ -17,7 +17,7 @@ namespace pnl.Data.Models
         public int TaxFormID { get; set; }
         [ForeignKey("TaxFormID")]
         public virtual TaxForm TaxForm { get; set; }
-        [Required(ErrorMessage ="first name is required")]
+        [Required(ErrorMessage = "first name is required")]
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
@@ -32,6 +32,11 @@ namespace pnl.Data.Models
         public string RelationshipName { get; set; }
         [Required]
         public string Code { get; set; }
-        public bool Selected { get; set; }
+        public string isUsCitizen { get; set; } = "no";
+        public string ResidentUSCanadaMexicolastyear { get; set; } = "no";
+        public string SingleorMarriedAsOf { get; set; } = "no";
+        public string FullTimeStudentLastYear { get; set; } = "no";
+        public string TotallyPermanentlyDisabled { get; set; } = "yes";
+        public bool Selected { get; set; } 
     }
 }

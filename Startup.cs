@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Http;
 using pnl.Models;
 using Microsoft.AspNetCore.DataProtection;
 using Skclusive.Material.Core;
+using pnl.Data.Models;
 
 namespace pnl
 {
@@ -91,6 +92,7 @@ namespace pnl
             {
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
                 //seeding
+                
                 context.Database.Migrate();
                 if (!context.CriteriaOption.Any())
                 {
@@ -130,6 +132,88 @@ namespace pnl
                     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
                     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
                     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
+                    context.SaveChanges();
+                }
+
+                if (!context.AnswerTypes.Any())
+                {
+                    context.Add(new AnswerType { Type = "Radio" });
+                    context.Add(new AnswerType { Type = "TextBox" });
+                    context.Add(new AnswerType { Type = "DropDown" });
+                    context.Add(new AnswerType { Type = "CheckBox" });
+                    context.SaveChanges();
+                }
+       
+                if (!context.FormSteps.Any())
+                {
+                    context.Add(new FormStep { TheStep = 1, StepName = "Basic Information", Section = 1, SectionName = "Part 1 - Expenses – Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 1, SectionName = "Part 1 - Expenses – Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 1, SectionName = "Part 1 - Expenses – Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 2, SectionName = "Part 2 - Expenses – Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 3, SectionName = "Part 3 – Life Events – Last Year, Did You (or Your Spouse)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 4, SectionName = "Part 4 - Health Care Coverage - Last year, did you, your spouse, or dependent(s)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new FormStep { TheStep = 4, StepName = "Additional Information", Section = 1, SectionName = "Additional Information and Questions Related to the Preparation of Your Return", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
+
+                    context.SaveChanges();
+                }                
+                if (!context.Questions.Any())
+                {
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "1. (B) Wages or Salary? (Form W-2)",Order=1,AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "2. (A) Tip Income?", Order = 2, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "3. (B) Scholarships? (Forms W-2, 1098-T)", Order = 3, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "4. (B) Interest/Dividends from: checking/savings accounts, bonds, CDs, brokerage? (Forms 1099-INT, 1099-DIV)", Order = 4, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "5. (B) Refund of state/local income taxes? (Form 1099-G)", Order = 5, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "6. (B) Alimony income or separate maintenance payments?", Order = 6, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "7. (A) Self-Employment income? (Form 1099-MISC, cash)", Order = 7, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "8. (A) Cash/check payments for any work performed not reported on Forms W-2 or 1099?", Order = 8, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "9. (A) Income (or loss) from the sale of Stocks, Bonds or Real Estate? (including your home) (Forms 1099-S,1099-B)", Order = 9, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "10. (B) Disability income? (such as payments from insurance, or workers compensation) (Forms 1099-R, W-2)", Order = 10, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "11. (A) Payments from Pensions, Annuities, and/or IRA? (Form 1099-R)", Order = 11, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "12. (B) Unemployment Compensation? (Form 1099G)", Order = 12, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "13. (B) Social Security or Railroad Retirement Benefits? (Forms SSA-1099, RRB-1099)", Order = 13, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "14. (M) Income (or loss) from Rental Property?", Order = 13, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 2, TheQuestion = "15. (B) Other income? (gambling, lottery, prizes, awards, jury duty, Sch K-1, royalties, foreign income, etc.)", Order = 13, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "1. (B) Alimony or separate maintenance payments?", Order = 1, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "2. Contributions to a retirement account?", Order = 2, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "3. (B) College or post secondary educational expenses for yourself, spouse or dependents? (Form 1098-T)", Order = 3, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "4. (B) Unreimbursed employee business expenses? (such as uniforms or mileage)", Order = 4, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "5. (B) Medical expenses? (including health insurance premiums)", Order = 5, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "6. (B) Home mortgage interest? (Form 1098)", Order = 6, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "7. (B) Real estate taxes for your home or personal property taxes for your vehicle? (Form 1098)", Order = 7, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "8. (B) Charitable contributions?", Order = 8, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "9. (B) Child or dependent care expenses such as daycare?", Order = 9, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "10. (B) For supplies used as an eligible educator such as a teacher, teacher’s aide, counselor, etc.?", Order = 10, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 3, TheQuestion = "11. (A) Expenses related to self-employment income or any o", Order = 11, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "1. (HSA) Have a Health Savings Account? (Forms 5498-SA, 1099-SA, W-2 with code W in box 12)", Order = 1, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "2. (A) Have debt from a mortgage or credit card cancelled/forgiven by a commercial lender? (Forms 1099-C, 1099-A)", Order = 2, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "3. (A) Buy, sell or have a foreclosure of your home? (Form 1099-A)", Order = 3, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "4. (B) Have Earned Income Credit (EIC) or other credits disallowed in a prior year?", Order = 4, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "5. (A) Purchase and install energy-efficient home items? (such as windows, furnace, insulation, etc.)", Order = 5, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "6. (B) Live in an area that was affected by a natural disaster?", Order = 6, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "7. (A) Receive the First Time Homebuyers Credit in 2008?", Order = 7, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "8. (B) Make estimated tax payments or apply last year’s refund to this year’s tax?", Order = 8, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 4, TheQuestion = "9. (A) File a federal return last year containing a “capital loss carryover” on Form 1040 Schedule D?", Order = 9, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
+                    context.Add(new Question { FormStepId = 5, TheQuestion = "1. (B) Have health care coverage?", Order = 1, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 5, TheQuestion = "2. (B) Receive one or more of these forms?", Order = 2, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 5, TheQuestion = "3. (A) Have coverage through the Marketplace (Exchange)? [Provide Form 1095-A]", Order = 3, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 5, TheQuestion = "3a. (A) If yes, were advance credit payments made to help you pay your health care premiums?", Order = 4, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 5, TheQuestion = "3b. (A) If yes, Is everyone listed on your Form 1095-A being cla", Order = 5, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "1. Provide an email address (optional) (this email address will not be used for contacts from the Internal Revenue Service) ", Order = 1, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "2. Presidential Election Campaign Fund (If you check a box, your tax or refund will not change) ", Order = 2, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });                    
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "Check here if you, or your spouse if filing jointly, want $3 to go to this fund You Spouse", Order = 3, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "3. If you are due a refund, would you like: ", Order = 4, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "4. If you have a balance due, would you like to make a payment directly from your bank account?", Order = 5, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "5. Have you or your spouse received any letters from the Internal Revenue Service?", Order = 6, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });                    
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "6. Other than English, what language is spoken in your home?", Order = 7, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "Prefer not to answer", Order = 8, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "7. Do you or any member of your household have a disability?", Order = 9, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                    context.Add(new Question { FormStepId = 6, TheQuestion = "8. Are you or your spouse a Veteran from the U.S. Armed Forces?", Order = 10, AnswerTypeId = 2, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+
                     context.SaveChanges();
                 }
             }

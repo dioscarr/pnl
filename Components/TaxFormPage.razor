@@ -1,13 +1,29 @@
 ﻿@inject TaxFormService service
 
-    <div id="tax-form-pages-inline">
-        @if (position == 1){<Step1 NextPage="Next" FinalPage="SubmitReview" />}
-        @if (position == 2){<Step2 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
-        @if (position == 3){<Step3 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
-        @if (position == 4){<Step4 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
-        @if (position == 5){<Step5 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
-        @if (position == 6){<Step6 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
-    </div>
+<div id="tax-form-pages-inline">
+    @if (position == 1)
+    {<Step1 NextPage="Next"
+            FinalPage="SubmitReview"
+            TaxFormID="taxFormId"
+            CurrentUser="CurrentUser"
+            UserCurrentAddress="UserCurrentAddress" />}
+    @if (position == 2)
+    {<Step2 NextPage="Next"
+            FinalPage="SubmitReview"
+            PrvPage="Prv"
+            TaxFormID="taxFormId"
+            CurrentUser="CurrentUser" 
+            UserCurrentAddress="UserCurrentAddress" 
+            Dependents="Dependents" />}
+    @if (position == 3)
+    {<Step3 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv"   TaxFormID="taxFormId" />}
+    @if (position == 4)
+    {<Step4 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv"  TaxFormID="taxFormId"/>}
+    @if (position == 5)
+    {<Step5 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+    @if (position == 6)
+    {<Step6 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
+</div>
 
 @code {
     private string Value { set; get; } = "1";
@@ -29,7 +45,25 @@
     public string active { get; set; } = " slide-in-bottom";
     public string blockActive { get; set; } = " slide-out-left";
     private List<string> labels = new List<string>() { "Basic Information", "Criteria", "Add Dependents", "Review Dependents", "Child Care Information" };
+
     DependentList dependentList;
+    public Person CurrentUser { get; set; }
+    public Address UserCurrentAddress { get; set; }
+    private List<Dependent> Dependents { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        CheckIfTaxExist();
+        if (taxFormId > 0)
+        {
+            canDisplay = true;
+            position = 1;
+            GetUserInfo();
+            GetCurrentUserAddress();
+            GetDependets();
+        }
+        return base.OnInitializedAsync();
+    }
 
     private void Next(int index)
     {
@@ -39,7 +73,9 @@
         }
 
         if (index < 7)
+        {
             position = index;
+        }
 
         active = " slide-in-bottom";
         blockActive = " slide-out-left";
@@ -52,12 +88,31 @@
         active = " slide-in-bottom";
         blockActive = " slide-out-right";
     }
+    public void GetDependets()
+    {
+        if (taxFormId > 0)
+        {
+            Dependents = new List<Dependent>();
+            Dependents = service.GetDependets(taxFormId);
+            StateHasChanged();
+        }
+    }
 
     private void SubmitReview(int index) {
         if (index > 0)
             position = index;
         active = " slide-in-bottom";
         blockActive = " slide-out-right";
+    }
+
+
+    private void GetUserInfo()
+    {
+        CurrentUser = service.GetCurrentUser(taxFormId);
+    }
+    private void GetCurrentUserAddress()
+    {
+        UserCurrentAddress = service.GetCurrentUserAddress();
     }
     private void increment()
     {
@@ -115,15 +170,7 @@
         StateHasChanged();
     }
 
-    protected override Task OnInitializedAsync()
-    {
-        if (taxFormId > 0)
-        {
-            canDisplay = true;
-            position = 1;
-        }
-        return base.OnInitializedAsync();
-    }
+
     public void SubmitTaxForm()
     {
         var isFiled = service.SubmitTaxForm(taxFormId);
@@ -136,5 +183,14 @@
         currposition = int.Parse(args.Value.ToString());
         stepin = Value;
         StateHasChanged();
+    }
+
+    private void CheckIfTaxExist()
+    {
+        var id =  service.CheckIfCurrentTaxYearExist();
+        if (id != 0)
+        {
+            taxFormId = id;
+        }        
     }
 }

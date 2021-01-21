@@ -252,6 +252,52 @@ namespace pnl.Migrations
                     b.ToTable("Address");
                 });
 
+            modelBuilder.Entity("pnl.Data.Models.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("AnsweredOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaxFormId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TheAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("TaxFormId");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.AnswerType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AnswerTypes");
+                });
+
             modelBuilder.Entity("pnl.Data.Models.CriteriaOption", b =>
                 {
                     b.Property<int>("id")
@@ -288,6 +334,9 @@ namespace pnl.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FullTimeStudentLastYear")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -299,6 +348,9 @@ namespace pnl.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ResidentUSCanadaMexicolastyear")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SSN")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -306,8 +358,17 @@ namespace pnl.Migrations
                     b.Property<bool>("Selected")
                         .HasColumnType("bit");
 
+                    b.Property<string>("SingleorMarriedAsOf")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("TaxFormID")
                         .HasColumnType("int");
+
+                    b.Property<string>("TotallyPermanentlyDisabled")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("isUsCitizen")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -375,6 +436,45 @@ namespace pnl.Migrations
                     b.ToTable("FilingStatus");
                 });
 
+            modelBuilder.Entity("pnl.Data.Models.FormStep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Section")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SectionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StepName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TheStep")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isDeleated")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isEnabled")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormSteps");
+                });
+
             modelBuilder.Entity("pnl.Data.Models.Person", b =>
                 {
                     b.Property<int>("id")
@@ -412,6 +512,49 @@ namespace pnl.Migrations
                     b.HasKey("id");
 
                     b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Question", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AnswerTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FormStepId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TheQuestion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isDeleated")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isEnabled")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerTypeId");
+
+                    b.HasIndex("FormStepId");
+
+                    b.ToTable("Questions");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.QuestionsTaxForm", b =>
@@ -642,6 +785,25 @@ namespace pnl.Migrations
                     b.Navigation("Person");
                 });
 
+            modelBuilder.Entity("pnl.Data.Models.Answer", b =>
+                {
+                    b.HasOne("pnl.Data.Models.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
+                        .WithMany("Answers")
+                        .HasForeignKey("TaxFormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Question");
+
+                    b.Navigation("TaxForm");
+                });
+
             modelBuilder.Entity("pnl.Data.Models.Dependent", b =>
                 {
                     b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
@@ -662,6 +824,25 @@ namespace pnl.Migrations
                         .IsRequired();
 
                     b.Navigation("TaxForm");
+                });
+
+            modelBuilder.Entity("pnl.Data.Models.Question", b =>
+                {
+                    b.HasOne("pnl.Data.Models.AnswerType", "AnswerType")
+                        .WithMany()
+                        .HasForeignKey("AnswerTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("pnl.Data.Models.FormStep", "FormStep")
+                        .WithMany("Questions")
+                        .HasForeignKey("FormStepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AnswerType");
+
+                    b.Navigation("FormStep");
                 });
 
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
@@ -721,6 +902,11 @@ namespace pnl.Migrations
                     b.Navigation("TaxForm");
                 });
 
+            modelBuilder.Entity("pnl.Data.Models.FormStep", b =>
+                {
+                    b.Navigation("Questions");
+                });
+
             modelBuilder.Entity("pnl.Data.Models.Person", b =>
                 {
                     b.Navigation("Address");
@@ -730,6 +916,8 @@ namespace pnl.Migrations
 
             modelBuilder.Entity("pnl.Data.Models.TaxForm", b =>
                 {
+                    b.Navigation("Answers");
+
                     b.Navigation("DependentCareProviders");
 
                     b.Navigation("DependentsClaimed");

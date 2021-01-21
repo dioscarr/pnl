@@ -11,8 +11,8 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - mssql-volume:/var/opt/mssql
-      # - /storage/backup:/backup
+      #- mssql-volume:/var/opt/mssql
+        - /storage/backup:/backup
     # networks:
     #   - default
   pnl:

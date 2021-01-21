@@ -3,10 +3,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace pnl.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AnswerTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AnswerTypes", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -47,7 +60,7 @@ namespace pnl.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CriteriaOptions",
+                name: "CriteriaOption",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -57,11 +70,46 @@ namespace pnl.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CriteriaOptions", x => x.id);
+                    table.PrimaryKey("PK_CriteriaOption", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "People",
+                name: "FilingStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isEnabled = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilingStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FormSteps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TheStep = table.Column<int>(type: "int", nullable: false),
+                    StepName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SectionName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Section = table.Column<int>(type: "int", nullable: false),
+                    isEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    isDeleated = table.Column<bool>(type: "bit", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormSteps", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Person",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -71,14 +119,29 @@ namespace pnl.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<int>(type: "int", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.id);
+                    table.PrimaryKey("PK_Person", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuestionsTaxForms",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LinkToIdName = table.Column<int>(type: "int", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionsTaxForms", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,7 +251,40 @@ namespace pnl.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "Questions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TheQuestion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Order = table.Column<int>(type: "int", nullable: false),
+                    isEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    isDeleated = table.Column<bool>(type: "bit", nullable: false),
+                    ModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AnswerTypeId = table.Column<int>(type: "int", nullable: false),
+                    FormStepId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Questions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Questions_AnswerTypes_AnswerTypeId",
+                        column: x => x.AnswerTypeId,
+                        principalTable: "AnswerTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Questions_FormSteps_FormStepId",
+                        column: x => x.FormStepId,
+                        principalTable: "FormSteps",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Address",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -202,39 +298,110 @@ namespace pnl.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.id);
+                    table.PrimaryKey("PK_Address", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Addresses_People_PersonID",
+                        name: "FK_Address_Person_PersonID",
                         column: x => x.PersonID,
-                        principalTable: "People",
+                        principalTable: "Person",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaxtForms",
+                name: "TaxForms",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TaxYear = table.Column<int>(type: "int", nullable: false),
+                    isFiled = table.Column<bool>(type: "bit", nullable: false),
                     FilingStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonID = table.Column<int>(type: "int", nullable: false)
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PersonID = table.Column<int>(type: "int", nullable: false),
+                    FilingStatusID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaxtForms", x => x.ID);
+                    table.PrimaryKey("PK_TaxForms", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_TaxtForms_People_PersonID",
+                        name: "FK_TaxForms_FilingStatus_FilingStatusID",
+                        column: x => x.FilingStatusID,
+                        principalTable: "FilingStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TaxForms_Person_PersonID",
                         column: x => x.PersonID,
-                        principalTable: "People",
+                        principalTable: "Person",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "DependentCares",
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TheAnswer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AnsweredOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TaxFormId = table.Column<int>(type: "int", nullable: false),
+                    QuestionId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Answers_Questions_QuestionId",
+                        column: x => x.QuestionId,
+                        principalTable: "Questions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Answers_TaxForms_TaxFormId",
+                        column: x => x.TaxFormId,
+                        principalTable: "TaxForms",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dependent",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TaxFormID = table.Column<int>(type: "int", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MonthInHome = table.Column<int>(type: "int", nullable: false),
+                    RelationshipName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    isUsCitizen = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ResidentUSCanadaMexicolastyear = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SingleorMarriedAsOf = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullTimeStudentLastYear = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotallyPermanentlyDisabled = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Selected = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dependent", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Dependent_TaxForms_TaxFormID",
+                        column: x => x.TaxFormID,
+                        principalTable: "TaxForms",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DependentCare",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
@@ -251,43 +418,41 @@ namespace pnl.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DependentCares", x => x.id);
+                    table.PrimaryKey("PK_DependentCare", x => x.id);
                     table.ForeignKey(
-                        name: "FK_DependentCares_TaxtForms_TaxFormID",
+                        name: "FK_DependentCare_TaxForms_TaxFormID",
                         column: x => x.TaxFormID,
-                        principalTable: "TaxtForms",
+                        principalTable: "TaxForms",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Dependents",
+                name: "TaxFormAddress",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TaxFormID = table.Column<int>(type: "int", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MonthInHome = table.Column<int>(type: "int", nullable: false),
-                    RelationshipName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Address1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TaxFormID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dependents", x => x.id);
+                    table.PrimaryKey("PK_TaxFormAddress", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Dependents_TaxtForms_TaxFormID",
+                        name: "FK_TaxFormAddress_TaxForms_TaxFormID",
                         column: x => x.TaxFormID,
-                        principalTable: "TaxtForms",
+                        principalTable: "TaxForms",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaxFormCriterias",
+                name: "TaxFormCriteria",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -297,19 +462,58 @@ namespace pnl.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaxFormCriterias", x => x.ID);
+                    table.PrimaryKey("PK_TaxFormCriteria", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_TaxFormCriterias_TaxtForms_TaxFormID",
+                        name: "FK_TaxFormCriteria_TaxForms_TaxFormID",
                         column: x => x.TaxFormID,
-                        principalTable: "TaxtForms",
+                        principalTable: "TaxForms",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TaxFormPeople",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SSN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TaxFormID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaxFormPeople", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_TaxFormPeople_TaxForms_TaxFormID",
+                        column: x => x.TaxFormID,
+                        principalTable: "TaxForms",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_PersonID",
-                table: "Addresses",
-                column: "PersonID");
+                name: "IX_Address_PersonID",
+                table: "Address",
+                column: "PersonID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_QuestionId",
+                table: "Answers",
+                column: "QuestionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Answers_TaxFormId",
+                table: "Answers",
+                column: "TaxFormId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -351,30 +555,60 @@ namespace pnl.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DependentCares_TaxFormID",
-                table: "DependentCares",
+                name: "IX_Dependent_TaxFormID",
+                table: "Dependent",
                 column: "TaxFormID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dependents_TaxFormID",
-                table: "Dependents",
+                name: "IX_DependentCare_TaxFormID",
+                table: "DependentCare",
                 column: "TaxFormID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaxFormCriterias_TaxFormID",
-                table: "TaxFormCriterias",
+                name: "IX_Questions_AnswerTypeId",
+                table: "Questions",
+                column: "AnswerTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Questions_FormStepId",
+                table: "Questions",
+                column: "FormStepId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxFormAddress_TaxFormID",
+                table: "TaxFormAddress",
+                column: "TaxFormID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxFormCriteria_TaxFormID",
+                table: "TaxFormCriteria",
                 column: "TaxFormID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaxtForms_PersonID",
-                table: "TaxtForms",
+                name: "IX_TaxFormPeople_TaxFormID",
+                table: "TaxFormPeople",
+                column: "TaxFormID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxForms_FilingStatusID",
+                table: "TaxForms",
+                column: "FilingStatusID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TaxForms_PersonID",
+                table: "TaxForms",
                 column: "PersonID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "Answers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -392,16 +626,28 @@ namespace pnl.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CriteriaOptions");
+                name: "CriteriaOption");
 
             migrationBuilder.DropTable(
-                name: "DependentCares");
+                name: "Dependent");
 
             migrationBuilder.DropTable(
-                name: "Dependents");
+                name: "DependentCare");
 
             migrationBuilder.DropTable(
-                name: "TaxFormCriterias");
+                name: "QuestionsTaxForms");
+
+            migrationBuilder.DropTable(
+                name: "TaxFormAddress");
+
+            migrationBuilder.DropTable(
+                name: "TaxFormCriteria");
+
+            migrationBuilder.DropTable(
+                name: "TaxFormPeople");
+
+            migrationBuilder.DropTable(
+                name: "Questions");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -410,10 +656,19 @@ namespace pnl.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "TaxtForms");
+                name: "TaxForms");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "AnswerTypes");
+
+            migrationBuilder.DropTable(
+                name: "FormSteps");
+
+            migrationBuilder.DropTable(
+                name: "FilingStatus");
+
+            migrationBuilder.DropTable(
+                name: "Person");
         }
     }
 }

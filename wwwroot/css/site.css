@@ -25,6 +25,12 @@ a {
     word-break: break-word;
 }
 
+.form-check-input[type=radio] {
+    border-radius: 50%;
+    width: 1.59rem !important;
+    height: 1.25rem;
+}
+
 .header {
     display: grid;
     grid-template-columns: auto 400px;
@@ -1351,6 +1357,9 @@ a:hover {
 #dependentRelationship {
     width: 100%;
 }
+.dependent-row {
+    align-items:center;
+}
 
 .inline-radio-box {
     display: inline-flex;
@@ -2237,15 +2246,10 @@ a{
 
 
 
-
-
-
-
-
-
-
-
-
+/*Step 2*/
+.add-dependent-form {
+    display:flex;
+}
 
 
 

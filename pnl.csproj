@@ -91,6 +91,7 @@
     <Folder Include="Areas\PnlAccess\Pages\AdminLanding\" />
     <Folder Include="Areas\PnlAccess\Pages\Person\" />
     <Folder Include="Areas\PnlAccess\Views\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
