@@ -135,14 +135,14 @@ namespace pnl
                 //     context.SaveChanges();
                 // }
 
-                // if (!context.AnswerTypes.Any())
-                // {
-                //     context.Add(new AnswerType { Type = "Radio" });
-                //     context.Add(new AnswerType { Type = "TextBox" });
-                //     context.Add(new AnswerType { Type = "DropDown" });
-                //     context.Add(new AnswerType { Type = "CheckBox" });
-                //     context.SaveChanges();
-                // }
+                if (!context.AnswerTypes.Any())
+                {
+                    context.Add(new AnswerType { Type = "Radio" });
+                    context.Add(new AnswerType { Type = "TextBox" });
+                    context.Add(new AnswerType { Type = "DropDown" });
+                    context.Add(new AnswerType { Type = "CheckBox" });
+                    context.SaveChanges();
+                }
        
                 // if (!context.FormSteps.Any())
                 // {
