@@ -14,17 +14,21 @@ namespace pnl.Models
 
         public Person CurrentUser { get; set; }
         public Address Address { get; set; }
+        public List<USAStates> usaStates { get; set; }
         public void Init(ApplicationDbContext db)
         {
             _db = db;
             CurrentUser = new Person();
             Address = new Address();
+            usaStates = new List<USAStates>();
+            usaStates = _db.USAStates.ToList();
         }
        
         public void GetCurrentUserInfo(string userID)
         {
             CurrentUser = (_db.Person.Any(c => c.UserId == userID)) ? _db.Person.Where(c => c.UserId == userID).First() : new Person();
             Address =  (CurrentUser.Address!=null) ? CurrentUser.Address: new Address();
+            
         }        
 
     }
