@@ -84,8 +84,8 @@
                                            name="@item.Id"
                                            checked="@(GetRadioState(item.Id,"true"))"
                                            @onchange="@(()=>SetAnswer(item.Id,"true"))"
-                                           id="flexRadioDefault1" />
-                                    <label class="form-check-label" for="flexRadioDefault1">Yes</label>
+                                           id="@("Yes"+@item.Id )" />
+                                    <label class="form-check-label" for="@("Yes"+@item.Id )">Yes</label>
                                 </span>
                                 <span class="form-check form-check-inline">
                                     <input class="form-check-input"
@@ -93,9 +93,9 @@
                                            name="@item.Id"
                                            checked="@(GetRadioState(item.Id,"false"))"
                                             @onchange="@(()=>SetAnswer(item.Id,"false"))"
-                                           id="flexRadioDefault2"
+                                          id="@("No"+@item.Id )"
                                            />
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <label class="form-check-label" for="@("No"+@item.Id )">
                                         No
                                     </label>
                                 </span>
@@ -105,9 +105,9 @@
                                            name="@item.Id"
                                            checked="@(GetRadioState(item.Id,"unsured"))"
                                             @onchange="@(()=>SetAnswer(item.Id,"unsured"))"
-                                           id="flexRadioDefault2"
+                                          id="@("Unsure"+@item.Id )"
                                            />
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <label class="form-check-label" for="@("Unsure"+@item.Id )">
                                         Unsure
                                     </label>
                                 </span>
