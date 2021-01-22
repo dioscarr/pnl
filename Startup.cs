@@ -94,77 +94,77 @@ namespace pnl
                 //seeding
                 
                 context.Database.Migrate();
-                if (!context.CriteriaOption.Any())
-                {
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Part Year Resident", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Blind", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Standard Deduction", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Public Housing", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Home owner", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Married", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Itemized Deduction", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Noncustodial Parent", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Divorced", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Nursing Home", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Moved For Work", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Renter", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Rent Paid", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Paid Child Care", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Foreign Income", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "School / University", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Retirement Account", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Pay Child support", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Convicted Of A Felony", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Filing For Deceased", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Electric Car", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Charitable donation", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Capital Gain/ Loss", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Your Dependent(s) Have Income", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = " Dependent on someone else Taxes", Enabled = true });
-                    context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Income From Other State(s)", Enabled = true });
-                    context.SaveChanges();
-                }
-                if (!context.FilingStatus.Any())
-                {
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Single" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus {isEnabled = true,Name = "Married filing jointly"});
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
-                    context.SaveChanges();
-                }
+                // if (!context.CriteriaOption.Any())
+                // {
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Part Year Resident", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Blind", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Standard Deduction", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Public Housing", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Home owner", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Married", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Itemized Deduction", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Noncustodial Parent", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Divorced", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Nursing Home", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Moved For Work", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Renter", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Rent Paid", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Paid Child Care", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Foreign Income", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "School / University", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Retirement Account", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Pay Child support", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Convicted Of A Felony", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Filing For Deceased", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Electric Car", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Charitable donation", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Capital Gain/ Loss", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Your Dependent(s) Have Income", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = " Dependent on someone else Taxes", Enabled = true });
+                //     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Income From Other State(s)", Enabled = true });
+                //     context.SaveChanges();
+                // }
+                // if (!context.FilingStatus.Any())
+                // {
+                //     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Single" });
+                //     context.FilingStatus.Add(new Data.Models.FilingStatus {isEnabled = true,Name = "Married filing jointly"});
+                //     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
+                //     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
+                //     context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
+                //     context.SaveChanges();
+                // }
 
-                if (!context.AnswerTypes.Any())
-                {
-                    context.Add(new AnswerType { Type = "Radio" });
-                    context.Add(new AnswerType { Type = "TextBox" });
-                    context.Add(new AnswerType { Type = "DropDown" });
-                    context.Add(new AnswerType { Type = "CheckBox" });
-                    context.SaveChanges();
-                }
+                // if (!context.AnswerTypes.Any())
+                // {
+                //     context.Add(new AnswerType { Type = "Radio" });
+                //     context.Add(new AnswerType { Type = "TextBox" });
+                //     context.Add(new AnswerType { Type = "DropDown" });
+                //     context.Add(new AnswerType { Type = "CheckBox" });
+                //     context.SaveChanges();
+                // }
        
-                if (!context.FormSteps.Any())
-                {
+                // if (!context.FormSteps.Any())
+                // {
 
-                    context.Add(new FormStep { TheStep = 1, StepName = "Basic Information", Section = 1, SectionName = "Part 1 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 1, StepName = "Basic Information", Section = 1, SectionName = "Part 1 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
                     
-                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 1, SectionName = "Personal Information", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 2, SectionName = "Section 2 - placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 3, SectionName = "Spouse Information", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 4, SectionName = "Section 4 - placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 5, SectionName = "Section 5 Placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 1, SectionName = "Personal Information", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 2, SectionName = "Section 2 - placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 3, SectionName = "Spouse Information", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 4, SectionName = "Section 4 - placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 2, StepName = "Personal Information", Section = 5, SectionName = "Section 5 Placeholder", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
 
-                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 1, SectionName = "Part 1 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });                    
-                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 2, SectionName = "Part 2 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 3, SectionName = "Part 3 � Life Events � Last Year, Did You (or Your Spouse)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 4, SectionName = "Part 4 - Health Care Coverage - Last year, did you, your spouse, or dependent(s)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 4, StepName = "Additional Information", Section = 1, SectionName = "Additional Information and Questions Related to the Preparation of Your Return", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
-                    context.Add(new FormStep { TheStep = 4, StepName = "Additional Information", Section = 1, SectionName = "Additional Information and Questions Related to the Preparation of Your Return", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 1, SectionName = "Part 1 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });                    
+                //     context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 2, SectionName = "Part 2 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 3, SectionName = "Part 3 � Life Events � Last Year, Did You (or Your Spouse)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 3, StepName = "Income", Section = 4, SectionName = "Part 4 - Health Care Coverage - Last year, did you, your spouse, or dependent(s)", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 4, StepName = "Additional Information", Section = 1, SectionName = "Additional Information and Questions Related to the Preparation of Your Return", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
+                //     context.Add(new FormStep { TheStep = 4, StepName = "Additional Information", Section = 1, SectionName = "Additional Information and Questions Related to the Preparation of Your Return", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
 
 
-                    context.SaveChanges();
-                }                
+                //     context.SaveChanges();
+                // }                
                 // if (!context.Questions.Any())
                 // {
                 //     context.Add(new Question { FormStepId = 10, TheQuestion = "Are you a U.S citizen?", Order = 1, AnswerTypeId = 1, isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
