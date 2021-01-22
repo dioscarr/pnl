@@ -25,23 +25,23 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="steps-top-nav">
-                    <span class="steps-box">
+                    <span class="steps-box" @onclick="async()=>await Goto(1)">
                         <div class="step-number">STEP 1</div>
                         <div class="step-caption">Basic Information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box" @onclick="async()=>await Goto(2)">
                         <div class="step-number">STEP 2</div>
                         <div class="step-caption">Personal information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box" @onclick="async()=>await Goto(3)">
                         <div class="step-number">STEP 3</div>
                         <div class="step-caption">income</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box" @onclick="async()=>await Goto(4)">
                         <div class="step-number step-number-active">STEP 4</div>
                         <div class="step-caption">Additional Information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box" @onclick="async()=>await Goto(1)">
                         <div class="step-number">STEP 5</div>
                         <div class="step-caption">review</div>
                     </span>
@@ -438,6 +438,11 @@
         service.SaveProgressStep3(answers);
         await FinalPage.InvokeAsync(5);
     }
+    public async Task Goto(int gotoStep)
+    {
+        await NextPage.InvokeAsync(gotoStep);
+    }
+
     public void SetAnswer(int qId, string qAn)
     {
         if (answers.Any(c => c.QuestionId == qId))//update
