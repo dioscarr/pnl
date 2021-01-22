@@ -398,7 +398,7 @@
                 </div>
                 <div class="col-sm-6 border-bottom">
                     <div class="the-row-column-title">
-                        <input class="form-control width1" type="date" @bind-value="@st2.separateAgreementDate" />
+                        <input class="form-control width1" type="date" @bind-value="separateAgreementDate" />
                     </div>
                 </div>
 
@@ -902,6 +902,14 @@
     public DateTime separateAgreementDate { get; set; }
     public DateTime spouseDeathDate { get; set; }
 
+    public int DateOfFinalDecree_q_id { get; set; }
+    public int separateAgreementDate_q_id { get; set; }
+    public int spouseDeathDate_q_id { get; set; }
+
+    public bool DateOfFinalDecree_flag { get; set; } = false;
+    public bool separateAgreementDate_flag { get; set; } = false;
+    public bool spouseDeathDate_flag { get; set; } = false;
+
     protected override void OnInitialized()
     {
         st2 = new Step2VM();
@@ -913,11 +921,63 @@
         answers = service.GetAnswers(TaxFormID, 2);
         formSteps = service.GetFormStep(2);
 
+        var questions = formSteps.First(c => c.TheStep == 2 && c.Section == 2).Questions;
+        DateOfFinalDecree_q_id = questions.First(c => c.Order == 12).Id;
+        separateAgreementDate_q_id = questions.First(c => c.Order == 13).Id;
+        spouseDeathDate_q_id = questions.First(c => c.Order == 14).Id;
+
+        if (answers.Any(c=>c.QuestionId == DateOfFinalDecree_q_id))
+        {
+            DateOfFinalDecree_flag = true;
+            DateOfFinalDecree = DateTime.Parse(answers.First(c => c.QuestionId == DateOfFinalDecree_q_id).TheAnswer);
+        }
+        if (answers.Any(c => c.QuestionId == separateAgreementDate_q_id))
+        {
+            separateAgreementDate_flag = true;
+            separateAgreementDate = DateTime.Parse(answers.First(c => c.QuestionId == separateAgreementDate_q_id).TheAnswer);
+        }
+        if (answers.Any(c => c.QuestionId == spouseDeathDate_q_id))
+        {
+            spouseDeathDate_flag = true;
+            spouseDeathDate = DateTime.Parse(answers.First(c => c.QuestionId == spouseDeathDate_q_id).TheAnswer);
+        }
+
         base.OnInitialized();
     }
 
     public async Task Next()
     {
+
+        if (DateOfFinalDecree.Year>1900){
+            if (DateOfFinalDecree_flag){
+                var model = answers.First(c => c.QuestionId == DateOfFinalDecree_q_id);
+                model.TheAnswer = DateOfFinalDecree.ToLongDateString();
+                model.UpdatedOn = DateTime.Now;
+            }
+            else {
+                answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = DateOfFinalDecree_q_id, TheAnswer = DateOfFinalDecree.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
+            }
+        }
+        if (separateAgreementDate.Year > 1900){
+            if (separateAgreementDate_flag){
+                var model = answers.First(c => c.QuestionId == separateAgreementDate_q_id);
+                model.TheAnswer = separateAgreementDate.ToLongDateString();
+                model.UpdatedOn = DateTime.Now;
+            }
+            else{
+                answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = separateAgreementDate_q_id, TheAnswer = separateAgreementDate.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
+            }
+        }
+        if (spouseDeathDate.Year>1900){
+            if (spouseDeathDate_flag){
+                var model = answers.First(c => c.QuestionId == spouseDeathDate_q_id);
+                model.TheAnswer = spouseDeathDate.ToLongDateString();
+                model.UpdatedOn = DateTime.Now;
+            }
+            else{
+                answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = spouseDeathDate_q_id, TheAnswer = spouseDeathDate.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
+            }
+        }
         service.SaveProgressStep3(answers);
         SaveProgress(2);
         await NextPage.InvokeAsync(3);
