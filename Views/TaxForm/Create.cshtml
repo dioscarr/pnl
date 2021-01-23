@@ -1,2 +1,2 @@
 ﻿@model pnl.Models.TaxFormViewModel
-<component type="typeof(TaxFormPage)" param-Source="@("GetStarted")" render-mode="ServerPrerendered" />
+<component type="typeof(TaxFormPage)" param-Source="@("GetStarted")" param-Id="@(Model.CurrentTaxForm.ID)" render-mode="ServerPrerendered" />

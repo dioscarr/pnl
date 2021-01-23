@@ -18,7 +18,7 @@ namespace pnl.Models
         public void Init(ApplicationDbContext db)
         {
             _db = db;
-            CurrentTaxForms = new TaxForm();
+            CurrentTaxForm = new TaxForm();
             CurrentUser = new Person();
             Address = new Address();
             CriteriaOptions = new List<CriteriaOption>();
@@ -26,12 +26,23 @@ namespace pnl.Models
         }
 
         public List<TaxForm> TaxForms { get; set; }
-        public TaxForm CurrentTaxForms { get; set; }
+        public TaxForm CurrentTaxForm { get; set; }
         public Person CurrentUser { get; set; }
         public Address Address { get; set; }
         public List<ToggleMe> HOptions { get; set; }
         public List<CriteriaOption> CriteriaOptions { get; set; }
         public Dependent Dependent { get; set; }
+        public List<int> years { get; set; }
+        internal void LoadTaxYears(string usrId)
+        {
+                years = new List<int>();
+                int NumberOfPreviousYears = 20;
+                var userID = usrId;
+                for (int yearIndex = 0; yearIndex < NumberOfPreviousYears; yearIndex++)
+                {
+                    years.Add(DateTime.UtcNow.AddYears(-yearIndex).Year);
+                }
+        }
         public void LoadFiledTaxesByUserID(string UserID)
         {
             TaxForms = _db.TaxForms.Where(c => c.UserID == UserID).ToList();

@@ -7,10 +7,11 @@ namespace pnl.Models
     {
         Address Address { get; set; }
         List<CriteriaOption> CriteriaOptions { get; set; }
-        TaxForm CurrentTaxForms { get; set; }
+        TaxForm CurrentTaxForm { get; set; }
         Person CurrentUser { get; set; }
         Dependent Dependent { get; set; }
         List<ToggleMe> HOptions { get; set; }
         List<TaxForm> TaxForms { get; set; }
+        List<int> years { get; set; }
     }
 }

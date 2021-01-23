@@ -196,8 +196,8 @@ namespace pnl.Models
             t.TaxYear = DateTime.Now.Year;
             t.FilingStatus = "GetStarted";
             t.UserID = userID;
-            t.Person = _db.Person.Where(c => c.UserId == userID).First();
-            t.Filingstatus = _db.FilingStatus.FirstOrDefault(c=>c.Name == "GetStarted");
+            t.Person = _db.Person.First(c => c.UserId == userID);
+            t.Filingstatus = _db.FilingStatus.First(c=>c.Name == "GetStarted");
             _db.TaxForms.Add(t);
             _db.SaveChanges();
             return (t.ID, "GetStarted");

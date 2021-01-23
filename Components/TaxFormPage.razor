@@ -1,7 +1,6 @@
 ﻿@inject TaxFormService service
 
-@if (canDisplay)
-{
+
     <div id="tax-form-pages-inline">
         @if (position == 1)
         {<Step1 NextPage="Next"
@@ -26,44 +25,7 @@
         @if (position == 6)
         {<Step6 NextPage="Next" FinalPage="SubmitReview" PrvPage="Prv" />}
     </div>
-}
-else
-{
 
-    <div class="container">
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <br />
-                <br />
-                <br />
-                <h2 class="signin-form-company-title">File for Previous Years</h2>
-                <br />
-                <br />
-                <hr />
-                <br />
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-10 col-sm-12">
-
-                <select @onchange="async (ChangeEventArgs args) => { await CheckIfTaxExist(args); }" class="form-control">
-                    <option selected>Choose Year</option>
-                    @foreach (int aYear in TaxYears.OrderByDescending(c => c))
-                    {
-                        <option value="@aYear">@aYear </option>
-                    }
-                </select>
-            </div>
-            <div class="form-group col-md-2 col-sm-12">
-                <button class="btn btn-primary btn-md" @onclick="@CreateNewTaxFormAsync" style="width:100%;">Open Tax Form</button>
-            </div>
-        </div>
-
-    </div>
-
-    
-
-}
 
 @code {
     //private string Value { set; get; } = "1";
@@ -79,6 +41,8 @@ else
     private int taxFormId { set; get; }
     [Parameter]
     public string Source { get; set; }
+    [Parameter]
+    public int  Id { get; set; }
     private bool ReloadDependentList { set; get; }
     private bool canDisplay { get; set; } = false;
     private string stepin { get; set; } = "-Start";
@@ -100,7 +64,7 @@ else
     protected override Task OnInitializedAsync()
     {
         TaxYears = new List<int>();
-        (TaxYears, TaxYearsInProcess) = service.GetTaxYears();
+        taxFormId = Id;
         CheckIfTaxExist();
         if (taxFormId > 0)
         {
