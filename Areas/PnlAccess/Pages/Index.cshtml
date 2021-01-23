@@ -14,31 +14,48 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TaxForm[0].UserID)
+                @Html.DisplayName("Name")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TaxForm[0].TaxYear)
+                @Html.DisplayName("Year")
+            </th>
+            <th>
+                @Html.DisplayName("Submitted On")
+            </th>
+            <th>
+                @Html.DisplayName("State")
+            </th>
+            <th>
+                @Html.DisplayName("# Answered")
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.TaxForm) {
+    @foreach (var item in Model.TaxForm) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserID)
+               @item.Person.FirstName @item.Person.LastName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TaxYear)
+               @item.TaxYear
             </td>
             <td>
-                
+               @item.UpdatedOn.ToShortDateString()
+            </td>
+            <td>
+               @item.Person.Address.State
+            </td>
+            <td>
+               @item.Answers.Count()
+            </td>
+            <td>
                 <a href="./edit?id=@item.ID" id="@item.ID">Edit</a> |
                 @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
                 @*<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
 
