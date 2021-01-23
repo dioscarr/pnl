@@ -140,7 +140,76 @@ namespace pnl
                     context.SaveChanges();
                 }
                 context.Database.OpenConnection();
-               context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.FormSteps ON");
+
+                if (!context.USAStates.Any())
+                {
+                       context.USAStates.Add(new USAStates { Name="Alaska",Abrv="AK"});
+                       context.USAStates.Add(new USAStates { Name="Alabama",Abrv="AL"});
+                       context.USAStates.Add(new USAStates { Name="American Samoa",Abrv="AS"});
+                       context.USAStates.Add(new USAStates { Name="Arizona",Abrv="AZ"});
+                       context.USAStates.Add(new USAStates { Name="Arkansas",Abrv="AR"});
+                       context.USAStates.Add(new USAStates { Name="California",Abrv="CA"});
+                       context.USAStates.Add(new USAStates { Name="Colorado",Abrv="CO"});
+                       context.USAStates.Add(new USAStates { Name="Connecticut",Abrv="CT"});
+                       context.USAStates.Add(new USAStates { Name="Delaware",Abrv="DE"});
+                       context.USAStates.Add(new USAStates { Name="District of Columbia",Abrv="DC"});
+                       context.USAStates.Add(new USAStates { Name="Federated USAStates of Micronesia",Abrv="FM"});
+                       context.USAStates.Add(new USAStates { Name="Florida",Abrv="FL"});
+                       context.USAStates.Add(new USAStates { Name="Georgia",Abrv="GA"});
+                       context.USAStates.Add(new USAStates { Name="Guam",Abrv="GU"});
+                       context.USAStates.Add(new USAStates { Name="Hawaii",Abrv="HI"});
+                       context.USAStates.Add(new USAStates { Name="Idaho",Abrv="ID"});
+                       context.USAStates.Add(new USAStates { Name="Illinois",Abrv="IL"});
+                       context.USAStates.Add(new USAStates { Name="Indiana",Abrv="IN"});
+                       context.USAStates.Add(new USAStates { Name="Iowa",Abrv="IA"});
+                       context.USAStates.Add(new USAStates { Name="Kansas",Abrv="KS"});
+                       context.USAStates.Add(new USAStates { Name="Kentucky",Abrv="KY"});
+                       context.USAStates.Add(new USAStates { Name="Louisiana",Abrv="LA"});
+                       context.USAStates.Add(new USAStates { Name="Maine",Abrv="ME"});
+                       context.USAStates.Add(new USAStates { Name="Marshall Islands",Abrv="MH"});
+                       context.USAStates.Add(new USAStates { Name="Maryland",Abrv="MD"});
+                       context.USAStates.Add(new USAStates { Name="Massachusetts",Abrv="MA"});
+                       context.USAStates.Add(new USAStates { Name="Michigan",Abrv="MI"});
+                       context.USAStates.Add(new USAStates { Name="Minnesota",Abrv="MN"});
+                       context.USAStates.Add(new USAStates { Name="Mississippi",Abrv="MS"});
+                       context.USAStates.Add(new USAStates { Name="Missouri",Abrv="MO"});
+                       context.USAStates.Add(new USAStates { Name="Montana",Abrv="MT"});
+                       context.USAStates.Add(new USAStates { Name="Nebraska",Abrv="NE"});
+                       context.USAStates.Add(new USAStates { Name="Nevada",Abrv="NV"});
+                       context.USAStates.Add(new USAStates { Name="New Hampshire",Abrv="NH"});
+                       context.USAStates.Add(new USAStates { Name="New Jersey",Abrv="NJ"});
+                       context.USAStates.Add(new USAStates { Name="New Mexico",Abrv="NM"});
+                       context.USAStates.Add(new USAStates { Name="New York",Abrv="NY"});
+                       context.USAStates.Add(new USAStates { Name="North Carolina",Abrv="NC"});
+                       context.USAStates.Add(new USAStates { Name="North Dakota",Abrv="ND"});
+                       context.USAStates.Add(new USAStates { Name="Northern Mariana Islands",Abrv="MP"});
+                       context.USAStates.Add(new USAStates { Name="Ohio",Abrv="OH"});
+                       context.USAStates.Add(new USAStates { Name="Oklahoma",Abrv="OK"});
+                       context.USAStates.Add(new USAStates { Name="Oregon",Abrv="OR"});
+                       context.USAStates.Add(new USAStates { Name="Palau",Abrv="PW"});
+                       context.USAStates.Add(new USAStates { Name="Pennsylvania",Abrv="PA"});
+                       context.USAStates.Add(new USAStates { Name="Puerto Rico",Abrv="PR"});
+                       context.USAStates.Add(new USAStates { Name="Rhode Island",Abrv="RI"});
+                       context.USAStates.Add(new USAStates { Name="South Carolina",Abrv="SC"});
+                       context.USAStates.Add(new USAStates { Name="South Dakota",Abrv="SD"});
+                       context.USAStates.Add(new USAStates { Name="Tennessee",Abrv="TN"});
+                       context.USAStates.Add(new USAStates { Name="Texas",Abrv="TX"});
+                       context.USAStates.Add(new USAStates { Name="Utah",Abrv="UT"});
+                       context.USAStates.Add(new USAStates { Name="Vermont",Abrv="VT"});
+                       context.USAStates.Add(new USAStates { Name="Virgin Islands",Abrv="VI"});
+                       context.USAStates.Add(new USAStates { Name="Virginia",Abrv="VA"});
+                       context.USAStates.Add(new USAStates { Name="Washington",Abrv="WA"});
+                       context.USAStates.Add(new USAStates { Name="West Virginia",Abrv="WV"});
+                       context.USAStates.Add(new USAStates { Name="Wisconsin",Abrv="WI"});
+                       context.USAStates.Add(new USAStates { Name="Wyoming",Abrv="WY"});
+                       context.USAStates.Add(new USAStates { Name="Armed Forces Africa",Abrv="AE"});
+                       context.USAStates.Add(new USAStates { Name="Armed Forces Americas (except Canada)",Abrv="AA"});
+                       context.USAStates.Add(new USAStates { Name="Armed Forces Canada",Abrv="AE"});
+                       context.USAStates.Add(new USAStates { Name="Armed Forces Europe",Abrv="AE"});
+                       context.USAStates.Add(new USAStates { Name="Armed Forces Middle East",Abrv="AE"});
+                       context.USAStates.Add(new USAStates { Name = "Armed Forces Pacific", Abrv = "AP" });
+                       context.SaveChanges();
+                }
                 if (!context.AnswerTypes.Any())
                 {
                     context.Add(new AnswerType { Type = "Radio" });
@@ -152,7 +221,7 @@ namespace pnl
        
                 if (!context.FormSteps.Any())
                 {
-                   
+                    context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.FormSteps ON");
                     context.Add(new FormStep { Id = 8, TheStep = 1, StepName = "Basic Information", Section = 1, SectionName = "Part 1 - Expenses � Last Year, Did You (or Your Spouse) Pay", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });
                     
                     context.Add(new FormStep { Id = 9, TheStep = 2, StepName = "Personal Information", Section = 1, SectionName = "Personal Information", isEnabled = true, CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, isDeleated = false, ModifiedBy = "admin" });

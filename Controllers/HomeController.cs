@@ -50,8 +50,9 @@ namespace pnl.Controllers
         }
         public IActionResult CompleteRegistration()
         {
-
-            return View(new UserAccountViewModel());
+            var registration = new UserAccountViewModel();
+            registration.Init(_db);
+            return View(registration);
         }
         [HttpPost]
 

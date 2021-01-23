@@ -1,28 +1,84 @@
 ﻿@model pnl.Models.UserAccountViewModel
-
-<form asp-action="Update" asp-controller="Home">
-    @Html.HiddenFor(c => c.CurrentUser.id)
-    @Html.HiddenFor(c => c.CurrentUser.UserId)
-    <h4>Basic Information</h4>
-    @Html.TextBoxFor(c => c.CurrentUser.FirstName, null, new { @Placeholder = "First Name" })
-    @Html.TextBoxFor(c => c.CurrentUser.MiddleName, null, new { @Placeholder = "MiddleName" })
-    @Html.TextBoxFor(c => c.CurrentUser.LastName, null, new { @Placeholder = "LastName" })
-    @Html.TextBoxFor(c => c.CurrentUser.Phone, null, new { @Placeholder = "Phone", @type = "tel" })
-    @Html.TextBoxFor(c => c.CurrentUser.Email, null, new { @Placeholder = "Email" })
-    @Html.TextBoxFor(c => c.CurrentUser.Birthday, null, new { @Placeholder = "Birthday" })
-    @Html.TextBoxFor(c => c.CurrentUser.SSN, null, new { @Placeholder = "SSN" })
-    @Html.TextBoxFor(c => c.CurrentUser.Occupation, null, new { @Placeholder = "Occupation" })
-    <br />
-    <br />
-    <h4>Address</h4>
-    @Html.HiddenFor(c => c.Address.id)
-    @Html.HiddenFor(c => c.Address.PersonID)
-
-    @Html.TextBoxFor(c => c.Address.Address1, null, new { @Placeholder = "Address1" })
-    @Html.TextBoxFor(c => c.Address.Address2, null, new { @Placeholder = "Address2" })
-    @Html.TextBoxFor(c => c.Address.City, null, new { @Placeholder = "City" })
-    @Html.TextBoxFor(c => c.Address.State, null, new { @Placeholder = "State" })
-    @Html.TextBoxFor(c => c.Address.Zip, null, new { @Placeholder = "Zip" })
-    <input type="submit" value="Update" placeholder="Update" />
-</form>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <br />
+                <h2>Complete Registration</h2>
+                <br />
+            </div>
+        </div>
+        <form asp-action="Update" asp-controller="Home">
+            @Html.HiddenFor(c => c.CurrentUser.id)
+            @Html.HiddenFor(c => c.CurrentUser.UserId)
+            <div class="form-row">
+                <div class="form-group col-md-5 col-sm-12">
+                    <label for="FirstName">First Name</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.FirstName, null, new { @class = "form-control", @Placeholder = "First Name", @id = "FirstName" })
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="MiddleName">Middle Name</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.MiddleName, null, new { @id = "MiddleName", @class = "form-control", @Placeholder = "MiddleName" })
+                </div>
+                <div class="form-group col-md-5 col-sm-12">
+                    <label for="LastName">Last Name</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.LastName, null, new { @id = "LastName", @class = "form-control", @Placeholder = "LastName" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="Phoneid">Phone</label>
+                @Html.TextBoxFor(c => c.CurrentUser.Phone, null, new { @Placeholder = "Phone", @type = "tel", @ID = "phoneid", @class = "form-control" })
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="emailid">Email</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.Email, null, new { @Placeholder = "Email", @type = "email", @ID = "emailid", @class = "form-control" })
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="birthdayid">Birthday</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.Birthday, null, new { @Placeholder = "Birthday", @type = "date", @id = "birthdayid", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="ssnid">SSN#</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.SSN, null, new { @Placeholder = "SSN(Optional on this step)", @id = "ssnid", @class = "form-control" })
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="occupationoid">Email</label>
+                    @Html.TextBoxFor(c => c.CurrentUser.Occupation, null, new { @Placeholder = "Occupation", @id = "occupationid", @class = "form-control" })
+                </div>
+            </div>
+            @Html.HiddenFor(c => c.Address.id)
+            @Html.HiddenFor(c => c.Address.PersonID)
+            <div class="form-group">
+                <label for="inputAddress">Address</label>
+                @Html.TextBoxFor(c => c.Address.Address1, null, new { @Placeholder = "Address1", @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                @Html.TextBoxFor(c => c.Address.Address1, null, new { @class = "form-control", @placeholder = "Apartment, studio, or floor" })
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="inputCity">City</label>
+                    @Html.TextBoxFor(c => c.Address.City, null, new { @class = "form-control" })
+                </div>
+                <div class="form-group col-md-4 col-sm-12">
+                    <label for="inputState">State</label>
+                    <select id="inputState" name="Address.State" class="form-control">
+                        <option selected>Choose...</option>
+                        @foreach (var itemState in @Model.usaStates)
+                        {
+                            <option value="@itemState.Abrv">@itemState.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <label for="inputZip">Zip</label>
+                    @Html.TextBoxFor(c => c.Address.Zip, null, new { @class = "form-control", @Placeholder = "Zip" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
 
