@@ -132,11 +132,11 @@ namespace pnl
                 }
                 if (!context.FilingStatus.Any())
                 {
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Single" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing jointly" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "GetStarted" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Continue" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Filed" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Approved" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "NotApproved" });
                     context.SaveChanges();
                 }
                 context.Database.OpenConnection();
