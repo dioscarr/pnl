@@ -23,23 +23,23 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="steps-top-nav">
-                    <span class="steps-box">
+                    <span class="steps-box"@onclick="async()=>await Goto(1)">
                         <div class="step-number">STEP 1</div>
                         <div class="step-caption">Basic Information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box"@onclick=" async()=>await Goto(2)">
                         <div class="step-number">STEP 2</div>
                         <div class="step-caption">Personal information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box"@onclick="async()=>await Goto(3)">
                         <div class="step-number">STEP 3</div>
                         <div class="step-caption">income</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box"@onclick="async()=>await Goto(4)">
                         <div class="step-number">STEP 4</div>
                         <div class="step-caption">Additional Information</div>
                     </span>
-                    <span class="steps-box">
+                    <span class="steps-box"@onclick="async ()=>await Goto(5)">
                         <div class="step-number step-number-active">STEP 5</div>
                         <div class="step-caption">review</div>
                     </span>
@@ -79,7 +79,7 @@
                         <span>Basic Information</span>
                         <span class="check-list-chk">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input"
+                                <input class=""
                                        type="checkbox"
                                        value=""
                                        name="NeverMarried"
@@ -96,7 +96,7 @@
                         <span>Personal Information</span>
                         <span class="check-list-chk">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input"
+                                <input class=""
                                        type="checkbox"
                                        value=""
                                        name="NeverMarried"
@@ -113,7 +113,7 @@
                         <span>Income & Expenses</span>
                         <span class="check-list-chk">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input"
+                                <input class=""
                                        type="checkbox"
                                        value=""
                                        name="NeverMarried"
@@ -130,7 +130,7 @@
                         <span>Additional Information</span>
                         <span class="check-list-chk">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input"
+                                <input class=""
                                        type="checkbox"
                                        value=""
                                        name="NeverMarried"
@@ -190,5 +190,9 @@
     public async Task SubmitReview()
     {
         await FinalPage.InvokeAsync(6);
+    }
+    public async Task Goto(int gotoStep)
+    {
+        await NextPage.InvokeAsync(gotoStep);
     }
 }

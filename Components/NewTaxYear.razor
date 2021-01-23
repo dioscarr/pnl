@@ -1,80 +1,11 @@
 ﻿@inject TaxFormService service
 
-@if (!FileNew)
-{
-    @foreach (var item in TaxYearsInProcess)
-    {
 
-        @if (FileNewPosition)
-        {
-            <div class="TaxYearsInProcess animate__animated animate__bounceInDown">
-                <button class="FileNew" @onclick="() => { FileNew = true; }">Get Started</button>
-                @setFileNewPosition(false)
-            </div>
-        }
-        <div class="TaxYearsInProcess">
-            <button class="Continueapplication animate__animated animate__bounceInDown" style="background-color:white;"
-                    @onclick="async () => { TaxYear = item.TaxYear; FilingStatus = item.FilingStatusID; await CreateNewTaxFormAsync(); }">
-                <div>Tax Return</div>
-                <div>@item.TaxYear</div>
-                <div>Continue..</div>
-            </button>
-        </div>
-    }
-}
-@if (TaxYearsInProcess.Count() == 0 || FileNew)
-{
-    <div class="new-tax-year">
-        <div class="custom-select-taxt-year">
-            <select @onchange="async (ChangeEventArgs args) => { await CheckIfTaxExist(args); }">
-                <option value="-1">--Select a year--</option>
-                @foreach (int aYear in TaxYears.OrderByDescending(c=>c))
-                {
-                    <option value="@aYear">@aYear </option>
-                }
-            </select>
-        </div>
-        <div class="filing-status">
-            <select @onchange="(ChangeEventArgs args) => { HandleFilingStatusChange(args); StateHasChanged(); }">
-                <option value="-1">Select Filing Status</option>
-                @foreach (FilingStatus fs in filingStatuses)
-                {
-                    <option value="@fs.Id">@fs.Name</option>
-                }
-            </select>
-        </div>
 
-        @*<div class="selectablemap">
-           <USAMap OnMapStateSeletion="handleStatesClick"/>
-        </div>*@
-
-        <div class="states-dd">
-            <select>
-                @foreach (state item in states)
-                {
-                    if (selectedState == item.abbreviation)
-                    {
-                        <option selected=selected value="@item.abbreviation">@item.name</option>
-                    }
-                    else
-                    {
-                        <option value="@item.abbreviation">@item.name</option>
-                    }
-                }
-            </select>
-        </div>
-        <div class="FilingStatus">
-            @if (isSubmitVisiable || FilingStatus > 0)
-            {
-                <button @onclick="@CreateNewTaxFormAsync">Start</button>
-            }
-        </div>
-    </div>
-}
 @code {
     [Parameter]
     public EventCallback<int> OnNewTaxYearEvent { get; set; }
- 
+
     private int TaxYear { get; set; } = 0;
     private List<int> TaxYears { get; set; }
     private List<TaxForm> TaxYearsInProcess { get; set; }
@@ -100,8 +31,6 @@
         TaxYears = new List<int>();
         (TaxYears, TaxYearsInProcess) = service.GetTaxYears();
         states = service.GetStates();
-        filingStatuses = new List<FilingStatus>();
-        filingStatuses = service.GetfilingStatuses();
         base.OnInitialized();
     }
 
@@ -112,28 +41,12 @@
             TaxYear = taxYear;
         }
     }
-    private void HandleFilingStatusChange(ChangeEventArgs args)
-    {
-
-        if (int.TryParse(args.Value?.ToString(), out int filingstatus))
-        {
-            FilingStatus = filingstatus;
-        }
-        if (FilingStatus > 0)
-        {
-            isSubmitVisiable = true;
-        }
-        else
-        {
-            isSubmitVisiable = false;
-        }
-    }
     private async Task CheckIfTaxExist(ChangeEventArgs args)
     {
         if (int.TryParse(args.Value?.ToString(), out int taxYear))
         {
             TaxYear = taxYear;
-            isFilingStatusVisiable = true;
+
             TaxForm t = await service.CheckIfTaxExist(TaxYear);
             if (t != null)
             {
@@ -142,23 +55,21 @@
             StateHasChanged();
         }
     }
-
-    private void handleStatesClick(string abbr)
-    {
-        selectedState = abbr;
-    }
-
-  
     private async Task CreateNewTaxFormAsync()
     {
-        if (TaxYear.ToString().Count() == 4)
+        if (TaxFormId > 0)
         {
-            TaxForm t = await service.CreateNewTaxFormAsync(TaxYear, FilingStatus);
+            await OnNewTaxYearEvent.InvokeAsync(TaxFormId);
+            
+        }
+        else if (TaxYear.ToString().Count() == 4)
+        {
+            TaxForm t = await service.CreateNewTaxFormAsync(TaxYear);
             TaxFormId = t.ID;
             TaxYears = new List<int>();
-            TaxYears.Add(TaxYear);
+
             await OnNewTaxYearEvent.InvokeAsync(t.ID);
-            StateHasChanged();
         }
+            StateHasChanged();
     }
 }

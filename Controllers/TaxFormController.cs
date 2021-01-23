@@ -28,11 +28,16 @@ namespace pnl.Controllers
             var usrId = User.Claims.First().Value;
             TaxFormViewModel tfvm = new TaxFormViewModel();
             tfvm.Init(_db);
-            tfvm.LoadFiledTaxesByUserID(usrId);
+            if (_db.TaxForms.Any(c => c.TaxYear == DateTime.Now.Year && c.UserID == usrId && c.isFiled == false))
+            {
+                var t = _db.TaxForms.First(c => c.TaxYear == DateTime.Now.Year && c.UserID == usrId && c.isFiled == false);
+                    return RedirectToAction(nameof(Create), new {id = t.ID, status = "Continue" });
+            }
+            tfvm.LoadTaxYears(usrId);
             return View(tfvm);
         }
 
-        // GET: TaxFormController1/Details/5
+        // GET: TaxFormController1/Details/5 
         public ActionResult Review(int id)
         {
             TaxFormViewModel tfvm = new TaxFormViewModel();
@@ -41,40 +46,40 @@ namespace pnl.Controllers
         }
 
         // GET: TaxFormController1/Create
-        public ActionResult Create()
+        [HttpGet]
+        public ActionResult Create(int id,string status)
         {
-            var usrId = User.Claims.First().Value;
-            TaxFormViewModel tfvm = new TaxFormViewModel();
-            tfvm.Init(_db);
-             tfvm.FileNewTaxes(usrId);
+            TaxFormViewModel tfvm = new TaxFormViewModel();            
+            tfvm.CurrentTaxForm = _db.TaxForms.First(c => c.ID == id);
             ITaxFormViewModel sendback = tfvm;
             return View(sendback);
         }
 
         // POST: TaxFormController1/Create
         [HttpPost]
-        public ActionResult Create(TaxFormViewModel model, IFormCollection criteria)
+        public ActionResult Create(int selectedyear)
         {
             try
             {
-                List<TaxFormCriteria> tfc = new List<TaxFormCriteria>();
-                var criterias = _db.CriteriaOption.ToList();
-                foreach (var item in criterias)
+                if (!_db.TaxForms.Any(c => c.TaxYear == selectedyear && c.UserID == User.Claims.First().Value))
                 {
-                    var rs = criteria[item.id.ToString()];
-                    if (rs.ToString() == "true")
-                    {
-
-                        tfc.Add(new TaxFormCriteria { Name = item.Name });
-                    }
+                    var f = _db.FilingStatus.First(c => c.Name == "GetStarted");
+                    TaxForm t = new TaxForm();
+                    t.UserID = User.Claims.First().Value;
+                    t.TaxYear = selectedyear;
+                    t.isFiled = false;
+                    t.Person = _db.Person.First(c => c.UserId == User.Claims.First().Value);
+                    t.Filingstatus = f;
+                    t.FilingStatus = "GetStarted";
+                    t.FilingStatusID = f.Id;
+                    _db.Add(t);
+                    _db.SaveChanges();
+                    return RedirectToAction(nameof(Create), new { id = t.ID, status = "GetStarted" });
                 }
-                model.CurrentTaxForms.TaxFormCriterias = tfc;
-                
-              var usrId = User.Claims.First().Value;
-                model.CurrentTaxForms.UserID = usrId;
-                model.CurrentTaxForms.Person = _db.Person.Find(model.CurrentUser.id);
-                _db.TaxForms.Add(model.CurrentTaxForms);
-                _db.SaveChanges();
+                else {
+                    var t = _db.TaxForms.First(c => c.TaxYear == selectedyear && c.UserID == User.Claims.First().Value);
+                    return RedirectToAction(nameof(Create), new { id = t.ID, status = "Continue" });
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception )

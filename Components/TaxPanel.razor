@@ -105,7 +105,7 @@
     }
     private async Task CreateNewTaxFormAsync()
     {
-        TaxForm t = await tService.CreateNewTaxFormAsync(TaxYear, FilingStatus);
+        TaxForm t = await tService.CreateNewTaxFormAsync(TaxYear);
         TaxFormId = t.ID;
         TaxYears = new List<int>();
         TaxYears.Add(TaxYear);

@@ -1,12 +1,32 @@
 ﻿@model pnl.Models.TaxFormViewModel
-
-<div>
-    @foreach (var item in Model.TaxForms)
-    {
-        <div>@item.TaxYear</div>
-        <div><a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Review" asp-route-id="@item.ID">See the details</a></div>
-        <div><a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Edit" asp-route-id="@item.ID">Edit</a></div>
-        <div><a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Delete" asp-route-id="@item.ID">Delete</a></div>
-
-    }
-</div>
+    <div class="container">
+        <form asp-action="Create" asp-controller="TaxForm">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <br />
+                    <br />
+                    <br />
+                    <h2 class="signin-form-company-title">Continue or File for Previous Years</h2>
+                    <br />
+                    <br />
+                    <hr />
+                    <br />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-10 col-sm-12">
+                    <select class="form-control" name="selectedyear">
+                        <option selected>Choose Year</option>
+                        @foreach (int aYear in @Model.years.OrderByDescending(c => c))
+                        {
+                            <option value="@aYear">@aYear </option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-md-2 col-sm-12">
+                    <button type="submit" class="btn btn-primary btn-md" style="width:100%;">GetStarted</button>
+                </div>
+            </div>
+        </form>
+    </div>
+ 

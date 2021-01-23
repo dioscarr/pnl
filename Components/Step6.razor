@@ -1,4 +1,6 @@
-﻿    <div class="container">
+﻿@inject TaxFormService service     
+
+<div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div id="mininavigation">
@@ -23,23 +25,23 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="steps-top-nav">
-                        <span class="steps-box">
+                        <span class="steps-box" @onclick="async()=>await Goto(1)">
                             <div class="step-number">STEP 1</div>
                             <div class="step-caption">Basic Information</div>
                         </span>
-                        <span class="steps-box">
+                        <span class="steps-box"@onclick="async()=>await Goto(2)">
                             <div class="step-number">STEP 2</div>
                             <div class="step-caption">Personal information</div>
                         </span>
-                        <span class="steps-box">
+                        <span class="steps-box"@onclick=" async()=> await Goto(3)">
                             <div class="step-number">STEP 3</div>
                             <div class="step-caption">income</div>
                         </span>
-                        <span class="steps-box">
+                        <span class="steps-box"@onclick=" async ()=>await Goto(4)">
                             <div class="step-number">STEP 4</div>
                             <div class="step-caption">Additional Information</div>
                         </span>
-                        <span class="steps-box">
+                        <span class="steps-box"@onclick="async()=>await Goto(5)">
                             <div class="step-number step-number-active">STEP 5</div>
                             <div class="step-caption">review</div>
                         </span>
@@ -84,7 +86,7 @@
                             <span>Basic Information</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
+                                    <input class=""
                                            type="checkbox"
                                            value=""
                                            name="NeverMarried"
@@ -102,7 +104,7 @@
                             <span>Personal Information</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
+                                    <input class=""
                                            type="checkbox"
                                            value=""
                                            name="NeverMarried"
@@ -120,7 +122,7 @@
                             <span>Income & Expenses</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
+                                    <input class=""
                                            type="checkbox"
                                            value=""
                                            name="NeverMarried"
@@ -136,7 +138,7 @@
                             <span>Additional Information</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
+                                    <input class=""
                                            type="checkbox"
                                            value=""
                                            name="NeverMarried"
@@ -157,7 +159,7 @@
                             <span>Additional Information</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="" name="NeverMarried" id="NeverMarriedid" />
+                                    <input class="" type="checkbox" value="" name="NeverMarried" id="NeverMarriedid" />
                                     <label class="form-check-label" for="NeverMarriedid">
                                     </label>
                                 </div>
@@ -169,7 +171,7 @@
                             <span>Additional Information</span>
                             <span class="check-list-chk">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"
+                                    <input class=""
                                            type="checkbox"
                                            value=""
                                            name="NeverMarried"
@@ -197,12 +199,9 @@
                         <div class="step-nav">
                             <div id="next-step">
                                 <button id="prev-step" @onclick="Prv">Previous Step</button>
-                            </div>
+                            </div>                      
                             <div id="next-step">
-                                <button @onclick="Next">Next Step</button>
-                            </div>
-                            <div id="next-step">
-                                <button id="revire-submit" @onclick="SubmitReview">Review & Submit</button>
+                                <a href="/home/index" class="btn btn-dark GotoDashboardLink">Go to Dashboard</a>
                             </div>
                         </div>
                     </div>
@@ -224,10 +223,7 @@
         [Parameter]
         public EventCallback<int> FinalPage { get; set; }
 
-        public async Task Next()
-        {
-            await NextPage.InvokeAsync(7);
-        }
+
         public async Task Prv()
         {
             await PrvPage.InvokeAsync(5);
@@ -235,5 +231,10 @@
         public async Task SubmitReview()
         {
             await FinalPage.InvokeAsync(7);
+
+        }
+        public async Task Goto(int gotoStep)
+        {
+            await NextPage.InvokeAsync(gotoStep);
         }
     }
