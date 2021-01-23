@@ -41,7 +41,7 @@ namespace pnl
             var user = Configuration["DBUser"] ?? "SA";
             var password = Configuration["DBPassword"] ?? "Password@123";
             var database = Configuration["PNL"] ?? "PNL";
-            //server = "localhost";
+            server = "localhost";
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
 
@@ -98,7 +98,7 @@ namespace pnl
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
                 //seeding
                 
-                context.Database.Migrate();
+                //context.Database.Migrate();
                 if (!context.CriteriaOption.Any())
                 {
                     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });
