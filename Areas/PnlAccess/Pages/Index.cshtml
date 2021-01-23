@@ -2,67 +2,76 @@
 @model pnl.Areas.PnlAccess.Pages.IndexModel
 
 @{
-    ViewData["Title"] = "Index";    
+    ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table id ="TaxesRecords" class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Year")
-            </th>
-            <th>
-                @Html.DisplayName("Submitted On")
-            </th>
-            <th>
-                @Html.DisplayName("State")
-            </th>
-            <th>
-                @Html.DisplayName("# Answered")
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.TaxForm) {
-        <tr>
-            <td>
-               @item.Person.FirstName @item.Person.LastName
-            </td>
-            <td>
-               @item.TaxYear
-            </td>
-            <td>
-               @item.UpdatedOn.ToShortDateString()
-            </td>
-            <td>
-               @item.Person.Address.State
-            </td>
-            <td>
-               @item.Answers.Count()
-            </td>
-            <td>
-                <a href="./edit?id=@item.ID" id="@item.ID">Edit</a> |
-                @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
-                @*<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>
 
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        debugger;
-        $('#TaxesRecords').DataTable();
-    });
-</script>
+
+
+<div class="container-fluid primary-padding">
+
+    <table id="TaxesRecords" class="display">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Name")
+                </th>
+                <th>
+                    @Html.DisplayName("Year")
+                </th>
+                <th>
+                    @Html.DisplayName("Submitted On")
+                </th>
+                <th>
+                    @Html.DisplayName("State")
+                </th>
+                <th>
+                    @Html.DisplayName("# Answered")
+                </th>
+                <th>
+                    Filed
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.TaxForm)
+            {
+            <tr>
+                <td>
+                    @item.Person.FirstName @item.Person.LastName
+                </td>
+                <td>
+                    @item.TaxYear
+                </td>
+                <td>
+                    @item.UpdatedOn.ToShortDateString()
+                </td>
+                <td>
+                    @item.Person.Address.State
+                </td>
+                <td>
+                    @item.Answers.Count()
+                </td>
+                <td>
+                    @if(item.isFiled)
+                    {
+                        <i class="fas fa-check" style="color:green;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-tasks"style="color:red;"></i>
+                    }
+                </td>
+                <td>
+                    <a href="./edit?id=@item.ID" id="@item.ID">Edit</a> |
+                    @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
+                    @*<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

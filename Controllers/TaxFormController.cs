@@ -72,6 +72,8 @@ namespace pnl.Controllers
                     t.Filingstatus = f;
                     t.FilingStatus = "GetStarted";
                     t.FilingStatusID = f.Id;
+                    t.CreatedOn = DateTime.Now;
+                    t.UpdatedOn = DateTime.Now;
                     _db.Add(t);
                     _db.SaveChanges();
                     return RedirectToAction(nameof(Create), new { id = t.ID, status = "GetStarted" });
