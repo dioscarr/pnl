@@ -179,27 +179,28 @@ namespace pnl.Models
         }
         public async Task<TaxForm> CheckIfTaxExist(int TaxYear)
         {
-            return await _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefaultAsync();
+            var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
+            return await _db.TaxForms.Where(c => c.TaxYear == TaxYear && c.UserID == userID).FirstOrDefaultAsync();
         }
-        public int CheckIfCurrentTaxYearExist()
+        public (int,string) CheckIfCurrentTaxYearExist()
         {
             var currentYear = DateTime.Now.Year;
              var result =  _db.TaxForms.Where(c => c.TaxYear == currentYear).FirstOrDefault();
             if (result != null)
             {
-                return result.ID;
+                return (result.ID,result.FilingStatus);
             }
             
             TaxForm t = new TaxForm();
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             t.TaxYear = DateTime.Now.Year;
-            t.FilingStatus = "Head of household";
+            t.FilingStatus = "GetStarted";
             t.UserID = userID;
             t.Person = _db.Person.Where(c => c.UserId == userID).First();
-            t.Filingstatus = _db.FilingStatus.FirstOrDefault(c=>c.Id == 2);
+            t.Filingstatus = _db.FilingStatus.FirstOrDefault(c=>c.Name == "GetStarted");
             _db.TaxForms.Add(t);
             _db.SaveChanges();
-            return t.ID;
+            return (t.ID, "GetStarted");
         }
         public async Task<Dependent> AddDependentAsync(Dependent model)
         {
@@ -230,33 +231,21 @@ namespace pnl.Models
         {
             return _db.TaxFormCriteria.Where(c => c.TaxFormID == TaxFormId).ToList();
         }
-        public async Task<TaxForm> CreateNewTaxFormAsync(int TaxYear, int FilingStatusID)
+        public async Task<TaxForm> CreateNewTaxFormAsync(int TaxYear)
         {
             try
-            {
-                var filinfstatus = _db.FilingStatus.FirstOrDefault(c => c.Id == FilingStatusID);
-                var Anyexisting = _db.TaxForms.Any(c => c.TaxYear == TaxYear);
-                if (Anyexisting)
-                {
-                    var existing = _db.TaxForms.Where(c => c.TaxYear == TaxYear).FirstOrDefault();
-                    if (filinfstatus != null && existing.FilingStatusID != FilingStatusID)
-                    {
-                        existing.FilingStatus = filinfstatus.Name;
-                        existing.FilingStatusID = FilingStatusID;
-                        _db.Update(existing);
-                        await _db.SaveChangesAsync();
-                        
-                    }
-                    return existing;
-                }                
-
+            {                   
+                var Anyexisting = _db.TaxForms.Any(c => c.TaxYear == TaxYear && c.isFiled ==false);   
+                if(Anyexisting)
+                    return _db.TaxForms.First(c => c.TaxYear == TaxYear && c.isFiled == false);
+                
                 TaxForm t = new TaxForm();
                 var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
                 t.TaxYear = TaxYear;
-                t.FilingStatus = filinfstatus.Name;
+                t.FilingStatus = "Continue";
                 t.UserID = userID;
                 t.Person = _db.Person.Where(c=>c.UserId == userID).First();
-                t.Filingstatus = filinfstatus;
+                t.FilingStatusID = _db.FilingStatus.First(c => c.Name == "GetStarted").Id;
                 _db.TaxForms.Add(t);
                 await _db.SaveChangesAsync();
                 return t;
@@ -303,6 +292,15 @@ namespace pnl.Models
                 if (taxFormId > 0)
                 {
                     var taxform = _db.TaxForms.Find(taxFormId);
+                    if (_db.Answers.Any(c=>c.TaxFormId == taxFormId))
+                    {
+                        taxform.FilingStatus = "Continue";
+                        taxform.FilingStatusID = _db.FilingStatus.First(c => c.Name == "Continue").Id;
+                    }
+                    else { 
+                        taxform.FilingStatus = "GetStarted";
+                        taxform.FilingStatusID = _db.FilingStatus.First(c => c.Name == "GetStarted").Id;
+                    }
                     taxform.isFiled = true;
                     taxform.CreatedOn = DateTime.Now;
                     taxform.UpdatedOn= DateTime.Now;

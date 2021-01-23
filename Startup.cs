@@ -127,11 +127,12 @@ namespace pnl
                 }
                 if (!context.FilingStatus.Any())
                 {
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Single" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing jointly" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Married filing separately" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Head of household" });
-                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Qualifying widow(er) with dependent child" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "GetStarted" }); // There is no answer yet but the  taxform has been created for the current tax year.
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Continue" }); // When there is a least one answer for a taxform of the current tax year
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "SendToAdmin" }); // When at requirements are meet and they client submit the tax information to the to admin for review. 
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Attention" }); //Additional information needed                     
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Approved" });
+                    context.FilingStatus.Add(new Data.Models.FilingStatus { isEnabled = true, Name = "Rejected" });
                     context.SaveChanges();
                 }
                 context.Database.OpenConnection();
@@ -146,8 +147,8 @@ namespace pnl
                        context.USAStates.Add(new USAStates { Name="California",Abrv="CA"});
                        context.USAStates.Add(new USAStates { Name="Colorado",Abrv="CO"});
                        context.USAStates.Add(new USAStates { Name="Connecticut",Abrv="CT"});
-                       context.USAStates.Add(new USAStates { Name="Delaware",Abrv="DE"});
                        context.USAStates.Add(new USAStates { Name="District of Columbia",Abrv="DC"});
+                       context.USAStates.Add(new USAStates { Name="Delaware",Abrv="DE"});
                        context.USAStates.Add(new USAStates { Name="Federated USAStates of Micronesia",Abrv="FM"});
                        context.USAStates.Add(new USAStates { Name="Florida",Abrv="FL"});
                        context.USAStates.Add(new USAStates { Name="Georgia",Abrv="GA"});

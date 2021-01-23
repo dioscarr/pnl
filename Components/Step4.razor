@@ -397,7 +397,9 @@
         campaignfunds = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[1].Id) != null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[1].Id) : new Answer();
         languages = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id) != null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id) : new Answer();
 
-        ansChkQ8 = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id) != null) ? (answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id).TheAnswer =="true") : false;
+        
+
+        ansChkQ8 = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id) != null) ? (answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id).TheAnswer =="true") : false;
 
         base.OnInitialized();
     }
