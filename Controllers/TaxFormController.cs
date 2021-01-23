@@ -61,7 +61,7 @@ namespace pnl.Controllers
         {
             try
             {
-                if (!_db.TaxForms.Any(c => c.TaxYear == selectedyear))
+                if (!_db.TaxForms.Any(c => c.TaxYear == selectedyear && c.UserID == User.Claims.First().Value))
                 {
                     var f = _db.FilingStatus.First(c => c.Name == "GetStarted");
                     TaxForm t = new TaxForm();
@@ -73,8 +73,12 @@ namespace pnl.Controllers
                     t.FilingStatus = "GetStarted";
                     t.FilingStatusID = f.Id;
                     _db.Add(t);
-                        _db.SaveChanges();                
-                return RedirectToAction(nameof(Create), new { id = t.ID, status = "GetStarted" });
+                    _db.SaveChanges();
+                    return RedirectToAction(nameof(Create), new { id = t.ID, status = "GetStarted" });
+                }
+                else {
+                    var t = _db.TaxForms.First(c => c.TaxYear == selectedyear && c.UserID == User.Claims.First().Value);
+                    return RedirectToAction(nameof(Create), new { id = t.ID, status = "Continue" });
                 }
                 return RedirectToAction(nameof(Index));
             }
