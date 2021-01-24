@@ -1,0 +1,80 @@
+﻿@model pnl.Models.dashboard
+<div class="dashboard-main-container ">
+    <div id="main-content" class="main-content">
+
+        <div class="dashboard-viewdocuments primary-padding">
+            <div class="d-viewDocument">
+                <div>
+                    <img src="/img/document-management-icon-sm.svg" class="viewDocIcon" />
+                </div>
+                <div class="viewmanagedocs-text">
+                    <p>
+                        View and Manage
+                    </p>
+                    <br>
+                    <p>
+                        Your Documents
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Hello John-->
+        <div class="dashboard-greetings primary-padding">
+            <div class="awesomejohn d-awesomejohn-ovr">Hello</div>
+            <div class="john d-john">@Model.CurrentUser.FirstName!</div>
+        </div>        
+        <!-- Previous Taxes -->
+        <div class="d-previous-taxes primary-padding">
+            <div id="btn-prv-taxes" class="btn-prv-taxes btn-hover">
+
+                @if (Model.ContinueTaxes.Count() > 0)
+                {
+                    <span>Please complete or remove any of the following uncompleted taxes</span>                    
+                    
+                        <i class="fas fa-arrows-alt" style="color:gray; font-size:30px;margin-left:20px;"></i>
+
+                    
+                }
+                else
+                {
+                    <span>Looks like you're all set!</span>
+                }
+            </div>
+            @foreach (var item in Model.ContinueTaxes)
+            {
+                <div class="prv-taxes-list">
+                    <div class="name-year colordarkblue">
+                        <span>@Model.CurrentUser.FirstName @Model.CurrentUser.LastName - @item.TaxYear Taxes </span>
+                       
+                        <span style="margin-left:20px;">
+                            
+                        @item.Answers.Count() answered
+                            
+
+
+                        </span>
+                    </div>
+                    <div class="d-submitted-on colordarkblue">Submitted on @item.CreatedOn.ToLongDateString()</div>
+                    <div class="name-year colordarkblue">
+                        <span style="margin-left:20px;">
+                            <i onclick="Goto('/TaxForm/Create',@item.ID, 'Continue')" class="fas fa-edit" style="color:red;"></i>
+                        </span>
+                        @*<a href="/report/GetPdf?taxFormId=@item.ID" target="_blank">
+            <span>
+                <svg id="icon-download" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                    <rect id="Rectangle_250" data-name="Rectangle 250" width="6" height="9" transform="translate(6)" fill="#02308a" />
+                    <path id="Polygon_2" data-name="Polygon 2" d="M9,0l9,9H0Z" transform="translate(18 18) rotate(180)" fill="#02308a" />
+                </svg>
+            </span>
+            <span>Download PDF</span>
+        </a>*@
+
+                    </div>
+
+                </div>
+
+            }
+        </div>
+    </div>
+
+</div>

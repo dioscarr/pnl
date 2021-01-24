@@ -1,58 +1,8 @@
 ﻿@model pnl.Models.dashboard
-
-@{
-   // Layout = "";
-}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @* <title >@ViewData["Title"] - dashboard</title> *@
-    <link rel="stylesheet" href="/css/site.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" -->
-    <!-- integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet" />
-
-    <!-- MDB -->
-    <link rel="stylesheet" href="/css/mdb.min.css" />
-    <base href="~/" />
-
-    <script src="/js/dropzone.min.js"></script>
-    <link rel="stylesheet" href="/js/dropzone.min.css">
-
-
-</head>
-
-@*<body id="bodyid">*@
-    @*<header class="primary-padding container-fluid primary-blue header">
-        <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
-            <img src="/img/LOgo.svg" />
-        </a>
-        <partial name="_LoginPartial" />
-    </header>*@
-    <div class="dashboard-main-container ">
+<div class="dashboard-main-container ">
         <div id="main-content" class="main-content">
-            @*<div class="background-titles-left">
-                    <img src="/img/background-titles.svg" alt="" srcset="">
-                </div>
-                <div class="background-titles-right">
-                    <img src="/img/background-titles.svg" alt="" srcset="">
-                </div>
-                <header class="primary-blue">
-                    <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
-                        <img src="/img/LOgo.svg" />
-                    </a>
-                </header>*@
-            <!--view & manage Docs-->
-            <div class="dashboard-viewdocuments primary-padding">
+         
+            <div class="dashboard-viewdocuments primary-padding">                
                 <div class="d-viewDocument">
                     <div>
                         <img src="/img/document-management-icon-sm.svg" class="viewDocIcon" />
@@ -82,7 +32,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="d-continue  btn-hover">
+                <div class="d-continue  btn-hover" onclick="GotoPath('/Home/Continue')">
                     <p class="d-continue-title colordarkblue p-text-center">Continue</p>
                     <P class="colorpkblue colordarkblue p-text-center">
                         You have not completed <br>
@@ -109,153 +59,35 @@
                 </div>
                 @foreach (var item in Model.PreviousTaxes)
                 {
-                    <div class="prv-taxes-list">
-                        <div class="name-year colordarkblue">
-                            <span>@Model.CurrentUser.FirstName @Model.CurrentUser.LastName - @item.TaxYear Taxes </span>
-                            <span>
-                                <svg id="icon-action-visibility" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <rect id="Boundary" width="24" height="24" fill="none" />
-                                    <path id="_Color" data-name=" ↳Color" d="M11,15a11.731,11.731,0,0,1-6.726-2.1A11.837,11.837,0,0,1,0,7.5a11.818,11.818,0,0,1,22,0,11.836,11.836,0,0,1-4.273,5.4A11.731,11.731,0,0,1,11,15ZM11,2.5a5,5,0,1,0,5,5A5.005,5.005,0,0,0,11,2.5Zm0,8a3,3,0,1,1,3-3A3,3,0,0,1,11,10.5Z" transform="translate(1 4.5)" fill="#273a86" />
-                                </svg>
-
-                            </span>
-                        </div>
-                        <div class="d-submitted-on colordarkblue">Submitted on @item.CreatedOn.ToLongDateString()</div>
-                        <div class="name-year colordarkblue">
-                            <a href="/report/GetPdf?taxFormId=@item.ID" target="_blank">
+                        <div class="prv-taxes-list">
+                            <div class="name-year colordarkblue">
+                                <span>@Model.CurrentUser.FirstName @Model.CurrentUser.LastName - @item.TaxYear Taxes </span>
                                 <span>
-                                    <svg id="icon-download" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-                                        <rect id="Rectangle_250" data-name="Rectangle 250" width="6" height="9" transform="translate(6)" fill="#02308a" />
-                                        <path id="Polygon_2" data-name="Polygon 2" d="M9,0l9,9H0Z" transform="translate(18 18) rotate(180)" fill="#02308a" />
+                                        
+                                    <svg  onclick="Goto('/TaxForm/Create',@item.ID, 'Continue')"   id="icon-action-visibility" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <rect id="Boundary" width="24" height="24" fill="none" />
+                                        <path id="_Color" data-name=" ↳Color" d="M11,15a11.731,11.731,0,0,1-6.726-2.1A11.837,11.837,0,0,1,0,7.5a11.818,11.818,0,0,1,22,0,11.836,11.836,0,0,1-4.273,5.4A11.731,11.731,0,0,1,11,15ZM11,2.5a5,5,0,1,0,5,5A5.005,5.005,0,0,0,11,2.5Zm0,8a3,3,0,1,1,3-3A3,3,0,0,1,11,10.5Z" transform="translate(1 4.5)" fill="#273a86" />
                                     </svg>
                                 </span>
-                                <span>Download PDF</span>
-                            </a>
+                            </div>
+                            <div class="d-submitted-on colordarkblue">Submitted on @item.CreatedOn.ToLongDateString()</div>
+                            <div class="name-year colordarkblue">
+                                <a href="/report/GetPdf?taxFormId=@item.ID" target="_blank">
+                                    <span>
+                                        <svg id="icon-download" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                                            <rect id="Rectangle_250" data-name="Rectangle 250" width="6" height="9" transform="translate(6)" fill="#02308a" />
+                                            <path id="Polygon_2" data-name="Polygon 2" d="M9,0l9,9H0Z" transform="translate(18 18) rotate(180)" fill="#02308a" />
+                                        </svg>
+                                    </span>
+                                    <span>Download PDF</span>
+                                </a>
+
+                            </div>
 
                         </div>
-
-                    </div>
-                }
-
-            </div>
-        </div>
-        <footer class="main-footer primary-padding">
-            <p>PNL Tax Corp.</p>
-            <p>
-                <i>All rights reserved.</i>
-            </p>
-        </footer>
-    </div>
-
-
-
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-            crossorigin="anonymous"></script>
-
-    <script src="/js/site.js" asp-append-version="true"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            let btnPrvTaxes = document.getElementById("btn-prv-taxes")
-            if (btnPrvTaxes != null) {
-                btnPrvTaxes.addEventListener("click", function () {
-                    let prvTaxesList = document.getElementsByClassName("prv-taxes-list");
-
-                    if ($(prvTaxesList).is(":hidden")) {
-                        for (let index = 0; index < prvTaxesList.length; index++) {
-                            let element = prvTaxesList[index];
-                            $(element).show();
+                    
                         }
-                        let bodyDash = document.getElementById("bodyid");
-                        bodyDash.style.overflowY = "scroll"
-                        console.log(bodyDash.style.getPropertyValue("overflowY"));
-                    }
-                    else {
-                        for (let index = 0; index < prvTaxesList.length; index++) {
-                            let element = prvTaxesList[index];
-                            $(element).hide();
-                        }
-                        let bodyDash = document.getElementById("bodyid");
-                        bodyDash.style.overflowY = "hidden"
-                        console.log(bodyDash.style.getPropertyValue("overflowY"));
-                    }
-
-
-
-                })
-            }
-        });
-    </script>
-
-@*</body>*@
-
-</html>
-
-
-
-@*
-    <img id="bkicon1" src="~/img/bkicon.png" />
-    <img id="bkicon2" src="~/img/bkicon.png" />
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="d-user-info">
-                <div class="hello">
-                    Hello
                 </div>
-                <div class="hello-first-name">
-                    John
-                </div>
-            </div>
         </div>
-    <div class="col-sm-6">   </div>
+        
     </div>
-    <div class="row">
-        <div class="col-sm-4 file-my-taxes">
-            <div class="d-btns-box">
-                <a class="nav-link text-dark" asp-area="" asp-controller="TaxForm" asp-action="Create"><div class="main-button-fonts">Get Started</div></a>
-            </div>
-        </div>
-        <div class="col-sm-4 file-my-taxes">
-            <div class="d-btns-box-center">
-                <a class="nav-link text-dark">
-                    <div class="main-button-fonts">Continue</div>
-                    <div class="continue-message">You have not completed</div>
-                    <div class="continue-message">your 2019 taxes</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-4 file-my-taxes">
-            <div class="d-btns-box-right">
-                <a class="nav-link text-dark">
-                    <div class="main-button-fonts">Notifications</div>
-                    <div class="nonewmessage">No new message</div>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-12 file-my-taxes">
-            <div class="d-btns-box-large">
-                <a class="nav-link text-dark">
-                    <div class="main-button-fonts">
-                        <div>View  Previous Taxes </div>
-                        <div>></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        @*<div id="TaxFormInProgress">
-                <component type="typeof(TaxFormInProgress)" render-mode="ServerPrerendered" />
-            </div>
-            <div id="taxpanel">
-                <component type="typeof(TaxPanel)" render-mode="ServerPrerendered" />
-            </div>
-    </div> *@

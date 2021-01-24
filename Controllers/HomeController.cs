@@ -52,6 +52,31 @@ namespace pnl.Controllers
             }
             return View(d);
         }
+        public IActionResult Continue()
+        {
+            if (!_db.Person.Any(c => c.UserId == User.Claims.First().Value))
+            {
+                try
+                {
+                    return RedirectToAction("CompleteRegistration");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            ViewData.Add("Title", "dashbaord");
+            dashboard d = new dashboard(_db);
+            d.init(User.Claims.First().Value);
+
+            if (d.CurrentUser == null)
+            {
+                return RedirectToAction("CompleteRegistration");
+            }
+            return View(d);
+        }
         public IActionResult CompleteRegistration()
         {
             var registration = new UserAccountViewModel();

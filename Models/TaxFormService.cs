@@ -128,7 +128,7 @@ namespace pnl.Models
         }
         public Person GetCurrentUser(int TaxFormID)
         {
-            var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
+            //var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID))
             {
                 return _db.TaxFormPeople.Where(c => c.TaxFormID == TaxFormID).Select(c=> new Person { 
@@ -142,14 +142,14 @@ namespace pnl.Models
                     Phone = c.Phone                     
                 }).First();
             }
-            return _db.Person.Where(c => c.UserId == userID).First();
+            return _db.TaxForms.First(c => c.ID == TaxFormID).Person;
         }
-        public Address GetCurrentUserAddress()
+        public Address GetCurrentUserAddress(int taxFormId)
         {
-            var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
-           var p = _db.Person.Where(c => c.UserId == userID).First();
-            if (p.Address != null){
-                return p.Address;
+            // var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
+            var p = _db.TaxForms.First(c => c.ID == taxFormId).Person.Address;
+            if (p != null){
+                return p;
             }
             else {
                 return new Address();
