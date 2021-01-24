@@ -33,7 +33,16 @@ a {
 
 .header {
     display: grid;
-    grid-template-columns: auto 400px;
+    grid-template-columns: 300px auto 400px;
+}
+
+.adminmenu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(176px,180px));
+    justify-items: center;
+    align-items: center;
+    justify-self: center;
+    min-width: 556px;
 }
 
     .header a {

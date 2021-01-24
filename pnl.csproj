@@ -87,12 +87,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\PnlAccess\Controllers\" />
     <Folder Include="Areas\PnlAccess\Data\" />
-    <Folder Include="Areas\PnlAccess\Models\" />
     <Folder Include="Areas\PnlAccess\Pages\AdminLanding\" />
     <Folder Include="Areas\PnlAccess\Pages\Person\" />
-    <Folder Include="Areas\PnlAccess\Views\" />
     <Folder Include="Data\Models\NewFolder\" />
     <Folder Include="Migrations\" />
   </ItemGroup>

@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity;
+using pnl.Data.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,11 +18,13 @@ namespace pnl.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db, UserManager<ApplicationUser>userManager)
         {
             _logger = logger;
             _db = db;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -52,6 +56,10 @@ namespace pnl.Controllers
         {
             var registration = new UserAccountViewModel();
             registration.Init(_db);
+            var current_User = _userManager.GetUserAsync(HttpContext.User).Result;
+            registration.CurrentUser.FirstName = current_User.FirstName;
+            registration.CurrentUser.LastName= current_User.LastName;
+            registration.CurrentUser.Email= current_User.Email;
             return View(registration);
         }
         [HttpPost]

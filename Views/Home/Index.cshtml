@@ -1,7 +1,7 @@
 ﻿@model pnl.Models.dashboard
 
 @{
-    Layout = "";
+   // Layout = "";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -31,13 +31,13 @@
 
 </head>
 
-<body id="bodyid">
-    <header class="primary-padding container-fluid primary-blue header">
+@*<body id="bodyid">*@
+    @*<header class="primary-padding container-fluid primary-blue header">
         <a class="navbar-brand brand-logo" asp-area="" asp-controller="Home" asp-action="Index">
             <img src="/img/LOgo.svg" />
         </a>
         <partial name="_LoginPartial" />
-    </header>
+    </header>*@
     <div class="dashboard-main-container ">
         <div id="main-content" class="main-content">
             @*<div class="background-titles-left">
@@ -196,7 +196,7 @@
         });
     </script>
 
-</body>
+@*</body>*@
 
 </html>
 

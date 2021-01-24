@@ -53,7 +53,11 @@ namespace pnl
             //.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //.AddEntityFrameworkStores<ApplicationDbContext>();
             //  services.AddSignalR();
-
+            services.AddAuthorizationCore(options =>
+            {
+                options.AddPolicy("SuperAdminOnly", policy => policy.RequireRole("SuperAdmin"));
+                options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+            });
             services.AddDataProtection();
             services.AddAntiforgery();
 
@@ -336,18 +340,28 @@ namespace pnl
             app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
-               
+
+
+                endpoints.MapControllerRoute(
+                name: "MyArea",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapAreaControllerRoute(name: "PnlAccess",
-                    areaName: "PnlAccess",
-                    pattern: "pnlaccess/{controller=Config}/{action=Index}/{id?}");
+                //endpoints.MapAreaControllerRoute(name: "admin",
+                //    areaName: "PnlAccess",
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}");
+
+
+                //
+
+               
 
                 //  endpoints.MapFallbackToPage("/_Host");
                 endpoints.MapRazorPages();
-                endpoints.MapBlazorHub();
+                endpoints.MapBlazorHub();   
             });
         }
     }
