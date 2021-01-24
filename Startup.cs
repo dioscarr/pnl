@@ -46,8 +46,12 @@ namespace pnl
                 options.UseLazyLoadingProxies().UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
 
             // Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
+            //.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddEntityFrameworkStores<ApplicationDbContext>();
             //  services.AddSignalR();
 
             services.AddDataProtection();
@@ -98,7 +102,7 @@ namespace pnl
                 var context = srvc.ServiceProvider.GetService<ApplicationDbContext>();
                 //seeding
                 
-                //context.Database.Migrate();
+                context.Database.Migrate();
                 if (!context.CriteriaOption.Any())
                 {
                     context.CriteriaOption.Add(new Data.Models.CriteriaOption { Name = "Full Year Resident", Enabled = true });

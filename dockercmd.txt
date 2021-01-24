@@ -15,7 +15,9 @@ docker build -t registry.heroku.com/pnl-apt3k/web .
 heroku container:push web -a pnl-apt3k
 heroku container:release web -a pnl-apt3k
 
- dotnet ef migrations add taxtyear --project pnl.csproj --startup-project pnl.csproj
+ dotnet ef migrations add Init –IgnoreChanges  --project pnl.csproj --startup-project pnl.csproj	 
+
+ dotnet ef migrations add taxtyear --project pnl.csproj --startup-project pnl.csproj	
 
 dotnet ef  update database --project pnl.csproj --startup-project pnl.csproj
 

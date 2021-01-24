@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
     @if (SignInManager.IsSignedIn(User))
     {
@@ -13,7 +13,16 @@
             </div>
             <div class="nav-item profileimg">
                 <div class="account-box">
-                    <a class="" asp-area="" asp-controller="UserAccount" asp-action="Index"><img src="/img/avatar.png" /></a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <div class="nav-item" style="align-self: center;">
+                            @if (UserManager.GetUserAsync(User).Result.ProfilePicture != null)
+                            {
+                                <img style="width:80px;height:80px; object-fit:cover; border-radius:50px" src="data:image/*;base64,@(Convert.ToBase64String(UserManager.GetUserAsync(User).Result.ProfilePicture))">
+                            }
+                        </div>
+                    }
+@*                    <a class="" asp-area="" asp-controller="UserAccount" asp-action="Index"><img src="/img/avatar.png" /></a>*@
                 </div>
 
             </div>
