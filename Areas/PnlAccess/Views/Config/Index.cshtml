@@ -3,17 +3,17 @@
     <div class="row">
         <div class="col-sm-12 col-md-5">
             @Html.LabelFor(c => c.TopSubTitle);
-            @Html.TextAreaFor(c => c.TopSubTitle, 5, 10, new { @class = "", @id = "editor_TopSubTitle" })
+            @Html.TextAreaFor(c => c.TopSubTitle, 5, 10, new { @class = "", @id = "editor_TopSubTitle", @style = "display:none;" })
         </div>
         <div class="col-sm-12 col-md-5">
             @Html.LabelFor(c => c.Title);
-            @Html.TextAreaFor(c => c.Title, 5, 10, new { @class = "", @id = "editor_Title" })
+            @Html.TextAreaFor(c => c.Title, 5, 10, new { @class = "", @id = "editor_Title", @style = "display:none;" })
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 col-md-5">
             @Html.LabelFor(c => c.TopSubTitle);
-            @Html.TextAreaFor(c => c.Message, 5, 10, new { @class = "", @id = "editor_Message" })
+            @Html.TextAreaFor(c => c.Message, 5, 10, new { @class = "", @id = "editor_Message",@style="display:none;" })
         </div>
     </div>
     <div class="row">
@@ -22,11 +22,4 @@
         </div>
     </div>
 </form>
-
-<script src="https://cdn.ckeditor.com/ckeditor5/23.1.0/classic/ckeditor.js"></script>
-<script type="text/javascript">
-    ClassicEditor.create(document.querySelector('#editor_TopSubTitle')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
-    ClassicEditor.create(document.querySelector('#editor_Title')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
-    ClassicEditor.create(document.querySelector('#editor_Message')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
-</script>
 

@@ -82,7 +82,7 @@ namespace pnl.Controllers
                     var t = _db.TaxForms.First(c => c.TaxYear == selectedyear && c.UserID == User.Claims.First().Value);
                     return RedirectToAction(nameof(Create), new { id = t.ID, status = "Continue" });
                 }
-                return RedirectToAction(nameof(Index));
+                
             }
             catch(Exception )
             {

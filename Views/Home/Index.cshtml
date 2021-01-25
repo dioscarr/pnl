@@ -39,9 +39,19 @@
                         your 2019 taxes
                     </P>
                 </div>
-                <div class="d-notifications  btn-hover">
+                <div class="d-notifications  btn-hover"  onclick="GotoPath('/Home/GetNotifications')">
                     <p class="d-notifications-title colorgreyout p-text-center">Notifications</p>
-                    <p class="p-text-center">No new messages</p>
+                    <p class="p-text-center">
+                        @if (@Model.Notifiocations.Count() > 0)
+                        {
+                        <span><i class="fas fa-bell" style="color:orange;font-size: 20px;"></i><span style="font-size: 25px; font-weight:600; color:#273a86;"> @Model.Notifiocations.Count() </span> <span style="font-weight:600; color:orange;">new messages</span></span>
+                        }
+                        else
+                        {
+                            <span>No new messages</span>
+                        }
+
+                    </p>
                 </div>
             </div>
             <!-- Previous Taxes -->

@@ -33,6 +33,7 @@ namespace pnl.Data.Models
         public virtual ICollection<TaxFormCriteria> TaxFormCriterias { get; set; }
         public virtual TaxFormAddress TaxFormAddress { set; get; }
         public virtual ICollection<Answer> Answers{ set; get; }
+        public virtual ICollection<Notifications> Notifications { set; get; }
 
 
 

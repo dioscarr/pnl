@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pnl.Data;
 
 namespace pnl.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210124234008_Notifications")]
+    partial class Notifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -497,17 +499,8 @@ namespace pnl.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Read")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("SentByAdmin")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TaxFormId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -522,8 +515,6 @@ namespace pnl.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("id");
-
-                    b.HasIndex("TaxFormId");
 
                     b.ToTable("Notifications");
                 });
@@ -897,17 +888,6 @@ namespace pnl.Migrations
                     b.Navigation("TaxForm");
                 });
 
-            modelBuilder.Entity("pnl.Data.Models.Notifications", b =>
-                {
-                    b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
-                        .WithMany("Notifications")
-                        .HasForeignKey("TaxFormId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TaxForm");
-                });
-
             modelBuilder.Entity("pnl.Data.Models.Question", b =>
                 {
                     b.HasOne("pnl.Data.Models.AnswerType", "AnswerType")
@@ -1003,8 +983,6 @@ namespace pnl.Migrations
                     b.Navigation("DependentCareProviders");
 
                     b.Navigation("DependentsClaimed");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("TaxFormAddress");
 

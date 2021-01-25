@@ -15,7 +15,7 @@ namespace pnl.Controllers
 {
     [Authorize]
     public class HomeController : Controller
-    {
+    {   
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -119,6 +119,29 @@ namespace pnl.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult GetNotifications()
+        {
+            return View(_db.Notifications.Where(c => c.UserId == User.Claims.First().Value).ToList());
+        }
+
+        public IActionResult Remove(int id,string status)
+        {
+            try
+            {
+
+               var rm_taxform =  _db.TaxForms.First(c => c.ID == id);
+                _db.Remove(rm_taxform);
+                _db.SaveChanges();
+                if(status.ToLower() == "continue")
+                    return RedirectToAction(nameof(Continue));
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

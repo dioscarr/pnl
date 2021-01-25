@@ -1,0 +1,37 @@
+﻿@model List<pnl.Data.Models.Notifications>
+
+    <div class="container-fluid primary-padding" id="main-content">
+        <div class="row">
+            <div class="col-sm-12">
+                <br />
+                <br />
+                <hr />
+
+                <h2 class="signin-form-company-title">Notifications</h2>
+                <hr />
+                <br />
+                
+                <table id="TaxesRecords" class="display">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Sent By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Subject   </td>
+                            <td>@Html.Raw(@item.Message)</td>
+                            <td>@item.SentByAdmin</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

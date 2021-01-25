@@ -33,9 +33,6 @@ $(document).ready(function () {
                 console.log(bodyDash.style.getPropertyValue("overflowY"));
                 }
             }
-
-
-
         })
     }
 });
@@ -47,3 +44,19 @@ var GotoPath = async (url) => {
    
     window.location.href = url;
 }
+
+
+$(document).ready(function () {
+    if (document.querySelector('#editor_TopSubTitle') !==null) {
+        ClassicEditor.create(document.querySelector('#editor_TopSubTitle')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
+    }
+    if (document.querySelector('#editor_Title') !== null) {
+        ClassicEditor.create(document.querySelector('#editor_Title')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
+    }
+    if (document.querySelector('#editor_Message') !== null) {
+        ClassicEditor.create(document.querySelector('#editor_Message')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
+    }
+    if (document.querySelector('#NMessage') !== null) {
+        ClassicEditor.create(document.querySelector('#NMessage')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
+    }
+});

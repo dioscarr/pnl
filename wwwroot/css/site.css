@@ -170,7 +170,7 @@ a:hover {
     letter-spacing: 1px;
     padding-right: 24px !important;
     padding-left: 14px !important;
-    ;
+    
 }
 
 .section-title {
@@ -328,7 +328,15 @@ a:hover {
     font-size: 24px;
     font-weight: 900;
 }
+#NMessage {
+height:110px;
+}
 
+
+.ck.ck-editor__editable_inline {
+    height: 200px;
+    flex: 1 1 auto;
+}
 .inner-securitypage-box {
     display: grid;
     width: 300px;
