@@ -3,6 +3,14 @@
 
 
 
+/*The Following are todo but are hidden until implemented*/
+#photo-id{
+    
+    
+    visibility:hidden;
+}
+
+
 html {
     font-family: "Open Sans" !important;
     line-height: 1.15;
@@ -104,6 +112,11 @@ div {
     color: #2A2957;
 }
 
+
+#revire-submit {
+    color:white;
+    
+    }
 .colorgreyout {
     color: #707070;
 }
