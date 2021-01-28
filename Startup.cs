@@ -41,7 +41,7 @@ namespace pnl
             var user = Configuration["DBUser"] ?? "SA";
             var password = Configuration["DBPassword"] ?? "Password@123";
             var database = Configuration["PNL"] ?? "PNL";
-            server = "localhost";
+            //server = "localhost";
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseLazyLoadingProxies().UseSqlServer($"Server={server},{port}; Initial Catalog={database}; User ID={user}; password={password}"));
 
