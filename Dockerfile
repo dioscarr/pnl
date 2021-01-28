@@ -7,7 +7,10 @@ WORKDIR /app
 
 
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+# FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
+
+FROM mcd.Microsoft.com/dotnet/sdk:5.0-focal As build
+
 WORKDIR /src
 COPY ["pnl.csproj", "./"]
 RUN dotnet restore "pnl.csproj"
