@@ -1,0 +1,121 @@
+﻿@model NotificationCenterVM
+
+
+
+   
+<div class="container-fluid primary-padding" id="main-content">
+
+
+    <div class="row paddingtop20px">
+         
+        <div class="col-4">
+            <div class="mb-6">
+                <div class="row ">
+                    <div class="col-md-3">
+                        @if (Model.ProfilePicture.Count() == 0)
+                        {
+                            <img src="~/img/user.svg" class="card-img" alt="..." />
+                        }
+                        else
+                        {
+                            <img id="profilePicture" style="width:100%; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProfilePicture))">
+                        }
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.taxForm.Person.FirstName @Model.taxForm.Person.LastName</h5>
+                            <p class="card-text">@Model.taxForm.Person.Address.Address1 @Model.taxForm.Person.Address.Address2 <br /> @Model.taxForm.Person.Address.City @Model.taxForm.Person.Address.State @Model.taxForm.Person.Address.Zip</p>
+
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        Taxes for <span class="badge badge-light"><span style="color:black;">@Model.taxForm.TaxYear</span></span>
+                        @if (@Model.taxForm.isFiled)
+                        {
+                            <span class="badge badge-light"><span style="color:black;">ready to be reviwed</span></span>
+
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger"><span style="color:white;">client is working on it</span></span>
+                        }
+                        <br />
+                        <hr />
+                        The number of questions answered are <span class="badge badge-light"> <span style="color:black;">@Model.taxForm.Answers.Count()</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 text-align-center">
+            <h2 class="john d-john" style="text-align:center; padding: 20px;">Notification Center</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-area="pnlaccess" asp-action="Index" asp-controller="NotificationCenter">
+                
+                @Html.HiddenFor(c => c.taxForm.ID)
+                @Html.HiddenFor(c => c.taxForm.UserID)
+                @Html.HiddenFor(c => c.Notification.CreatedOn)
+                @Html.HiddenFor(c => c.Notification.UpdatedOn)
+                @Html.HiddenFor(c => c.Notification.UserId)
+                @Html.HiddenFor(c => c.Notification.SentByAdmin)
+                @Html.HiddenFor(c => c.Notification.isDeleted)
+                @Html.HiddenFor(c => c.Notification.Read)
+
+                <div class="form-row">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="FirstName">Title</label>
+                        @Html.TextBoxFor(c => c.Notification.Title, null, new { @class = "form-control", @id = "NTitle" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="MiddleName">Subject</label>
+                        @Html.TextBoxFor(c => c.Notification.Subject, null, new { @id = "NSubject", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col-md-12 col-sm-12">
+                        <label for="LastName">Message</label>
+                        <div class=".toolbar-container"></div>
+                        @Html.TextAreaFor(c => c.Notification.Message, 20, 50, new { @id = "NMessage", @class = "form-control", @style = "display:none;" })
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Notitification</button>
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <label for="FirstName">All Notifications</label>
+            <table class="display table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date Sent</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in @Model.Notifications)
+                    {
+                        <tr>
+                            <td>@item.Title</td>
+                            <td>@item.Subject   </td>
+                            <td>@Html.Raw(@item.Message)</td>
+                            <td>@item.CreatedOn.ToShortDateString()</td>
+                            <td>
+                                <a asp-area="pnlaccess" asp-controller="NotificationCenter" asp-action="Edit" asp-route-id="@item.id"><i class="fas fa-edit"></i></a> |
+                                <a asp-area="pnlaccess" asp-controller="NotificationCenter" asp-action="Delete" asp-route-id="@item.id"><i class="fas fa-trash"></i></a> |
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

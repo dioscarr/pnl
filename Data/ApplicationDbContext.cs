@@ -31,5 +31,6 @@ namespace pnl.Data
         public DbSet<Answer> Answers{ get; set; }
         public DbSet<FormStep> FormSteps { get; set; }
         public DbSet<USAStates> USAStates { get; set; }
+        public DbSet<Notifications> Notifications{ get; set; }
     }
 }

@@ -5,11 +5,7 @@
     ViewData["Title"] = "Index";
 }
 
-
-
-
-
-<div class="container-fluid primary-padding">
+<div class="container-fluid primary-padding" id="main-content">
 
     <table id="TaxesRecords" class="display">
         <thead>
@@ -38,40 +34,41 @@
         <tbody>
             @foreach (var item in Model.TaxForm)
             {
-            <tr>
-                <td>
-                    @item.Person.FirstName @item.Person.LastName - (<a href="mailto: @item.Person.Email">@item.Person.Email</a> | <a href="tel:@item.Person.Phone" >@item.Person.Phone</a>)
-                </td>
-                <td>
-                    @item.TaxYear
-                </td>
-                <td>
-                    @item.UpdatedOn.ToShortDateString()
-                </td>
-                <td>
-                    @item.Person.Address.State
-                </td>
-                <td>
-                    @item.Answers.Count()
-                </td>
-                <td>
-                    @if(item.isFiled)
-                    {
-                        <i class="fas fa-check" style="color:green;"></i>
-                    }
-                    else
-                    {
-                        <i class="fas fa-tasks"style="color:red;"></i>
-                    }
-                </td>
-                <td>
-                    <a href="./edit?id=@item.ID" id="@item.ID">Edit</a> |
-                    @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
-                    @*<a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>*@
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @item.Person.FirstName @item.Person.LastName - (<a href="mailto: @item.Person.Email">@item.Person.Email</a> | <a href="tel:@item.Person.Phone">@item.Person.Phone</a>)
+                    </td>
+                    <td>
+                        @item.TaxYear
+                    </td>
+                    <td>
+                        @item.UpdatedOn.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.Person.Address.State
+                    </td>
+                    <td>
+                        @item.Answers.Count()
+                    </td>
+                    <td>
+                        @if (item.isFiled)
+                        {
+                            <i class="fas fa-check" style="color:green;"></i>
+                        }
+                        else
+                        {
+                            <i class="fas fa-tasks" style="color:red;"></i>
+                        }
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="TaxForm" asp-action="Create" asp-route-id="@item.ID" asp-route-status="Continue"><i class="fas fa-edit"></i></a> |
+                        <a asp-area="pnlaccess" asp-controller="NotificationCenter" asp-action="Index" asp-route-id="@item.ID"><i class="fas fa-bell"></i></a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID"><i class="fas fa-trash"></i></a>
+                        @*<a asp-page="./Details" asp-route-id="@item.ID">Details</a> |*@
+                    </td>
+                </tr>
             }
         </tbody>
-    </table>
 
+    </table>
 </div>

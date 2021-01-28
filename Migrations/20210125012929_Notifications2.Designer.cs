@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pnl.Data;
 
 namespace pnl.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210125012929_Notifications2")]
+    partial class Notifications2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -491,6 +493,7 @@ namespace pnl.Migrations
                         .UseIdentityColumn();
 
                     b.Property<DateTime>("CreatedOn")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Message")
@@ -767,12 +770,10 @@ namespace pnl.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isSpouse")
-                        .HasColumnType("bit");
-
                     b.HasKey("id");
 
-                    b.HasIndex("TaxFormID");
+                    b.HasIndex("TaxFormID")
+                        .IsUnique();
 
                     b.ToTable("TaxFormPeople");
                 });
@@ -901,7 +902,7 @@ namespace pnl.Migrations
             modelBuilder.Entity("pnl.Data.Models.Notifications", b =>
                 {
                     b.HasOne("pnl.Data.Models.TaxForm", "TaxForm")
-                        .WithMany("Notifications")
+                        .WithMany()
                         .HasForeignKey("TaxFormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -972,8 +973,8 @@ namespace pnl.Migrations
             modelBuilder.Entity("pnl.Data.Models.TaxFormPerson", b =>
                 {
                     b.HasOne("pnl.Data.Models.TaxForm", "TaxForms")
-                        .WithMany("TaxFormPerson")
-                        .HasForeignKey("TaxFormID")
+                        .WithOne("TaxFormPerson")
+                        .HasForeignKey("pnl.Data.Models.TaxFormPerson", "TaxFormID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1004,8 +1005,6 @@ namespace pnl.Migrations
                     b.Navigation("DependentCareProviders");
 
                     b.Navigation("DependentsClaimed");
-
-                    b.Navigation("Notifications");
 
                     b.Navigation("TaxFormAddress");
 

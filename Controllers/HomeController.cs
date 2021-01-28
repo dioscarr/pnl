@@ -15,7 +15,7 @@ namespace pnl.Controllers
 {
     [Authorize]
     public class HomeController : Controller
-    {
+    {   
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -43,6 +43,31 @@ namespace pnl.Controllers
             }
 
             ViewData.Add("Title","dashbaord");
+            dashboard d = new dashboard(_db);
+            d.init(User.Claims.First().Value);
+
+            if (d.CurrentUser == null)
+            {
+                return RedirectToAction("CompleteRegistration");
+            }
+            return View(d);
+        }
+        public IActionResult Continue()
+        {
+            if (!_db.Person.Any(c => c.UserId == User.Claims.First().Value))
+            {
+                try
+                {
+                    return RedirectToAction("CompleteRegistration");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+
+            ViewData.Add("Title", "dashbaord");
             dashboard d = new dashboard(_db);
             d.init(User.Claims.First().Value);
 
@@ -94,6 +119,29 @@ namespace pnl.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public IActionResult GetNotifications()
+        {
+            return View(_db.Notifications.Where(c => c.UserId == User.Claims.First().Value).ToList());
+        }
+
+        public IActionResult Remove(int id,string status)
+        {
+            try
+            {
+
+               var rm_taxform =  _db.TaxForms.First(c => c.ID == id);
+                _db.Remove(rm_taxform);
+                _db.SaveChanges();
+                if(status.ToLower() == "continue")
+                    return RedirectToAction(nameof(Continue));
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

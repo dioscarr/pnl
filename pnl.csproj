@@ -90,7 +90,6 @@
     <Folder Include="Areas\PnlAccess\Data\" />
     <Folder Include="Areas\PnlAccess\Pages\AdminLanding\" />
     <Folder Include="Areas\PnlAccess\Pages\Person\" />
-    <Folder Include="Data\Models\NewFolder\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

@@ -26,6 +26,7 @@ namespace pnl.Models
                 id =1234
             };
             Depedents = new List<Dependent>();
+            CurrentUserInfo = new Person();
 
         }
 

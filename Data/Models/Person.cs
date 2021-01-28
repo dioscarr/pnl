@@ -19,9 +19,7 @@ namespace pnl.Data.Models
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public string Phone { get; set; }
-        public string Email { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public string Email { get; set; }     
         public DateTime Birthday { get; set; }
         public string SSN { get; set; }
         public string Occupation { get; set; }
