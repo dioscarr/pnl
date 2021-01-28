@@ -1,4 +1,5 @@
 ﻿@inject TaxFormService service
+@inject IJSRuntime js 
 
 <div class="container ">
     <div class="row">
@@ -312,14 +313,18 @@
                         <span class="inline-radio-box">
                             <h6>@item.Questions.First(c => c.Order == 6).TheQuestion</h6>
                             <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" disabled="@(enabled == 1? false:"disabled")"
+                                <input class="form-check-input"
+                                       id="gotMarryLastYearyes"
+                                       type="radio" disabled="@(enabled == 1? false:"disabled")"
                                        name="@item.Questions.First(c=>c.Order==6).Id"
                                        checked="@(GetRadioState(item.Questions.First(c=>c.Order==6).Id,"Yes"))"
                                        @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==6).Id,"Yes"))" />
                                 <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
                             </span>
                             <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" disabled="@(enabled == 1? false:"disabled")"
+                                <input class="form-check-input" type="radio"
+                                       id="gotMarryLastYearno"
+                                       disabled="@(enabled == 1? false:"disabled")"
                                        name="@item.Questions.First(c=>c.Order==6).Id"
                                        checked="@(GetRadioState(item.Questions.First(c=>c.Order==6).Id,"No"))"
                                        @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==6).Id,"No"))" />
@@ -333,14 +338,17 @@
                                 @item.Questions.First(c => c.Order == 7).TheQuestion
                             </h6>
                             <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" disabled="@(enabled == 1? false:"disabled")"
+                                <input class="form-check-input" type="radio"
+                                       id="isSixMonthlivingWithSpouseyes"
+                                       disabled="@(enabled == 1? false:"disabled")"
                                        name="@item.Questions.First(c=>c.Order==7).Id"
                                        checked="@(GetRadioState(item.Questions.First(c=>c.Order==7).Id,"Yes"))"
                                        @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==7).Id,"Yes"))" />
                                 <label class="form-check-label" for="isSixMonthlivingWithSpouseyes">Yes</label>
                             </span>
                             <span class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" disabled="@(enabled == 1? false:"disabled")"
+                                <input class="form-check-input" type="radio"
+                                       id="isSixMonthlivingWithSpouseno"disabled="@(enabled == 1? false:"disabled")"
                                        name="@item.Questions.First(c=>c.Order==7).Id"
                                        checked="@(GetRadioState(item.Questions.First(c=>c.Order==7).Id,"No"))"
                                        @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==7).Id,"No"))" />
@@ -894,6 +902,7 @@
 
     public List<Question> questions { set; get; }
     public List<Answer> answers { get; set; }
+    public List<Answer> removeanswers { get; set; }
 
     public DateTime DateOfFinalDecree { get; set; }
     public DateTime separateAgreementDate { get; set; }
@@ -923,6 +932,22 @@
         separateAgreementDate_q_id = questions.First(c => c.Order == 13).Id;
         spouseDeathDate_q_id = questions.First(c => c.Order == 14).Id;
 
+        TaxForm t = service.GetTaxForm(TaxFormID);
+        if (t.TaxFormPerson.Where(c=>c.isSpouse == true).Count()>0)
+        {
+            st2.Spouse = t.TaxFormPerson.Where(c=>c.isSpouse == true).Select(c=> new Person {
+                Birthday= c.Birthday,
+                Email = c.Email,
+                FirstName = c.FirstName,
+                id = c.id,
+                LastName = c.LastName,
+                MiddleName = c.MiddleName,
+                Occupation = c.Occupation,
+                Phone = c.Phone,
+                SSN = c.SSN,
+                UserId = c.UserId
+            }).First();
+        }
 
         if (answers.Any(c=>c.QuestionId == DateOfFinalDecree_q_id))
         {
@@ -1027,14 +1052,38 @@
         if (answers.Any(c => c.QuestionId == id))
         {
             var checkedval = (answers.First(c => c.QuestionId == id).TheAnswer == val) ? true : false;
-            if(checkedval)
-                CheckIfQisConditional(val);
+            if (checkedval)
+                CheckIfQisConditional1(val);
             return checkedval;
         }
         return false;
     }
+
+    public void CheckIfQisConditional1(string qAn)
+    {
+
+        switch (qAn.ToLower())
+        {
+            case "never married":
+                enabled = -1;
+                break;
+            case "married":
+                enabled = 1;
+                break;
+            case "divoced":
+                enabled = 2;
+                break;
+            case "legally separated":
+                enabled = 3;
+                break;
+            case "widowed":
+                enabled = 4;
+                break;
+        }
+    }
     public void CheckIfQisConditional(string qAn)
     {
+
         switch (qAn.ToLower())
         {
             case "never married":
@@ -1044,6 +1093,8 @@
                 spouseDeathDate = new DateTime();
                 separateAgreementDate = new DateTime();
                 DateOfFinalDecree = new DateTime();
+                js.InvokeVoidAsync("ClearMarryRds");
+
                 break;
             case "married":
                 enabled = 1;
@@ -1054,6 +1105,7 @@
                 spouseDeathDate = new DateTime();
                 separateAgreementDate = new DateTime();
                 DateOfFinalDecree = new DateTime();
+
                 break;
             case "divoced":
                 enabled = 2;
@@ -1061,6 +1113,8 @@
 
                 separateAgreementDate = new DateTime();
                 spouseDeathDate = new DateTime();
+                js.InvokeVoidAsync("ClearMarryRds");
+
                 break;
             case "legally separated":
                 enabled = 3;
@@ -1068,6 +1122,8 @@
 
                 DateOfFinalDecree = new DateTime();
                 spouseDeathDate = new DateTime();
+                js.InvokeVoidAsync("ClearMarryRds");
+
                 break;
             case "widowed":
                 enabled = 4;
@@ -1075,9 +1131,11 @@
 
                 separateAgreementDate = new DateTime();
                 DateOfFinalDecree = new DateTime();
+                js.InvokeVoidAsync("ClearMarryRds");
+
                 break;
         }
     }
 
-    public string[] whitelist { get; set; } = new string[] { "never married", "married", "divoced", "legally separated", "widowed" };
+
 }

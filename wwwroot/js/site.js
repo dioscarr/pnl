@@ -60,3 +60,11 @@ $(document).ready(function () {
         ClassicEditor.create(document.querySelector('#NMessage')).then(editor => { console.log(editor); }).catch(error => { console.error(error); });
     }
 });
+
+
+var ClearMarryRds = () => {    
+    document.getElementById("gotMarryLastYearyes").checked = false;
+    document.getElementById("gotMarryLastYearno").checked = false;
+    document.getElementById("isSixMonthlivingWithSpouseyes").checked = false;
+    document.getElementById("isSixMonthlivingWithSpouseno").checked = false;
+}

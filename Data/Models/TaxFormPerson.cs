@@ -31,11 +31,12 @@ namespace pnl.Data.Models
         [Required(ErrorMessage = "")]
         public string SSN { get; set; }
         [Required(ErrorMessage = "")]
-        public string Occupation { get; set; }              
+        public string Occupation { get; set; }
+        public bool isSpouse { get; set; }
 
         [Required]
+        [ForeignKey("TaxForm")]
         public int TaxFormID { get; set; }
-        [ForeignKey("TaxFormID")]
         public virtual TaxForm TaxForms { get; set; }
     }
 }

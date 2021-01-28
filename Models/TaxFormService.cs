@@ -31,8 +31,48 @@ namespace pnl.Models
             
         }
         public void SaveProgressStep2(int TaxFormId, int Step, Step2VM CurrentStep)
-        {          
-           
+        {
+            try
+            {
+                var updateSpouse = _db.TaxFormPeople.FirstOrDefault(c => c.TaxFormID == TaxFormId && c.isSpouse == true);
+                if(updateSpouse!=null)
+                {
+                        updateSpouse.Birthday = CurrentStep.Spouse.Birthday;
+                        updateSpouse.Email = CurrentStep.Spouse.Email;
+                        updateSpouse.FirstName = CurrentStep.Spouse.FirstName;
+                        updateSpouse.LastName = CurrentStep.Spouse.LastName;
+                        updateSpouse.MiddleName = CurrentStep.Spouse.MiddleName;
+                        updateSpouse.Occupation = CurrentStep.Spouse.Occupation;
+                        updateSpouse.Phone = CurrentStep.Spouse.Phone;
+                        updateSpouse.SSN = CurrentStep.Spouse.SSN;
+                        updateSpouse.TaxFormID = TaxFormId;
+                        updateSpouse.id = CurrentStep.Spouse.id;
+                        updateSpouse.UserId = CurrentStep.CurrentUserInfo.UserId;
+                        updateSpouse.isSpouse = true;
+                }
+                else
+                { 
+                    _db.TaxFormPeople.Add(new TaxFormPerson {
+                    Birthday = CurrentStep.Spouse.Birthday,
+                    Email = CurrentStep.Spouse.Email,
+                    FirstName = CurrentStep.Spouse.FirstName,                
+                    LastName = CurrentStep.Spouse.LastName,
+                    MiddleName = CurrentStep.Spouse.MiddleName,
+                    Occupation = CurrentStep.Spouse.Occupation,
+                    Phone = CurrentStep.Spouse.Phone,   
+                    SSN = CurrentStep.Spouse.SSN,
+                    TaxFormID = TaxFormId,
+                    UserId = CurrentStep.CurrentUserInfo.UserId,
+                    isSpouse = true
+                    });
+                }
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+                throw;
+            }
         }
         public void SaveProgressStep3(List<Answer> answers)
         {
@@ -41,7 +81,7 @@ namespace pnl.Models
                 var add = answers.Where(c => c.Id == 0).ToList();
                 var update = answers.Where(c => c.Id > 0).ToList();
                 if(add.Count() > 0)
-                    _db.AddRange(add);
+                    _db.AddRange(add); 
                 if (update.Count() > 0) 
                     _db.UpdateRange(update);
                 _db.SaveChanges();
