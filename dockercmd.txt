@@ -33,3 +33,4 @@ docker push devpnl.azurecr.io/mssql:2019
 docker-compose -f docker-compose.yml rm pnl
 docker-compose -f docker-compose.yml up pnl
 
+	
