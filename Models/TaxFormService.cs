@@ -34,21 +34,49 @@ namespace pnl.Models
         {
             try
             {
-                var updateSpouse = _db.TaxFormPeople.FirstOrDefault(c => c.TaxFormID == TaxFormId && c.isSpouse == true);
-                if(updateSpouse!=null)
+                var updatePrimary = _db.TaxFormPeople.FirstOrDefault(c => c.TaxFormID == TaxFormId && c.isSpouse == false);
+                if (updatePrimary != null)
                 {
-                        updateSpouse.Birthday = CurrentStep.Spouse.Birthday;
-                        updateSpouse.Email = CurrentStep.Spouse.Email;
-                        updateSpouse.FirstName = CurrentStep.Spouse.FirstName;
-                        updateSpouse.LastName = CurrentStep.Spouse.LastName;
-                        updateSpouse.MiddleName = CurrentStep.Spouse.MiddleName;
-                        updateSpouse.Occupation = CurrentStep.Spouse.Occupation;
-                        updateSpouse.Phone = CurrentStep.Spouse.Phone;
-                        updateSpouse.SSN = CurrentStep.Spouse.SSN;
-                        updateSpouse.TaxFormID = TaxFormId;
-                        updateSpouse.id = CurrentStep.Spouse.id;
-                        updateSpouse.UserId = CurrentStep.CurrentUserInfo.UserId;
-                        updateSpouse.isSpouse = true;
+                    updatePrimary.Birthday = CurrentStep.CurrentUserInfo.Birthday;
+                    updatePrimary.Email = CurrentStep.CurrentUserInfo.Email;
+                    updatePrimary.FirstName = CurrentStep.CurrentUserInfo.FirstName;
+                    updatePrimary.LastName = CurrentStep.CurrentUserInfo.LastName;
+                    updatePrimary.MiddleName = CurrentStep.CurrentUserInfo.MiddleName;
+                    updatePrimary.Occupation = CurrentStep.CurrentUserInfo.Occupation;
+                    updatePrimary.Phone = CurrentStep.CurrentUserInfo.Phone;
+                    updatePrimary.SSN = CurrentStep.CurrentUserInfo.SSN;
+                    
+                }
+                else
+                {
+                    _db.TaxFormPeople.Add(new TaxFormPerson
+                    {
+                        Birthday = CurrentStep.CurrentUserInfo.Birthday,
+                        Email = CurrentStep.CurrentUserInfo.Email,
+                        FirstName = CurrentStep.CurrentUserInfo.FirstName,
+                        LastName = CurrentStep.CurrentUserInfo.LastName,
+                        MiddleName = CurrentStep.CurrentUserInfo.MiddleName,
+                        Occupation = CurrentStep.CurrentUserInfo.Occupation,
+                        Phone = CurrentStep.CurrentUserInfo.Phone,
+                        SSN = CurrentStep.CurrentUserInfo.SSN,
+                        TaxFormID = TaxFormId,
+                        UserId = CurrentStep.CurrentUserInfo.UserId,
+                        isSpouse = false
+                    });
+                }
+                _db.SaveChanges();
+
+                var updateSpouse = _db.TaxFormPeople.FirstOrDefault(c => c.TaxFormID == TaxFormId && c.isSpouse == true);
+                if (updateSpouse!=null)
+                {
+                    updateSpouse.Birthday = CurrentStep.Spouse.Birthday;
+                    updateSpouse.Email = CurrentStep.Spouse.Email;
+                    updateSpouse.FirstName = CurrentStep.Spouse.FirstName;
+                    updateSpouse.LastName = CurrentStep.Spouse.LastName;
+                    updateSpouse.MiddleName = CurrentStep.Spouse.MiddleName;
+                    updateSpouse.Occupation = CurrentStep.Spouse.Occupation;
+                    updateSpouse.Phone = CurrentStep.Spouse.Phone;
+                    updateSpouse.SSN = CurrentStep.Spouse.SSN;
                 }
                 else
                 { 

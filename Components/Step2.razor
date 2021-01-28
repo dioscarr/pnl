@@ -55,7 +55,7 @@
                     <h6>First Name</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="first-name" type="text" @bind-value="@CurrentUser.FirstName" />
+                    <input class="form-control" name="first-name" type="text" @bind-value="@st2.CurrentUserInfo.FirstName" />
                 </div>
             </div>
             <div class="col-sm-12 col-md-2">
@@ -63,7 +63,7 @@
                     <h6>M.I</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="M-I" type="text" @bind-value="@CurrentUser.MiddleName" />
+                    <input class="form-control" name="M-I" type="text" @bind-value="@st2.CurrentUserInfo.MiddleName" />
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                     <h6>Last Name</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="Last-Name" type="text" @bind-value="@CurrentUser.LastName" />
+                    <input class="form-control" name="Last-Name" type="text" @bind-value="@st2.CurrentUserInfo.LastName" />
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
                     <h6>Telephone</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="Telephone" type="text" @bind-value="@CurrentUser.Phone" />
+                    <input class="form-control" name="Telephone" type="text" @bind-value="@st2.CurrentUserInfo.Phone" />
                 </div>
             </div>
             <div class="col-sm-3">
@@ -90,7 +90,7 @@
                     <h6>Date of birth</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="birthdate" type="date" @bind-value="@CurrentUser.Birthday" />
+                    <input class="form-control" name="birthdate" type="date" @bind-value="@st2.CurrentUserInfo.Birthday" />
                     <i>mm/dd/yyy</i>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                     <h6>Your Job Title</h6>
                 </div>
                 <div class="the-row-column-content">
-                    <input class="form-control" name="job-title" type="text" @bind-value="@CurrentUser.Occupation" />
+                    <input class="form-control" name="job-title" type="text" @bind-value="@st2.CurrentUserInfo.Occupation" />
                 </div>
             </div>
 
@@ -948,6 +948,25 @@
                 UserId = c.UserId
             }).First();
         }
+        if (t.TaxFormPerson.Where(c => c.isSpouse == false).Count() > 0)
+        {
+            st2.CurrentUserInfo = t.TaxFormPerson.Where(c => c.isSpouse == false).Select(c => new Person
+            {
+                Email = c.Email,
+                FirstName = c.FirstName,
+                id = c.id,
+                LastName = c.LastName,
+                MiddleName = c.MiddleName,
+                Occupation = c.Occupation,
+                Phone = c.Phone,
+                SSN = c.SSN,
+                UserId = c.UserId
+            }).First();
+        }
+        else
+        {
+            st2.CurrentUserInfo = CurrentUser;
+        }
 
         if (answers.Any(c=>c.QuestionId == DateOfFinalDecree_q_id))
         {
@@ -1023,8 +1042,7 @@
     }
 
     private void SaveProgress(int CurrentStep)
-    {
-        st2.CurrentUserInfo = CurrentUser;
+    {        
         service.SaveProgressStep2(TaxFormID, CurrentStep, st2);
     }
 

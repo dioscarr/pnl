@@ -34,7 +34,7 @@ namespace pnl.Data.Models
         public string Occupation { get; set; }
         public bool isSpouse { get; set; }
 
-        [Required]
+        
         [ForeignKey("TaxForm")]
         public int TaxFormID { get; set; }
         public virtual TaxForm TaxForms { get; set; }
