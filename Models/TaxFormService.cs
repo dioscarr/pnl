@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace pnl.Models
 {
-    public class TaxFormService
+    public class TaxFormService : ITaxFormService
     {
         private readonly ApplicationDbContext _db;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -27,8 +27,8 @@ namespace pnl.Models
             _env = env;
         }
         public void GetSummary(int id)
-        { 
-            
+        {
+
         }
         public void SaveProgressStep2(int TaxFormId, int Step, Step2VM CurrentStep)
         {
@@ -45,7 +45,7 @@ namespace pnl.Models
                     updatePrimary.Occupation = CurrentStep.CurrentUserInfo.Occupation;
                     updatePrimary.Phone = CurrentStep.CurrentUserInfo.Phone;
                     updatePrimary.SSN = CurrentStep.CurrentUserInfo.SSN;
-                    
+
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace pnl.Models
                 _db.SaveChanges();
 
                 var updateSpouse = _db.TaxFormPeople.FirstOrDefault(c => c.TaxFormID == TaxFormId && c.isSpouse == true);
-                if (updateSpouse!=null)
+                if (updateSpouse != null)
                 {
                     updateSpouse.Birthday = CurrentStep.Spouse.Birthday;
                     updateSpouse.Email = CurrentStep.Spouse.Email;
@@ -79,19 +79,20 @@ namespace pnl.Models
                     updateSpouse.SSN = CurrentStep.Spouse.SSN;
                 }
                 else
-                { 
-                    _db.TaxFormPeople.Add(new TaxFormPerson {
-                    Birthday = CurrentStep.Spouse.Birthday,
-                    Email = CurrentStep.Spouse.Email,
-                    FirstName = CurrentStep.Spouse.FirstName,                
-                    LastName = CurrentStep.Spouse.LastName,
-                    MiddleName = CurrentStep.Spouse.MiddleName,
-                    Occupation = CurrentStep.Spouse.Occupation,
-                    Phone = CurrentStep.Spouse.Phone,   
-                    SSN = CurrentStep.Spouse.SSN,
-                    TaxFormID = TaxFormId,
-                    UserId = CurrentStep.CurrentUserInfo.UserId,
-                    isSpouse = true
+                {
+                    _db.TaxFormPeople.Add(new TaxFormPerson
+                    {
+                        Birthday = CurrentStep.Spouse.Birthday,
+                        Email = CurrentStep.Spouse.Email,
+                        FirstName = CurrentStep.Spouse.FirstName,
+                        LastName = CurrentStep.Spouse.LastName,
+                        MiddleName = CurrentStep.Spouse.MiddleName,
+                        Occupation = CurrentStep.Spouse.Occupation,
+                        Phone = CurrentStep.Spouse.Phone,
+                        SSN = CurrentStep.Spouse.SSN,
+                        TaxFormID = TaxFormId,
+                        UserId = CurrentStep.CurrentUserInfo.UserId,
+                        isSpouse = true
                     });
                 }
                 _db.SaveChanges();
@@ -108,9 +109,9 @@ namespace pnl.Models
             {
                 var add = answers.Where(c => c.Id == 0).ToList();
                 var update = answers.Where(c => c.Id > 0).ToList();
-                if(add.Count() > 0)
-                    _db.AddRange(add); 
-                if (update.Count() > 0) 
+                if (add.Count() > 0)
+                    _db.AddRange(add);
+                if (update.Count() > 0)
                     _db.UpdateRange(update);
                 _db.SaveChanges();
             }
@@ -135,7 +136,7 @@ namespace pnl.Models
         {
             try
             {
-                return _db.Answers.Include(c=>c.Question).Where(c => c.TaxFormId == taxFormId && c.Question.FormStep.TheStep == stepnumber).ToList();
+                return _db.Answers.Include(c => c.Question).Where(c => c.TaxFormId == taxFormId && c.Question.FormStep.TheStep == stepnumber).ToList();
             }
             catch (Exception)
             {
@@ -146,7 +147,7 @@ namespace pnl.Models
         {
             try
             {
-                return _db.FormSteps.Include(c=>c.Questions).Where(c => c.TheStep == TheStep).ToList();
+                return _db.FormSteps.Include(c => c.Questions).Where(c => c.TheStep == TheStep).ToList();
             }
             catch (Exception)
             {
@@ -155,7 +156,7 @@ namespace pnl.Models
             }
         }
         public List<state> GetStates()
-        {            
+        {
             var stateJsonPath = $"{_env.ContentRootPath}/Data/states.json";
             List<state> items = new List<state>();
             using (StreamReader r = new StreamReader(stateJsonPath))
@@ -165,7 +166,8 @@ namespace pnl.Models
             }
             return items;
         }
-        public (List<int>, List<TaxForm>) GetTaxYears(int NumberOfPreviousYears = 20) {
+        public (List<int>, List<TaxForm>) GetTaxYears(int NumberOfPreviousYears = 20)
+        {
 
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             List<int> taxyears = new List<int>();
@@ -199,7 +201,8 @@ namespace pnl.Models
             //var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID))
             {
-                return _db.TaxFormPeople.Where(c => c.TaxFormID == TaxFormID).Select(c=> new Person { 
+                return _db.TaxFormPeople.Where(c => c.TaxFormID == TaxFormID).Select(c => new Person
+                {
                     FirstName = c.FirstName,
                     LastName = c.LastName,
                     SSN = c.SSN,
@@ -207,7 +210,7 @@ namespace pnl.Models
                     Occupation = c.Occupation,
                     Email = c.Email,
                     Birthday = c.Birthday,
-                    Phone = c.Phone                     
+                    Phone = c.Phone
                 }).First();
             }
             return _db.TaxForms.First(c => c.ID == TaxFormID).Person;
@@ -216,22 +219,27 @@ namespace pnl.Models
         {
             // var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             var p = _db.TaxForms.First(c => c.ID == taxFormId).Person.Address;
-            if (p != null){
+            if (p != null)
+            {
                 return p;
             }
-            else {
+            else
+            {
                 return new Address();
             }
         }
         public List<Dependent> GetDependets(int TaxFormID)
         {
             List<Dependent> Dependents = new List<Dependent>();
-            try{
-                if (TaxFormID > 0){
-                    Dependents =  _db.Dependent.Where(c => c.TaxFormID == TaxFormID).ToList();
+            try
+            {
+                if (TaxFormID > 0)
+                {
+                    Dependents = _db.Dependent.Where(c => c.TaxFormID == TaxFormID).ToList();
                 }
             }
-            catch (Exception){
+            catch (Exception)
+            {
                 throw;
             }
             return Dependents;
@@ -239,33 +247,33 @@ namespace pnl.Models
         public DependentCareProviders GetCareProviderIfExist(int TaxFormID)
         {
             var dc = _db.DependentCare.FirstOrDefault(c => c.TaxFormID == TaxFormID);
-            if (dc==null)
+            if (dc == null)
             {
                 return new DependentCareProviders();
             }
-                return dc;
+            return dc;
         }
         public async Task<TaxForm> CheckIfTaxExist(int TaxYear)
         {
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             return await _db.TaxForms.Where(c => c.TaxYear == TaxYear && c.UserID == userID).FirstOrDefaultAsync();
         }
-        public (int,string) CheckIfCurrentTaxYearExist()
+        public (int, string) CheckIfCurrentTaxYearExist()
         {
             var currentYear = DateTime.Now.Year;
-             var result =  _db.TaxForms.Where(c => c.TaxYear == currentYear).FirstOrDefault();
+            var result = _db.TaxForms.Where(c => c.TaxYear == currentYear).FirstOrDefault();
             if (result != null)
             {
-                return (result.ID,result.FilingStatus);
+                return (result.ID, result.FilingStatus);
             }
-            
+
             TaxForm t = new TaxForm();
             var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
             t.TaxYear = DateTime.Now.Year;
             t.FilingStatus = "GetStarted";
             t.UserID = userID;
             t.Person = _db.Person.First(c => c.UserId == userID);
-            t.Filingstatus = _db.FilingStatus.First(c=>c.Name == "GetStarted");
+            t.Filingstatus = _db.FilingStatus.First(c => c.Name == "GetStarted");
             _db.TaxForms.Add(t);
             _db.SaveChanges();
             return (t.ID, "GetStarted");
@@ -276,14 +284,15 @@ namespace pnl.Models
             {
                 try
                 {
-                    model.SSN= "";
+                    model.SSN = "";
                     model.Code = ""; //from original form needs to be removed
-                _db.Add(model);
-                await _db.SaveChangesAsync();
+                    _db.Add(model);
+                    await _db.SaveChangesAsync();
 
                 }
-                catch (Exception e){
-                    throw;
+                catch (Exception e)
+                {
+                    //throw;
                 }
             }
             return model;
@@ -292,7 +301,8 @@ namespace pnl.Models
         {
             return _db.FilingStatus.ToList();
         }
-        public List<ToggleMe> GetCriteriaOptions(){
+        public List<ToggleMe> GetCriteriaOptions()
+        {
             return _db.CriteriaOption.Select(c => new ToggleMe { name = c.Name, isToggled = false }).ToList();
         }
         public List<TaxFormCriteria> GetTaxFormCriteria(int TaxFormId)
@@ -302,17 +312,17 @@ namespace pnl.Models
         public async Task<TaxForm> CreateNewTaxFormAsync(int TaxYear)
         {
             try
-            {                   
-                var Anyexisting = _db.TaxForms.Any(c => c.TaxYear == TaxYear && c.isFiled ==false);   
-                if(Anyexisting)
+            {
+                var Anyexisting = _db.TaxForms.Any(c => c.TaxYear == TaxYear && c.isFiled == false);
+                if (Anyexisting)
                     return _db.TaxForms.First(c => c.TaxYear == TaxYear && c.isFiled == false);
-                
+
                 TaxForm t = new TaxForm();
                 var userID = _httpContextAccessor.HttpContext.User.Claims.First().Value;
                 t.TaxYear = TaxYear;
                 t.FilingStatus = "Continue";
                 t.UserID = userID;
-                t.Person = _db.Person.Where(c=>c.UserId == userID).First();
+                t.Person = _db.Person.Where(c => c.UserId == userID).First();
                 t.FilingStatusID = _db.FilingStatus.First(c => c.Name == "GetStarted").Id;
                 _db.TaxForms.Add(t);
                 await _db.SaveChangesAsync();
@@ -327,11 +337,13 @@ namespace pnl.Models
         {
             List<TaxFormCriteria> tfc = new List<TaxFormCriteria>();
             var criterias = await _db.CriteriaOption.ToListAsync();
-            foreach (var item in model.Where(c=>c.isToggled==true).ToList()){
+            foreach (var item in model.Where(c => c.isToggled == true).ToList())
+            {
 
                 tfc.Add(new TaxFormCriteria { TaxFormID = TaxFormId, Name = item.name });
             }
-            if (tfc.Count() > 0){
+            if (tfc.Count() > 0)
+            {
                 if (tfc.Count() > 0)
                     _db.AddRange(tfc);
                 await _db.SaveChangesAsync();
@@ -344,7 +356,7 @@ namespace pnl.Models
             {
                 model.id = _db.DependentCare.First(c => c.TaxFormID == model.TaxFormID).id;
                 _db.Update(model);
-                _db.SaveChanges();               
+                _db.SaveChanges();
             }
             else
             {
@@ -353,6 +365,28 @@ namespace pnl.Models
             }
             return model;
         }
+        public bool SubmitReview(int taxFormId)
+        {
+            try
+            {
+                var taxform = _db.TaxForms.Find(taxFormId);
+                if (_db.Answers.Any(c => c.TaxFormId == taxFormId))
+                {
+                    taxform.isFiled = true;
+                    taxform.FilingStatus = "Filed";
+                    taxform.FilingStatusID = _db.FilingStatus.First(c => c.Name == "Filed").Id;
+                    _db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
         public bool SubmitTaxForm(int taxFormId)
         {
             try
@@ -360,18 +394,19 @@ namespace pnl.Models
                 if (taxFormId > 0)
                 {
                     var taxform = _db.TaxForms.Find(taxFormId);
-                    if (_db.Answers.Any(c=>c.TaxFormId == taxFormId))
+                    if (_db.Answers.Any(c => c.TaxFormId == taxFormId))
                     {
                         taxform.FilingStatus = "Continue";
                         taxform.FilingStatusID = _db.FilingStatus.First(c => c.Name == "Continue").Id;
                     }
-                    else { 
+                    else
+                    {
                         taxform.FilingStatus = "GetStarted";
                         taxform.FilingStatusID = _db.FilingStatus.First(c => c.Name == "GetStarted").Id;
                     }
                     taxform.isFiled = true;
                     taxform.CreatedOn = DateTime.Now;
-                    taxform.UpdatedOn= DateTime.Now;
+                    taxform.UpdatedOn = DateTime.Now;
 
                     _db.SaveChanges();
                     return true;
@@ -406,7 +441,8 @@ namespace pnl.Models
                 Phone = model.Phone,
                 TaxFormID = TaxFormID
             };
-            if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID)){
+            if (_db.TaxFormPeople.Any(c => c.TaxFormID == TaxFormID))
+            {
                 var existingModel = _db.TaxFormPeople.First(c => c.TaxFormID == TaxFormID);
                 existingModel.FirstName = model.FirstName;
                 existingModel.LastName = model.LastName;
@@ -419,7 +455,8 @@ namespace pnl.Models
                 existingModel.TaxFormID = TaxFormID;
                 _db.Update(dataModel);
             }
-            else { 
+            else
+            {
                 _db.TaxFormPeople.Add(dataModel);
             }
             _db.SaveChanges();
@@ -441,7 +478,7 @@ namespace pnl.Models
                 existingUser.Phone = model.Phone;
                 existingUser.UserId = userID;
                 _db.Update(existingUser);
-                _db.SaveChanges(); 
+                _db.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -453,9 +490,9 @@ namespace pnl.Models
         {
             try
             {
-            if (model.Count() > 0)
+                if (model.Count() > 0)
                     _db.RemoveRange(model);
-            _db.SaveChanges();
+                _db.SaveChanges();
                 return _db.Dependent.Where(c => c.TaxFormID == TaxFormId).ToList();
             }
             catch (Exception e)
@@ -467,7 +504,7 @@ namespace pnl.Models
         public ReportData GetReport(int taxFormId)
         {
             ReportData rd = new ReportData(_db);
-           var report = rd.GetReport(taxFormId);
+            var report = rd.GetReport(taxFormId);
             return report;
         }
     }

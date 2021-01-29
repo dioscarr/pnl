@@ -26,21 +26,26 @@ namespace pnl.Areas.PnlAccess.Controllers
         }
         public IActionResult Index(int id)
         {
-            NotificationCenterVM ncvm = new NotificationCenterVM();
-            ncvm.taxForm = _db.TaxForms.First(c => c.ID == id);
-            ncvm.Notification = new Notifications();
-            ncvm.Notification.CreatedOn = DateTime.Now;
-            ncvm.Notification.UpdatedOn = DateTime.Now;
-            ncvm.Notification.UserId = ncvm.taxForm.UserID;
-            ncvm.Notification.SentByAdmin = true;
-            ncvm.Notification.isDeleted = false;
-            ncvm.Notification.Read = false;
-            ncvm.ProfilePicture = _db.Users.First(c => c.Id == ncvm.taxForm.UserID).ProfilePicture;
+            try
+            {               
+                NotificationCenterVM ncvm = new NotificationCenterVM();
+                ncvm.taxForm = _db.TaxForms.First(c => c.ID == id);
+                ncvm.Notification = new Notifications();
+                ncvm.Notification.CreatedOn = DateTime.Now;
+                ncvm.Notification.UpdatedOn = DateTime.Now;
+                ncvm.Notification.UserId = ncvm.taxForm.UserID;
+                ncvm.Notification.SentByAdmin = true;
+                ncvm.Notification.isDeleted = false;
+                ncvm.Notification.Read = false;
+                ncvm.ProfilePicture = (_db.Users.Any(c => c.Id == ncvm.taxForm.UserID))? _db.Users.First(c => c.Id == ncvm.taxForm.UserID).ProfilePicture:null;
+                ncvm.Notifications = _db.Notifications.Where(c => c.UserId == ncvm.taxForm.UserID).ToList();
+                return View(ncvm);
+            }
+            catch (Exception)
+            {
 
-
-            ncvm.Notifications = _db.Notifications.Where(c => c.UserId == ncvm.taxForm.UserID).ToList();
-
-            return View(ncvm);
+                throw;
+            }
         }
        
         [HttpPost]

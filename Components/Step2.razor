@@ -1,5 +1,5 @@
-﻿@inject TaxFormService service
-@inject IJSRuntime js 
+﻿@inject ITaxFormService service
+@inject IJSRuntime js
 
 <div class="container ">
     <div class="row">
@@ -26,11 +26,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="steps-top-nav">
-                    <span class="steps-box"@onclick="async()=>await Goto(1)"><div class="step-number">STEP 1</div><div class="step-caption">Basic Information</div></span>
-                    <span class="steps-box"@onclick="async()=>await Goto(2)"><div class="step-number step-number-active">STEP 2</div><div class="step-caption">Personal information</div></span>
-                    <span class="steps-box"@onclick="async()=>await Goto(3)"><div class="step-number">STEP 3</div><div class="step-caption">income</div></span>
-                    <span class="steps-box"@onclick="async()=>await Goto(4)"><div class="step-number">STEP 4</div><div class="step-caption">Additional Information</div></span>
-                    <span class="steps-box"@onclick="async()=>await Goto(5)"><div class="step-number">STEP 5</div><div class="step-caption">review</div></span>
+                    <span class="steps-box" @onclick="async()=>await Goto(1)"><div class="step-number">STEP 1</div><div class="step-caption">Basic Information</div></span>
+                    <span class="steps-box" @onclick="async()=>await Goto(2)"><div class="step-number step-number-active">STEP 2</div><div class="step-caption">Personal information</div></span>
+                    <span class="steps-box" @onclick="async()=>await Goto(3)"><div class="step-number">STEP 3</div><div class="step-caption">income</div></span>
+                    <span class="steps-box" @onclick="async()=>await Goto(4)"><div class="step-number">STEP 4</div><div class="step-caption">Additional Information</div></span>
+                    <span class="steps-box" @onclick="async()=>await Goto(5)"><div class="step-number">STEP 5</div><div class="step-caption">review</div></span>
                 </div>
             </div>
         </div>
@@ -275,7 +275,7 @@
                 <div class="col-sm-3 border-bottom">
                     <div class="the-row-column-title ">
                         <div class="form-check ">
-                            <input class="form-check-input" type="radio" 
+                            <input class="form-check-input" type="radio"
                                    id="NeverMarriedid"
                                    name="@item.Questions.First(c=>c.Order==5).Id"
                                    checked="@(GetRadioState(item.Questions.First(c=>c.Order==5).Id,"Never Married"))"
@@ -348,7 +348,7 @@
                             </span>
                             <span class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio"
-                                       id="isSixMonthlivingWithSpouseno"disabled="@(enabled == 1? false:"disabled")"
+                                       id="isSixMonthlivingWithSpouseno" disabled="@(enabled == 1? false:"disabled")"
                                        name="@item.Questions.First(c=>c.Order==7).Id"
                                        checked="@(GetRadioState(item.Questions.First(c=>c.Order==7).Id,"No"))"
                                        @onchange="@(()=>SetAnswer(item.Questions.First(c=>c.Order==7).Id,"No"))" />
@@ -619,7 +619,7 @@
             </div>
         }
         @foreach (var item in formSteps.Where(c => c.TheStep == 2 && c.Section == 5).ToList())
-        { 
+        {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="the-row-column-title">
@@ -703,8 +703,17 @@
             </div>
         </div>
         <!--Start-->
-
-        <div class="row .d-none .d-md-block border-bottom">
+        <div class="row">
+            <div class="col-md-12" style="display:grid;">
+                <br />
+                <br />
+                <button class="btn btn-default btn-lg" style="display:grid; justify-self:center;" @onclick="Open">Add Dependents</button>
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+        <div class="row .d-none .d-md-block border-bottom" style="padding:30px 0;">
             <div class="col-sm-12 col-md-2">
                 <div class="the-row-column-title">
 
@@ -779,7 +788,7 @@
 
             </div>
         </div>
-        <DependentForm TaxFormID="TaxFormID" OnReloadDependetEvent="OnReloadDependetEvent" />
+
         @foreach (Dependent d in Dependents)
         {
             <div class="row .d-none .d-md-block border-bottom dependent-row">
@@ -867,6 +876,131 @@
     </div>
 </div>
 
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Dependent</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"  @onclick="() => Close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                <EditForm Model="dependent" OnValidSubmit="AddDependent" class="">
+                    <DataAnnotationsValidator />
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="FirstName">First Name</label>
+                            <InputText @bind-Value="dependent.FirstName" class="form-control" />
+                            <ValidationMessage style="color:red;" For="()=>dependent.FirstName" />
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="FirstName">Last Name</label>
+                            <InputText @bind-Value="dependent.LastName" class="form-control" />
+                            <ValidationMessage style="color:red;" For="()=>dependent.LastName" />
+                        </div>
+                    </div>                   
+                    <div class="form-row">
+                        <div class="form-group  col-sm-6">
+                            <label for="FirstName">Date of Birth</label>
+                            <InputDate @bind-Value="dependent.Birthday" class="form-control" />
+                            <ValidationMessage style="color:red;" For="()=>dependent.Birthday" />
+                        </div>
+                        <div class="form-group  col-sm-6">
+                            <label for="FirstName">Relationship to you</label>
+                            <InputText @bind-Value="dependent.RelationshipName" placeholder="Relationship" class="form-control" />
+                            <ValidationMessage style="color:red;" For="()=>dependent.RelationshipName" />
+                        </div>
+                    </div>
+                 
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Number of months lived in your home last year</label>
+                            <InputNumber @bind-Value="dependent.MonthInHome" placeholder="Month In Home" class="form-control" />
+                            <ValidationMessage style="color:red;" For="()=>dependent.MonthInHome" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Us Citizen</label>
+
+                            <InputSelect @bind-Value="dependent.isUsCitizen" class="form-control">
+                                <option value=""></option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </InputSelect>
+                            <ValidationMessage style="color:red;" For="()=>dependent.isUsCitizen" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Resident of US, Canada, or Mexico last year</label>
+                            <InputSelect @bind-Value="dependent.ResidentUSCanadaMexicolastyear" class="form-control ">
+                                <option value=""></option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </InputSelect>
+                            <ValidationMessage style="color:red;" For="()=>dependent.ResidentUSCanadaMexicolastyear" />
+                        </div>
+                    </div>                 
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Single or Married as of 12/31/19 (S/M)</label>
+                            <InputSelect @bind-Value="dependent.SingleorMarriedAsOf" class="form-control">
+                                <option value=""></option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </InputSelect>
+                            <ValidationMessage style="color:red;" For="()=>dependent.SingleorMarriedAsOf" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Full-time Student last year</label>
+                            <InputSelect @bind-Value="dependent.FullTimeStudentLastYear" class="form-control">
+                                <option value=""></option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </InputSelect>
+                            <ValidationMessage style="color:red;" For="()=>dependent.FullTimeStudentLastYear" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                            <label for="FirstName">Totally and Permanently Disabled</label>
+                            <InputSelect @bind-Value="dependent.TotallyPermanentlyDisabled" class="form-control">
+                                <option value=""></option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </InputSelect>
+                            <ValidationMessage style="color:red;" For="()=>dependent.TotallyPermanentlyDisabled" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group  col-sm-12">
+                           
+                            <button type="submit" class="btn-Add-Dependent btn  btn-primary btn-lg" @onclick="AddDependent">Add Dependent</button>
+                        </div>
+                    </div>                   
+                </EditForm>
+                    </div>
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => Close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+
 @code{
     [Parameter]
     public EventCallback<int> NextPage { get; set; }
@@ -916,8 +1050,74 @@
     public bool separateAgreementDate_flag { get; set; } = false;
     public bool spouseDeathDate_flag { get; set; } = false;
 
+    public Dependent dependent { get; set; }
+
+    private string FirstName { get; set; }
+    private string LastName { get; set; }
+    private DateTime Birthday { get; set; }
+    private string SSN { get; set; }
+    private int MonthInHome { get; set; }
+    private string RelationshipName { get; set; }
+    private string Code { get; set; }
+    private void HandleFirstNameChange(ChangeEventArgs args) => FirstName = args.Value?.ToString();
+    private void HandleLastNameChange(ChangeEventArgs args) => LastName = args.Value?.ToString();
+
+    public Guid Guid = Guid.NewGuid();
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+    private async Task AddDependent()
+    {
+        dependent.TaxFormID = TaxFormID;
+        var d = await service.AddDependentAsync(dependent);
+        if (dependent.id > 0)
+        {
+            ReloadDependentList = true;
+
+            Dependents = service.GetDependets(TaxFormID);
+            StateHasChanged();
+        }
+        dependent = new Dependent();
+    }
+
+    private void HandleBirthdayChange(ChangeEventArgs args)
+    {
+        if (DateTime.TryParse(args.Value?.ToString(), out DateTime birthday))
+        {
+            Birthday = birthday;
+        }
+    }
+    private void HandleSSNChange(ChangeEventArgs args) => SSN = args.Value?.ToString();
+    private void HandleMonthInHomeChange(ChangeEventArgs args)
+    {
+        if (int.TryParse(args.Value?.ToString(), out int monthInHome))
+        {
+            MonthInHome = monthInHome;
+        }
+    }
+    private void HandleRelationshipNameChange(ChangeEventArgs args) => RelationshipName = args.Value?.ToString();
+    private void HandleCodeChange(ChangeEventArgs args) => Code = args.Value?.ToString();
+
+
     protected override void OnInitialized()
     {
+        dependent = new Dependent();
         st2 = new Step2VM();
         Dependents = new List<Dependent>();
         Dependents = service.GetDependets(TaxFormID);
@@ -933,10 +1133,11 @@
         spouseDeathDate_q_id = questions.First(c => c.Order == 14).Id;
 
         TaxForm t = service.GetTaxForm(TaxFormID);
-        if (t.TaxFormPerson.Where(c=>c.isSpouse == true).Count()>0)
+        if (t.TaxFormPerson.Where(c => c.isSpouse == true).Count() > 0)
         {
-            st2.Spouse = t.TaxFormPerson.Where(c=>c.isSpouse == true).Select(c=> new Person {
-                Birthday= c.Birthday,
+            st2.Spouse = t.TaxFormPerson.Where(c => c.isSpouse == true).Select(c => new Person
+            {
+                Birthday = c.Birthday,
                 Email = c.Email,
                 FirstName = c.FirstName,
                 id = c.id,
@@ -968,7 +1169,7 @@
             st2.CurrentUserInfo = CurrentUser;
         }
 
-        if (answers.Any(c=>c.QuestionId == DateOfFinalDecree_q_id))
+        if (answers.Any(c => c.QuestionId == DateOfFinalDecree_q_id))
         {
             DateOfFinalDecree_flag = true;
             DateOfFinalDecree = DateTime.Parse(answers.First(c => c.QuestionId == DateOfFinalDecree_q_id).TheAnswer);
@@ -990,33 +1191,42 @@
     public async Task Next()
     {
 
-        if (DateOfFinalDecree.Year>1900){
-            if (DateOfFinalDecree_flag){
+        if (DateOfFinalDecree.Year > 1900)
+        {
+            if (DateOfFinalDecree_flag)
+            {
                 var model = answers.First(c => c.QuestionId == DateOfFinalDecree_q_id);
                 model.TheAnswer = DateOfFinalDecree.ToLongDateString();
                 model.UpdatedOn = DateTime.Now;
             }
-            else {
+            else
+            {
                 answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = DateOfFinalDecree_q_id, TheAnswer = DateOfFinalDecree.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
             }
         }
-        if (separateAgreementDate.Year > 1900){
-            if (separateAgreementDate_flag){
+        if (separateAgreementDate.Year > 1900)
+        {
+            if (separateAgreementDate_flag)
+            {
                 var model = answers.First(c => c.QuestionId == separateAgreementDate_q_id);
                 model.TheAnswer = separateAgreementDate.ToLongDateString();
                 model.UpdatedOn = DateTime.Now;
             }
-            else{
+            else
+            {
                 answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = separateAgreementDate_q_id, TheAnswer = separateAgreementDate.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
             }
         }
-        if (spouseDeathDate.Year>1900){
-            if (spouseDeathDate_flag){
+        if (spouseDeathDate.Year > 1900)
+        {
+            if (spouseDeathDate_flag)
+            {
                 var model = answers.First(c => c.QuestionId == spouseDeathDate_q_id);
                 model.TheAnswer = spouseDeathDate.ToLongDateString();
                 model.UpdatedOn = DateTime.Now;
             }
-            else{
+            else
+            {
                 answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = spouseDeathDate_q_id, TheAnswer = spouseDeathDate.ToLongDateString(), AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
             }
         }
@@ -1033,16 +1243,16 @@
         await NextPage.InvokeAsync(gotoStep);
     }
 
-    private void OnReloadDependetEvent(bool changed)
-    {
-        ReloadDependentList = changed;
+    //private void OnReloadDependetEvent(bool changed)
+    //{
+    //    ReloadDependentList = changed;
 
-        Dependents = service.GetDependets(TaxFormID);
-        StateHasChanged();
-    }
+    //    Dependents = service.GetDependets(TaxFormID);
+    //    StateHasChanged();
+    //}
 
     private void SaveProgress(int CurrentStep)
-    {        
+    {
         service.SaveProgressStep2(TaxFormID, CurrentStep, st2);
     }
 

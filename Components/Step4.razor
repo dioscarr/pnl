@@ -1,4 +1,4 @@
-﻿@inject TaxFormService service
+﻿@inject ITaxFormService service
 
 <div class="container">
     <div class="row">
@@ -41,7 +41,7 @@
                         <div class="step-number step-number-active">STEP 4</div>
                         <div class="step-caption">Additional Information</div>
                     </span>
-                    <span class="steps-box" @onclick="async()=>await Goto(1)">
+                    <span class="steps-box" @onclick="async()=>await Goto(5)">
                         <div class="step-number">STEP 5</div>
                         <div class="step-caption">review</div>
                     </span>
@@ -60,16 +60,16 @@
         <div class="row">
             <div class="col-sm-12 bold900">
                 <div class="the-row-column-content step-3-parts-title align-start">
-                   @formSteps.First(c=>c.Section == 1).SectionName
+                    @formSteps.First(c => c.Section == 1).SectionName
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="the-row-column-content">
-                    <span>                       
-                       @formSteps.First(c=>c.Section==1).Questions.OrderBy(c=>c.Order).ToList()[0].TheQuestion
-                       @(email.QuestionId = formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id)
+                    <span>
+                        @formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].TheQuestion
+                        @(email.QuestionId = formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id)
                     </span>
                     <span>
                         <input type="email" @bind-value="email.TheAnswer" name="email" />
@@ -95,18 +95,16 @@
                             <input class="form-check-input"
                                    type="radio"
                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Yes"))"
-                                    />
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Yes"))" />
                             <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Spouse"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Spouse"))"
-                                    />
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Spouse"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[2].Id,"Spouse"))" />
                             <label class="form-check-label" for="gotMarryLastYearno">
                                 Spouse
                             </label>
@@ -126,25 +124,23 @@
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"Yes"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"Yes"))" />
                             <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"No"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"No"))"
-                                    />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[3].Id,"No"))" />
                             <label class="form-check-label" for="gotMarryLastYearno">
                                 No
                             </label>
                         </span>
                     </span>
-                </div>               
+                </div>
             </div>
         </div>
 
@@ -158,19 +154,17 @@
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"Yes"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"Yes"))" />
                             <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"No"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"No"))"
-                                    />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[4].Id,"No"))" />
                             <label class="form-check-label" for="gotMarryLastYearno">
                                 No
                             </label>
@@ -190,18 +184,16 @@
                             <input class="form-check-input"
                                    type="radio"
                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"Yes"))"
-                                   />
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"Yes"))" />
                             <label class="form-check-label" for="gotMarryLastYearyes">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"No"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"No"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[5].Id,"No"))" />
                             <label class="form-check-label" for="gotMarryLastYearno">
                                 No
                             </label>
@@ -234,16 +226,15 @@
                         @(languages.QuestionId = formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id)
                     </span>
                     <span>
-                        <input type="text" class="light-pink-bk" @bind-value="languages.TheAnswer" name="Languages"/>
+                        <input type="text" class="light-pink-bk" @bind-value="languages.TheAnswer" name="Languages" />
                     </span>
                     <span>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="checkbox"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id,"Prefer not to answer"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id,"Prefer not to answer"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id,"Prefer not to answer"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id,"Prefer not to answer"))" />
                             <label class="form-check-label" for="NeverMarriedid">
                                 Prefer not to answer
                             </label>
@@ -263,19 +254,17 @@
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Yes"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Yes"))" />
                             <label class="form-check-label" for="flexRadioDefault1">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1)..Questions.First(c => c.Order == 9).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"No"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order ==9).Id,"No"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1)..Questions.First(c => c.Order == 9).Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order ==9).Id,"No"))" />
                             <label class="form-check-label" for="flexRadioDefault2">
                                 No
                             </label>
@@ -283,10 +272,9 @@
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Unsure"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Unsure"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Unsure"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 9).Id,"Unsure"))" />
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Unsure
                             </label>
@@ -307,18 +295,16 @@
                             <input class="form-check-input"
                                    type="radio"
                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Yes"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Yes"))"
-                                   />
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Yes"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Yes"))" />
                             <label class="form-check-label" for="flexRadioDefault1">Yes</label>
                         </span>
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"No"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"No"))"
-                                   />
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"No"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"No"))" />
                             <label class="form-check-label" for="flexRadioDefault2">
                                 No
                             </label>
@@ -326,10 +312,9 @@
                         <span class="form-check form-check-inline">
                             <input class="form-check-input"
                                    type="radio"
-                                    name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id"
-                                    checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Unsure"))"
-                                    @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Unsure"))"
-                                   />
+                                   name="@formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id"
+                                   checked="@(GetRadioState(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Unsure"))"
+                                   @onchange="@(()=>SetAnswer(formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 10).Id,"Unsure"))" />
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Unsure
                             </label>
@@ -389,23 +374,23 @@
 
         formSteps = new List<FormStep>();
         answers = new List<Answer>();
-        answers = service.GetAnswers(TaxFormID,4);
+        answers = service.GetAnswers(TaxFormID, 4);
 
         formSteps = service.GetFormStep(4);
 
-        email = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id) !=null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id) : new Answer();
+        email = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id) != null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[0].Id) : new Answer();
         campaignfunds = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[1].Id) != null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.OrderBy(c => c.Order).ToList()[1].Id) : new Answer();
         languages = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id) != null) ? answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 7).Id) : new Answer();
 
-        
 
-        ansChkQ8 = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id) != null) ? (answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id).TheAnswer =="true") : false;
+
+        ansChkQ8 = (answers.FirstOrDefault(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id) != null) ? (answers.First(c => c.QuestionId == formSteps.First(c => c.Section == 1).Questions.First(c => c.Order == 8).Id).TheAnswer == "true") : false;
 
         base.OnInitialized();
     }
     public async Task Next()
     {
-        if (email.Id == 0 && email.TheAnswer!=null)
+        if (email.Id == 0 && email.TheAnswer != null)
         {
             email.TaxFormId = TaxFormID;
             email.UpdatedOn = DateTime.Now;
@@ -420,7 +405,7 @@
             campaignfunds.AnsweredOn = DateTime.Now;
             answers.Add(campaignfunds);
         }
-        if (languages.Id == 0 && languages.TheAnswer!=null)
+        if (languages.Id == 0 && languages.TheAnswer != null)
         {
             languages.TaxFormId = TaxFormID;
             languages.UpdatedOn = DateTime.Now;

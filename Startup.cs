@@ -75,7 +75,7 @@ namespace pnl
             services.AddServerSideBlazor();
             services.AddControllersWithViews();
             services.TryAddMaterialServices(new MaterialConfigBuilder().WithIsServer(true).WithIsPreRendering(false).Build());
-            services.AddTransient<TaxFormService>();
+            services.AddTransient<ITaxFormService,TaxFormService>();
             services.AddTransient<IEmailSender, emailSend>();
 
         }

@@ -1,4 +1,5 @@
-﻿@inject IJSRuntime JS;
+﻿@inject ITaxFormService service 
+@inject IJSRuntime JS;
 
 <div class="container">
     <div class="row">
@@ -59,7 +60,7 @@
             <div class="col-sm-6">
                 <div class="the-row-column-content">
                     <div class="awesomejohn">Awesome,</div>
-                    <div class="john">John!</div>
+                    <div class="john">@t.Person.FirstName!</div>
                     <p class="colorpkblue">
                         We are finally ready to roll. You completed all of the forms and
                         we do not have any more questions at the moment.
@@ -84,6 +85,7 @@
                                 <input class=""
                                        type="checkbox"
                                        value=""
+                                       checked="@((isBasicInformation==false)?false:"checked")"
                                        name="NeverMarried"
                                        id="NeverMarriedid" />
                                 <label class="form-check-label" for="NeverMarriedid">
@@ -101,6 +103,7 @@
                                 <input class=""
                                        type="checkbox"
                                        value=""
+                                       checked="@((isPersonalInformation==false)?false:"checked")"
                                        name="NeverMarried"
                                        id="NeverMarriedid" />
                                 <label class="form-check-label" for="NeverMarriedid">
@@ -118,6 +121,7 @@
                                 <input class=""
                                        type="checkbox"
                                        value=""
+                                       checked="@((isIncomeExpenses==false)?false:"checked")"
                                        name="NeverMarried"
                                        id="NeverMarriedid" />
                                 <label class="form-check-label" for="NeverMarriedid">
@@ -135,6 +139,7 @@
                                 <input class=""
                                        type="checkbox"
                                        value=""
+                                       checked="@((isBasicInformation==false)?false:"checked")"
                                        name="NeverMarried"
                                        id="NeverMarriedid" />
                                 <label class="form-check-label" for="NeverMarriedid">
@@ -155,9 +160,9 @@
                         <div id="next-step">
                             <button id="prev-step" @onclick="Prv">Previous Step</button>
                         </div>
-                        <div id="next-step">
+                        @*<div id="next-step">
                             <button id="next-step-id" @onclick="Next">Next Step</button>
-                        </div>
+                        </div>*@
                         <div id="next-step">
                             <button id="revire-submit" @onclick="SubmitReview">Review & Submit</button>
                         </div>
@@ -173,6 +178,9 @@
 
 @code{
     [Parameter]
+    public int TaxFormID { get; set; }
+
+    [Parameter]
     public EventCallback<int> NextPage { get; set; }
 
     [Parameter]
@@ -180,6 +188,22 @@
 
     [Parameter]
     public EventCallback<int> FinalPage { get; set; }
+    public bool isBasicInformation { get; set; } = true;
+    public bool isPersonalInformation { get; set; } = false;
+    public bool isIncomeExpenses { get; set; } = false;
+    public bool isAdditionalInformation { get; set; } = false;
+
+    public TaxForm t { get; set; }
+    protected override void OnInitialized()
+    {
+        t = new TaxForm();
+        t = service.GetTaxForm(TaxFormID);
+        isPersonalInformation = t.Answers.Any(c => c.Question.FormStep.TheStep == 2);
+        isIncomeExpenses = t.Answers.Any(c => c.Question.FormStep.TheStep == 3);
+        isAdditionalInformation = t.Answers.Any(c => c.Question.FormStep.TheStep == 4);
+
+        base.OnInitialized();
+    }
 
     public async Task Next()
     {
@@ -191,7 +215,7 @@
     }
     public async Task SubmitReview()
     {
-        
+        var result = service.SubmitReview(TaxFormID);
         await JS.InvokeVoidAsync("GotoPath","/Home");
         //await FinalPage.InvokeAsync(6);
     }

@@ -1,218 +1,216 @@
-﻿@inject TaxFormService service
+﻿@inject ITaxFormService service
 
-    <div class="container">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div id="mininavigation">
+                <div class="mini-navigation-inner-box">
+                    <button id="viewDocument">
+                        <img src="/img/document-management-icon-sm.svg"
+                             class="viewDocIcon" />
+                        <span> View Your Documents</span>
+                    </button>
+                    <button id="SaveAndReturn">
+                        <img src="/img/home-icon.svg" class="viewDocIcon" />
+                        <span>Save & Return To Dashboard</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="min-height: 100%; padding-bottom: 90px">
+    <div class="container main-border">
         <div class="row">
             <div class="col-sm-12">
-                <div id="mininavigation">
-                    <div class="mini-navigation-inner-box">
-                        <button id="viewDocument">
-                            <img src="/img/document-management-icon-sm.svg"
-                                 class="viewDocIcon" />
-                            <span> View Your Documents</span>
-                        </button>
-                        <button id="SaveAndReturn">
-                            <img src="/img/home-icon.svg" class="viewDocIcon" />
-                            <span>Save & Return To Dashboard</span>
-                        </button>
-                    </div>
+                <div class="steps-top-nav">
+                    <span class="steps-box" @onclick="async()=>await Goto(1)">
+                        <div class="step-number">STEP 1</div>
+                        <div class="step-caption">Basic Information</div>
+                    </span>
+                    <span class="steps-box" @onclick="async()=>await Goto(2)">
+                        <div class="step-number">STEP 2</div>
+                        <div class="step-caption">Personal information</div>
+                    </span>
+                    <span class="steps-box" @onclick="async()=>await Goto(3)">
+                        <div class="step-number step-number-active">STEP 3</div>
+                        <div class="step-caption">income</div>
+                    </span>
+                    <span class="steps-box" @onclick="async()=>await Goto(4)">
+                        <div class="step-number">STEP 4</div>
+                        <div class="step-caption">Additional Information</div>
+                    </span>
+                    <span class="steps-box" @onclick="async()=>await Goto(5)">
+                        <div class="step-number">STEP 5</div>
+                        <div class="step-caption">review</div>
+                    </span>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="hr-line">
+                    <hr />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title">
+                    <h3 class="fw700" style="align-self: start">Income</h3>
+                    <h5>Check appropriate box for each question in each section</h5>
+                </div>
+            </div>
+        </div>
+        @foreach (FormStep itemStep in formSteps.OrderBy(c => c.Section))
+        {
+            <div class="row light-pink-bk">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <div class="step-3-parts-title ">
+                        @itemStep.SectionName
+                    </div>
+                </div>
+            </div>
+            @foreach (Question item in itemStep.Questions.OrderBy(c => c.Order))
+            {
+                <div class="row">
+                    <div class="col-sm-12 col-md-3">
+                        <div class="the-row-column-content darkgrey">
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="@item.Id"
+                                       checked="@(GetRadioState(item.Id,"true"))"
+                                       @onchange="@(()=>SetAnswer(item.Id,"true"))"
+                                       id="@("Yes"+@item.Id )" />
+                                <label class="form-check-label" for="@("Yes"+@item.Id )">Yes</label>
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="@item.Id"
+                                       checked="@(GetRadioState(item.Id,"false"))"
+                                       @onchange="@(()=>SetAnswer(item.Id,"false"))"
+                                       id="@("No"+@item.Id )" />
+                                <label class="form-check-label" for="@("No"+@item.Id )">
+                                    No
+                                </label>
+                            </span>
+                            <span class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="radio"
+                                       name="@item.Id"
+                                       checked="@(GetRadioState(item.Id,"unsured"))"
+                                       @onchange="@(()=>SetAnswer(item.Id,"unsured"))"
+                                       id="@("Unsure"+@item.Id )" />
+                                <label class="form-check-label" for="@("Unsure"+@item.Id )">
+                                    Unsure
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-9">
+                        <div class="the-row-column-content darkgrey">
+                            @item.TheQuestion
+                        </div>
+                    </div>
+                </div>
 
-    <div style="min-height: 100%; padding-bottom: 90px">
-        <div class="container main-border">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="steps-top-nav">
-                        <span class="steps-box" @onclick="async()=>await Goto(1)">
-                            <div class="step-number">STEP 1</div>
-                            <div class="step-caption">Basic Information</div>
-                        </span>
-                        <span class="steps-box" @onclick="async()=>await Goto(2)">
-                            <div class="step-number">STEP 2</div>
-                            <div class="step-caption">Personal information</div>
-                        </span>
-                        <span class="steps-box" @onclick="async()=>await Goto(3)">
-                            <div class="step-number step-number-active">STEP 3</div>
-                            <div class="step-caption">income</div>
-                        </span>
-                        <span class="steps-box" @onclick="async()=>await Goto(4)">
-                            <div class="step-number">STEP 4</div>
-                            <div class="step-caption">Additional Information</div>
-                        </span>
-                        <span class="steps-box" @onclick="async()=>await Goto(5)">
-                            <div class="step-number">STEP 5</div>
-                            <div class="step-caption">review</div>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="hr-line">
-                        <hr />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h3 class="fw700" style="align-self: start">Income</h3>
-                        <h5>Check appropriate box for each question in each section</h5>
-                    </div>
-                </div>
-            </div>           
-            @foreach (FormStep itemStep in formSteps.OrderBy(c=>c.Section)) 
-            {      
-                <div class="row light-pink-bk">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-9">
-                        <div class="step-3-parts-title ">
-                           @itemStep.SectionName
+            }
+        }
+        <!--End-->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="step-nav-box">
+                    <div class="step-nav">
+                        <div id="next-step">
+                            <button id="prev-step" @onclick="Prv">Previous Step</button>
                         </div>
-                    </div>
-                </div>
-                @foreach (Question item in itemStep.Questions.OrderBy(c=>c.Order))
-                {
-                    <div class="row">
-                        <div class="col-sm-12 col-md-3">
-                            <div class="the-row-column-content darkgrey">
-                                <span class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="@item.Id"
-                                           checked="@(GetRadioState(item.Id,"true"))"
-                                           @onchange="@(()=>SetAnswer(item.Id,"true"))"
-                                           id="@("Yes"+@item.Id )" />
-                                    <label class="form-check-label" for="@("Yes"+@item.Id )">Yes</label>
-                                </span>
-                                <span class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="@item.Id"
-                                           checked="@(GetRadioState(item.Id,"false"))"
-                                            @onchange="@(()=>SetAnswer(item.Id,"false"))"
-                                          id="@("No"+@item.Id )"
-                                           />
-                                    <label class="form-check-label" for="@("No"+@item.Id )">
-                                        No
-                                    </label>
-                                </span>
-                                <span class="form-check form-check-inline">
-                                    <input class="form-check-input"
-                                           type="radio"
-                                           name="@item.Id"
-                                           checked="@(GetRadioState(item.Id,"unsured"))"
-                                            @onchange="@(()=>SetAnswer(item.Id,"unsured"))"
-                                          id="@("Unsure"+@item.Id )"
-                                           />
-                                    <label class="form-check-label" for="@("Unsure"+@item.Id )">
-                                        Unsure
-                                    </label>
-                                </span>
-                            </div>
+                        <div id="next-step">
+                            <button id="next-step-id" @onclick="Next">Next Step</button>
                         </div>
-                        <div class="col-sm-12 col-md-9">
-                            <div class="the-row-column-content darkgrey">
-                                @item.TheQuestion 
-                            </div>
-                        </div>
-                    </div>
-            
-                }
-            }           
-            <!--End-->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="step-nav-box">
-                        <div class="step-nav">
-                            <div id="next-step">
-                                <button id="prev-step" @onclick="Prv">Previous Step</button>
-                            </div>
-                            <div id="next-step">
-                                <button id="next-step-id" @onclick="Next">Next Step</button>
-                            </div>
-                            <div id="next-step">
-                                <button id="revire-submit" @onclick="SubmitReview">Review & Submit</button>
-                            </div>
+                        <div id="next-step">
+                            <button id="revire-submit" @onclick="SubmitReview">Review & Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
-    @code{
-        [Parameter]
-        public EventCallback<int> NextPage { get; set; }
+@code{
+    [Parameter]
+    public EventCallback<int> NextPage { get; set; }
 
-        [Parameter]
-        public EventCallback<int> PrvPage { get; set; }
+    [Parameter]
+    public EventCallback<int> PrvPage { get; set; }
 
-        [Parameter]
-        public EventCallback<int> FinalPage { get; set; }
+    [Parameter]
+    public EventCallback<int> FinalPage { get; set; }
 
-        [Parameter]
-        public int TaxFormID { get; set; }
+    [Parameter]
+    public int TaxFormID { get; set; }
 
 
-        public Step3VM st3 { get; set; }
-        public List<FormStep> formSteps { get; set; }
+    public Step3VM st3 { get; set; }
+    public List<FormStep> formSteps { get; set; }
 
-        public List<Question> questions { set; get; }
-        public List<Answer> answers { get; set; }
+    public List<Question> questions { set; get; }
+    public List<Answer> answers { get; set; }
 
-        protected override void OnInitialized()
+    protected override void OnInitialized()
+    {
+        formSteps = new List<FormStep>();
+        answers = new List<Answer>();
+        answers = service.GetAnswers(TaxFormID, 3);
+        formSteps = service.GetFormStep(3);
+        base.OnInitialized();
+    }
+
+    public async Task Next()
+    {
+        service.SaveProgressStep3(answers);
+        await NextPage.InvokeAsync(4);
+    }
+    public async Task Prv()
+    {
+        await PrvPage.InvokeAsync(2);
+    }
+    public async Task SubmitReview()
+    {
+        service.SaveProgressStep3(answers);
+        await FinalPage.InvokeAsync(5);
+    }
+
+    public async Task Goto(int gotoStep)
+    {
+        await NextPage.InvokeAsync(gotoStep);
+    }
+    public void SetAnswer(int qId, string qAn)
+    {
+        if (answers.Any(c => c.QuestionId == qId))//update
         {
-            formSteps = new List<FormStep>();
-            answers = new List<Answer>();
-            answers = service.GetAnswers(TaxFormID,3);
-            formSteps = service.GetFormStep(3);
-            base.OnInitialized();
+            Answer ans = answers.First(c => c.QuestionId == qId);
+            ans.TheAnswer = qAn;
+            ans.UpdatedOn = DateTime.Now;
         }
-
-        public async Task Next()
+        else //insert
         {
-            service.SaveProgressStep3(answers);
-            await NextPage.InvokeAsync(4);
-        }
-        public async Task Prv()
-        {
-            await PrvPage.InvokeAsync(2);
-        }
-        public async Task SubmitReview()
-        {
-            service.SaveProgressStep3(answers);
-            await FinalPage.InvokeAsync(5);
-        }
-
-        public async Task Goto(int gotoStep)
-        {
-            await NextPage.InvokeAsync(gotoStep);
-        }
-        public void SetAnswer(int qId,string qAn)
-        {
-            if (answers.Any(c => c.QuestionId == qId))//update
-            {
-                Answer ans = answers.First(c => c.QuestionId == qId);
-                ans.TheAnswer = qAn;
-                ans.UpdatedOn = DateTime.Now;
-            }
-            else //insert
-            {
-                answers.Add(new Answer {TaxFormId = TaxFormID, QuestionId = qId, TheAnswer = qAn, AnsweredOn = DateTime.Now,UpdatedOn=DateTime.Now });
-            }
-        }
-        public bool GetRadioState(int id, string val)
-        {
-            if(answers.Any(c=>c.QuestionId == id))
-            {
-                var checkedval =  (answers.First(c => c.QuestionId == id).TheAnswer ==  val)?true:false;
-                return checkedval;
-            }
-            return false;
+            answers.Add(new Answer { TaxFormId = TaxFormID, QuestionId = qId, TheAnswer = qAn, AnsweredOn = DateTime.Now, UpdatedOn = DateTime.Now });
         }
     }
+    public bool GetRadioState(int id, string val)
+    {
+        if (answers.Any(c => c.QuestionId == id))
+        {
+            var checkedval = (answers.First(c => c.QuestionId == id).TheAnswer == val) ? true : false;
+            return checkedval;
+        }
+        return false;
+    }
+}
 

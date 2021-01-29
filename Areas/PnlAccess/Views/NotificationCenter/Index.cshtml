@@ -1,18 +1,13 @@
 ﻿@model NotificationCenterVM
-
-
-
-   
+  
 <div class="container-fluid primary-padding" id="main-content">
-
-
     <div class="row paddingtop20px">
          
         <div class="col-4">
             <div class="mb-6">
                 <div class="row ">
                     <div class="col-md-3">
-                        @if (Model.ProfilePicture.Count() == 0)
+                        @if (Model.ProfilePicture ==null)
                         {
                             <img src="~/img/user.svg" class="card-img" alt="..." />
                         }
@@ -20,7 +15,7 @@
                         {
                             <img id="profilePicture" style="width:100%; object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.ProfilePicture))">
                         }
-                    </div>
+                    </div>  
                     <div class="col-md-5">
                         <div class="card-body">
                             <h5 class="card-title">@Model.taxForm.Person.FirstName @Model.taxForm.Person.LastName</h5>
